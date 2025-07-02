@@ -14,8 +14,8 @@ import { PinContainer } from "../components/Internship/3Dpin";
 import Footer from '../components/Footer'
 import CountUp from '../components/Intern/counter'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { InfiniteMovingCards } from '../components/Intern/infiniteCards'
 import { TimelineDemo } from '../components/Intern/timelineDemo'
+import BackgroundShapes from '../components/Intern/backgound'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -271,9 +271,10 @@ export default function Internship() {
   }
 
   return (
-    <main className='w-full'>
+    <main className='w-full relative'>
+      <BackgroundShapes />
       {/* navbar */}
-      <div className="fixed z-50 top-4 left-0 md:top-12">
+      <div className="fixed left-5 top-2 z-50000">
         <Navbar />
       </div>
 
@@ -286,14 +287,13 @@ export default function Internship() {
       <ParallaxBackground />
 
       {/* Hero Section */}
-      <div ref={heroRef} className="relative z-20 bg-black/50">
+      <div ref={heroRef} className="relative z-20 pt-5 bg-white/20 ">
         <HeroText />
       </div>
 
-
       {/* Text Reveal Section */}
       <section ref={hopeRef} className='w-screen flex flex-row flex-wrap justify-around items-center'>
-        <div className='w-2/3 p-4'>
+        <div className='w-2/3 pl-4 pr-4'>
           <ScrollFloat
             animationDuration={1}
             ease='back.inOut(2)'
@@ -335,7 +335,6 @@ export default function Internship() {
         <div className='w-1/3'>
           <IconCloudDemo />
         </div>
-
       </section>
 
       {/* technologies */}

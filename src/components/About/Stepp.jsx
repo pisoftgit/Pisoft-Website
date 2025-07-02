@@ -5,8 +5,7 @@ function Stepp() {
   const [name, setName] = useState("");
 
   return (
-    <div className="flex  flex-col md:flex-row w-full h-auto px-4 sm:px-6 py-8 sm:py-10 gap-4 sm:gap-6">
-      {/* Right Side: Stepper */}
+    <div className="flex  flex-col md:flex-row w-full h-auto px-4 sm:px-6">
       <div className="w-full flex items-center justify-center">
         <Stepper
           initialStep={1}
@@ -22,7 +21,7 @@ function Stepp() {
               <img
                 src="meeting.jpg"
                 alt="Center Illustration"
-                className="w-[200px] sm:w-[250px] h-[80px] sm:h-[90px] object-cover rounded-full"
+                className="w-[200px] sm:w-[250px] h-[90px] sm:h-[90px] object-cover rounded-full"
               />
               <h2 className="text-2xl sm:text-3xl md:text-[32px] font-jr text-gray-800">
                 We Start By Listening

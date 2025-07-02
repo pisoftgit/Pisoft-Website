@@ -64,7 +64,7 @@ export default function Services() {
   return (
     <div className="bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
       {/* Navbar */}
-      <div className="z-50 pt-8 relative">
+      <div className="fixed left-5 top-2 z-50000">
         <Navbar />
       </div>
 

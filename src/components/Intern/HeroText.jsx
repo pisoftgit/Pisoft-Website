@@ -48,7 +48,7 @@ export default function HeroText() {
             {/* Hero Text */}
             <div className="z-10 text-center md:text-left max-w-4xl">
                 <motion.h1
-                    className="text-4xl md:text-6xl font-jB text-orange-400 drop-shadow-lg"
+                    className="text-4xl md:text-6xl font-jSB text-orange-500 drop-shadow-lg"
                     initial={{ opacity: 0, y: -30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.8 }}
@@ -57,14 +57,14 @@ export default function HeroText() {
                 </motion.h1>
 
                 <motion.p
-                    className="text-4xl md:text-6xl font-jB text-white"
+                    className="text-4xl md:text-7xl font-jSB text-blue-950"
                     initial={{ opacity: 0, y: -30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.8, duration: 0.8 }}
                 >
                     Internship Programs <br />
                     <motion.span
-                        className="text-2xl md:text-4xl text-white"
+                        className="text-2xl md:text-4xl text-blue-950"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.1, duration: 0.6 }}
@@ -116,7 +116,7 @@ export default function HeroText() {
                     transition={{ delay: 0.2, duration: 0.6 }}
                 >
                     <div className="text-end">
-                        <h2 className="text-2xl md:text-4xl font-jB text-orange-400 mb-6">
+                        <h2 className="text-2xl md:text-4xl font-jB text-blue-950 mb-6">
                             Meet Our Team
                         </h2>
                         <div className="flex flex-wrap justify-end gap-5">

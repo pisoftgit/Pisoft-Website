@@ -214,10 +214,6 @@ export default function Firstt() {
   return (
     <div className="w-full bg-white">
       <div ref={outerref} className="relative min-h-screen sm:min-h-half  w-full flex justify-center overflow-hidden">
-        <div className="fixed left-0 top-4 z-50 md:top-6">
-          <Navbar />
-        </div>
-
         <div className="relative w-full h-screen overflow-hidden">
           {/* Background Video */}
           <div className="absolute top-0 left-0 w-full h-full z-[-1]">
@@ -269,6 +265,9 @@ export default function Firstt() {
         </div>
       </div>
 
+      <div className="fixed left-5 top-2 z-50000">
+        <Navbar />
+      </div>
 
       <section className="min-h-screen w-full px-4">
         <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 md:hidden">
@@ -276,11 +275,11 @@ export default function Firstt() {
         </div>
         <div className="flex flex-col md:flex-row justify-between items-start pt-16 gap-6">
           <div className="w-full md:w-1/2">
-            <h1 className="font-jB text-[4vw] text-blue-950 leading-tight">Turning Code into</h1>
-            <h1 className="font-jB text-[4vw] text-orange-600 leading-tight">Impact.</h1>
+            <h1 className="font-jSB text-[9vw] sm:text-[4vw] md:text-[5.5vw] lg:text-[4vw] text-blue-950 leading-tight">Turning Code into</h1>
+            <h1 className="font-jSB  text-[9vw] sm:text-[4vw] md:text-[5.5vw] lg:text-[4vw] text-orange-600 leading-tight">Impact.</h1>
             <div ref={triggerRef} className="mt-6 flex flex-wrap gap-3 max-w-full">
               {text.split(" ").map((word, idx) => (
-                <span key={idx} ref={setLetterRef} className="font-jr text-[1.75vw] sm:text-[2.5vw] md:text-[1.5vw] font-bold text-gray-400">
+                <span key={idx} ref={setLetterRef} className="font-jl text-base sm:text-lg md:text-xl font-normal text-gray-400">
                   {word}
                 </span>
               ))}
@@ -298,10 +297,11 @@ export default function Firstt() {
       </section>
 
       {showNavbarDemo && (
-        <div className="fixed top-0 left-0 w-full z-50 md:block sm:hidden">
+        <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
           <NavbarDemo />
         </div>
       )}
+
 
       <section className="min-h-screen w-full">
         <div ref={servicesRef}><Horizontal /></div>

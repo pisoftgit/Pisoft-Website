@@ -6,8 +6,8 @@ import { useNavigate } from "react-router-dom";
 
 export function NavbarDemo() {
   return (
-    <div className="relative w-full flex items-center justify-center">
-      <Navbar className="top-2" />
+    <div className="relative w-full flex items-end justify-center">
+      <Navbar className="top-0" />
     </div>
   );
 }
@@ -22,7 +22,7 @@ function Navbar({ className }) {
   };
 
   return (
-    <div className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}>
+    <div className={cn("fixed top-10 inset-x-0 max-w-screen mx-auto z-50", className)}>
       <Menu setActive={setActive}>
         <MenuItem
           setActive={setActive}
@@ -36,7 +36,15 @@ function Navbar({ className }) {
         />
 
         <MenuItem setActive={setActive} active={active} item="ERP Services">
-          <div className="text-sm grid grid-cols-2 gap-10 p-4">
+          <div className="flex flex-col space-y-4 text-sm">
+            <HoveredLink onClick={() => { handleNavClick("/ERPservices/Education") }}>Education</HoveredLink>
+            <HoveredLink  onClick={() => { handleNavClick("/ERPservices/Finance") }}>Finance</HoveredLink>
+            <HoveredLink onClick={() => { handleNavClick("/ERPservices/Medical&Healthcare") }}>Medical and Helathcare</HoveredLink>
+            <HoveredLink onClick={() => { handleNavClick("/ERPservices/AutoMobile") }}>AutoMobile</HoveredLink>
+            <HoveredLink onClick={() => { handleNavClick("/ERPservices/TourTravels") }}>Tours and Travels</HoveredLink>
+            <HoveredLink onClick={() => { handleNavClick("/ERPservices/Services") }}>Services</HoveredLink>
+          </div>
+          {/* <div className="text-sm grid grid-cols-2 gap-10 p-4">
             <ProductItem
               title="Education"
               onClick={() => { handleNavClick("/ERPservices/Education") }}
@@ -73,7 +81,7 @@ function Navbar({ className }) {
               src="/esmeHome.PNG"
               description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
             />
-          </div>
+          </div> */}
         </MenuItem>
 
         <MenuItem

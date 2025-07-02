@@ -106,7 +106,7 @@ const GridLineVertical = ({
     <div
       style={
         {
-          "--background": "#ffffff",
+          "--background": "#000",
           "--color": "rgba(0, 0, 0, 0.2)",
           "--height": "5px",
           "--width": "1px",

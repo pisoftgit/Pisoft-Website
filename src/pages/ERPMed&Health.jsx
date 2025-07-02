@@ -146,9 +146,9 @@ function ERPFinance() {
         duration={400}
       >
 
-        <div className="fixed z-50 top-4 left-0 md:top-12">
-          <Navbar />
-        </div>
+       <div className="fixed left-5 top-2 z-50000">
+        <Navbar />
+      </div>
         <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none">
           <Example />
         </div>

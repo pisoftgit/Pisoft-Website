@@ -147,7 +147,7 @@ function ERPEducation() {
         duration={400}
       >
 
-        <div className="fixed z-50 top-4 left-0 md:top-12">
+        <div className="fixed left-5 top-2 z-50000">
         <Navbar />
       </div>
         <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none">
@@ -171,7 +171,8 @@ function ERPEducation() {
 
         {/* Hero words */}
         <div className="pt-20 md:pb-15 sm:pb-5 sm:px-6 md:px-12">
-          <BlurText
+          <div className='flex flex-wrap w-full justify-center items-center text-center'>
+            <BlurText
             text="EDUCATION SYSTEM MANAGEMENT ERP "
             className="font-jr text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
             delay={100}
@@ -184,6 +185,7 @@ function ERPEducation() {
             rootMargin="-100px"
             textAlign="center"
           />
+          </div>
           <div ref={triggerRef} className="flex flex-wrap justify-center gap-2 px-4 text-center">
             {text.split(" ").map((w, i) => (
               <span

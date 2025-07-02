@@ -13,7 +13,7 @@ function Masonry({ data }) {
       } else if (window.matchMedia('(min-width: 600px)').matches) {
         setColumns(3);
       } else {
-        setColumns(1); // Mobile devices
+        setColumns(2); // Mobile devices
       }
     };
 
@@ -75,7 +75,7 @@ function Masonry({ data }) {
             style={{
               backgroundColor: '#ffffff',
               backgroundImage: `url(${item.image})`,
-              backgroundSize: 'cover',
+              backgroundSize: 'contain',
               backgroundPosition: 'center',
             }}
           />
