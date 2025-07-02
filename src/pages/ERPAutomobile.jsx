@@ -1,0 +1,240 @@
+
+import React, { useState, useRef } from 'react';
+import Navbar from '../components/Navbar';
+import { Example } from '../components/Corn';
+import Footer from '../components/Footer';
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import TextPressure from '../components/TextPressure';
+import { TypewriterEffectSmoothDemo } from "../components/Education/Text";
+import { FollowingPointerDemo } from "../components/Automobile/AutoFloatingPointer";
+import { TypewriterEffect } from "../components/Finance/text2";
+import { LayoutGridDemo } from "../components/Automobile/AutoGrid";
+import BlurText from '../components/BlurText';
+import ClickSpark from '../components/ClickSpark';
+import { ContainerScroll } from '../components/conatinerScroll';
+import Threads from '../components/threads';
+import { DotLottieReact } from '@lottiefiles/dotlottie-react';
+import { useEffect } from 'react';
+
+
+
+
+gsap.registerPlugin(ScrollTrigger);
+
+function ERPAutoMobile() {
+  const [isExampleOpen, setIsExampleOpen] = useState(false);
+
+  const text =
+    "Automobile Workshop is based on management system and used to manage work that is performed in vehicle service workshop to spend less time and the person working efforts rather than paper work because this software makes work computerize. It targeted to business management in the mechanical sector. This software mainly focuses on managing the work in vehicle workshop.";
+
+
+  const triggerRef = useRef(null);
+  const sectionRefs = {
+    hero: useRef(null),
+    type1: useRef(null),
+    grid: useRef(null),
+    type2: useRef(null),
+    pointer: useRef(null),
+  };
+
+  function useArrayRef() {
+    const r = useRef([]);
+    r.current = [];
+    return [r, (el) => el && r.current.push(el)];
+  }
+  const [letterRef, setLetterRef] = useArrayRef();
+  const textRef = useRef(null);
+
+  useGSAP(() => {
+    // Animate TextPressure on menu toggle
+    gsap.set(textRef.current, { opacity: 1, y: 0 });
+  }, []);
+
+
+  React.useEffect(() => {
+    gsap.to(textRef.current, {
+      opacity: isExampleOpen ? 0 : 1,
+      y: isExampleOpen ? -40 : 0,
+      duration: 0.4,
+      ease: 'power2.out',
+      pointerEvents: isExampleOpen ? 'none' : 'auto',
+    });
+  }, [isExampleOpen]);
+
+  useGSAP(() => {
+    gsap.from(letterRef.current, {
+      scrollTrigger: {
+        trigger: triggerRef.current,
+        start: "top 80%",
+      },
+      opacity: 0,
+      y: 50,
+      stagger: 0.03,
+      duration: 0.8,
+      ease: "power3.out",
+    });
+
+    // Generic section slide-up animation
+    Object.values(sectionRefs).forEach((r) => {
+      if (!r.current) return;
+      gsap.from(r.current, {
+        scrollTrigger: {
+          trigger: r.current,
+          start: "top 85%",
+        },
+        opacity: 0,
+        y: 60,
+        duration: 0.8,
+        ease: "power3.out",
+      });
+    });
+  }, []);
+
+  const imageRef = useRef(null);
+
+  useGSAP(() => {
+    if (imageRef.current) {
+      gsap.from(imageRef.current, {
+        scrollTrigger: {
+          trigger: imageRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+        y: 60,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      });
+    }
+  }, []);
+
+  const [isLoading, setIsLoading] = useState(true);
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }, []);
+  
+    if (isLoading) {
+      return (
+        <div className="w-full h-screen flex justify-center items-center bg-white z-50 fixed top-0 left-0">
+          {/* <DotLottieReact
+            src="https://lottie.host/18f588f2-3aa0-458d-a140-52218fd224fa/g0AlX8iQRa.lottie"
+            loop
+            autoplay
+            className='text-sm'
+          /> */}
+          <DotLottieReact
+            src="https://lottie.host/e4dceebb-728f-458e-9648-fee916f32948/utxxsMf1tH.lottie"
+            loop
+            autoplay
+            className='text-sm'
+          />
+        </div>
+      );
+    }
+  
+  return (
+    <div className="bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 w-full">
+
+      <ClickSpark
+        sparkColor='black'
+        sparkSize={20}
+        sparkRadius={15}
+        sparkCount={8}
+        duration={400}
+      >
+
+        <div className="fixed z-50 top-4 left-0 md:top-12">
+        <Navbar />
+      </div>
+        <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none">
+          <Example />
+        </div>
+
+        {/* Hero: animated TextPressure */}
+        <div className="absolute top-10 sm:top-16 md:top-4 lg:left-20 sm:left-10 w-full flex items-center justify-center pl-4 text-center">
+          <TextPressure
+            text=" ASME"
+            flex
+            alpha
+            stroke
+            width
+            weight
+             textColor="#145198"
+            strokeColor="#145198"
+            minFontSize={6}
+          />
+        </div>
+
+        {/* Hero words */}
+        <div className="pt-20 md:pb-15 sm:pb-5 sm:px-6 md:px-12">
+          <BlurText
+            text="AUTOMOTIVE SYSTEM MANAGEMENT ERP"
+            className="font-jr text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
+            delay={100}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-100px"
+            textAlign="center"
+          />
+          <div ref={triggerRef} className="flex flex-wrap justify-center gap-2 px-4 text-center">
+            {text.split(" ").map((w, i) => (
+              <span
+                key={i}
+                ref={setLetterRef}
+                className="font-jmed text-[4vw] sm:text-[1vw] md:text-[1.8vw] text-black font-bold"
+              >
+                {w}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* <ContainerScroll>
+          <img
+            ref={imageRef}
+            src="/Industries.PNG"
+            alt="ESME System Overview"
+            className="object-cover w-full h-full rounded-2xl"
+          />
+        </ContainerScroll> */}
+
+
+        <div ref={sectionRefs.type1} className="px-4 md:px-8 sm:pt-5 md:pt-20">
+      <TypewriterEffectSmoothDemo />
+        </div>
+
+        <ContainerScroll>
+                  <section className="w-full text-center px-4 md:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
+                    <LayoutGridDemo />
+                  </section>
+                </ContainerScroll>
+                
+                    <section className="w-full ">
+                      <Threads color={[]}/>
+                    </section>
+        
+                <div ref={sectionRefs.type2} className="px-4 md:px-8 py-8 md:py-12">
+                  <TypewriterEffect />
+                </div>
+        
+
+        <div ref={sectionRefs.pointer} className="px-4 md:px-8 py-8 md:py-12">
+          <FollowingPointerDemo />
+        </div>
+        <footer className="relative bg-white z-10 pt-8"><Footer /></footer>
+
+      </ClickSpark >
+    </div >
+  );
+}
+
+export default ERPAutoMobile;

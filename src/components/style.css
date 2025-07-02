@@ -1,0 +1,11 @@
+/* styles.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: #000;
+  overflow-x: hidden;
+}
+
+html, body {
+  scroll-behavior: smooth;
+}

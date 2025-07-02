@@ -1,0 +1,92 @@
+"use client";
+import React, { useState } from "react";
+import { HoveredLink, Menu, MenuItem, ProductItem } from "./navbarmenu";
+import { cn } from "../../lib/util";
+import { useNavigate } from "react-router-dom";
+
+export function NavbarDemo() {
+  return (
+    <div className="relative w-full flex items-center justify-center">
+      <Navbar className="top-2" />
+    </div>
+  );
+}
+
+function Navbar({ className }) {
+  const [active, setActive] = useState(null);
+  const navigate = useNavigate();
+
+  const handleNavClick = (path) => {
+    navigate(path);
+    setActive(null); // Close menus after click
+  };
+
+  return (
+    <div className={cn("fixed top-10 inset-x-0 max-w-2xl mx-auto z-50", className)}>
+      <Menu setActive={setActive}>
+        <MenuItem
+          setActive={setActive}
+          item="Home"
+          onClick={() => handleNavClick("/")}
+        />
+        <MenuItem
+          setActive={setActive}
+          item="About"
+          onClick={() => handleNavClick("/about")}
+        />
+
+        <MenuItem setActive={setActive} active={active} item="ERP Services">
+          <div className="text-sm grid grid-cols-2 gap-10 p-4">
+            <ProductItem
+              title="Education"
+              onClick={() => { handleNavClick("/ERPservices/Education") }}
+              src="/esmeHome.PNG"
+              description="Prepare for tech interviews like never before."
+            />
+            <ProductItem
+              title="Finance"
+              onClick={() => { handleNavClick("/ERPservices/Finance") }}
+              src="/esmeHome.PNG"
+              description="Production ready Tailwind css components for your next project"
+            />
+            <ProductItem
+              title="Medical"
+              onClick={() => { handleNavClick("/ERPservices/Medical&Healthcare") }}
+              src="/esmeHome.PNG"
+              description="Never write from scratch again. Go from idea to blog in minutes."
+            />
+            <ProductItem
+              title="Automobile"
+              onClick={() => { handleNavClick("/ERPservices/AutoMobile") }}
+              src="/esmeHome.PNG"
+              description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
+            />
+            <ProductItem
+              title="Tours and Travels"
+              onClick={() => { handleNavClick("/ERPservices/TourTravels") }}
+              src="/esmeHome.PNG"
+              description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
+            />
+            <ProductItem
+              title="Services"
+              onClick={() => { handleNavClick("/ERPservices/Services") }}
+              src="/esmeHome.PNG"
+              description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
+            />
+          </div>
+        </MenuItem>
+
+        <MenuItem
+          setActive={setActive}
+          item="Internship"
+          onClick={() => handleNavClick("/IntershipProgram")}
+        />
+        <MenuItem
+          setActive={setActive}
+          item="Contact"
+          onClick={() => handleNavClick("/contact")}
+        />
+      </Menu>
+    </div>
+  );
+}

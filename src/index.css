@@ -1,0 +1,82 @@
+@import "tailwindcss";
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+@font-face {
+  font-family: bebas;
+  src: url("../src/fonts/BebasNeue-Regular.ttf");
+
+}
+
+@font-face {
+  font-family: PlusJakarta Sans;
+  src: url("../src/fonts/PlusJakartaSans-Medium.ttf");
+
+}
+
+@font-face {
+  font-family: PlusJakarta Sans L;
+  src: url("../src/fonts/PlusJakartaSans-Light.ttf");
+
+}
+
+@font-face {
+  font-family: PlusJakarta Sans R;
+  src: url("../src/fonts/PlusJakartaSans-Regular.ttf");
+
+}
+
+@font-face {
+  font-family: PlusJakarta Sans B;
+  src: url("../src/fonts/PlusJakartaSans-Bold.ttf");
+
+}
+
+@font-face {
+  font-family: PlusJakarta Sans SB;
+  src: url("../src/fonts/PlusJakartaSans-SemiBold.ttf");
+
+}
+
+@theme {
+  --font-bebas: bebas, "sans-serif";
+  --font-jmed: PlusJakarta Sans, "sans-serif";
+  --font-jl: PlusJakarta Sans L, "sans-serif";
+  --font-jr: PlusJakarta Sans R, "sans-serif";
+  --font-jB: PlusJakarta Sans B, "sans-serif";
+  --font-jSB: PlusJakarta Sans SB, "sans-serif";
+}
+
+
+:root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer utilities {
+  .absolute-center {
+    @apply absolute top-1/2
+  }
+
+  .mask-clip-path {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@theme inline {
+  --animate-scroll: scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite;
+
+  @keyframes scroll {
+    to {
+      transform: translate(calc(-50% - 0.5rem));
+    }
+  }
+}
