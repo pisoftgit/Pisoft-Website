@@ -6,9 +6,7 @@ import { useGSAP } from "@gsap/react";
 import CardSwap, { Card } from '../components/HomePage/cardswap';
 import Navbar from "./Navbar";
 import videosrc from "../assets/p2.mp4";
-import RollingGallerys from "./RollingGalary";
 import { Example } from "./Corn";
-import { Menu, X } from "lucide-react";
 import Button from "./Button";
 import Marquee from "./Marquee";
 import Horizontal from "./HorizontalScroll";
@@ -24,9 +22,6 @@ import { NavbarDemo } from "./navbar/Navbar";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Firstt() {
-  const navigate = useNavigate();
-  const [isOpen, setIsOpen] = useState(false);
-  const [isERPHovered, setIsERPHovered] = useState(false);
   const workRef = useRef(null);
   const servicesRef = useRef(null);
   const svgRef = useRef(null);
@@ -68,7 +63,7 @@ export default function Firstt() {
       scrollTrigger: {
         trigger: outerref.current,
         start: "top top",
-        end: "bottom+=10% top",
+        // end: "bottom+=50% top",
         pin: true,
         scrub: 1,
         invalidateOnRefresh: true,
@@ -78,19 +73,19 @@ export default function Firstt() {
 
     tl.fromTo(
       svgRef.current,
-      { scale: 1, transformOrigin: "center center" },
-      { scale: 100, ease: "power2.inOut" }
+      { scale: 1, transformOrigin: "center center center center" },
+      { scale: 70, ease: "easeinout" }
     );
 
     tl.to(staticTextRef.current, {
       opacity: 0,
-      duration: 0.3,
+      duration: 0.5,
       ease: "none",
     }, 0);
 
     tl.to(vnavRef.current, {
       color: "white",
-      duration: 0.3,
+      duration: 0.5,
       ease: "none",
     }, 0);
 
@@ -108,7 +103,7 @@ export default function Firstt() {
     colorTl.to(letterRef.current, {
       color: "black",
       stagger: { each: 15, ease: "power1.inOut" },
-      duration: 1,
+      duration: 0.5,
     });
 
     requestAnimationFrame(() => {
@@ -116,7 +111,7 @@ export default function Firstt() {
     });
   }, []);
 
-  // CardSwap trigger based on scroll
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -212,197 +207,205 @@ export default function Firstt() {
 
 
   return (
-    <div className="w-full bg-white">
-      <div ref={outerref} className="relative min-h-screen sm:min-h-half  w-full flex justify-center overflow-hidden">
-        <div className="relative w-full h-screen overflow-hidden">
-          {/* Background Video */}
-          <div className="absolute top-0 left-0 w-full h-full z-[-1]">
-            <video className="w-full h-full object-cover" autoPlay playsInline muted loop preload="auto">
-              <source src={videosrc} type="video/mp4" />
-            </video>
-          </div>
+    <smooth>
+      <div className="w-full bg-white overflow-hidden">
+        <smooth>
+          <div ref={outerref} className="relative min-h-screen sm:min-h-200px w-full flex justify-center overflow-hidden">
+            <div className="relative w-full h-screen overflow-hidden">
+              {/* Background Video */}
+              <div className="absolute top-0 left-0 w-full h-full z-[-1]">
+                <video className="w-full h-full object-cover" autoPlay playsInline muted loop preload="auto">
+                  <source src={videosrc} type="video/mp4" />
+                </video>
+              </div>
 
-          {/* Masked SVG Text */}
-          <svg ref={svgRef} className="relative w-full h-full">
-            <defs>
-              <linearGradient id="gradientFill" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#ffedd5" />
-                <stop offset="50%" stopColor="#ffedd5" />
-                <stop offset="100%" stopColor="#e0f2fe" />
-              </linearGradient>
-              <mask id="textmask">
-                <rect width="100%" height="100%" fill="white" />
-                <text
-                  className="font-bebas select-none"
-                  x="50%" y="40%"
-                  dominantBaseline="middle"
-                  textAnchor="middle"
-                  fill="black"
-                  style={{
-                    fontSize: '38vw',
-                  }}
-                >
-                  PISOFT
-                </text>
-              </mask>
-            </defs>
-            <rect width="100%" height="100%" fill="white" mask="url(#textmask)" />
-          </svg>
+              {/* Masked SVG Text */}
+              <svg ref={svgRef} className="relative w-full h-full">
+                <defs>
+                  <mask id="textmask">
+                    <rect width="100%" height="100%" fill="white" />
+                    <text
+                      className="font-bebas select-none"
+                      x="50%" y="40%"
+                      dominantBaseline="middle"
+                      textAnchor="middle"
+                      fill="black"
+                      style={{
+                        fontSize: '35vw',
+                      }}
+                    >
+                      PISOFT
+                    </text>
+                  </mask>
+                </defs>
+                <rect width="100%" height="100%" fill="white" mask="url(#textmask)" />
+              </svg>
 
-          {/* Static Bottom Left Text */}
-          <div
-            ref={staticTextRef}
-            className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 md:bottom-8 md:left-8 p-2 sm:p-4 text-black z-10 max-w-[90%]"
-          >
-            <h1 className="font-jr font-bold leading-snug text-[9vw] sm:text-[7vw] md:text-[5.5vw] lg:text-[4vw] flex flex-wrap">
-              <span className="text-orange-400 mr-2">Engineering</span> Excellence in
-            </h1>
-            <h3 className="font-jr font-bold leading-snug text-[8vw] sm:text-[6vw] md:text-[5vw] lg:text-[3.5vw] flex flex-wrap">
-              Every Line of <span className="ml-1">Code...</span>
-            </h3>
+              {/* Static Bottom Left Text */}
+              <div
+                ref={staticTextRef}
+                className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 md:bottom-8 md:left-8 p-2 sm:p-4 text-black z-10 max-w-[90%]"
+              >
+                <h1 className="font-jr font-bold leading-snug text-[9vw] sm:text-[7vw] md:text-[5.5vw] lg:text-[4vw] flex flex-wrap">
+                  <span className="text-orange-400 mr-2">Engineering</span> Excellence in
+                </h1>
+                <h3 className="font-jr font-bold leading-snug text-[8vw] sm:text-[6vw] md:text-[5vw] lg:text-[3.5vw] flex flex-wrap">
+                  Every Line of <span className="ml-1">Code...</span>
+                </h3>
 
-          </div>
-        </div>
-      </div>
-
-      <div className="fixed left-5 top-2 z-50000">
-        <Navbar />
-      </div>
-
-      <section className="min-h-screen w-full px-4">
-        <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 md:hidden">
-          <Example />
-        </div>
-        <div className="flex flex-col md:flex-row justify-between items-start pt-16 gap-6">
-          <div className="w-full md:w-1/2">
-            <h1 className="font-jSB text-[9vw] sm:text-[4vw] md:text-[5.5vw] lg:text-[4vw] text-blue-950 leading-tight">Turning Code into</h1>
-            <h1 className="font-jSB  text-[9vw] sm:text-[4vw] md:text-[5.5vw] lg:text-[4vw] text-orange-600 leading-tight">Impact.</h1>
-            <div ref={triggerRef} className="mt-6 flex flex-wrap gap-3 max-w-full">
-              {text.split(" ").map((word, idx) => (
-                <span key={idx} ref={setLetterRef} className="font-jl text-base sm:text-lg md:text-xl font-normal text-gray-400">
-                  {word}
-                </span>
-              ))}
-              <div className="mt-6"><Button /></div>
+              </div>
             </div>
           </div>
-          <div className="w-full md:w-1/2 mt-10 relative z-10">
-            <Hover />
+        </smooth>
+
+        <div className="fixed left-5 top-2 z-50000">
+          <Navbar />
+        </div>
+
+        <section className="min-h-screen w-full px-4">
+          <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 md:hidden">
+            <Example />
           </div>
-        </div>
-        <div className="mt-12">
-          <h5 ref={turningCodeRef} className="font-jl text-2xl text-center text-black tracking-wide">Trusted by Clients</h5>
-          <Marquee />
-        </div>
-      </section>
-
-      {showNavbarDemo && (
-        <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
-          <NavbarDemo />
-        </div>
-      )}
-
-
-      <section className="min-h-screen w-full">
-        <div ref={servicesRef}><Horizontal /></div>
-        <div ref={workRef} className="px-4 sm:px-6 md:px-8">
-          <div className="flex justify-center mb-4 sm:mb-6">
-            <h5 className="font-jl text-3xl sm:text-xl md:text-2xl font-semibold tracking-wide">
-              Have a Glimpse at Our
-            </h5>
-          </div>
-          <TrueFocus
-            sentence="Latest Works"
-            manualMode={false}
-            blurAmount={2}
-            borderColor="#022f66"
-            text="orange"
-            animationDuration={2}
-            pauseBetweenAnimations={1}
-          />
-          <div className="mx-auto max-w-4xl mt-6 sm:mt-8 md:mt-10">
-            <div className="font-jrB text-4xl sm:text-4xl md:text-5xl text-orange-400 text-center">
-              Results matter.
-            </div>
-            <div className="font-jl text-base sm:text-lg md:text-xl font-normal mt-6 sm:mt-8 text-center">
-              "Discover how our customized solutions have delivered measurable business outcomes for clients across various industries. Each case study highlights the strategic impact of our work, turning challenges into opportunities for growth."
-            </div>
-          </div>
-        </div>
-        <section className="sm:mt-10 md:mt-20 px-4 sm:px-6 md:px-10">
-          <ScrollT />
-        </section>
-      </section>
-
-      {/* Gallery Section */}
-
-      <div ref={galleryRef} className="max-w-full relative px-4">
-        <div>
-          <BlurText
-            text="WHAT OUR CLIENT SAYS"
-            className="text-6xl sm:text-md font-jB text-center text-orange-500 mt-36"
-            delay={100}
-            duration={0.6}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          />
-        </div>
-        <p className="font-jr text-md mt-10 font-bold text-black max-w-3/4">
-          Hear directly from our partners and clients about how our solutions made an impact. We're proud to build relationships that go beyond just delivering projects.
-        </p>
-        <div className="font-jr text-md mt-10 font-bold text-black max-w-xl mx-auto ">
-          <div className="border-2 border-orange-500 rounded-4xl p-8"><p className="text-lg font-semibold italic">"{testimonials[activeIndex].quote}"</p>
-            <p className="font-jr text-md font-bold text-blue-900 max-w-3/4">
-              — {testimonials[activeIndex].name}, {testimonials[activeIndex].role}
-            </p></div>
-        </div>
-      </div>
-
-      {showCardSwap && (
-        <div className="fixed bottom-4 right-12 flex items-start gap-8 z-50">
-          <div>
-            <CardSwap
-              cardDistance={60}
-              verticalDistance={70}
-              delay={4000}
-              pauseOnHover={false}
-            >
-              {testimonials
-                .filter(t => t.image)
-                .map((testimonial, index) => (
-                  <Card key={index}>
-                    <div className="w-48 h-64 overflow-hidden rounded-4xl shadow-lg">
-                      <img
-                        src={testimonial.image}
-                        alt={`Client testimonial by ${testimonial.name}`}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                  </Card>
+          <div className="flex flex-col md:flex-row justify-between items-start pt-16 gap-6">
+            <div className="w-full md:w-1/2">
+              <h1 ref={turningCodeRef} className="font-jSB text-[9vw] sm:text-[4vw] md:text-[5.5vw] lg:text-[4vw] text-blue-950 leading-tight">Turning Code into</h1>
+              <h1 className="font-jSB  text-[9vw] sm:text-[4vw] md:text-[5.5vw] lg:text-[4vw] text-orange-600 leading-tight">Impact.</h1>
+              <div ref={triggerRef} className="mt-6 flex flex-wrap gap-3 max-w-full">
+                {text.split(" ").map((word, idx) => (
+                  <span key={idx} ref={setLetterRef} className="font-jl text-base sm:text-lg md:text-xl font-normal text-gray-400">
+                    {word}
+                  </span>
                 ))}
-            </CardSwap>
+                <div className="mt-6"><Button /></div>
+              </div>
+            </div>
+            <div className="w-full md:w-1/2 mt-10 relative z-10">
+              <Hover />
+            </div>
+          </div>
+          <div className="mt-12">
+            <h5 className="font-jl text-2xl text-center text-black tracking-wide">Trusted by Clients</h5>
+            <Marquee />
+          </div>
+        </section>
+
+        {showNavbarDemo && (
+          <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
+            <NavbarDemo />
+          </div>
+        )}
+
+
+        <section className="min-h-screen w-full">
+          <div ref={servicesRef}><Horizontal /></div>
+          <div ref={workRef} className="px-4 sm:px-6 md:px-8">
+            <div className="flex justify-center mb-4 sm:mb-6">
+              <h5 className="font-jl text-3xl sm:text-xl md:text-2xl font-semibold tracking-wide">
+                Have a Glimpse at Our
+              </h5>
+            </div>
+            <TrueFocus
+              sentence="Latest Works"
+              manualMode={false}
+              blurAmount={2}
+              borderColor="#022f66"
+              text="orange"
+              animationDuration={2}
+              pauseBetweenAnimations={1}
+            />
+            <div className="mx-auto max-w-4xl mt-6 sm:mt-8 md:mt-10">
+              <div className="font-jrB text-4xl sm:text-4xl md:text-5xl text-orange-400 text-center">
+                Results matter.
+              </div>
+              <div className="font-jl text-base sm:text-lg md:text-xl font-normal mt-6 sm:mt-8 text-center">
+                "Discover how our customized solutions have delivered measurable business outcomes for clients across various industries. Each case study highlights the strategic impact of our work, turning challenges into opportunities for growth."
+              </div>
+            </div>
+          </div>
+          <section className="sm:mt-10 md:mt-20 px-4 sm:px-6 md:px-10">
+            <ScrollT />
+          </section>
+        </section>
+
+        {/* Gallery Section */}
+
+        <div className="max-w-full relative px-4">
+          <div>
+            <BlurText
+              text="WHAT OUR CLIENT SAYS"
+              className="text-6xl sm:text-md font-jB text-center text-orange-500 mt-36"
+              delay={100}
+              duration={0.6}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+              textAlign="center"
+            />
+          </div>
+          <p ref={galleryRef} className="font-jr text-md mt-10 font-bold text-black max-w-3/4">
+            Hear directly from our partners and clients about how our solutions made an impact. We're proud to build relationships that go beyond just delivering projects.
+          </p>
+          <div className="font-jr text-md mt-10 font-bold text-black max-w-xl mx-auto ">
+            <div className="border-2 border-orange-500 rounded-4xl p-8"><p className="text-lg font-semibold italic">"{testimonials[activeIndex].quote}"</p>
+              <p className="font-jr text-md font-bold text-blue-900 max-w-3/4">
+                — {testimonials[activeIndex].name}, {testimonials[activeIndex].role}
+              </p></div>
           </div>
         </div>
-      )}
+
+        {showCardSwap && (
+          <div className="fixed bottom-4 right-12 flex items-start gap-8 z-50">
+            <div>
+              <CardSwap
+                cardDistance={60}
+                verticalDistance={70}
+                delay={4000}
+                pauseOnHover={false}
+              >
+                {testimonials
+                  .filter(t => t.image)
+                  .map((testimonial, index) => (
+                    <Card key={index}>
+                      <div className="w-48 h-64 overflow-hidden rounded-4xl ">
+                        <img
+                          src={testimonial.image}
+                          alt={`Client testimonial by ${testimonial.name}`}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
+                    </Card>
+                  ))}
+              </CardSwap>
+            </div>
+          </div>
+        )}
 
 
-      {/* Latest Insights section */}
-      <section className="min-h-screen px-10 overflow-hidden mt-20 sm:mt-4 md:mt-10">
-        <SwipableCardCarousel />
-      </section>
+        {/* Latest Insights section */}
+        <section className="min-h-screen px-10 overflow-hidden mt-20 sm:mt-4 md:mt-10">
+          <SwipableCardCarousel />
+        </section>
 
-      <section className="bg-white w-full px-4">
-        <AccordionMenu />
-      </section>
+        <section className="bg-white w-full justify-center items-center flex flex-row">
+          <div className="w-full md:w-1/2 hidden lg:block">
+            <img
+              src="https://t4.ftcdn.net/jpg/01/28/17/47/360_F_128174778_0XvhB1qi70yXNOPuUFzBNT85xKaWnVde.jpg"
+              alt="Descriptive Alt Text"
+              className="rounded-lg w-full h-auto object-cover"
+            />
+          </div>
+          <div className="w-full lg:w-1/2">
+            <AccordionMenu />
+          </div>
+        </section>
 
-      <section className="w-full">
-        <Footer />
-      </section>
-    </div>
+        <section className="w-full">
+          <Footer />
+        </section>
+      </div >
+    </smooth >
   );
 }

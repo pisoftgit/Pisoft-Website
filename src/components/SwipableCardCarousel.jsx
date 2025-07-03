@@ -183,13 +183,13 @@ export default function SwipableCardCarousel() {
             onClick={handlePrev}
             className="bg-orange-400 hover:bg-gray-300 p-1.5 sm:p-2 rounded-full"
           >
-            <ArrowLeft size={20} className="text-white md:size-15 sm:size-24" />
+            <ArrowLeft size={10} className="text-white size-8" />
           </button>
           <button
             onClick={handleNext}
             className="bg-orange-400 hover:bg-gray-300 p-1.5 sm:p-2 rounded-full"
           >
-            <ArrowRight size={20} className="text-white  md:size-15 sm:size-24" />
+            <ArrowRight size={10} className="text-white size-8" />
           </button>
         </div>
       </div>

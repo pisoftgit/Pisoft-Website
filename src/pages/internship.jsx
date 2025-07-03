@@ -17,6 +17,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { TimelineDemo } from '../components/Intern/timelineDemo'
 import BackgroundShapes from '../components/Intern/backgound'
 
+
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Internship() {
