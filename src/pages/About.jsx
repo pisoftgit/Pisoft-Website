@@ -32,9 +32,10 @@ function About() {
 
   return (
     <>
-      <div className="w-full">
-        <main className="p-4 flex flex-col sm:p-6 md:p-8 relative">
-          <div className="fixed left-5 top-2 z-50000">
+      <main className="w-full">
+        <div className="w-full flex flex-col bg-white p-4 sm:p-6 md:p-8 relative">
+          {/* Navbar */}
+          <div className="fixed z-50 top-4 left-0 md:top-12">
             <Navbar />
           </div>
 
@@ -126,13 +127,14 @@ function About() {
               <Stepp />
             </div>
           </section>
-        </main>
+
+        </div>
 
         {/* === Footer === */}
-        <footer className="relative bg-white z-10">
+        <footer className="relative bg-white pt-16 sm:pt-24 z-10">
           <Footer />
         </footer>
-      </div>
+      </main>
     </>
   );
 }

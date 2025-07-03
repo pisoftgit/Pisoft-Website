@@ -20,7 +20,6 @@ import { useEffect } from 'react';
 
 
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 function ERPAutoMobile() {
@@ -111,34 +110,34 @@ function ERPAutoMobile() {
   }, []);
 
   const [isLoading, setIsLoading] = useState(true);
-    useEffect(() => {
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 3000);
-      return () => clearTimeout(timer);
-    }, []);
-  
-    if (isLoading) {
-      return (
-        <div className="w-full h-screen flex justify-center items-center bg-white z-50 fixed top-0 left-0">
-          {/* <DotLottieReact
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-screen flex justify-center items-center bg-white z-50 fixed top-0 left-0">
+        {/* <DotLottieReact
             src="https://lottie.host/18f588f2-3aa0-458d-a140-52218fd224fa/g0AlX8iQRa.lottie"
             loop
             autoplay
             className='text-sm'
           /> */}
-          <DotLottieReact
-            src="https://lottie.host/e4dceebb-728f-458e-9648-fee916f32948/utxxsMf1tH.lottie"
-            loop
-            autoplay
-            className='text-sm'
-          />
-        </div>
-      );
-    }
-  
+        <DotLottieReact
+          src="https://lottie.host/e4dceebb-728f-458e-9648-fee916f32948/utxxsMf1tH.lottie"
+          loop
+          autoplay
+          className='text-sm'
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 w-full">
+    <div className="bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 w-full overflow-x-hidden">
 
       <ClickSpark
         sparkColor='black'
@@ -149,14 +148,15 @@ function ERPAutoMobile() {
       >
 
         <div className="fixed left-5 top-2 z-50000">
-        <Navbar />
-      </div>
+          <Navbar />
+        </div>
         <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none">
           <Example />
         </div>
 
         {/* Hero: animated TextPressure */}
-        <div className="absolute top-10 sm:top-16 md:top-4 lg:left-20 sm:left-10 w-full flex items-center justify-center pl-4 text-center">
+
+        <div className="absolute top-10 left-10 md:top-4 md:left-40  w-full flex items-center justify-center pl-4 text-center">
           <TextPressure
             text=" ASME"
             flex
@@ -164,27 +164,29 @@ function ERPAutoMobile() {
             stroke
             width
             weight
-             textColor="#145198"
-            strokeColor="#145198"
-            minFontSize={6}
+            textColor="#FB9945"
+            strokeColor="#FB9945"
+            minFontSize={5}
           />
         </div>
 
         {/* Hero words */}
         <div className="pt-20 md:pb-15 sm:pb-5 sm:px-6 md:px-12">
-          <BlurText
-            text="AUTOMOTIVE SYSTEM MANAGEMENT ERP"
-            className="font-jr text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
-            delay={100}
-            duration={0.6}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          />
+          <div className='flex flex-wrap w-full justify-center items-center text-center'>
+            <BlurText
+              text="EDUCATION SYSTEM MANAGEMENT ERP "
+              className="font-jSB flex flex-wrap justify-center items-center sm:text-center text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
+              delay={100}
+              duration={0.6}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+              textAlign="center"
+            />
+          </div>
           <div ref={triggerRef} className="flex flex-wrap justify-center gap-2 px-4 text-center">
             {text.split(" ").map((w, i) => (
               <span
@@ -198,39 +200,32 @@ function ERPAutoMobile() {
           </div>
         </div>
 
-        {/* <ContainerScroll>
-          <img
-            ref={imageRef}
-            src="/Industries.PNG"
-            alt="ESME System Overview"
-            className="object-cover w-full h-full rounded-2xl"
-          />
-        </ContainerScroll> */}
 
-
-        <div ref={sectionRefs.type1} className="px-4 md:px-8 sm:pt-5 md:pt-20">
-      <TypewriterEffectSmoothDemo />
+        <div ref={sectionRefs.type1} className="px-4 md:px-8 pt-20">
+          <TypewriterEffectSmoothDemo />
         </div>
 
         <ContainerScroll>
-                  <section className="w-full text-center px-4 md:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
-                    <LayoutGridDemo />
-                  </section>
-                </ContainerScroll>
-                
-                    <section className="w-full ">
-                      <Threads color={[]}/>
-                    </section>
-        
-                <div ref={sectionRefs.type2} className="px-4 md:px-8 py-8 md:py-12">
-                  <TypewriterEffect />
-                </div>
-        
+          <section className="w-full text-center px-4 md:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
+            <LayoutGridDemo />
+          </section>
+        </ContainerScroll>
+
+        <div ref={sectionRefs.type2} className="px-4 md:px-8 ">
+          <TypewriterEffect />
+        </div>
+
+
+        <section className="w-full flex justify-end items-end">
+          <Threads color={[0.086, 0.6, 0.941]} />
+        </section>
+
+
 
         <div ref={sectionRefs.pointer} className="px-4 md:px-8 py-8 md:py-12">
           <FollowingPointerDemo />
         </div>
-        <footer className="relative bg-white z-10 pt-8"><Footer /></footer>
+        <footer className="relative z-10"><Footer /></footer>
 
       </ClickSpark >
     </div >

@@ -18,7 +18,6 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useEffect } from 'react';
 
 
-
 gsap.registerPlugin(ScrollTrigger);
 
 function ERPFinance() {
@@ -134,9 +133,9 @@ function ERPFinance() {
       </div>
     );
   }
-  
+
   return (
-    <div className="bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 w-full">
+    <div className="bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 w-full overflow-x-hidden">
 
       <ClickSpark
         sparkColor='black'
@@ -146,15 +145,16 @@ function ERPFinance() {
         duration={400}
       >
 
-       <div className="fixed left-5 top-2 z-50000">
-        <Navbar />
-      </div>
+        <div className="fixed left-5 top-2 z-50000">
+          <Navbar />
+        </div>
         <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none">
           <Example />
         </div>
 
+
         {/* Hero: animated TextPressure */}
-        <div className="absolute top-10 sm:top-16 md:top-4 lg:left-20 sm:left-10 w-full flex items-center justify-center pl-4 text-center">
+        <div className="absolute top-15 left-10 md:top-9 md:left-40  w-full flex items-center justify-center pl-4 text-center">
           <TextPressure
             text="MHSME"
             flex
@@ -164,26 +164,28 @@ function ERPFinance() {
             weight
             textColor="#FB9945"
             strokeColor="#FB9945"
-            minFontSize={6}
+            minFontSize={15}
           />
         </div>
 
         {/* Hero words */}
         <div className="pt-20 md:pb-15 sm:pb-5 sm:px-6 md:px-12">
-          <BlurText
-            text="MEDICAL & HEALTHCARE SYSTEM MANAGEMENT ERP "
-            className="font-jr text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
-            delay={100}
-            duration={0.6}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          />
-          <div ref={triggerRef} className="flex flex-wrap justify-center gap-2 px-4 text-center">
+          <div className='flex flex-wrap w-full justify-center items-center text-center'>
+            <BlurText
+              text="MEDICAL & HEALTHCARE SYSTEM MANAGEMENT ERP"
+              className="font-jSB flex flex-wrap justify-center items-center sm:text-center text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
+              delay={100}
+              duration={0.6}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+              textAlign="center"
+            />
+          </div>
+          <div ref={triggerRef} className="flex flex-wrap justify-center gap-2 px-4 py-4 text-center">
             {text.split(" ").map((w, i) => (
               <span
                 key={i}
@@ -196,17 +198,7 @@ function ERPFinance() {
           </div>
         </div>
 
-        {/* <ContainerScroll>
-          <img
-            ref={imageRef}
-            src="/Industries.PNG"
-            alt="ESME System Overview"
-            className="object-cover w-full h-full rounded-2xl"
-          />
-        </ContainerScroll> */}
-
-
-        <div ref={sectionRefs.type1} className="px-4 md:px-8 sm:pt-5 md:pt-20">
+        <div ref={sectionRefs.type1} className="px-4 md:px-8 pt-15">
           <TypewriterEffectSmoothDemo />
         </div>
 
@@ -216,13 +208,15 @@ function ERPFinance() {
           </section>
         </ContainerScroll>
 
-        <section className="w-full ">
-          <Threads color={[]} />
-        </section>
 
-        <div ref={sectionRefs.type2} className="px-4 md:px-8 py-8 md:py-12">
+        <div ref={sectionRefs.type2} className="px-4 md:px-8 ">
           <TypewriterEffect />
         </div>
+
+
+        <section className="w-full flex justify-end items-end">
+          <Threads color={[0.086, 0.6, 0.941]} />
+        </section>
 
         <div ref={sectionRefs.pointer} className="px-4 md:px-8 py-8 md:py-12">
           <FollowingPointerDemo />
@@ -236,133 +230,3 @@ function ERPFinance() {
 
 export default ERPFinance;
 
-
-
-
-
-
-// "use client";
-// import React, { useRef } from "react";
-// import Navbar from "../components/Navbar";
-// import { Example } from "../components/Corn";
-// import MHButton from "../components/Medical&Healthcare/MhButton";
-// import { HeroParallax } from "../components/Finance/FiHeroParallax";
-// import { TypewriterEffectSmoothDemo } from "../components/Education/Text";
-// import { CardHoverEffectDemo } from "../components/Medical&Healthcare/MHCards";
-// import { FollowingPointerDemo } from "../components/Medical&Healthcare/MHFloatingPointer";
-// import { TypewriterEffect } from "../components/Finance/text2";
-// import gsap from "gsap";
-// import { useGSAP } from "@gsap/react";
-// import Footer from "../components/Footer";
-
-// export default function ERPFinance() {
-//   const triggerRef = useRef(null);
-//   const text =
-//     "Booking of appointment, managing and maintaining records of visitors with an easy online booking system by patients. Helps laboratories, core facilities, and biotech’s companies providing services to clients or partners to keep track of samples arriving for processing, track status and generate reports. Stock and inventory can be maintained of an organisation for internal usage or sales. Smoother system to search stocks by product and batch information. Has an ability to manage different warehouse and stores for easy management. Can be used to manage vendors and suppliers for indent and dispatches.";
-
-//   function useArrayRef() {
-//     const letterRefs = useRef([]);
-//     letterRefs.current = [];
-//     return [letterRefs, (ref) => ref && letterRefs.current.push(ref)];
-//   }
-
-//   const [letterRef, setLetterRef] = useArrayRef();
-//   useGSAP(() => {
-//     const colorTl = gsap.timeline({
-//       scrollTrigger: {
-//         trigger: triggerRef.current,
-//         start: "top 80%",
-//         end: "bottom 40%",
-//         scrub: 1,
-//         toggleActions: "play none none reverse",
-//         scroller: document.body,
-//       },
-//     });
-
-//     colorTl.to(letterRef.current, {
-//       color: "black",
-//       stagger: { each: 15, ease: "power1.inOut" },
-//       duration: 1,
-//     });
-
-//     requestAnimationFrame(() => {
-//       ScrollTrigger.refresh();
-//     }, 200);
-//   }, []);
-
-//   return (
-//     <div>
-//       <div className="w-full bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 flex flex-col py-4 sm:p-6 md:p-8 relative">
-//         {/* Navbar */}
-//         <div className="z-50 top-8 left-0 md:top-10 ">
-//           <Navbar />
-//         </div>
-
-//         {/* Top-right action */}
-//         <div className="fixed top-4 right-4 z-50 flex items-center space-x-4 md:top-8 ">
-//           <Example />
-//         </div>
-
-//         {/* ✅ HeroParallax section */}
-//         <div className="realtive top-20 left-0">
-//           <HeroParallax />
-//         </div>
-
-//         {/* Hero Section */}
-//         <div className="flex flex-col md:flex-row justify-between items-start sm:pt-12 md:pt-16 gap-4 sm:gap-6 md:gap-8">
-//           <div className="w-full md:w-full">
-//             <h1 className="font-jr text-[8vw] sm:text-[6vw] md:text-[4vw] leading-tight">
-//               MEDICAL & HEALTHCARE SYSTEM MANAGEMENT ERP
-//             </h1>
-//             <h1 className="font-jr text-[8vw] sm:text-[6vw] md:text-[4vw] text-orange-400 leading-tight mt-[-1vw]">
-//               (MHSME)
-//             </h1>
-//             <div
-//               ref={triggerRef}
-//               className="mt-4 sm:mt-6 md:mt-8 flex flex-wrap gap-x-2 sm:gap-x-3 md:gap-x-4 max-w-full"
-//             >
-//               {text.split(" ").map((word, idx) => (
-//                 <span
-//                   key={idx}
-//                   ref={setLetterRef}
-//                   className="font-jr text-[3.5vw] sm:text-[2.5vw] md:text-[1.75vw] font-bold text-gray-400"
-//                 >
-//                   {word}
-//                 </span>
-//               ))}
-//               <div className="left-0 mt-4 sm:mt-8">
-//                 <MHButton />
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//         <section className="w-full px-4 py-16 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 ">
-//           <div className="max-w-5xl mx-auto flex flex-col items-center text-center space-y-6">
-//             <TypewriterEffectSmoothDemo />
-//           </div>
-//         </section>
-//         <section className="w-full px-4 py-16 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 ">
-//           <div className="max-w-5xl mx-auto flex flex-col items-center text-center space-y-6">
-//             <CardHoverEffectDemo />
-//           </div>
-//         </section>
-//          <section className="w-full px-4 py-16 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 ">
-//                   <div className="max-w-5xl mx-auto flex flex-col items-center text-center space-y-6">
-//                     <TypewriterEffect />
-//                   </div>
-//                 </section>
-//         <section className="w-full px-4 py-16 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 ">
-//           <div className="max-w-5xl mx-auto flex flex-col items-center text-center space-y-6">
-//             <FollowingPointerDemo />
-//           </div>
-//         </section>
-
-//         {/* === Footer === */}
-
-//       </div>
-//       <footer className="w-full relative bg-white sm: z-10">
-//         <Footer />
-//       </footer>
-//     </div>
-//   );
-// }

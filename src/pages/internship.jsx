@@ -253,7 +253,7 @@ export default function Internship() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
+    }, 2000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -271,7 +271,7 @@ export default function Internship() {
   }
 
   return (
-    <main className='w-full relative'>
+    <main className='w-full relative overflow-x-hidden'>
       <BackgroundShapes />
       {/* navbar */}
       <div className="fixed left-5 top-2 z-50000">
