@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TextPressure from '../components/TextPressure';
 import { TypewriterEffectSmoothDemo } from "../components/Education/Text";
-import { FollowingPointerDemo } from '../components/Finance/FIFloatingPointer';
+import { FollowingPointerDemo } from '../components/Finance/FiFloatingPointer';
 import { TypewriterEffect } from "../components/Finance/text2";
 import { LayoutGridDemo } from "../components/Finance/FiGrid";
 import BlurText from '../components/BlurText';
