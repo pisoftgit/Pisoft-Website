@@ -63,7 +63,7 @@ export default function Firstt() {
       scrollTrigger: {
         trigger: outerref.current,
         start: "top top",
-        // end: "bottom+=50% top",
+        end: "bottom+=20% top",
         pin: true,
         scrub: 1,
         invalidateOnRefresh: true,
