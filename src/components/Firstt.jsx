@@ -63,9 +63,9 @@ export default function Firstt() {
       scrollTrigger: {
         trigger: outerref.current,
         start: "top top",
-        end: "bottom+=20% top",
+        end: "bottom+=10% top",
         pin: true,
-        scrub: 1,
+        scrub: 0.7,
         invalidateOnRefresh: true,
         scroller: document.body,
       },
@@ -73,8 +73,8 @@ export default function Firstt() {
 
     tl.fromTo(
       svgRef.current,
-      { scale: 1, transformOrigin: "center center center center" },
-      { scale: 70, ease: "easeinout" }
+      { scale: 1, transformOrigin: "center center" },
+      { scale: 60, ease: "power2.inOut" }
     );
 
     tl.to(staticTextRef.current, {
@@ -208,55 +208,58 @@ export default function Firstt() {
 
   return (
     <smooth>
-      <div className="w-full bg-white overflow-hidden">
-        <smooth>
-          <div ref={outerref} className="relative min-h-screen sm:min-h-200px w-full flex justify-center overflow-hidden">
-            <div className="relative w-full h-screen overflow-hidden">
-              {/* Background Video */}
-              <div className="absolute top-0 left-0 w-full h-full z-[-1]">
-                <video className="w-full h-full object-cover" autoPlay playsInline muted loop preload="auto">
-                  <source src={videosrc} type="video/mp4" />
-                </video>
-              </div>
+      <div className="w-full bg-white">
+        <div ref={outerref} className="relative min-h-screen sm:min-h-half  w-full flex justify-center overflow-hidden">
+          <div className="relative w-full h-screen overflow-hidden">
+            {/* Background Video */}
+            <div className="absolute top-0 left-0 w-full h-full z-[-1]">
+              <video className="w-full h-full object-cover" autoPlay playsInline muted loop preload="auto">
+                <source src={videosrc} type="video/mp4" />
+              </video>
+            </div>
 
-              {/* Masked SVG Text */}
-              <svg ref={svgRef} className="relative w-full h-full">
-                <defs>
-                  <mask id="textmask">
-                    <rect width="100%" height="100%" fill="white" />
-                    <text
-                      className="font-bebas select-none"
-                      x="50%" y="40%"
-                      dominantBaseline="middle"
-                      textAnchor="middle"
-                      fill="black"
-                      style={{
-                        fontSize: '35vw',
-                      }}
-                    >
-                      PISOFT
-                    </text>
-                  </mask>
-                </defs>
-                <rect width="100%" height="100%" fill="white" mask="url(#textmask)" />
-              </svg>
+            {/* Masked SVG Text */}
+            <svg ref={svgRef} className="relative w-full h-full">
+              <defs>
+                <linearGradient id="gradientFill" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#ffedd5" />
+                  <stop offset="50%" stopColor="#ffedd5" />
+                  <stop offset="100%" stopColor="#e0f2fe" />
+                </linearGradient>
+                <mask id="textmask">
+                  <rect width="100%" height="100%" fill="white" />
+                  <text
+                    className="font-bebas select-none"
+                    x="50%" y="40%"
+                    dominantBaseline="middle"
+                    textAnchor="middle"
+                    fill="black"
+                    style={{
+                      fontSize: '35vw',
+                    }}
+                  >
+                    PISOFT
+                  </text>
+                </mask>
+              </defs>
+              <rect width="100%" height="100%" fill="white" mask="url(#textmask)" />
+            </svg>
 
-              {/* Static Bottom Left Text */}
-              <div
-                ref={staticTextRef}
-                className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 md:bottom-8 md:left-8 p-2 sm:p-4 text-black z-10 max-w-[90%]"
-              >
-                <h1 className="font-jr font-bold leading-snug text-[9vw] sm:text-[7vw] md:text-[5.5vw] lg:text-[4vw] flex flex-wrap">
-                  <span className="text-orange-400 mr-2">Engineering</span> Excellence in
-                </h1>
-                <h3 className="font-jr font-bold leading-snug text-[8vw] sm:text-[6vw] md:text-[5vw] lg:text-[3.5vw] flex flex-wrap">
-                  Every Line of <span className="ml-1">Code...</span>
-                </h3>
+            {/* Static Bottom Left Text */}
+            <div
+              ref={staticTextRef}
+              className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 md:bottom-8 md:left-8 p-2 sm:p-4 text-black z-10 max-w-[90%]"
+            >
+              <h1 className="font-jr font-bold leading-snug text-[9vw] sm:text-[7vw] md:text-[5.5vw] lg:text-[4vw] flex flex-wrap">
+                <span className="text-orange-400 mr-2">Engineering</span> Excellence in
+              </h1>
+              <h3 className="font-jr font-bold leading-snug text-[8vw] sm:text-[6vw] md:text-[5vw] lg:text-[3.5vw] flex flex-wrap">
+                Every Line of <span className="ml-1">Code...</span>
+              </h3>
 
-              </div>
             </div>
           </div>
-        </smooth>
+        </div>
 
         <div className="fixed left-5 top-2 z-50000">
           <Navbar />
@@ -345,7 +348,7 @@ export default function Firstt() {
               textAlign="center"
             />
           </div>
-          <p ref={galleryRef} className="font-jr text-md mt-10 font-bold text-black max-w-3/4">
+          <p ref={galleryRef}  className="font-jr text-md mt-10 font-bold text-black max-w-3/4">
             Hear directly from our partners and clients about how our solutions made an impact. We're proud to build relationships that go beyond just delivering projects.
           </p>
           <div className="font-jr text-md mt-10 font-bold text-black max-w-xl mx-auto ">
