@@ -139,41 +139,41 @@ export const NavItems = ({ items, className, onItemClick }) => {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            className="absolute left-0 w-50 rounded-md bg-white shadow-lg mt-2 py-2"
+                            className="absolute left-0 w-55 text-center rounded-md bg-blue-50 backdrop-blur-3xl opacity-60 shadow-lg mt-2 py-2"
                         >
                             <a
                                 href="/ERPservices/Education"
-                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full"
+                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-orange-100 rounded-full"
                             >
                                 Education
                             </a>
                             <a
                                 href="/ERPservices/Finance"
-                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full"
+                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-orange-100 rounded-full"
                             >
                                 Finance
                             </a>
                             <a
                                 href="/ERPservices/Medical&Healthcare"
-                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full"
+                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-orange-100 rounded-full"
                             >
                                 Medical and Healthcare
                             </a>
                             <a
                                 href="/ERPservices/AutoMobile"
-                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full"
+                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-orange-100 rounded-full"
                             >
                                 AutoMobile
                             </a>
                             <a
                                 href="/ERPservices/TourTravels"
-                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full"
+                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-orange-100 rounded-full"
                             >
                                 Tours & Travels
                             </a>
                             <a
                                 href="/ERPservices/Services"
-                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full"
+                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-orange-100 rounded-full"
                             >
                                 Services
                             </a>
