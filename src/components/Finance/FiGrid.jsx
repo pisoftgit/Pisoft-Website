@@ -4,7 +4,7 @@ import { LayoutGrid } from "../layoutGrid";
 
 export function LayoutGridDemo() {
     return (
-        <div className="h-screen py-20 w-full">
+        <div className="h-screen pt-5 pb-35 md:pb-23 w-full">
             <LayoutGrid cards={cards} />
         </div>
     );
@@ -96,7 +96,7 @@ const cards = [
     {
         id: 1,
         content: <SkeletonOne />,
-        title:"Agent and advisor Management",
+        title: "Agent and advisor Management",
         className: "md:col-span-2",
         thumbnail:
             "https://img.freepik.com/premium-vector/professional-financial-advisor-bank-consultant-providing-expert-help-consulting-services_1322560-2704.jpg",
@@ -104,7 +104,7 @@ const cards = [
     {
         id: 2,
         content: <SkeletonTwo />,
-        title:"Deposits and Investments",
+        title: "Deposits and Investments",
         className: "col-span-1",
         thumbnail:
             "https://img.freepik.com/free-vector/rich-people-keeping-cash-clocks-piggy-bank-vector-illustration-time-is-money-business-time-management-wealth-concept_74855-13218.jpg",
@@ -112,7 +112,7 @@ const cards = [
     {
         id: 3,
         content: <SkeletonThree />,
-        title:"Members Management",
+        title: "Members Management",
         className: "col-span-1",
         thumbnail:
             "https://img.freepik.com/free-vector/corporate-portrait-office-workers-employees_74855-5471.jpg?semt=ais_items_boosted&w=740",
@@ -120,7 +120,7 @@ const cards = [
     {
         id: 4,
         content: <SkeletonFour />,
-        title:"Customer Relationship Management",
+        title: "Customer Relationship Management",
         className: "md:col-span-2",
         thumbnail:
             "https://img.freepik.com/premium-vector/technology-isometric-crm-illustration_23-2149375821.jpg?semt=ais_hybrid&w=740",
@@ -128,7 +128,7 @@ const cards = [
     {
         id: 5,
         content: <SkeletonFive />,
-        title:"Financial Products - Loans",
+        title: "Financial Products - Loans",
         className: "col-span-2",
         thumbnail:
             "https://img.freepik.com/free-vector/finance-financial-performance-concept-illustration_53876-40450.jpg?semt=ais_hybrid&w=740",
@@ -136,7 +136,7 @@ const cards = [
     {
         id: 6,
         content: <SkeletonSix />,
-        title:"Lead Management",
+        title: "Lead Management",
         className: "md:col-span-1",
         thumbnail:
             "https://img.freepik.com/free-vector/generating-new-leads-concept-illustration_114360-7654.jpg?semt=ais_hybrid&w=740",

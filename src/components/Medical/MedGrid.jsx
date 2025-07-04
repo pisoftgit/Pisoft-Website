@@ -4,7 +4,7 @@ import { LayoutGrid } from "../layoutGrid";
 
 export function LayoutGridDemo() {
     return (
-        <div className="h-screen pt-5 w-full">
+        <div className="h-screen pt-5 pb-35 md:pb-23 w-full">
             <LayoutGrid cards={cards} />
         </div>
     );
@@ -54,7 +54,7 @@ const SkeletonFour = () => {
     return (
         <div>
             <p className="font-bold md:text-4xl text-xl text-white">
-               Pathology Tests Management
+                Pathology Tests Management
             </p>
             <p className="font-normal text-base text-white"></p>
             <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
@@ -97,7 +97,7 @@ const cards = [
     {
         id: 1,
         content: <SkeletonOne />,
-        title:"Patient Management System",
+        title: "Patient Management System",
         className: "md:col-span-2",
         thumbnail:
             "https://www.csm.tech/admin/storage/app/uploads/TwitterImage1703591177.jpeg",
@@ -105,7 +105,7 @@ const cards = [
     {
         id: 2,
         content: <SkeletonTwo />,
-        title:" Appointment Management",
+        title: " Appointment Management",
         className: "col-span-1",
         thumbnail:
             "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ8PeLO2glNyRpD-gyxvOWPz5-kGST0q-9wNA&s",
@@ -113,7 +113,7 @@ const cards = [
     {
         id: 3,
         content: <SkeletonThree />,
-        title:"Clinic OPD Management",
+        title: "Clinic OPD Management",
         className: "col-span-1",
         thumbnail:
             "https://t3.ftcdn.net/jpg/09/60/66/00/360_F_960660047_9qukBpFes0mCCjcjGqNSsjy7L38wj6Do.jpg",
@@ -121,7 +121,7 @@ const cards = [
     {
         id: 4,
         content: <SkeletonFour />,
-        title:" Pathology Tests Management",
+        title: " Pathology Tests Management",
         className: "md:col-span-2",
         thumbnail:
             "https://www.remedygroup.in/images/services/banner_1641921332.jpg",
@@ -129,7 +129,7 @@ const cards = [
     {
         id: 5,
         content: <SkeletonFive />,
-        title:"Billing And Collections Management",
+        title: "Billing And Collections Management",
         className: "col-span-2",
         thumbnail:
             "https://www.shutterstock.com/image-photo/financial-report-banking-management-e-600nw-2537984823.jpg",
@@ -137,7 +137,7 @@ const cards = [
     {
         id: 6,
         content: <SkeletonSix />,
-        title:"Finance And Accounting Management",
+        title: "Finance And Accounting Management",
         className: "md:col-span-1",
         thumbnail:
             "https://png.pngtree.com/thumb_back/fh260/background/20240410/pngtree-financial-accounting-banking-finance-business-banking-image_15654018.jpg",

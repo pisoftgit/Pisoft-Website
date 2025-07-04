@@ -18,6 +18,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useEffect } from 'react';
 
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 function ERPEducation() {
@@ -106,34 +107,34 @@ function ERPEducation() {
       });
     }
   }, []);
-
+  
   const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="w-full h-screen flex justify-center items-center bg-white z-50 fixed top-0 left-0">
-        {/* <DotLottieReact
+      useEffect(() => {
+        const timer = setTimeout(() => {
+          setIsLoading(false);
+        }, 3000);
+        return () => clearTimeout(timer);
+      }, []);
+    
+      if (isLoading) {
+        return (
+          <div className="w-full h-screen flex justify-center items-center bg-white z-50 fixed top-0 left-0">
+            {/* <DotLottieReact
               src="https://lottie.host/18f588f2-3aa0-458d-a140-52218fd224fa/g0AlX8iQRa.lottie"
               loop
               autoplay
               className='text-sm'
             /> */}
-        <DotLottieReact
-          src="https://lottie.host/e4dceebb-728f-458e-9648-fee916f32948/utxxsMf1tH.lottie"
-          loop
-          autoplay
-          className='text-sm'
-        />
-      </div>
-    );
-  }
-
+            <DotLottieReact
+              src="https://lottie.host/e4dceebb-728f-458e-9648-fee916f32948/utxxsMf1tH.lottie"
+              loop
+              autoplay
+              className='text-sm'
+            />
+          </div>
+        );
+      }
+    
 
   return (
     <div className="bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 w-full overflow-x-hidden">
@@ -147,8 +148,8 @@ function ERPEducation() {
       >
 
         <div className="fixed left-5 top-2 z-50">
-          <Navbar />
-        </div>
+        <Navbar />
+      </div>
         <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none">
           <Example />
         </div>
@@ -172,18 +173,18 @@ function ERPEducation() {
         <div className="pt-20 md:pb-15 sm:pb-5 sm:px-6 md:px-12">
           <div className='flex flex-wrap w-full justify-center items-center text-center'>
             <BlurText
-              text="EDUCATION SYSTEM MANAGEMENT ERP "
-              className="font-jSB flex flex-wrap justify-center items-center sm:text-center text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
-              delay={100}
-              duration={0.6}
-              ease="power3.out"
-              splitType="chars"
-              from={{ opacity: 0, y: 40 }}
-              to={{ opacity: 1, y: 0 }}
-              threshold={0.1}
-              rootMargin="-100px"
-              textAlign="center"
-            />
+            text="EDUCATION SYSTEM MANAGEMENT ERP "
+            className="font-jSB flex flex-wrap justify-center items-center sm:text-center text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
+            delay={100}
+            duration={0.6}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 40 }}
+            to={{ opacity: 1, y: 0 }}
+            threshold={0.1}
+            rootMargin="-100px"
+            textAlign="center"
+          />
           </div>
           <div ref={triggerRef} className="flex flex-wrap justify-center gap-2 px-4 text-center">
             {text.split(" ").map((w, i) => (
@@ -203,21 +204,21 @@ function ERPEducation() {
         </div>
 
         <ContainerScroll>
-          <section className="w-full text-center px-4 md:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
+          <section className="w-full flex flex-wrap justify-center items-center text-center px-4 md:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
             <LayoutGridDemo />
           </section>
         </ContainerScroll>
-
-
-        <div ref={sectionRefs.type2} className="px-4 md:px-8 ">
+        
+        
+         <div ref={sectionRefs.type2} className="px-4 md:px-8 ">
           <TypewriterEffect />
         </div>
 
-
+          
         <section className="w-full flex justify-end items-end">
           <Threads color={[0.086, 0.6, 0.941]} />
         </section>
-
+        
 
         <div ref={sectionRefs.pointer} className="px-4 md:px-8 py-8 md:py-12">
           <FollowingPointerDemo />
