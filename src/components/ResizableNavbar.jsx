@@ -114,7 +114,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            className="absolute left-0 w-50 rounded-full bg-white shadow-lg mt-2 py-2">
+                            className="absolute left-0 w-50 rounded-md bg-white shadow-lg mt-2 py-2">
                             <a href="/ERPservices/Education" className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full">
                                 Education
                             </a>
