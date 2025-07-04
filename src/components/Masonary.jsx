@@ -7,13 +7,13 @@ function Masonry({ data }) {
   useEffect(() => {
     const updateColumns = () => {
       if (window.matchMedia('(min-width: 1500px)').matches) {
-        setColumns(5);
+        setColumns(4);
       } else if (window.matchMedia('(min-width: 1000px)').matches) {
         setColumns(4);
       } else if (window.matchMedia('(min-width: 600px)').matches) {
         setColumns(3);
       } else {
-        setColumns(2); // Mobile devices
+        setColumns(1); // Mobile devices
       }
     };
 
@@ -77,6 +77,7 @@ function Masonry({ data }) {
               backgroundImage: `url(${item.image})`,
               backgroundSize: 'contain',
               backgroundPosition: 'center',
+              backgroundRepeat:"no-repeat"
             }}
           />
         </a.div>
