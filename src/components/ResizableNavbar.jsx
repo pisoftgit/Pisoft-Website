@@ -8,7 +8,7 @@ import {
     useMotionValueEvent,
 } from "motion/react";
 
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import imgscr from "../assets/latestLogoP.png";
 
 export const Navbar = ({ children, className }) => {
@@ -64,12 +64,36 @@ export const NavBody = ({ children, className, visible }) => {
 };
 
 export const NavItems = ({ items, className, onItemClick }) => {
-    const [hovered, setHovered] = useState(null);
-    const [isERPMenuOpen, setIsERPMenuOpen] = useState(false); 
 
-    const handleERPClick = () => {
-        setIsERPMenuOpen(!isERPMenuOpen);
+    const [isERPMenuOpen, setIsERPMenuOpen] = useState(false);
+    const [hovered, setHovered] = useState(null);
+    const erpRef = useRef(null);
+
+    // Handle mouse enter and leave
+    const handleERPHover = () => {
+        setHovered("erp");
+        setIsERPMenuOpen(true);  // Show dropdown on hover
     };
+
+    const handleERPLeave = () => {
+        setHovered(null);
+    };
+
+    // Close dropdown when clicking outside
+    const handleClickOutside = (event) => {
+        if (erpRef.current && !erpRef.current.contains(event.target)) {
+            setIsERPMenuOpen(false);  // Close dropdown when clicking outside
+        }
+    };
+
+    useEffect(() => {
+        // Listen for click events outside the ERP dropdown
+        document.addEventListener("click", handleClickOutside);
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
+
 
     return (
         <motion.div
@@ -96,41 +120,61 @@ export const NavItems = ({ items, className, onItemClick }) => {
             {/* ERP Services Link - Add Click Event */}
             <div className="relative">
                 <a
-                    onClick={handleERPClick} // Toggle dropdown on click
-                    onMouseEnter={() => setHovered("erp")}
-                    onMouseLeave={() => setHovered(null)}
+                    onMouseEnter={handleERPHover}
+                    onMouseLeave={handleERPLeave}
                     className="relative px-6 py-2 text-xl cursor-pointer"
                 >
-                    ERP Services
                     {hovered === "erp" && (
                         <motion.div
                             layoutId="hovered"
-                            className="absolute inset-0 h-full w-full rounded-full bg-[#FFE0B2] text-blue-950" />
+                            className="absolute inset-0 h-full w-full rounded-full bg-[#FFE0B2] z-10"
+                        />
                     )}
+                    <span className="relative z-20">ERP Services</span>
                 </a>
                 <AnimatePresence>
                     {isERPMenuOpen && (
                         <motion.div
+                            ref={erpRef}
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            className="absolute left-0 w-50 rounded-md bg-white shadow-lg mt-2 py-2">
-                            <a href="/ERPservices/Education" className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full">
+                            className="absolute left-0 w-50 rounded-md bg-white shadow-lg mt-2 py-2"
+                        >
+                            <a
+                                href="/ERPservices/Education"
+                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full"
+                            >
                                 Education
                             </a>
-                            <a href="/ERPservices/Finance" className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full">
+                            <a
+                                href="/ERPservices/Finance"
+                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full"
+                            >
                                 Finance
                             </a>
-                            <a href="/ERPservices/Medical&Healthcare" className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full">
+                            <a
+                                href="/ERPservices/Medical&Healthcare"
+                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full"
+                            >
                                 Medical and Healthcare
                             </a>
-                            <a href="/ERPservices/AutoMobile" className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full">
+                            <a
+                                href="/ERPservices/AutoMobile"
+                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full"
+                            >
                                 AutoMobile
                             </a>
-                            <a href="/ERPservices/TourTravels" className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full">
+                            <a
+                                href="/ERPservices/TourTravels"
+                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full"
+                            >
                                 Tours & Travels
                             </a>
-                            <a href="/ERPservices/Services" className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full">
+                            <a
+                                href="/ERPservices/Services"
+                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-blue-100 rounded-full"
+                            >
                                 Services
                             </a>
                         </motion.div>
