@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { HoveredLink, Menu, MenuItem, ProductItem } from "./NavbarMenu";
+import { HoveredLink, Menu, MenuItem, ProductItem } from "./navbarmenu";
 import { cn } from "../../lib/util";
 import { useNavigate } from "react-router-dom";
 
@@ -36,52 +36,52 @@ function Navbar({ className }) {
         />
 
         <MenuItem setActive={setActive} active={active} item="ERP Services">
-          <div className="flex flex-col space-y-4 text-sm">
+          {/* <div className="flex flex-col space-y-4 text-sm">
             <HoveredLink onClick={() => { handleNavClick("/ERPservices/Education") }}>Education</HoveredLink>
             <HoveredLink  onClick={() => { handleNavClick("/ERPservices/Finance") }}>Finance</HoveredLink>
             <HoveredLink onClick={() => { handleNavClick("/ERPservices/Medical&Healthcare") }}>Medical and Helathcare</HoveredLink>
             <HoveredLink onClick={() => { handleNavClick("/ERPservices/AutoMobile") }}>AutoMobile</HoveredLink>
             <HoveredLink onClick={() => { handleNavClick("/ERPservices/TourTravels") }}>Tours and Travels</HoveredLink>
             <HoveredLink onClick={() => { handleNavClick("/ERPservices/Services") }}>Services</HoveredLink>
-          </div>
-          {/* <div className="text-sm grid grid-cols-2 gap-10 p-4">
+          </div> */}
+          <div className="text-sm grid grid-cols-2 gap-10 p-4">
             <ProductItem
               title="Education"
               onClick={() => { handleNavClick("/ERPservices/Education") }}
               src="/esmeHome.PNG"
-              description="Prepare for tech interviews like never before."
+              description="Connecting Campus, Anywhere. Anytime"
             />
             <ProductItem
               title="Finance"
               onClick={() => { handleNavClick("/ERPservices/Finance") }}
               src="/esmeHome.PNG"
-              description="Production ready Tailwind css components for your next project"
+              description="Effortless Management for Cooperative Success."
             />
             <ProductItem
               title="Medical"
               onClick={() => { handleNavClick("/ERPservices/Medical&Healthcare") }}
               src="/esmeHome.PNG"
-              description="Never write from scratch again. Go from idea to blog in minutes."
+              description="Precision Care Through Smart Management."
             />
             <ProductItem
               title="Automobile"
               onClick={() => { handleNavClick("/ERPservices/AutoMobile") }}
               src="/esmeHome.PNG"
-              description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
+              description="Streamlining Workshop Management, One Click at a Time."
             />
             <ProductItem
               title="Tours and Travels"
               onClick={() => { handleNavClick("/ERPservices/TourTravels") }}
               src="/esmeHome.PNG"
-              description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
+              description="Manage Fleets. Optimize Routes. Deliver Smarter."
             />
             <ProductItem
               title="Services"
               onClick={() => { handleNavClick("/ERPservices/Services") }}
               src="/esmeHome.PNG"
-              description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
+              description="One Solution for Every Customer Connection."
             />
-          </div> */}
+          </div>
         </MenuItem>
 
         <MenuItem

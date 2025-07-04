@@ -92,14 +92,14 @@ export function Example() {
           {/* Branding - Top/Left side */}
           <div
             ref={leftRef}
-            className="w-full md:w-[75%] h-[60%] md:h-full flex flex-col justify-center px-4 sm:px-6 md:px-10 relative overflow-hidden"
+            className="w-full md:w-[75%] h-[55%] md:h-full flex flex-col justify-center px-4 sm:px-6 md:px-10 relative overflow-hidden"
             style={{
               backgroundImage: `url(${bgImage})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
           >
-            <div className="relative z-10">
+            <div className="relative z-10 pt-15 md:pt-0">
               <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bebas tracking-wide bg-clip-text text-transparent bg-white/80">
                 PiSoft
               </h1>
@@ -133,7 +133,7 @@ export function Example() {
           {/* Nav Links - Bottom/Right side */}
           <div
             ref={rightRef}
-            className="w-full md:w-1/2 h-[40%] md:h-full flex flex-col items-center justify-center gap-4 sm:gap-6 md:gap-10 font-jl text-2xl sm:text-3xl md:text-5xl"
+            className="w-full md:w-1/2 h-[40%] md:h-full flex flex-col items-center justify-center gap-2 sm:gap-4 md:gap-6 font-jl text-xl md:text-3xl"
           >
             <a
               onClick={() => handleNavClick("/")}
@@ -152,43 +152,42 @@ export function Example() {
             <Accordion title="ERP Solutions">
               <div
                 className="cursor-pointer hover:text-blue-400 py-1"
-              onMouseEnter={() => setBgImage(imageMap.about)}
+                onMouseEnter={() => setBgImage(imageMap.about)}
                 onClick={() => handleNavClick("/ERPservices/Education")}
               >
                 Education
               </div>
               <div
                 className="cursor-pointer hover:text-blue-400 py-1"
-                
-              onMouseEnter={() => setBgImage(imageMap.about)}
+                onMouseEnter={() => setBgImage(imageMap.about)}
                 onClick={() => handleNavClick("/ERPservices/Finance")}
               >
                 Finance
               </div>
               <div
                 className="cursor-pointer hover:text-blue-400 py-1"
-              onMouseEnter={() => setBgImage(imageMap.about)}
+                onMouseEnter={() => setBgImage(imageMap.about)}
                 onClick={() => handleNavClick("/ERPservices/Medical&Healthcare")}
               >
                 Medical & Healthcare
               </div>
               <div
                 className="cursor-pointer hover:text-blue-400 py-1"
-              onMouseEnter={() => setBgImage(imageMap.about)}
+                onMouseEnter={() => setBgImage(imageMap.about)}
                 onClick={() => handleNavClick("/ERPservices/AutoMobile")}
               >
                 AutoMobile
               </div>
               <div
                 className="cursor-pointer hover:text-blue-400 py-1"
-              onMouseEnter={() => setBgImage(imageMap.about)}
+                onMouseEnter={() => setBgImage(imageMap.about)}
                 onClick={() => handleNavClick("/ERPservices/TourTravels")}
               >
                 Tour & Travels
               </div>
               <div
                 className="cursor-pointer hover:text-blue-400 py-1"
-              onMouseEnter={() => setBgImage(imageMap.about)}
+                onMouseEnter={() => setBgImage(imageMap.about)}
                 onClick={() => handleNavClick("/ERPservices/Services")}
               >
                 Services
@@ -209,6 +208,7 @@ export function Example() {
               Contact
             </a>
           </div>
+
         </div>
       </div>
     </>

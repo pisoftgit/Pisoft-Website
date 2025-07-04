@@ -35,7 +35,8 @@ function About() {
       <main className="w-full">
         <div className="w-full flex flex-col bg-white p-4 sm:p-6 md:p-8 relative">
           {/* Navbar */}
-          <div className="fixed z-50 top-4 left-0 md:top-12">
+
+          <div className="fixed left-5 top-2 z-50">
             <Navbar />
           </div>
 
