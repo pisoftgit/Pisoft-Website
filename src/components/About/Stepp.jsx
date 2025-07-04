@@ -13,7 +13,7 @@ function Stepp() {
           onFinalStepCompleted={() => console.log("All steps completed!")}
           backButtonText="Previous"
           nextButtonText="Next"
-          stepContainerClassName="justify-center mb-6 sm:mb-8"
+          stepContainerClassName="justify-center"
           contentClassName="text-center"
         >
           <Step>

@@ -16,7 +16,7 @@ function Tech() {
   { id: 8, image: 'DM.png', height: 350 },
 ];
   return (
-    <div className=" bg-white h-screen w-full">
+    <div className=" bg-white h-auto w-full">
 
 
 <div className=' bg-white mb-10'>

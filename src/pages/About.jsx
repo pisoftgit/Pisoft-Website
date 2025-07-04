@@ -48,7 +48,7 @@ function About() {
           {/* === About Section === */}
           <section
             ref={aboutSectionRef}
-            className="min-h-screen flex flex-col md:flex-row items-start relative mb-16 sm:mb-32 z-10"
+            className="min-h-auto flex flex-col md:flex-row items-start relative z-10"
           >
             <div className="w-full md:w-2/3 lg:w-[65%] z-10">
               <BlurText
@@ -68,7 +68,7 @@ function About() {
                   className="font-jSB text-2xl sm:text-3xl md:text-4xl text-orange-400 tracking-wider"
                 />
 
-                <div className="text-base sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6">
+               <div className="text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6">
                   <p>
                     Pisoft Informatics Private Limited is a dynamic and rapidly
                     growing IT company established in 2016. The company located in
@@ -94,7 +94,7 @@ function About() {
             <AnimatePresence>
               {showLanyard && (
                 <motion.div
-                  className="absolute bg-transparent right-0 top-0 w-full md:w-1/2 lg:w-1/3 z-0"
+                  className="absolute min-h-auto bg-transparent right-0 top-0 w-full md:w-1/2 lg:w-1/3 z-0"
                   initial={{ opacity: 0, y: -50 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 50 }}
@@ -107,12 +107,12 @@ function About() {
           </section>
 
           {/* === Tech Section === */}
-          <section ref={techSectionRef} className="min-h-[50vh] bg-white mb-16 sm:mb-32 relative z-10">
+          <section ref={techSectionRef} className="min-h-[50vh] pt-24 bg-white relative z-10">
             <Tech />
           </section>
 
           {/* === Work Approach Section === */}
-          <section className="h-auto  bg-white py-10 sm:py-20 md:mb-2 mb-16 sm:mb-10 relative z-10">
+          <section className="h-auto pt-12 bg-white relative z-10">
             <div className="text-center">
               <div className="font-jr text-gray-500 text-sm sm:text-base md:text-lg">
                 Our Work Approach
@@ -124,7 +124,7 @@ function About() {
                 we engineer thoughtful digital journeys.
               </div>
             </div>
-            <div className="mt-8 sm:mt-12">
+            <div>
               <Stepp />
             </div>
           </section>
@@ -132,7 +132,7 @@ function About() {
         </div>
 
         {/* === Footer === */}
-        <footer className="relative bg-white pt-16 sm:pt-24 z-10">
+        <footer className="relative bg-white z-10">
           <Footer />
         </footer>
       </main>
