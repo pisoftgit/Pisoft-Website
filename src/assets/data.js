@@ -34,12 +34,5 @@ export const projects = [
       link: "https://www.ignant.com/2019/03/13/a-photographic-series-depicting-the-uncertain-future-of-denmarks-treasured-coastlines/",
      color: "#e4e4e4"
     },
-    {
-      title: "Empire Credits",
-      description: "Dutch photographer Mark Rammers residency at Hektor, an  Lanzarote. Titled ‘Beginnings’, the mesmerizing collection of images is a visual and meditative journey into the origins of regrets and the uncertainty of stepping into new unknowns.",
-      src: "scroll2.jpg",
-      link: "https://www.ignant.com/2023/04/12/mark-rammers-all-over-again-is-a-study-of-regret-and-the-willingness-to-move-forward/",
-      color: "#f1f1f1"
-    }
   ]
   

@@ -219,7 +219,7 @@ export default function Firstt() {
             </div>
 
             {/* Masked SVG Text */}
-            <svg ref={svgRef} className="relative w-full h-full">
+            <svg ref={svgRef} className="relative w-full h-full boder">
               <defs>
                 <linearGradient id="gradientFill" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#ffedd5" />
@@ -265,7 +265,7 @@ export default function Firstt() {
           <Navbar />
         </div>
 
-        <section className="min-h-screen w-full px-4">
+        <section className="min-h-auto w-full px-4">
           <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 md:hidden">
             <Example />
           </div>
@@ -299,7 +299,7 @@ export default function Firstt() {
         )}
 
 
-        <section className="min-h-screen w-full">
+        <section className="min-h-auto  w-full">
           <div ref={servicesRef}><Horizontal /></div>
           <div ref={workRef} className="px-4 sm:px-6 md:px-8">
             <div className="flex justify-center mb-4 sm:mb-6">
@@ -320,23 +320,23 @@ export default function Firstt() {
               <div className="font-jrB text-4xl sm:text-4xl md:text-5xl text-orange-400 text-center">
                 Results matter.
               </div>
-              <div className="font-jl text-base sm:text-lg md:text-xl font-normal mt-6 sm:mt-8 text-center">
+              <div className="font-jl text-base sm:text-lg md:text-xl font-normal mt-6 mb-4 sm:mt-8 text-center">
                 "Discover how our customized solutions have delivered measurable business outcomes for clients across various industries. Each case study highlights the strategic impact of our work, turning challenges into opportunities for growth."
               </div>
             </div>
           </div>
-          <section className="sm:mt-10 md:mt-20 px-4 sm:px-6 md:px-10">
+          <section className="px-4 sm:px-6">
             <ScrollT />
           </section>
         </section>
 
         {/* Gallery Section */}
 
-        <div className="max-w-full relative px-4">
+        <div className="max-w-full relative px-4 mt-12 ">
           <div>
             <BlurText
               text="WHAT OUR CLIENT SAYS"
-              className="text-6xl sm:text-md font-jB text-center text-orange-500 mt-36"
+              className="text-6xl sm:text-md font-jB text-center text-orange-500"
               delay={100}
               duration={0.6}
               ease="power3.out"
