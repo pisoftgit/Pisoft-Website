@@ -240,7 +240,7 @@ export default function Internship() {
       </section>
 
       {/* technologies */}
-      <section className='w-screen text-center flex justify-center items-center flex-col'>
+      <section className='w-screen text-center flex justify-start items-start flex-col'>
         <div>
           <BlurText
             text="Explore Our Technologies"
