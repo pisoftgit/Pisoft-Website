@@ -13,10 +13,12 @@ export const InfiniteMovingCards = ({
   const containerRef = React.useRef(null);
   const scrollerRef = React.useRef(null);
 
+  const [start, setStart] = useState(false);
+
   useEffect(() => {
     addAnimation();
   }, []);
-  const [start, setStart] = useState(false);
+
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
@@ -33,65 +35,77 @@ export const InfiniteMovingCards = ({
       setStart(true);
     }
   }
+
   const getDirection = () => {
     if (containerRef.current) {
-      if (direction === "left") {
-        containerRef.current.style.setProperty("--animation-direction", "forwards");
-      } else {
-        containerRef.current.style.setProperty("--animation-direction", "reverse");
-      }
+      containerRef.current.style.setProperty(
+        "--animation-direction",
+        direction === "left" ? "forwards" : "reverse"
+      );
     }
   };
+
   const getSpeed = () => {
     if (containerRef.current) {
-      if (speed === "fast") {
-        containerRef.current.style.setProperty("--animation-duration", "20s");
-      } else if (speed === "normal") {
-        containerRef.current.style.setProperty("--animation-duration", "40s");
-      } else {
-        containerRef.current.style.setProperty("--animation-duration", "80s");
-      }
+      const speedMap = {
+        fast: "20s",
+        normal: "40s",
+        slow: "80s"
+      };
+      containerRef.current.style.setProperty(
+        "--animation-duration",
+        speedMap[speed] || "40s"
+      );
     }
   };
+
   return (
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20 max-w-screen overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
         className
-      )}>
+      )}
+    >
       <ul
         ref={scrollerRef}
         className={cn(
           "flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4",
           start && "animate-scroll",
           pauseOnHover && "hover:[animation-play-state:paused]"
-        )}>
+        )}
+      >
         {items.map((item, idx) => (
           <li
-            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-b-0 border-gray-900 bg-[linear-gradient(180deg,#fafafa,#f5f5f5)] px-8 py-6 md:w-[450px] dark:border-zinc-900 dark:bg-[linear-gradient(180deg,#27272a,#18181b)]"
-            key={item.name}>
-            <blockquote>
-              <div
-                aria-hidden="true"
-                className="user-select-none pointer-events-none absolute -top-0.5 -left-0.5 -z-1 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"></div>
-              <span
-                className="relative z-20 text-sm leading-[1.6] font-normal text-neutral-800 dark:text-gray-100">
-                {item.quote}
+            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-b-0 border-gray-900 bg-[linear-gradient(180deg,#d0f0ff,#ffe0cc)] px-8 py-6 md:w-[450px] dark:border-zinc-900 shadow-xl overflow-hidden"
+            key={item.name}
+          >
+            <blockquote className="relative z-10 h-full flex flex-col justify-between">
+              <span className="relative z-20 text-lg md:text-xl leading-relaxed font-semibold text-blue-950 dark:text-blue-950">
+                “{item.quote}”
               </span>
-              <div className="relative z-20 mt-6 flex flex-row items-center">
-                <span className="flex flex-col gap-1">
-                  <span
-                    className="text-sm leading-[1.6] font-normal text-neutral-500 dark:text-gray-400">
+
+              <div className="relative z-20 flex flex-row items-center justify-between">
+                <div className="flex flex-col gap-1">
+                  <span className="text-md md:text-lg leading-[1.6] font-semibold text-blue-950 dark:text-blue-950">
                     {item.name}
                   </span>
-                  <span
-                    className="text-sm leading-[1.6] font-normal text-neutral-500 dark:text-gray-400">
-                    {item.title}
+                  <span className="text-sm leading-[1.6] font-normal text-blue-800 dark:text-blue-900">
+                    {item.role}
                   </span>
-                </span>
+                </div>
+                {item.image && (
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-30 h-30 rounded-full object-cover border-2 border-white shadow-md"
+                  />
+                )}
               </div>
             </blockquote>
+
+            {/* Decorative Background Glow */}
+            <div className="absolute inset-0 pointer-events-none -z-10 bg-gradient-to-br from-blue-200/20 via-transparent to-orange-100/30 blur-2xl opacity-40" />
           </li>
         ))}
       </ul>

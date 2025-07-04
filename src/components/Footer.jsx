@@ -3,8 +3,8 @@ import CircularText from "./Circlet";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-b from-gray-900 via-gray-950 to-black text-white px-6 sm:px-12 md:px-24 relative z-10 py-12">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 xl:gap-16 border-b border-gray-700 pb-12">
+    <footer className="bg-gradient-to-b from-gray-900 via-gray-950 to-black text-white px-6 sm:px-12 md:px-24 relative z-10 py-5">
+      <div className="max-w-screen mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 xl:gap-16 border-b border-gray-700 pb-5">
 
         {/* Branding */}
         <div className="flex flex-col items-center sm:items-center mt-5">
@@ -54,12 +54,11 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="mt-10 text-center text-md sm:text-md lg:text-lg text-gray-800 tracking-wider">
-        © {new Date().getFullYear()} <span className="text-white mb-30 font-semibold">Piosft Pvt. Ltd.</span>. All rights reserved.
+      <div className="mt-10 text-center text-md sm:text-md lg:text-lg text-gray-400 tracking-wider">
+        © {new Date().getFullYear()} <span className="text-white font-semibold">Piosft Pvt. Ltd.</span>. All rights reserved.
       </div>
     </footer>
   );
 };
 
 export default Footer;
-

@@ -17,7 +17,11 @@ import Footer from "./Footer";
 import Hover from "./HoverCard";
 import SwipableCardCarousel from "./SwipableCardCarousel";
 import BlurText from "./BlurText";
-import { NavbarDemo } from "./navbar/Navbar";
+// import { NavbarDemo } from "./navbar/Navbar";
+import { InfiniteMovingCards } from "./Intern/infiniteCards";
+import { NavbarDemo } from "./navbar/Navbar2";
+
+
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -260,10 +264,11 @@ export default function Firstt() {
             </div>
           </div>
         </div>
+        
 
-        <div className="fixed left-5 top-2 z-50000">
+        {/* <div className="fixed left-5 top-2 z-50000">
           <Navbar />
-        </div>
+        </div> */}
 
         <section className="min-h-auto w-full px-4">
           <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 md:hidden">
@@ -332,11 +337,10 @@ export default function Firstt() {
 
         {/* Gallery Section */}
 
-        <div className="max-w-full relative px-4 mt-12 ">
-          <div>
+        <div className="max-w-screen relative px-10 mt-15">
             <BlurText
               text="WHAT OUR CLIENT SAYS"
-              className="text-6xl sm:text-md font-jB text-center text-orange-500"
+              className="text-5xl font-jB text-center text-orange-500"
               delay={100}
               duration={0.6}
               ease="power3.out"
@@ -347,57 +351,29 @@ export default function Firstt() {
               rootMargin="-100px"
               textAlign="center"
             />
-          </div>
-          <p ref={galleryRef}  className="font-jr text-md mt-10 font-bold text-black max-w-3/4">
+          <p ref={galleryRef} className="mt-10 font-jr text-[2vh] sm:text-[2.2vh] md:text-[2.5vh] pl-0 sm:pl-6 w-full text-black tracking-wider text-center sm:text-left">
             Hear directly from our partners and clients about how our solutions made an impact. We're proud to build relationships that go beyond just delivering projects.
           </p>
-          <div className="font-jr text-md mt-10 font-bold text-black max-w-xl mx-auto ">
-            <div className="border-2 border-orange-500 rounded-4xl p-8"><p className="text-lg font-semibold italic">"{testimonials[activeIndex].quote}"</p>
-              <p className="font-jr text-md font-bold text-blue-900 max-w-3/4">
-                — {testimonials[activeIndex].name}, {testimonials[activeIndex].role}
-              </p></div>
-          </div>
-        </div>
 
-        {showCardSwap && (
-          <div className="fixed bottom-4 right-12 flex items-start gap-8 z-50">
-            <div>
-              <CardSwap
-                cardDistance={60}
-                verticalDistance={70}
-                delay={4000}
-                pauseOnHover={false}
-              >
-                {testimonials
-                  .filter(t => t.image)
-                  .map((testimonial, index) => (
-                    <Card key={index}>
-                      <div className="w-48 h-64 overflow-hidden rounded-4xl ">
-                        <img
-                          src={testimonial.image}
-                          alt={`Client testimonial by ${testimonial.name}`}
-                          className="w-full h-full object-contain"
-                        />
-                      </div>
-                    </Card>
-                  ))}
-              </CardSwap>
-            </div>
-          </div>
-        )}
+            <InfiniteMovingCards
+            items={testimonials}
+            direction="right"
+            speed="slow"
+          />
+        </div>
 
 
         {/* Latest Insights section */}
-        <section className="min-h-screen px-10 overflow-hidden mt-20 sm:mt-4 md:mt-10">
+        <section className="min-h-auto px-10 overflow-hidden mt-20 sm:mt-4 md:mt-20">
           <SwipableCardCarousel />
         </section>
 
-        <section className="bg-white w-full justify-center items-center flex flex-row">
+        <section className="bg-white w-full justify-center items-center flex flex-row mt-15">
           <div className="w-full md:w-1/2 hidden lg:block">
             <img
               src="https://t4.ftcdn.net/jpg/01/28/17/47/360_F_128174778_0XvhB1qi70yXNOPuUFzBNT85xKaWnVde.jpg"
               alt="Descriptive Alt Text"
-              className="rounded-lg w-full h-auto object-cover"
+              className="rounded-lg w-full h-1/2 object-cover"
             />
           </div>
           <div className="w-full lg:w-1/2">

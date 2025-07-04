@@ -104,7 +104,7 @@ export default function SwipableCardCarousel() {
           <SwiperSlide
             key={index}
             style={{
-              height: "300px",
+              height: "250px",
               width: "250px",
             }}
           >
@@ -117,7 +117,7 @@ export default function SwipableCardCarousel() {
                 : "bg-white text-black"
                 }`}
             >
-              <div className="flex flex-col justify-between h-full p-5">
+              <div className="flex flex-col justify-between h-full pl-5 pr-5">
                 <div>
                   <p className={`inline-flex items-center mb-3 px-4 py-2 text-sm font-jSB rounded-full transition-all duration-300 shadow-md self-start ${hoveredIndex === index
                         ? 'bg-white text-black'

@@ -41,9 +41,6 @@ export default function AccordionMenu() {
     <div className="w-full mx-auto px-4 sm:px-6 ">
       <div className="bg-white">
         <div className="flex justify-center mb-4 sm:mb-6">
-          {/* <h5 className="font-jl text-[3vh] sm:text-[3.5vh] md:text-[4vh] font-semibold text-black tracking-wider text-center">
-            Your Queries are Valuable to us
-          </h5> */}
         </div>
         <div className="flex justify-center items-center">
           <div className="flex flex-col items-center justify-center mb-4 sm:mb-6">
