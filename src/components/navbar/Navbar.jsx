@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import { HoveredLink, Menu, MenuItem, ProductItem } from "./navbarmenu";
+import { HoveredLink, Menu, MenuItem, ProductItem } from "./NavbarMenu";
 import { cn } from "../../lib/util";
 import { useNavigate } from "react-router-dom";
 

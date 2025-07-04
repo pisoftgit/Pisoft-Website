@@ -2,7 +2,7 @@ import React, { useMemo, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 motion
 const images = [
-  "scroll1.jpg", "scroll7.jpeg",
+  "scroll1.jpg", "scroll2.jpg", "scroll7.jpeg",
   "scroll4.jpg", "scroll6.jpeg", "scroll3.jpg",
   "scroll8.jpeg", "scroll1.jpg", "scroll7.jpeg", "scroll3.jpg"
 ];

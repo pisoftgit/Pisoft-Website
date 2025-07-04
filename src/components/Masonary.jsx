@@ -13,7 +13,7 @@ function Masonry({ data }) {
       } else if (window.matchMedia('(min-width: 600px)').matches) {
         setColumns(3);
       } else {
-        setColumns(1);
+        setColumns(1); // Mobile devices
       }
     };
 
@@ -61,7 +61,7 @@ function Masonry({ data }) {
   return (
     <div
       ref={ref}
-      className="relative bg-white w-full h-full"
+      className="relative bg-white  w-full h-full"
       style={{ height: Math.max(...heights) }}
     >
       {transitions((style, item) => (
@@ -77,7 +77,7 @@ function Masonry({ data }) {
               backgroundImage: `url(${item.image})`,
               backgroundSize: 'contain',
               backgroundPosition: 'center',
-              backgroundRepeat:"no-repeat",
+              backgroundRepeat:"no-repeat"
             }}
           />
         </a.div>

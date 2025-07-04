@@ -38,7 +38,7 @@ export const MenuItem = ({ setActive, active, item, children, onClick }) => {
         >
           <motion.div
             layoutId="active"
-            className="bg-gradient-to-r from-blue-100 via-orange-100 to-orange-200 rounded-2xl border border-blue-300 shadow-xl p-5 hover:shadow-2xl transition duration-300"
+            className="bg-white rounded-2xl border border-blue-300 shadow-xl p-5 hover:shadow-2xl transition duration-300"
           >
             <motion.div layout className="w-max h-full">{children}</motion.div>
           </motion.div>
@@ -52,7 +52,7 @@ export const Menu = ({ setActive, children }) => {
   return (
     <motion.nav
       layout
-      className="bg-gradient-to-r from-blue-100 via-orange-100 to-orange-200  text-blue-950 font-jr shadow-xl flex justify-center flex-wrap gap-2 sm:gap-4 px-6 py-3 backdrop-blur-lg"
+      className="bg-gradient-to-r from-blue-100 via-orange-100 to-orange-200 border-2 border-neutral-200 text-blue-950 font-jr shadow-xl flex justify-center flex-wrap gap-2 sm:gap-4 px-6 py-3 backdrop-blur-lg"
     >
       {children}
     </motion.nav>

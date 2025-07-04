@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TextPressure from '../components/TextPressure';
 import { TypewriterEffectSmoothDemo } from "../components/Education/Text";
-import { FollowingPointerDemo } from '../components/Finance/FIFloatingPointer';
+import { FollowingPointerDemo } from '../components/Finance/FiFloatingPointer';
 import { TypewriterEffect } from "../components/Finance/text2";
 import { LayoutGridDemo } from "../components/Finance/FiGrid";
 import BlurText from '../components/BlurText';
@@ -16,6 +16,7 @@ import { ContainerScroll } from '../components/conatinerScroll';
 import Threads from '../components/threads';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useEffect } from 'react';
+
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -168,18 +169,18 @@ function ERPTourTravels() {
         <div className="pt-20 md:pb-15 sm:pb-5 sm:px-6 md:px-12">
           <div className='flex flex-wrap w-full justify-center items-center text-center'>
             <BlurText
-            text="TOURS AND TRAVEL SYSTEM MANAGEMENT ERP"
-            className="font-jSB flex flex-wrap justify-center items-center sm:text-center text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
-            delay={100}
-            duration={0.6}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          />
+              text="TOURS AND TRAVEL SYSTEM MANAGEMENT ERP"
+              className="font-jSB flex flex-wrap justify-center items-center sm:text-center text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
+              delay={100}
+              duration={0.6}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+              textAlign="center"
+            />
           </div>
           <div ref={triggerRef} className="flex flex-wrap justify-center gap-2 px-4 text-center">
             {text.split(" ").map((w, i) => (
@@ -227,31 +228,3 @@ function ERPTourTravels() {
 }
 
 export default ERPTourTravels;
-
-
-
-
-
-// import React from 'react'
-// import { Example } from '../components/Corn'
-// import Navbar from '../components/Navbar'
-// import Footer from '../components/Footer'
-// import Layers from '../components/HomePage/scrolldownGsap'
-
-// export default function ERPTourTravels() {
-//   return (
-//     <div className="w-full flex flex-col bg-white relative">
-//       <div className="fixed z-50 top-4 left-0 md:top-12">
-//         <Navbar />
-//       </div>
-//       <div className="fixed top-4 right-4 z-50 flex items-center space-x-4 bg-transparent">
-//         <Example />
-//       </div>
-//       <footer className="w-full relative bg-white sm: z-10">
-//         <Footer />
-//       </footer>
-//     </div>
-//   )
-// }
-
-

@@ -267,7 +267,7 @@ export default function Internship() {
           className={`flex px-5 justify-center items-center w-full transition-all duration-300 ${menuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
             }`}
         >
-          <div className=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 justify-start items-start">
+          <div className=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
             {cardData.map((item, index) => (
               <PinContainer key={index} title={item.title} description={item.description}>
                 <div className="  border-white border-4 rounded-3xl flex flex-col text-slate-100/50 w-[12rem] h-[12rem]">

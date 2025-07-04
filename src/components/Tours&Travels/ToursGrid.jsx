@@ -4,7 +4,7 @@ import { LayoutGrid } from "../layoutGrid";
 
 export function LayoutGridDemo() {
     return (
-        <div className="h-screen pt-5 pb-35 md:pb-23 w-full">
+       <div className="h-screen pt-5 pb-35 md:pb-23 w-full">
             <LayoutGrid cards={cards} />
         </div>
     );
@@ -54,7 +54,7 @@ const SkeletonFour = () => {
     return (
         <div>
             <p className="font-bold md:text-4xl text-xl text-white">
-                Gifts And Incentive Management
+               Gifts And Incentive Management
             </p>
             <p className="font-normal text-base text-white"></p>
             <p className="font-normal text-base my-4 max-w-lg text-neutral-200">
@@ -67,7 +67,7 @@ const SkeletonFour = () => {
 
 const SkeletonFive = () => {
     return (
-
+        
         <div>
             <p className="font-bold md:text-4xl text-xl text-white">
                 Commission Payouts Management
@@ -98,7 +98,7 @@ const cards = [
     {
         id: 1,
         content: <SkeletonOne />,
-        title: "Service And Package Management",
+        title:"Service And Package Management",
         className: "md:col-span-2",
         thumbnail:
             "https://png.pngtree.com/thumb_back/fh260/background/20231006/pngtree-d-render-concept-efficient-product-delivery-service-with-courier-transportation-and-image_13533986.png",
@@ -106,7 +106,7 @@ const cards = [
     {
         id: 2,
         content: <SkeletonTwo />,
-        title: " Appointment Management",
+        title:" Appointment Management",
         className: "col-span-1",
         thumbnail:
             "https://media.istockphoto.com/id/1296699193/photo/make-an-appointment-written-under-torn-paper.jpg?s=612x612&w=0&k=20&c=2gWwlqj_sJzvrKAjpfEAaXV1eF8bb0x-CINyysCr6LM=",
@@ -114,7 +114,7 @@ const cards = [
     {
         id: 3,
         content: <SkeletonThree />,
-        title: "Billing And Collections Management",
+        title:"Billing And Collections Management",
         className: "col-span-1",
         thumbnail:
             "https://www.shutterstock.com/image-photo/financial-report-banking-management-e-600nw-2537984823.jpg",
@@ -122,7 +122,7 @@ const cards = [
     {
         id: 4,
         content: <SkeletonFour />,
-        title: " Gifts And Incentive Management",
+        title:" Gifts And Incentive Management",
         className: "md:col-span-2",
         thumbnail:
             "https://www.keka.com/media/2023/11/employee-incentive-program-cover-banner-800x419.png",
@@ -130,7 +130,7 @@ const cards = [
     {
         id: 5,
         content: <SkeletonFive />,
-        title: "Commission Payouts Management",
+        title:"Commission Payouts Management",
         className: "col-span-2",
         thumbnail:
             "https://www.shutterstock.com/image-photo/online-finance-transaction-concept-businessman-260nw-2428543527.jpg",
@@ -138,7 +138,7 @@ const cards = [
     {
         id: 6,
         content: <SkeletonSix />,
-        title: "Finance And Accounting Management",
+        title:"Finance And Accounting Management",
         className: "md:col-span-1",
         thumbnail:
             "https://png.pngtree.com/thumb_back/fh260/background/20240410/pngtree-financial-accounting-banking-finance-business-banking-image_15654018.jpg",

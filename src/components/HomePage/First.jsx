@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -18,7 +18,6 @@ import ScrollT from "./Page";
 import TrueFocus from "./FocusText";
 import SwipableCardCarousel from "./SwipableCardCarousel";
 import Footer from "./Footer";
-import SplitText from "./SplitText";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,8 +34,6 @@ export default function Firstt() {
   const triggerRef = useRef(null);
   const vnavRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
-  const galleryRef = useRef(null);
-  const [showCardSwap, setShowCardSwap] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
@@ -85,31 +82,35 @@ export default function Firstt() {
         start: "top top",
         end: "bottom+=10% top",
         pin: true,
-        scrub: 1, // enables scroll-based animation (bidirectional)
+        scrub: 1,
+        invalidateOnRefresh: true,
         scroller: document.body,
       },
     });
 
-    // SVG animation — scales out and back in when scrolling back up
     tl.fromTo(
       svgRef.current,
-      { scale: 1, transformOrigin: "50% 50%" },
-      { scale: 15, ease: "power2.inOut" } // Adjusted scale
+      { scale: 1, transformOrigin: "center center" },
+      { scale: 100, ease: "power2.inOut" }
     );
 
-    // Static text fades out and back in on scroll reverse
-    tl.fromTo(
+    tl.to(
       staticTextRef.current,
-      { opacity: 1 },
-      { opacity: 0, duration: 0.3, ease: "power1.out" },
+      {
+        opacity: 0,
+        duration: 0.3,
+        ease: "none",
+      },
       0
     );
 
-    // Navigation color change — reversible on scroll up
-    tl.fromTo(
+    tl.to(
       vnavRef.current,
-      { color: "black" },
-      { color: "white", duration: 0.3, ease: "power1.out" },
+      {
+        color: "white",
+        duration: 0.3,
+        ease: "none",
+      },
       0
     );
 
@@ -119,86 +120,27 @@ export default function Firstt() {
         start: "top 80%",
         end: "bottom 40%",
         scrub: 1,
+        toggleActions: "play none none reverse",
         scroller: document.body,
       },
     });
 
-    colorTl.fromTo(
-      letterRef.current,
-      { color: "gray" },
-      {
-        color: "black",
-        stagger: { each: 0.05 },
-        duration: 1,
-      }
-    );
+    colorTl.to(letterRef.current, {
+      color: "black",
+      stagger: { each: 15, ease: "power1.inOut" },
+      duration: 1,
+    });
 
-    ScrollTrigger.refresh();
+    requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    }, 200);
   }, []);
-
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setShowCardSwap(entry.isIntersecting);
-      },
-      { threshold: 0.4 }
-    );
-
-    if (galleryRef.current) {
-      observer.observe(galleryRef.current);
-    }
-
-    return () => {
-      if (galleryRef.current) {
-        observer.unobserve(galleryRef.current);
-      }
-    };
-  }, []);
-
-  const testimonials = [
-    {
-      name: "Anita D.",
-      role: "CEO",
-      quote: "Highly professional and technically sound team.",
-      image: "https://d2oanlgiaqo7a1.cloudfront.net/files/sJR-TUsRf/collect-reviews-and-profit.png"
-    },
-    {
-      name: "Tamanna",
-      role: "Trainer",
-      quote: "Working at Pisoft informatics has beeen an incredible journey of growth in a supportive and innovative environment.",
-      image: "https://d2oanlgiaqo7a1.cloudfront.net/files/sJR-TUsRf/collect-reviews-and-profit.png"
-    },
-    {
-      name: "Jatin Alohia",
-      role: "Developer",
-      quote: "Embarking on a career at Pisoft informatics has been a remarkable adventure of development in a caring and progressive setting.",
-      image: "https://d2oanlgiaqo7a1.cloudfront.net/files/sJR-TUsRf/collect-reviews-and-profit.png"
-    },
-    {
-      name: "Carlos M.",
-      role: "Startup Founder",
-      quote: "They understood our vision and delivered flawlessly.",
-      image: "https://d2oanlgiaqo7a1.cloudfront.net/files/sJR-TUsRf/collect-reviews-and-profit.png"
-    }
-  ];
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % testimonials.length);
-    }, 4100);
-
-    return () => clearInterval(interval);
-  }, []);
-
-
 
   return (
-    <div className="w-full">
+    <div className="w-full bg-gradient-to-r from-orange-100 via-orange-100 to-sky-100">
       <div
         ref={outerref}
-        className="relative min-h-screen w-full flex justify-center"
+        className="relative min-h-screen w-full flex justify-center overflow-hidden"
       >
         <div className="fixed left-0 top-4 z-50 md:top-6">
           <Navbar />
@@ -248,7 +190,7 @@ export default function Firstt() {
           <rect
             width="100%"
             height="100%"
-            fill="white"
+            fill="url(#gradientFill)"
             mask="url(#textmask)"
           />
         </svg>
@@ -287,7 +229,7 @@ export default function Firstt() {
                 </a>
 
                 {link === "ERP Solutions" && isERPHovered && (
-                  <div className="absolute top-full left-0 mt-2 bg-white text-black rounded shadow-lg py-2 px-4 text-sm w-max z-50">
+                  <div className="absolute top-full left-0 mt-2  bg-gradient-to-r from-orange-100 via-orange-100 to-sky-100 text-black rounded shadow-lg py-2 px-4 text-sm w-max z-50">
                     <div
                       onClick={() => navigate("/services/erp/manufacturing")}
                       className="hover:text-orange-500 cursor-pointer py-1"
@@ -341,37 +283,37 @@ export default function Firstt() {
                 </a>
 
                 {/* <div
-                        className="relative"
-                        onMouseEnter={() => setIsERPHovered(true)}
-                        onMouseLeave={() => setIsERPHovered(false)}
+                  className="relative"
+                  onMouseEnter={() => setIsERPHovered(true)}
+                  onMouseLeave={() => setIsERPHovered(false)}
+                >
+                  <a className="text-[4vw] sm:text-[2.5vw] md:text-[1.5vw] font-jl cursor-pointer hover:text-orange-400">
+                    ERP Solutions
+                  </a>
+
+                  {isERPHovered && (
+                    <div className="absolute top-full left-0 mt-2 bg-white text-black rounded shadow-lg py-2 px-4 z-50 text-sm w-max">
+                      <div
+                        onClick={() => navigate("/services/erp/manufacturing")}
+                        className="hover:text-orange-500 cursor-pointer py-1"
                       >
-                        <a className="text-[4vw] sm:text-[2.5vw] md:text-[1.5vw] font-jl cursor-pointer hover:text-orange-400">
-                          ERP Solutions
-                        </a>
-      
-                        {isERPHovered && (
-                          <div className="absolute top-full left-0 mt-2 bg-white text-black rounded shadow-lg py-2 px-4 z-50 text-sm w-max">
-                            <div
-                              onClick={() => navigate("/services/erp/manufacturing")}
-                              className="hover:text-orange-500 cursor-pointer py-1"
-                            >
-                              ERP for Manufacturing
-                            </div>
-                            <div
-                              onClick={() => navigate("/services/erp/education")}
-                              className="hover:text-orange-500 cursor-pointer py-1"
-                            >
-                              ERP for Education
-                            </div>
-                            <div
-                              onClick={() => navigate("/services/erp/custom")}
-                              className="hover:text-orange-500 cursor-pointer py-1"
-                            >
-                              Custom ERP
-                            </div>
-                          </div>
-                        )}
-                      </div> */}
+                        ERP for Manufacturing
+                      </div>
+                      <div
+                        onClick={() => navigate("/services/erp/education")}
+                        className="hover:text-orange-500 cursor-pointer py-1"
+                      >
+                        ERP for Education
+                      </div>
+                      <div
+                        onClick={() => navigate("/services/erp/custom")}
+                        className="hover:text-orange-500 cursor-pointer py-1"
+                      >
+                        Custom ERP
+                      </div>
+                    </div>
+                  )}
+                </div> */}
 
                 <a
                   onClick={() => handleNavClick("Contact Us")}
@@ -388,13 +330,13 @@ export default function Firstt() {
       </div>
 
       {/* Content Section */}
-      <section className="relative min-h-screen w-full px-4 sm:px-6 md:px-8">
+      <section className="relative min-h-screen w-full  bg-gradient-to-r from-orange-100 via-orange-100 to-sky-100 px-4 sm:px-6 md:px-8">
         <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 md:flex ">
           <Example />
         </div>
         <div className="flex flex-col md:flex-row justify-between items-start pt-8 sm:pt-12 md:pt-16 gap-4 sm:gap-6 md:gap-8">
           <div className="w-full md:w-1/2">
-            <h1 className="font-jB text-[clamp(2rem,6vw,4rem)] leading-tight">
+            <h1 className="font-jB text-[8vw] sm:text-[6vw] md:text-[4vw] leading-tight">
               Turning Code into
             </h1>
             <h1 className="font-jB text-[8vw] sm:text-[6vw] md:text-[4vw] text-orange-400 leading-tight mt-[-1vw]">
@@ -408,7 +350,7 @@ export default function Firstt() {
                 <span
                   key={idx}
                   ref={setLetterRef}
-                  className="font-jr text-[3.5vw] sm:text-[2.5vw] md:text-[1.75vw] font-bold text-gray-700"
+                  className="font-jr text-[3.5vw] sm:text-[2.5vw] md:text-[1.75vw] font-bold text-gray-400"
                 >
                   {word}
                 </span>
@@ -466,88 +408,40 @@ export default function Firstt() {
         </section>
       </section>
 
-      <div ref={galleryRef} className="max-w-full relative px-4">
-        <div>
-          <SplitText
-            text="WHAT OUR"
-            className="md:text-6xl sm:text-[2vw] font-jB text-center text-orange-500 mt-36"
-            delay={100}
-            duration={0.6}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          />
-          <SplitText
-            text="CLIENT"
-            className="md:text-6xl ml-2 mr-2 sm:text-[2vw] font-jB text-center text-black mt-36"
-            delay={100}
-            duration={0.6}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          />
-          <SplitText
-            text="  SAYS"
-            className="md:text-6xl sm:text-[2vw] font-jB text-center text-orange-500 mt-36"
-            delay={100}
-            duration={0.6}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          />
-        </div>
-        <p className="font-jr text-md mt-10 text-[2vw] sm:text-[2vw] font-bold text-black max-w-3/4">
-          Hear directly from our partners and clients about how our solutions made an impact. We're proud to build relationships that go beyond just delivering projects.
-        </p>
-        <div className="font-jr text-md mt-10 font-bold text-black max-w-xl mx-auto ">
-          <p className="text-lg font-semibold italic">"{testimonials[activeIndex].quote}"</p>
-          <p className="font-jr text-md font-bold text-blue-900 max-w-3/4">
-            — {testimonials[activeIndex].name}, {testimonials[activeIndex].role}
-          </p>
-        </div>
+      {/* Gallery Section */}
+      <div style={{
+        height: '50px',
+        width: '50px',
+        position: 'relative',
+      }}>
+        <CardSwap
+          cardDistance={60}
+          verticalDistance={70}
+          delay={4000}
+          pauseOnHover={false}
+        >
+          <Card>
+            <h3>Card 1</h3>
+            <p>Your content here</p>
+          </Card>
+          <Card>
+            <h3>Card 2</h3>
+            <p>Your content here</p>
+          </Card>
+          <Card>
+            <h3>Card 3</h3>
+            <p>Your content here</p>
+          </Card>
+          <Card>
+            <h3>Card 4</h3>
+            <p>Your content here</p>
+          </Card>
+        </CardSwap>
       </div>
-
-      {showCardSwap && (
-        <div className="fixed bottom-4 right-12 flex items-start gap-8 z-50">
-          <div>
-            <CardSwap
-              cardDistance={60}
-              verticalDistance={70}
-              delay={4000}
-              pauseOnHover={false}
-            >
-              {testimonials
-                .filter(t => t.image)
-                .map((testimonial, index) => (
-                  <Card key={index}>
-                    <img
-                      src={testimonial.image}
-                      alt={testimonial.name}
-                      className="w-full max-h-full min-h-full object-cover rounded-4xl"
-                    />
-                  </Card>
-                ))}
-            </CardSwap>
-
-          </div>
-        </div>
-      )}
 
 
       {/* Accordion and Carousel Section */}
-      <section className=" mt-20 w-full px-4 sm:px-6 md:px-0">
+      <section className=" bg-gradient-to-r from-orange-100 via-orange-100 to-sky-100 w-full px-4 sm:px-6 md:px-0">
         <AccordionMenu />
         {/* <section className="min-h-screen overflow-hidden mt-6 sm:mt-8 md:mt-10">
           <SwipableCardCarousel />

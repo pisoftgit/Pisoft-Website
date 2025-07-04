@@ -53,7 +53,7 @@ export default function ScrollT() {
   return (
     <main
       ref={container}
-      className="min-h-[250vh] sm:min-h-[300vh] sm:mt-4 md:mt-5 bg-white relative w-full"
+      className="min-h-[250vh] sm:min-h-[400vh] lg:mt-15 sm:mt-4 md:mt-10 bg-white relative w-full"
     >
       {/* Optional particle background */}
       {/* <Tsparticles /> */}
