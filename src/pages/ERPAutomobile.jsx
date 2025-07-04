@@ -20,6 +20,7 @@ import { useEffect } from 'react';
 
 
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 function ERPAutoMobile() {
@@ -201,19 +202,20 @@ function ERPAutoMobile() {
         </div>
 
 
-        <div ref={sectionRefs.type1} className="px-4 md:px-8 pt-20">
-          <TypewriterEffectSmoothDemo />
-        </div>
-
-        <ContainerScroll>
-          <section className="w-full text-center px-4 md:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
-            <LayoutGridDemo />
-          </section>
-        </ContainerScroll>
-
-        <div ref={sectionRefs.type2} className="px-4 md:px-8 ">
-          <TypewriterEffect />
-        </div>
+       <div ref={sectionRefs.type1} className="px-4 md:px-8 pt-20">
+                 <TypewriterEffectSmoothDemo />
+               </div>
+       
+               <ContainerScroll>
+                 <section className="w-full flex flex-wrap justify-center items-center text-center px-4 md:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
+                   <LayoutGridDemo />
+                 </section>
+               </ContainerScroll>
+               
+               
+                <div ref={sectionRefs.type2} className="px-4 md:px-8 ">
+                 <TypewriterEffect />
+               </div>
 
 
         <section className="w-full flex justify-end items-end">
