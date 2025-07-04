@@ -7,38 +7,38 @@ export default function HeroText() {
     const people = [
         {
             id: 1,
-            name: "John Doe",
+            name: "John",
             designation: "Software Engineer",
             image: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?auto=format&fit=crop&w=3387&q=80",
         },
         {
             id: 2,
-            name: "Robert Johnson",
+            name: "Jerry",
             designation: "Product Manager",
             image: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=800&q=60",
         },
         {
             id: 3,
-            name: "Jane Smith",
+            name: "Christina",
             designation: "Data Scientist",
             image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=60",
         },
         {
             id: 4,
-            name: "Emily Davis",
+            name: "Kerry",
             designation: "UX Designer",
             image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=800&q=60",
         },
         {
             id: 5,
-            name: "Tyler Durden",
+            name: "John",
             designation: "Soap Developer",
             image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=3540&q=80",
         },
         {
             id: 6,
             name: "Dora",
-            designation: "The Explorer",
+            designation: "Analyst",
             image: "https://images.unsplash.com/photo-1544725176-7c40e5a71c5e?auto=format&fit=crop&w=3534&q=80",
         },
     ];
@@ -64,7 +64,7 @@ export default function HeroText() {
                 >
                     Internship Programs <br />
                     <motion.span
-                        className="text-2xl md:text-4xl text-blue-950"
+                        className="text-2xl md:text-5xl text-blue-950"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 1.1, duration: 0.6 }}
@@ -80,14 +80,14 @@ export default function HeroText() {
                 >
                     <FlipWords
                         words={['Secure', 'Modern', 'Scalable']}
-                        className="text-5xl md:text-6xl font-bold text-white"
+                        className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-white"
                     />
                 </motion.div>
             </div>
 
             {/* Team Section */}
             {/* Team Section */}
-            <section className="w-full flex flex-col md:flex-row items-start justify-between gap-10 mt-24 px-4 md:px-10">
+            <section className="w-full flex flex-col md:flex-row items-start justify-between gap-10 mt-14 px-4 md:px-10">
 
                 {/* Left side: Buttons aligned to extreme left */}
                 <motion.div
@@ -116,7 +116,7 @@ export default function HeroText() {
                     transition={{ delay: 0.2, duration: 0.6 }}
                 >
                     <div className="text-end">
-                        <h2 className="text-2xl md:text-4xl font-jB text-blue-950 mb-6">
+                        <h2 className="text-2xl md:text-4xl lg:text-5xl font-jB text-black mb-6">
                             Meet Our Team
                         </h2>
                         <div className="flex flex-wrap justify-end gap-5">

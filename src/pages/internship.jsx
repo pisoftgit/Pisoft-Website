@@ -13,85 +13,13 @@ import { IconCloudDemo } from '../components/Intern/Clouddemo'
 import { PinContainer } from "../components/Internship/3Dpin";
 import Footer from '../components/Footer'
 import CountUp from '../components/Intern/counter'
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { TimelineDemo } from '../components/Intern/timelineDemo'
 import BackgroundShapes from '../components/Intern/backgound'
-
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Internship() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const heroRef = useRef(null)
-  const hopeRef = useRef(null)
-  const techRef = useRef(null)
-  const cardsRef = useRef(null)
-  const counterRef = useRef(null)
-  const benefitRef = useRef(null)
-  const iconCloudRef = useRef(null);
-  const containerRef = useRef(null);
-
-  useEffect(() => {
-    ScrollTrigger.refresh();
-  }, []);
-
-  useEffect(() => {
-    const animateSection = (ref, yStart = 50, delay = 0) => {
-      if (!ref.current) return;
-      gsap.fromTo(ref.current,
-        { opacity: 0, y: yStart },
-        {
-          opacity: 1,
-          y: 0,
-          delay,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ref.current,
-            start: "top 75%",
-            toggleActions: "play none none none",
-          },
-        });
-    };
-
-    animateSection(heroRef);
-    animateSection(hopeRef, 60, 0.1);
-    animateSection(techRef, 60, 0.2);
-    animateSection(cardsRef, 60, 0.3);
-    animateSection(counterRef, 40, 0.2);
-    animateSection(benefitRef, 30, 0.2);
-  }, []);
-
-  useEffect(() => {
-    const animate = (ref, delay = 0) => {
-      if (!ref?.current) return;
-
-      gsap.fromTo(
-        ref.current,
-        { opacity: 0, y: 100 },
-        {
-          opacity: 1,
-          y: 0,
-          delay,
-          duration: 1,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: ref.current,
-            start: "top 0%",  // adjust this for when animation starts
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    };
-
-    animate(heroRef);
-    animate(hopeRef, 0.1);
-    animate(techRef, 0.2);
-    animate(cardsRef, 0.3);
-    animate(counterRef, 0.4);
-    animate(benefitRef, 0.5);
-  }, []);
-
 
   const cardData = [
     {
@@ -202,10 +130,6 @@ export default function Internship() {
   ];
 
 
-  // const [topCard, setTopCard] = useState(CARDS[0]);
-  // const [activeCard, setActiveCard] = useState(CARDS[0]);
-
-
   const revealRef = useRef(null)
   const triggerRef = useRef(null)
   const [letterRef, setLetterRef] = useArrayRef()
@@ -249,30 +173,8 @@ export default function Internship() {
     })
   }, [])
 
-
-  const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  if (isLoading) {
-    return (
-      <div className="w-full h-screen flex justify-center items-center bg-white z-50 fixed top-0 left-0">
-        <DotLottieReact
-          src="https://lottie.host/e4dceebb-728f-458e-9648-fee916f32948/utxxsMf1tH.lottie"
-          loop
-          autoplay
-          className='text-sm'
-        />
-      </div>
-    );
-  }
-
   return (
-    <main className='w-full relative overflow-x-hidden'>
+    <main className='w-full relative'>
       <BackgroundShapes />
       {/* navbar */}
       <div className="fixed left-5 top-2 z-50000">
@@ -285,15 +187,15 @@ export default function Internship() {
       </div>
 
       {/* Background */}
-      <ParallaxBackground />
+      <ParallaxBackground/>
 
       {/* Hero Section */}
-      <div ref={heroRef} className="relative z-20 pt-5 bg-white/20 ">
+      <div className="relative z-20 pt-5 bg-white/20 ">
         <HeroText />
       </div>
 
       {/* Text Reveal Section */}
-      <section ref={hopeRef} className='w-screen flex flex-row flex-wrap justify-around items-center'>
+      <section className='w-screen flex flex-row flex-wrap justify-around items-center'>
         <div className='w-2/3 pl-4 pr-4'>
           <ScrollFloat
             animationDuration={1}
@@ -317,7 +219,6 @@ export default function Internship() {
           </ScrollFloat>
 
           <div
-            ref={revealRef}
             className="relative z-30 mx-auto md:px-10 rounded-xl max-w-screen"
           >
             <div ref={triggerRef} className="text-start px-4">
@@ -339,7 +240,7 @@ export default function Internship() {
       </section>
 
       {/* technologies */}
-      <section ref={techRef} className='w-screen text-center flex justify-center items-center flex-col'>
+      <section className='w-screen text-center flex justify-center items-center flex-col'>
         <div>
           <BlurText
             text="Explore Our Technologies"
@@ -360,25 +261,13 @@ export default function Internship() {
         </div>
       </section>
 
-      <section ref={cardsRef} className='w-screen flex flex-row justify-center items-center flex-wrap mt-7'>
-
-        {/* <div className='w-1/2 flex justify-center items-center'>
-            <div className='w-full border-4 border-blue-950 py-10 px-14 rounded-br-4xl rounded-tl-4xl max-w-md text-center'>
-              <h2 className="text-3xl font-bold text-blue-950">{activeCard.name}</h2>
-              <p className="text-md text-blue-800 italic">{activeCard.designation}</p>
-              <p className="mt-4 text-gray-700">{activeCard.content}</p>
-            </div>
-        </div>
-
-        <div className='w-1/2 h-[30rem] flex justify-center items-center'>
-          <CardStack items={CARDS} onCardChange={setActiveCard} />
-        </div> */}
+      <section className='w-screen flex flex-row justify-center items-center flex-wrap mt-7'>
 
         <div
           className={`flex px-5 justify-center items-center w-full transition-all duration-300 ${menuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
             }`}
         >
-          <div className=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4">
+          <div className=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
             {cardData.map((item, index) => (
               <PinContainer key={index} title={item.title} description={item.description}>
                 <div className="  border-white border-4 rounded-3xl flex flex-col text-slate-100/50 w-[12rem] h-[12rem]">
@@ -400,7 +289,7 @@ export default function Internship() {
 
 
       {/* counters */}
-      <div ref={counterRef} className="w-full flex flex-wrap justify-center items-center gap-16 py-16 bg-gray-900 text-white">
+      <div className="w-full flex flex-wrap justify-center items-center gap-16 py-16 bg-gray-900 text-white">
         {/* Counter 1 */}
         <div className="flex flex-col items-center">
           <CountUp

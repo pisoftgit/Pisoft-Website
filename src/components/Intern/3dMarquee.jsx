@@ -15,7 +15,7 @@ export const ThreeDMarquee = ({
   return (
     <div
       className={cn(
-        "mx-auto block h-[600px] overflow-hidden rounded-2xl max-sm:h-100",
+        "mx-auto block min-h-screen overflow-hidden rounded-2xl max-sm:h-100",
         className
       )}>
       <div className="flex size-full items-center justify-center">
@@ -50,11 +50,11 @@ export const ThreeDMarquee = ({
                       key={imageIndex + image}
                       src={image}
                       alt={`Image ${imageIndex + 1}`}
-                      className="aspect-[970/700] rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
-                      width={970}
-                      height={700} />
+                      className="aspect-[300/300] rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
+                      width={270}
+                      height={270} />
                   </div>
-                ))}
+                ))} 
               </motion.div>
             ))}
           </div>

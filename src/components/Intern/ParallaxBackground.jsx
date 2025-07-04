@@ -68,7 +68,7 @@ export default function ParallaxBackground() {
     }, [])
 
     return (
-        <section className="absolute inset-0 z-0">
+        <section className="absolute inset-0 z-0 min-h-screen max-h-screen">
             <div className="relative h-screen overflow-hidden">
                 <div
                     ref={marqueeRef}
