@@ -21,7 +21,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
   return (
     <div
       ref={container}
-      className="h-screen flex items-center justify-center sticky top-0 w-full"
+      className="h-auto flex items-center justify-center sticky top-0 w-full"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}

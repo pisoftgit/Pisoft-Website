@@ -320,19 +320,19 @@ export default function Firstt() {
               <div className="font-jrB text-4xl sm:text-4xl md:text-5xl text-orange-400 text-center">
                 Results matter.
               </div>
-              <div className="font-jl text-base sm:text-lg md:text-xl font-normal mt-6 mb-4 sm:mt-8 text-center">
+              <div className="font-jl text-base sm:text-lg md:text-xl font-normal mt-6 mb-14 sm:mt-8 text-center">
                 "Discover how our customized solutions have delivered measurable business outcomes for clients across various industries. Each case study highlights the strategic impact of our work, turning challenges into opportunities for growth."
               </div>
             </div>
           </div>
-          <section className="px-4 sm:px-6">
+          <section className="px-4 sm:px-6 mt-4">
             <ScrollT />
           </section>
         </section>
 
         {/* Gallery Section */}
 
-        <div className="max-w-screen relative px-10 mt-15">
+        <div className="max-w-screen mt-10 px-10 ">
             <BlurText
               text="WHAT OUR CLIENT SAYS"
               className="text-5xl font-jB text-center text-orange-500"
@@ -346,7 +346,7 @@ export default function Firstt() {
               rootMargin="-100px"
               textAlign="center"
             />
-          <p ref={galleryRef} className="mt-10 font-jr text-[2vh] sm:text-[2.2vh] md:text-[2.5vh] pl-0 sm:pl-6 w-full text-black tracking-wider text-center sm:text-left">
+          <p className="mt-10 font-jr text-[2vh] sm:text-[2.2vh] md:text-[2.5vh] pl-0 sm:pl-6 w-full text-black tracking-wider text-center sm:text-left">
             Hear directly from our partners and clients about how our solutions made an impact. We're proud to build relationships that go beyond just delivering projects.
           </p>
 
