@@ -7,13 +7,16 @@ function Masonry({ data }) {
   useEffect(() => {
     const updateColumns = () => {
       if (window.matchMedia('(min-width: 1500px)').matches) {
+        setColumns(6);
+      }
+      else if (window.matchMedia('(min-width: 1200px)').matches) {
         setColumns(4);
       } else if (window.matchMedia('(min-width: 1000px)').matches) {
         setColumns(4);
       } else if (window.matchMedia('(min-width: 600px)').matches) {
         setColumns(3);
       } else {
-        setColumns(1); // Mobile devices
+        setColumns(1);
       }
     };
 
@@ -61,7 +64,7 @@ function Masonry({ data }) {
   return (
     <div
       ref={ref}
-      className="relative bg-white  w-full h-full"
+      className="relative bg-white w-full h-full"
       style={{ height: Math.max(...heights) }}
     >
       {transitions((style, item) => (
@@ -77,7 +80,7 @@ function Masonry({ data }) {
               backgroundImage: `url(${item.image})`,
               backgroundSize: 'contain',
               backgroundPosition: 'center',
-              backgroundRepeat:"no-repeat"
+              backgroundRepeat:"no-repeat",
             }}
           />
         </a.div>

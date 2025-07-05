@@ -15,7 +15,7 @@ extend({ MeshLineGeometry, MeshLineMaterial });
 
 export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], fov = 20, transparent = true }) {
   return (
-<div className="fixed right-10 top-0 h-[680px] w-[30%]  flex scale-130 items-center justify-end pointer-events-none z-10 bg-white">
+<div className="fixed right-10 top-0 h-[680px] w-[40%]  flex scale-130 items-center justify-end pointer-events-none z-10 bg-white">
 
       <Canvas
         camera={{ position: position, fov: fov }}
@@ -72,30 +72,42 @@ useRopeJoint(j2, j3, [[0, 0, 0], [0, 0, 0], 0.7]);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  useFrame((state, delta) => {
-    if (dragged) {
-      vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
-      dir.copy(vec).sub(state.camera.position).normalize();
-      vec.add(dir.multiplyScalar(state.camera.position.length()));
-      [card, j1, j2, j3, fixed].forEach((ref) => ref.current?.wakeUp());
-      card.current?.setNextKinematicTranslation({ x: vec.x - dragged.x, y: vec.y - dragged.y, z: vec.z - dragged.z });
-    }
-    if (fixed.current) {
-      [j1, j2].forEach((ref) => {
-        if (!ref.current.lerped) ref.current.lerped = new THREE.Vector3().copy(ref.current.translation());
-        const clampedDistance = Math.max(0.1, Math.min(1, ref.current.lerped.distanceTo(ref.current.translation())));
-        ref.current.lerped.lerp(ref.current.translation(), delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed)));
-      });
-      curve.points[0].copy(j3.current.translation());
-      curve.points[1].copy(j2.current.lerped);
-      curve.points[2].copy(j1.current.lerped);
-      curve.points[3].copy(fixed.current.translation());
-      band.current.geometry.setPoints(curve.getPoints(32));
+ useFrame((state, delta) => {
+  if (dragged) {
+    vec.set(state.pointer.x, state.pointer.y, 0.5).unproject(state.camera);
+    dir.copy(vec).sub(state.camera.position).normalize();
+    vec.add(dir.multiplyScalar(state.camera.position.length()));
+    [card, j1, j2, j3, fixed].forEach((ref) => ref.current?.wakeUp());
+    card.current?.setNextKinematicTranslation({ x: vec.x - dragged.x, y: vec.y - dragged.y, z: vec.z - dragged.z });
+
+    // When dragging, you can stabilize angular velocity normally
+    if (card.current) {
       ang.copy(card.current.angvel());
       rot.copy(card.current.rotation());
       card.current.setAngvel({ x: ang.x, y: ang.y - rot.y * 0.25, z: ang.z });
     }
-  });
+
+  } else {
+    // When falling (not dragged), set spin and do NOT override it later
+    if (card.current) {
+      card.current.setAngvel({ x: 0, y: 1, z: 0 });
+    }
+  }
+
+  if (fixed.current) {
+    [j1, j2].forEach((ref) => {
+      if (!ref.current.lerped) ref.current.lerped = new THREE.Vector3().copy(ref.current.translation());
+      const clampedDistance = Math.max(0.1, Math.min(1, ref.current.lerped.distanceTo(ref.current.translation())));
+      ref.current.lerped.lerp(ref.current.translation(), delta * (minSpeed + clampedDistance * (maxSpeed - minSpeed)));
+    });
+    curve.points[0].copy(j3.current.translation());
+    curve.points[1].copy(j2.current.lerped);
+    curve.points[2].copy(j1.current.lerped);
+    curve.points[3].copy(fixed.current.translation());
+    band.current.geometry.setPoints(curve.getPoints(32));
+  }
+});
+
 
   curve.curveType = 'chordal';
   texture.wrapS = texture.wrapT = THREE.RepeatWrapping;

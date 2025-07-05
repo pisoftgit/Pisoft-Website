@@ -1,7 +1,5 @@
 import React from 'react'
 import Masonry from '../Masonary';
-import BlurText from '../BlurText';
-import TrueFocus from '../FocusText';
 
 function Tech() {
 
@@ -10,10 +8,10 @@ function Tech() {
   { id: 2, image: 'backend.png', height:700 },
   { id: 3, image: 'dev.png', height: 700 },
   { id: 4, image: 'ui.png', height: 700 },
-  { id: 5, image: 'Aii.png', height: 350 },
-  { id: 6, image: 'data.png', height: 350 },
-  { id: 7, image: 'MD.png', height: 350 },
-  { id: 8, image: 'DM.png', height: 350 },
+  { id: 5, image: 'Aii.png', height: 300 },
+  { id: 6, image: 'data.png', height: 300 },
+  { id: 7, image: 'MD.png', height: 300 },
+  { id: 8, image: 'DM.png', height: 300 },
 ];
   return (
     <div className=" bg-white h-auto w-full">
