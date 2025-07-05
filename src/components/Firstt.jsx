@@ -214,6 +214,10 @@ export default function Firstt() {
     <smooth>
       <div className="w-full bg-white">
         <div ref={outerref} className="relative min-h-screen sm:min-h-half  w-full flex justify-center overflow-hidden">
+
+        <div className="absolute left-7 top-5 z-50000">
+          <Navbar />
+        </div>
           <div className="relative w-full h-screen overflow-hidden">
             {/* Background Video */}
             <div className="absolute top-0 left-0 w-full h-full z-[-1]">
@@ -264,11 +268,7 @@ export default function Firstt() {
             </div>
           </div>
         </div>
-        
-
-        <div className="left-5 top-2 z-50000">
-          <Navbar />
-        </div>
+    
 
         <section className="min-h-auto w-full px-4">
           <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 md:hidden">
