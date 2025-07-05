@@ -215,9 +215,6 @@ export default function Firstt() {
       <div className="w-full bg-white">
         <div ref={outerref} className="relative min-h-screen sm:min-h-half  w-full flex justify-center overflow-hidden">
 
-        <div className="absolute left-7 top-5 z-50000">
-          <Navbar />
-        </div>
           <div className="relative w-full h-screen overflow-hidden">
             {/* Background Video */}
             <div className="absolute top-0 left-0 w-full h-full z-[-1]">
@@ -297,11 +294,9 @@ export default function Firstt() {
           </div>
         </section>
 
-        {showNavbarDemo && (
           <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
             <NavbarDemo />
           </div>
-        )}
 
 
         <section className="min-h-auto  w-full">
