@@ -7,6 +7,7 @@ import Tech from "../components/About/Tech";
 import { motion, AnimatePresence } from "framer-motion";
 import Stepp from "../components/About/Stepp";
 import Footer from "../components/Footer";
+import { NavbarDemo } from "../components/navbar/Navbar2";
 
 function About() {
   const aboutSectionRef = useRef(null);
@@ -36,14 +37,16 @@ function About() {
         <div className="w-full flex flex-col bg-white p-4 sm:p-6 md:p-8 relative">
           {/* Navbar */}
 
-          <div className="fixed left-5 top-2 z-50">
+          <div className="fixed left-5 top-2 z-50000 lg:hidden">
             <Navbar />
           </div>
-
-          {/* Hamburger Icon */}
-          <div className="fixed top-4 right-4 z-50 flex items-center space-x-4">
+          <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
             <Example />
           </div>
+          <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
+            <NavbarDemo />
+          </div>
+
 
           {/* === About Section === */}
           <section
@@ -68,7 +71,7 @@ function About() {
                   className="font-jSB text-2xl sm:text-3xl md:text-4xl text-orange-400 tracking-wider"
                 />
 
-               <div className="text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6">
+                <div className="text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6">
                   <p>
                     Pisoft Informatics Private Limited is a dynamic and rapidly
                     growing IT company established in 2016. The company located in
@@ -107,7 +110,7 @@ function About() {
           </section>
 
           {/* === Tech Section === */}
-          <section ref={techSectionRef} className="min-h-[50vh] pt-24 bg-white relative z-10">
+          <section ref={techSectionRef} className="min-h-[50vh] pt-30 bg-white relative z-10">
             <Tech />
           </section>
 

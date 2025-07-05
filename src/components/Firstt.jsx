@@ -266,9 +266,9 @@ export default function Firstt() {
         </div>
         
 
-        {/* <div className="fixed left-5 top-2 z-50000">
+        <div className="left-5 top-2 z-50000">
           <Navbar />
-        </div> */}
+        </div>
 
         <section className="min-h-auto w-full px-4">
           <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 md:hidden">
@@ -358,7 +358,7 @@ export default function Firstt() {
             <InfiniteMovingCards
             items={testimonials}
             direction="right"
-            speed="slow"
+            speed="fast"
           />
         </div>
 

@@ -16,6 +16,7 @@ import { ContainerScroll } from '../components/conatinerScroll';
 import Threads from '../components/threads'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useEffect } from 'react';
+import { NavbarDemo } from '../components/navbar/Navbar2';
 
 
 
@@ -147,13 +148,17 @@ function ERPEducation() {
         duration={400}
       >
 
-        <div className="fixed left-5 top-2 z-50">
-        <Navbar />
-      </div>
-        <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none">
+         <div className="fixed left-5 top-2 z-50000 lg:hidden">
+          <Navbar />
+        </div>
+        <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
           <Example />
         </div>
-
+        <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
+          <NavbarDemo />
+        </div>
+      
+        
         {/* Hero: animated TextPressure */}
         <div className="absolute top-10 left-10 md:top-4 md:left-40  w-full flex items-center justify-center pl-4 text-center">
           <TextPressure

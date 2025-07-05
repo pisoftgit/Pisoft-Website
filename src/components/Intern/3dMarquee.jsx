@@ -51,8 +51,8 @@ export const ThreeDMarquee = ({
                       src={image}
                       alt={`Image ${imageIndex + 1}`}
                       className="aspect-[300/300] rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
-                      width={270}
-                      height={270} />
+                      width={300}
+                      height={290} />
                   </div>
                 ))} 
               </motion.div>

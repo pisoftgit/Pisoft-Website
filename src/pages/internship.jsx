@@ -15,6 +15,7 @@ import Footer from '../components/Footer'
 import CountUp from '../components/Intern/counter'
 import { TimelineDemo } from '../components/Intern/timelineDemo'
 import BackgroundShapes from '../components/Intern/backgound'
+import { NavbarDemo } from '../components/navbar/Navbar2'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -97,39 +98,6 @@ export default function Internship() {
     },
   ];
 
-  const testimonials = [
-    {
-      quote:
-        "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.",
-      name: "Charles Dickens",
-      title: "A Tale of Two Cities",
-    },
-    {
-      quote:
-        "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
-      name: "William Shakespeare",
-      title: "Hamlet",
-    },
-    {
-      quote: "All that we see or seem is but a dream within a dream.",
-      name: "Edgar Allan Poe",
-      title: "A Dream Within a Dream",
-    },
-    {
-      quote:
-        "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
-      name: "Jane Austen",
-      title: "Pride and Prejudice",
-    },
-    {
-      quote:
-        "Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.",
-      name: "Herman Melville",
-      title: "Moby-Dick",
-    },
-  ];
-
-
   const revealRef = useRef(null)
   const triggerRef = useRef(null)
   const [letterRef, setLetterRef] = useArrayRef()
@@ -177,17 +145,18 @@ export default function Internship() {
     <main className='w-full relative'>
       <BackgroundShapes />
       {/* navbar */}
-      <div className="fixed left-5 top-2 z-50000">
+      <div className="fixed left-5 top-2 z-50000 lg:hidden">
         <Navbar />
       </div>
-
-      {/* Menu Button or Example */}
-      <div className="fixed top-4 right-4 z-50000 max-w-[90%] sm:max-w-none">
-        <Example menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+      <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
+        <Example />
+      </div>
+      <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
+        <NavbarDemo />
       </div>
 
       {/* Background */}
-      <ParallaxBackground/>
+      <ParallaxBackground />
 
       {/* Hero Section */}
       <div className="relative z-20 pt-5 bg-white/20 ">
@@ -195,8 +164,8 @@ export default function Internship() {
       </div>
 
       {/* Text Reveal Section */}
-      <section className='w-screen flex flex-row flex-wrap justify-around items-center'>
-        <div className='w-2/3 pl-4 pr-4'>
+      <section className='w-screen flex flex-row flex-wrap justify-start items-start'>
+        <div className='lg:w-2/3 pl-4 pr-4 w-full'>
           <ScrollFloat
             animationDuration={1}
             ease='back.inOut(2)'
@@ -219,14 +188,14 @@ export default function Internship() {
           </ScrollFloat>
 
           <div
-            className="relative z-30 mx-auto md:px-10 rounded-xl max-w-screen"
+            className="relative [text-align:justify] z-30 mx-auto md:px-10 rounded-xl max-w-screen sm:mt-5"
           >
             <div ref={triggerRef} className="text-start px-4">
               {text.split(" ").map((char, idx) => (
                 <span
                   key={idx}
                   ref={setLetterRef}
-                  className="font-jr sm:text-[2.5vw] mr-1 md:text-[1.7vw] font-medium text-gray-800 inline-block justify-start"
+                  className="font-jr [text-align:justify] sm:text-[2.5vw] mr-1 md:text-[1.7vw] font-medium text-gray-800 inline-block justify-start"
                 >
                   {char}
                 </span>
@@ -234,17 +203,17 @@ export default function Internship() {
             </div>
           </div>
         </div>
-        <div className='w-1/3'>
+        <div className='lg:w-1/3 hidden lg:block'>
           <IconCloudDemo />
         </div>
       </section>
 
       {/* technologies */}
-      <section className='w-screen text-center flex justify-start items-start flex-col'>
+      <section className='w-screen text-center flex justify-start items-start flex-col lg:pl-12 pl-4'>
         <div>
           <BlurText
             text="Explore Our Technologies"
-            className="text-5xl mt-0 font-jr text-center leading-tight text-orange-500 px-5"
+            className="md:text-5xl sm:text-xl mt-0 font-jr text-center leading-tight text-orange-500 px-5"
             delay={110}
             duration={0.7}
             ease="power3.out"
@@ -255,7 +224,7 @@ export default function Internship() {
             rootMargin="-100px"
             textAlign="center"
           />
-          <p className="mt-4 text-xl text-blue-950 px-5 max-w-2xl mx-auto">
+          <p className="mt-4 sm:text-[2.5vw] md:text-[1.7vw] text-blue-950 px-5 mx-auto">
             In the first few months, you'll immerse yourself in advanced technologies, mastering as per the need of IT industry.
           </p>
         </div>
@@ -282,7 +251,7 @@ export default function Internship() {
         </div>
       </section>
 
-{/* benefits */}
+      {/* benefits */}
       <section className='w-screen'>
         <TimelineDemo />
       </section>

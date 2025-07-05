@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TextPressure from '../components/TextPressure';
 import { TypewriterEffectSmoothDemo } from "../components/Education/Text";
-import { FollowingPointerDemo } from "../components/Finance/FiFloatingPointer"
+import { FollowingPointerDemo } from "../components/Finance/FIFloatingPointer";
 import { TypewriterEffect } from "../components/Finance/text2";
 import { LayoutGridDemo } from "../components/Finance/FiGrid";
 import BlurText from '../components/BlurText';
@@ -16,7 +16,7 @@ import { ContainerScroll } from '../components/conatinerScroll';
 import Threads from '../components/threads';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useEffect } from 'react';
-
+import { NavbarDemo } from '../components/navbar/Navbar2';
 
 
 gsap.registerPlugin(ScrollTrigger);
@@ -146,12 +146,15 @@ function ERPFinance() {
         duration={400}
       >
 
-        <div className="fixed left-5 top-2 z-50000">
-          <Navbar />
-        </div>
-        <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none">
-          <Example />
-        </div>
+         <div className="fixed left-5 top-2 z-50000 lg:hidden">
+            <Navbar />
+          </div>
+          <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
+            <Example />
+          </div>
+          <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
+            <NavbarDemo />
+          </div>
 
         {/* Hero: animated TextPressure */}
         <div className="absolute top-10 left-10 md:top-4 md:left-40  w-full flex items-center justify-center pl-4 text-center">
@@ -173,7 +176,7 @@ function ERPFinance() {
           <div className='flex flex-wrap w-full justify-center items-center text-center'>
             <BlurText
               text="FINANCIAL SERVICES MANAGEMENT ERP"
-              className="font-jr flex flex-wrap justify-center items-center sm:text-center text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
+              className="font-jSB flex flex-wrap justify-center items-center sm:text-center text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
               delay={100}
               duration={0.6}
               ease="power3.out"
@@ -203,10 +206,11 @@ function ERPFinance() {
         </div>
 
         <ContainerScroll>
-          <section className="w-full text-center px-4 md:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
+          <section className="w-full flex flex-wrap justify-center items-center text-center px-4 md:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
             <LayoutGridDemo />
           </section>
         </ContainerScroll>
+
 
         <div ref={sectionRefs.type2} className="px-4 md:px-8 ">
           <TypewriterEffect />
@@ -227,5 +231,3 @@ function ERPFinance() {
 }
 
 export default ERPFinance;
-
-

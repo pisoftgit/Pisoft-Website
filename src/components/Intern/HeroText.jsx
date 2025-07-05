@@ -44,7 +44,7 @@ export default function HeroText() {
     ];
 
     return (
-        <section className="flex flex-col items-center justify-between min-h-screen px-6 md:px-16 py-16">
+        <section className="flex flex-col items-center justify-between min-h-screen px-6 md:px-16 py-16 md:pt-25 xl:pt-45">
             {/* Hero Text */}
             <div className="z-10 text-center md:text-left max-w-4xl">
                 <motion.h1

@@ -8,6 +8,7 @@ import {
     useMotionValueEvent,
 } from "motion/react";
 
+
 import React, { useRef, useState, useEffect } from "react";
 import imgscr from "../assets/latestLogoP.png";
 
@@ -36,32 +37,37 @@ export const Navbar = ({ children, className }) => {
     );
 };
 
+
 export const NavBody = ({ children, className, visible }) => {
     return (
         <motion.div
             animate={{
                 backdropFilter: visible ? "blur(10px)" : "none",
                 boxShadow: visible
-                    ? "0 0 24px rgba(208, 232, 255, 0.3), 0 1px 1px rgba(0, 0, 0, 0.05)"
+                    ? "0 4px 8px rgba(85, 163, 221, 0.4)"
                     : "none",
                 backgroundColor: visible ? "rgba(208, 232, 255, 0.5)" : "transparent",
                 width: visible ? "40%" : "100%",
-                y: visible ? 20 : 0,
+                y: visible ? 10 : 0,
             }}
             transition={{
                 type: "spring",
                 stiffness: 200,
                 damping: 50,
             }}
-            style={{ minWidth: "1000px" }}
+            style={{
+                minWidth: "1000px",
+            }}
             className={cn(
                 "relative z-[60] mx-auto hidden w-full flex-row items-center justify-between self-start rounded-full px-6 lg:flex",
                 className
-            )}>
+            )}
+        >
             {children}
         </motion.div>
     );
 };
+
 
 export const NavItems = ({ items, className, onItemClick }) => {
 
@@ -72,7 +78,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
     // Handle mouse enter and leave
     const handleERPHover = () => {
         setHovered("erp");
-        setIsERPMenuOpen(true);  // Show dropdown on hover
+        setIsERPMenuOpen(true); 
     };
 
     const handleERPLeave = () => {
@@ -99,7 +105,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
         <motion.div
             onMouseLeave={() => setHovered(null)}
             className={cn(
-                "ml-20 absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-4 text-lg font-medium text-blue-900 transition duration-200 hover:text-blue-950 lg:flex lg:space-x-4", // Increased space and font size (space-x-4, text-lg)
+                "ml-25 absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-4 text-lg font-medium text-blue-900 transition duration-200 hover:text-blue-950 lg:flex lg:space-x-4", // Increased space and font size (space-x-4, text-lg)
                 className
             )}>
             {items.map((item, idx) => (
@@ -130,7 +136,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
                             className="absolute inset-0 h-full w-full rounded-full bg-[#FFE0B2] z-10"
                         />
                     )}
-                    <span className="relative z-20">ERP Services</span>
+                    <span className="relative z-20">ERP Services &#9660;</span>
                 </a>
                 <AnimatePresence>
                     {isERPMenuOpen && (
@@ -139,7 +145,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            className="absolute left-0 w-55 text-center rounded-md bg-blue-50 backdrop-blur-3xl opacity-60 shadow-lg mt-2 py-2"
+                            className="absolute left-0 w-60 mt-5 text-center rounded-md bg-blue-50 backdrop-blur-3xl opacity-60 shadow-lg py-2"
                         >
                             <a
                                 href="/ERPservices/Education"
@@ -253,7 +259,7 @@ export const NavbarLogo = () => {
     return (
         <a
             href="/"
-            className="relative z-20 mr-6 flex items-center space-x-4 px-4 py-6 text-lg font-semibold text-blue-950"> {/* Increased padding and font size */}
+            className="relative z-20 mr-6 flex items-center space-x-4 px-4 py-3 text-lg font-semibold text-blue-950"> {/* Increased padding and font size */}
             <img src={imgscr} alt="logo" width={150} height={150} />
         </a>
     );

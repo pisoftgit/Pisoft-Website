@@ -17,6 +17,7 @@ import { ContainerScroll } from '../components/conatinerScroll';
 import Threads from '../components/threads';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useEffect } from 'react';
+import { NavbarDemo } from '../components/navbar/Navbar2';
 
 
 
@@ -146,12 +147,15 @@ function ERPAutoMobile() {
         sparkCount={8}
         duration={400}
       >
-
-        <div className="fixed left-5 top-2 z-50000">
+        
+        <div className="fixed left-5 top-2 z-50000 lg:hidden">
           <Navbar />
         </div>
-        <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none">
+        <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
           <Example />
+        </div>
+        <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
+          <NavbarDemo />
         </div>
 
         {/* Hero: animated TextPressure */}
@@ -174,7 +178,7 @@ function ERPAutoMobile() {
         <div className="pt-20 md:pb-15 sm:pb-5 sm:px-6 md:px-12">
           <div className='flex flex-wrap w-full justify-center items-center text-center'>
             <BlurText
-              text="EDUCATION SYSTEM MANAGEMENT ERP "
+              text="AUTOMOTIVE SYSTEM MANAGEMENT ERP  "
               className="font-jSB flex flex-wrap justify-center items-center sm:text-center text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
               delay={100}
               duration={0.6}
@@ -206,10 +210,11 @@ function ERPAutoMobile() {
         </div>
 
         <ContainerScroll>
-          <section className="w-full text-center px-4 md:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
+          <section className="w-full px-4 md:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
             <LayoutGridDemo />
           </section>
         </ContainerScroll>
+
 
         <div ref={sectionRefs.type2} className="px-4 md:px-8 ">
           <TypewriterEffect />

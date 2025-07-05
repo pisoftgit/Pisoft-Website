@@ -93,7 +93,7 @@ export const Card = ({ rotate, scale, translateY, children }) => {
         transition-transform duration-300 ease-out
       `}
     >
-      <div className="h-full w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-zinc-900">
+      <div className="h-full w-full overflow-scroll rounded-2xl bg-gray-100 dark:bg-zinc-900 scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
         {children}
       </div>
     </motion.div>

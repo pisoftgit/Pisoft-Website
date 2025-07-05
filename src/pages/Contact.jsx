@@ -6,6 +6,7 @@ import { Example } from "../components/Corn";
 import { World } from "../components/Globe";
 import Footer from "../components/Footer";
 import { FiMail, FiInfo } from "react-icons/fi";
+import { NavbarDemo } from "../components/navbar/Navbar2";
 
 function Contact() {
   const globeConfig = {
@@ -66,16 +67,20 @@ function Contact() {
 
       {/* Navbar and Corn Demo */}
       <div className="flex justify-between items-center mb-8">
-        <div className="z-50">
+        <div className="fixed left-5 top-2 z-50000 lg:hidden">
           <Navbar />
         </div>
-        <div className="z-50">
+        <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
           <Example />
         </div>
+        <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
+          <NavbarDemo />
+        </div>
+
       </div>
 
       {/* Contact & Globe Section */}
-      <section className="flex flex-col md:flex-row gap-10">
+      <section className="flex flex-col md:flex-row gap-10 pl-10 pt-10">
 
         {/* Left Contact Section */}
         <div className="w-full md:w-1/2">

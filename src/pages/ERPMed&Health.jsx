@@ -16,11 +16,13 @@ import { ContainerScroll } from '../components/conatinerScroll';
 import Threads from '../components/threads';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useEffect } from 'react';
+import { NavbarDemo } from '../components/navbar/Navbar2';
+
 
 
 gsap.registerPlugin(ScrollTrigger);
 
-function ERPFinance() {
+function ERPMedandHealth() {
   const [isExampleOpen, setIsExampleOpen] = useState(false);
 
   const text =
@@ -145,11 +147,14 @@ function ERPFinance() {
         duration={400}
       >
 
-        <div className="fixed left-5 top-2 z-50000">
+        <div className="fixed left-5 top-2 z-50000 lg:hidden">
           <Navbar />
         </div>
-        <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none">
+        <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
           <Example />
+        </div>
+        <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
+          <NavbarDemo />
         </div>
 
 
@@ -198,12 +203,12 @@ function ERPFinance() {
           </div>
         </div>
 
-        <div ref={sectionRefs.type1} className="px-4 md:px-8 pt-15">
+        <div ref={sectionRefs.type1} className="px-4 md:px-8 pt-20">
           <TypewriterEffectSmoothDemo />
         </div>
 
         <ContainerScroll>
-          <section className="w-full text-center px-4 md:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
+          <section className="w-full flex flex-wrap justify-center items-center text-center px-4 md:px-8 bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200">
             <LayoutGridDemo />
           </section>
         </ContainerScroll>
@@ -212,7 +217,6 @@ function ERPFinance() {
         <div ref={sectionRefs.type2} className="px-4 md:px-8 ">
           <TypewriterEffect />
         </div>
-
 
         <section className="w-full flex justify-end items-end">
           <Threads color={[0.086, 0.6, 0.941]} />
@@ -228,5 +232,4 @@ function ERPFinance() {
   );
 }
 
-export default ERPFinance;
-
+export default ERPMedandHealth;

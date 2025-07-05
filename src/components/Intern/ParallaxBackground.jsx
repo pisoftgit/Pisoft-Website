@@ -19,7 +19,7 @@ export default function ParallaxBackground() {
         "https://thumbs.dreamstime.com/b/cyber-security-words-wooden-block-copy-space-white-background-228278962.jpg",
         "https://hrbizhub.com/wp-content/uploads/2023/05/th-32.jpg",
         "https://www.amarinfotech.com/featureimages/Mean-Stack-App-Development.jpg",
-        "https://thumbs.dreamstime.com/b/full-stack-dev-line-icon-linear-style-sign-mobile-concept-web-design-laptop-both-frontend-backend-symbols-outline-359515358.jpg",
+        "https://media.istockphoto.com/id/955808890/vector/cloud-data-technology-polygon-concept-or-background.jpg?s=612x612&w=0&k=20&c=BfLvTzxJlLQec0cFOpy1GebZDfpeXHwRprX3gDynRtk=",
         "https://static.vecteezy.com/system/resources/previews/016/188/682/non_2x/artificial-intelligence-logo-icon-symbol-ai-deep-learning-blockchain-neural-network-concept-machine-learning-artificial-intelligence-ai-vector.jpg",
         "https://static.vecteezy.com/system/resources/previews/023/451/271/non_2x/ml-concept-round-line-banner-machine-learning-illustration-vector.jpg",
         "https://wallpapers.com/images/hd/android-developer-vl6behb6q3hvbxtt.jpg",
@@ -32,10 +32,10 @@ export default function ParallaxBackground() {
         "https://cdn.vectorstock.com/i/500p/43/97/logo-data-science-gradient-colorful-style-vector-41554397.jpg",
         "https://thumbs.dreamstime.com/b/cyber-security-words-wooden-block-copy-space-white-background-228278962.jpg",
         "https://hrbizhub.com/wp-content/uploads/2023/05/th-32.jpg",
-        "https://www.amarinfotech.com/featureimages/Mean-Stack-App-Development.jpg",
-        "https://thumbs.dreamstime.com/b/full-stack-dev-line-icon-linear-style-sign-mobile-concept-web-design-laptop-both-frontend-backend-symbols-outline-359515358.jpg",
-        "https://static.vecteezy.com/system/resources/previews/016/188/682/non_2x/artificial-intelligence-logo-icon-symbol-ai-deep-learning-blockchain-neural-network-concept-machine-learning-artificial-intelligence-ai-vector.jpg",
         "https://static.vecteezy.com/system/resources/previews/023/451/271/non_2x/ml-concept-round-line-banner-machine-learning-illustration-vector.jpg",
+        "https://media.istockphoto.com/id/955808890/vector/cloud-data-technology-polygon-concept-or-background.jpg?s=612x612&w=0&k=20&c=BfLvTzxJlLQec0cFOpy1GebZDfpeXHwRprX3gDynRtk=",
+        "https://static.vecteezy.com/system/resources/previews/016/188/682/non_2x/artificial-intelligence-logo-icon-symbol-ai-deep-learning-blockchain-neural-network-concept-machine-learning-artificial-intelligence-ai-vector.jpg",
+        "https://www.amarinfotech.com/featureimages/Mean-Stack-App-Development.jpg",
         "https://wallpapers.com/images/hd/android-developer-vl6behb6q3hvbxtt.jpg",
         "https://thumbs.dreamstime.com/b/php-letter-technology-logo-design-white-background-creative-initials-concept-252549993.jpg",
         "https://media.tenor.com/zfKrsS7Q388AAAAe/python.png",
@@ -48,6 +48,7 @@ export default function ParallaxBackground() {
         "https://hrbizhub.com/wp-content/uploads/2023/05/th-32.jpg",
         "https://www.amarinfotech.com/featureimages/Mean-Stack-App-Development.jpg",
         "https://thumbs.dreamstime.com/b/full-stack-dev-line-icon-linear-style-sign-mobile-concept-web-design-laptop-both-frontend-backend-symbols-outline-359515358.jpg",
+         "https://media.istockphoto.com/id/955808890/vector/cloud-data-technology-polygon-concept-or-background.jpg?s=612x612&w=0&k=20&c=BfLvTzxJlLQec0cFOpy1GebZDfpeXHwRprX3gDynRtk=",
 ]
 
     useEffect(() => {
