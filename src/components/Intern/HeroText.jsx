@@ -85,48 +85,6 @@ export default function HeroText() {
                 </motion.div>
             </div>
 
-            {/* Team Section */}
-            {/* Team Section */}
-            <section className="w-full flex flex-col md:flex-row items-start justify-between gap-10 mt-14 px-4 md:px-10">
-
-                {/* Left side: Buttons aligned to extreme left */}
-                <motion.div
-                    className="w-full md:w-1/2 flex justify-start"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.3, duration: 0.6 }}
-                >
-                    <div className="flex flex-col gap-4 items-start">
-                        <button className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-lg shadow-md transition-all duration-300">
-                            Take a Test
-                        </button>
-                        <button className="bg-slate-700 hover:bg-slate-800 text-white px-6 py-2 rounded-lg shadow-md transition-all duration-300">
-                            Apply for Internship
-                        </button>
-                    </div>
-                </motion.div>
-
-                {/* Right side: Meet Our Team aligned to extreme right */}
-                <motion.div
-                    className="w-full md:w-1/2 flex justify-end"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.2, duration: 0.6 }}
-                >
-                    <div className="text-end">
-                        <h2 className="text-2xl md:text-4xl lg:text-5xl font-jB text-black mb-6">
-                            Meet Our Team
-                        </h2>
-                        <div className="flex flex-wrap justify-end gap-5">
-                            <AnimatedTooltip items={people} />
-                        </div>
-                    </div>
-                </motion.div>
-
-            </section>
-
         </section>
     );
 }

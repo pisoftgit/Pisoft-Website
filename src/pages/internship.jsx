@@ -143,7 +143,7 @@ export default function Internship() {
 
   return (
     <main className='w-full relative'>
-      <BackgroundShapes />
+      {/* <BackgroundShapes /> */}
       {/* navbar */}
       <div className="fixed left-5 top-2 z-50000 lg:hidden">
         <Navbar />
@@ -195,7 +195,7 @@ export default function Internship() {
                 <span
                   key={idx}
                   ref={setLetterRef}
-                  className="font-jr [text-align:justify] sm:text-[2.5vw] mr-1 md:text-[1.7vw] font-medium text-gray-800 inline-block justify-start"
+                  className="font-jr [text-align:justify] sm:text-[2.5vw] mr-1 md:text-[1.3vw] font-medium text-black inline-block justify-start"
                 >
                   {char}
                 </span>
@@ -213,7 +213,7 @@ export default function Internship() {
         <div>
           <BlurText
             text="Explore Our Technologies"
-            className="md:text-5xl sm:text-xl mt-0 font-jr text-center leading-tight text-orange-500 px-5"
+            className="md:text-5xl sm:text-3xl mt-0 font-jr text-center leading-tight text-orange-500 px-5"
             delay={110}
             duration={0.7}
             ease="power3.out"
@@ -224,7 +224,7 @@ export default function Internship() {
             rootMargin="-100px"
             textAlign="center"
           />
-          <p className="mt-4 sm:text-[2.5vw] md:text-[1.7vw] text-blue-950 px-5 mx-auto">
+          <p className="mt-4 sm:text-[2.5vw] md:text-[1.3vw] text-blue-950 px-5 mx-auto">
             In the first few months, you'll immerse yourself in advanced technologies, mastering as per the need of IT industry.
           </p>
         </div>
