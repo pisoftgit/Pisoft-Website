@@ -1,4 +1,3 @@
-
 import React from "react";
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
@@ -13,7 +12,7 @@ import BlurText from "./BlurText";
 
 const Horizontal = () => {
   return (
-    <div className="w-full">
+    <div className="bg-white  w-full">
       <div className="flex justify-center mb-4 sm:mb-6">
         <BlurText
           text="First impressions matter more than ever"
@@ -59,7 +58,7 @@ const HorizontalScrollCarousel = () => {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-70%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
 
   return (
     <div
@@ -70,19 +69,20 @@ const HorizontalScrollCarousel = () => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
-      className="relative mb-8 sm:mb-12 md:mb-16 h-[100vh] sm:h-[120vh] w-full"
+      className="relative mb-8 sm:mb-12 md:mb-16 h-[150vh] sm:h-[180vh] md:h-[200vh] w-full"
     >
-      <div className="sticky top-0 flex items-center w-full">
+      <div className="sticky top-0 flex h-screen items-center overflow-hidden w-full">
         <motion.div
           style={{ x }}
           transition={{ type: "spring", stiffness: 50, damping: 20 }}
-          className="flex p-0 m-0 gap-0"
+          className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-12"
         >
           {cards.map((card) => (
             <div
-  key={card.id}
-  className="min-w-[95vw] sm:min-w-[85vw] md:min-w-[65vw] lg:min-w-[55vw] xl:min-w-[45vw] mr-4 sm:mr-6">
-                  <BloomrStyleCards key={card.id} {...card} />
+              key={card.id}
+              className="min-w-[90vw] sm:min-w-[60vw] md:min-w-[50vw] lg:min-w-[70vw] min-h-[300px] sm:min-h-[350px] md:min-h-[400px]"
+            >
+              <BloomrStyleCards key={card.id} {...card} />
             </div>
           ))}
         </motion.div>
