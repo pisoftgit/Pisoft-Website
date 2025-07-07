@@ -59,7 +59,7 @@ const HorizontalScrollCarousel = () => {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-70%"]);
 
   return (
     <div
@@ -70,9 +70,9 @@ const HorizontalScrollCarousel = () => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
-      className="relative mb-8 sm:mb-12 md:mb-16 h-[100vh] sm:h-[120vh] md:h-[150vh] w-full"
+      className="relative mb-8 sm:mb-12 md:mb-16 h-[100vh] sm:h-[120vh] w-full"
     >
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden w-full">
+      <div className="sticky top-0 flex items-center w-full">
         <motion.div
           style={{ x }}
           transition={{ type: "spring", stiffness: 50, damping: 20 }}
