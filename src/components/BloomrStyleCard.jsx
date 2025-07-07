@@ -4,10 +4,10 @@ import Buttontwo from "./Button2";
 const BloomrStyleCard = ({ subtitle, title, description, videoSrc, bgClass }) => {
   return (
     <div
-      className={`bg-gradient-to-br ${bgClass} rounded-3xl sm:rounded-[40px] p-4 sm:p-6 md:p-4 flex flex-col justify-center items-center w-full h-full shadow-lg m-5`}
+      className={`bg-gradient-to-br ${bgClass} rounded-3xl sm:rounded-[40px] p-4 sm:p-6 md:p-4 flex flex-col justify-center items-center w-auto h-full shadow-lg m-5`}
     >
       {/* Video on top */}
-      <div className="w-full mt-6 sm:mt-8 md:mt-12">
+      <div className="w-auto mt-6 sm:mt-8 md:mt-12 text-center">
         <video
           style={{ transform: "scale(1.03)" }}
           src={videoSrc}
@@ -15,12 +15,12 @@ const BloomrStyleCard = ({ subtitle, title, description, videoSrc, bgClass }) =>
           muted
           loop
           playsInline
-          className="rounded-2xl sm:rounded-[32px] w-auto h-[150px] sm:h-[200px] md:h-[300px] object-cover shadow-2xl transition-all duration-500"
+          className="rounded-2xl sm:rounded-[32px] w-auto h-[150px] sm:h-[200px] md:h-[400px] object-cover shadow-2xl transition-all duration-500"
         />
       </div>
 
       {/* Text below */}
-      <div className="w-auto mt-4 sm:mt-6 md:mt-8 text-white text-center">
+      <div className="w-auto mt-4 sm:mt-6 md:mt-8 text-white text-center p-4">
         <span className="font-jB tracking-widest text-xl sm:text-2xl md:text-3xl lg:text-4xl py-1 rounded-full uppercase inline-block mb-2 sm:mb-3 md:mb-4">
           {subtitle}
         </span>
