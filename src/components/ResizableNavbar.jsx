@@ -70,33 +70,71 @@ export const NavBody = ({ children, className, visible }) => {
 
 
 export const NavItems = ({ items, className, onItemClick }) => {
-
     const [isERPMenuOpen, setIsERPMenuOpen] = useState(false);
     const [hovered, setHovered] = useState(null);
+    const [activeIndex, setActiveIndex] = useState(null); // Step 1: track active item
     const erpRef = useRef(null);
+
+    const handleERPHover = () => {
+        setHovered("erp");
+        setIsERPMenuOpen(true);
+    };
+
+    const handleERPLeave = () => {
+        setHovered(null);
+    };
+
+    const handleClickOutside = (event) => {
+        if (erpRef.current && !erpRef.current.contains(event.target)) {
+            setIsERPMenuOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        const currentPath = window.location.pathname;
+        const matchedIndex = items.findIndex(item => item.link === currentPath);
+        if (matchedIndex !== -1) setActiveIndex(matchedIndex);
+    }, []);
+
+
+    useEffect(() => {
+        document.addEventListener("click", handleClickOutside);
+        return () => {
+            document.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
+
     return (
         <motion.div
             onMouseLeave={() => setHovered(null)}
             className={cn(
-                "ml-25 absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-4 text-lg font-medium text-blue-900 transition duration-200 hover:text-blue-950 lg:flex lg:space-x-4", // Increased space and font size (space-x-4, text-lg)
+                "ml-30 absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-4 text-lg font-medium text-blue-900 transition duration-200 hover:text-blue-950 lg:flex lg:space-x-4",
                 className
-            )}>
+            )}
+        >
             {items.map((item, idx) => (
                 <a
-                    onMouseEnter={() => setHovered(idx)}
-                    onClick={onItemClick}
-                    className="relative px-6 py-2"
                     key={`link-${idx}`}
-                    href={item.link}>
-                    {hovered === idx && (
+                    href={item.link}
+                    onMouseEnter={() => setHovered(idx)}
+                    onClick={(e) => {
+                        setActiveIndex(idx);              // Step 2: set active
+                        onItemClick && onItemClick(e);
+                    }}
+                    className="relative px-6 py-2"
+                >
+                    {/* Step 3: apply background on hover or if active */}
+                    {(hovered === idx || activeIndex === idx) && (
                         <motion.div
                             layoutId="hovered"
-                            className="absolute inset-0 h-full w-full rounded-full bg-[#FFE0B2]" />
+                            className="absolute inset-0 h-full w-full rounded-full bg-[#FFE0B2]"
+                        />
                     )}
-                    <span className="relative z-20 text-xl">{item.name}</span> {/* Increased text size */}
+                    <span className="relative z-20 text-xl">{item.name}</span>
                 </a>
             ))}
-            {/* ERP Services Link - Add Click Event */}
+
+            {/* ERP Services Dropdown */}
             <div
                 className="relative"
                 onMouseEnter={() => {
@@ -149,6 +187,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
         </motion.div>
     );
 };
+
 
 export const MobileNav = ({ children, className, visible }) => {
     return (
