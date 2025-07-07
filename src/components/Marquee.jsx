@@ -29,7 +29,7 @@ const Marquee = () => {
   ];
 
   return (
-    <div className="container mx-screen px-4 sm:px-6 md:px-0">
+    <div className="w-screen px-4 sm:px-6 md:px-0">
       <div className="overflow-hidden">
         <MarqueeItem
           images={upperMarquee}

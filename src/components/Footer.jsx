@@ -3,12 +3,12 @@ import CircularText from "./Circlet";
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-b from-gray-900 via-gray-950 to-black text-white px-6 sm:px-12 md:px-24 relative z-10 py-5">
-      <div className="max-w-screen mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 xl:gap-16 border-b border-gray-700 pb-9">
+    <footer className="bg-gradient-to-b from-gray-900 via-gray-950 to-black text-white px-6 sm:px-12 md:px-24 relative z-10 py-3">
+      <div className="max-w-screen mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 xl:gap-16 border-b border-gray-700 pb-12">
 
         {/* Branding */}
         <div className="flex flex-col items-center sm:items-center mt-5">
-          <div className="relative lg:w-36 lg:h-36 sm:w-36 sm:h-36 md:w-40 md:h-40">
+          <div className="relative lg:w-45 lg:h-45 sm:w-36 sm:h-36 md:w-40 md:h-40">
             <CircularText
               text="PISOFT ✦ INFORMATICS ✦ "
               onHover="speedUp"
@@ -20,7 +20,7 @@ const Footer = () => {
         </div>
 
         {/* Links */}
-        <div className="flex flex-col items-center sm:items-center mt-5">
+        <div className="flex flex-col items-center sm:items-center mt-15">
           <p className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-xs">
             Empowering your digital journey through cutting-edge web, mobile, and cloud solutions. Trusted by clients worldwide.
           </p>
@@ -41,7 +41,7 @@ const Footer = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="flex flex-col items-center sm:items-center text-center sm:text-center">
+        <div className="flex flex-col items-center sm:items-center text-center sm:text-center mt-5">
           <h3 className="text-xl font-bold tracking-wide text-white uppercase">Contact</h3>
           <address className="not-italic text-gray-300 text-sm sm:text-base space-y-2 leading-relaxed">
             <p>Plot No C-86, Pannu Tower</p>

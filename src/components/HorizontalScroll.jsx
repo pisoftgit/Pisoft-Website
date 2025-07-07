@@ -70,7 +70,7 @@ const HorizontalScrollCarousel = () => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
-      className="relative mb-8 sm:mb-12 md:mb-16 h-[150vh] sm:h-[180vh] md:h-[200vh] w-full"
+      className="relative mb-8 sm:mb-12 md:mb-16 h-[100vh] sm:h-[120vh] md:h-[150vh] w-full"
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden w-full">
         <motion.div
@@ -81,9 +81,8 @@ const HorizontalScrollCarousel = () => {
           {cards.map((card) => (
             <div
   key={card.id}
-  className="min-w-[95vw] sm:min-w-[85vw] md:min-w-[70vw] lg:min-w-[75vw] min-h-[300px] sm:min-h-[350px] md:min-h-[400px] mr-4 sm:mr-6 last:mr-0"
->
-              <BloomrStyleCards key={card.id} {...card} />
+  className="min-w-[95vw] sm:min-w-[85vw] md:min-w-[65vw] lg:min-w-[55vw] xl:min-w-[45vw] mr-4 sm:mr-6">
+                  <BloomrStyleCards key={card.id} {...card} />
             </div>
           ))}
         </motion.div>
