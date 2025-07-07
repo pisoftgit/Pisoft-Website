@@ -70,79 +70,46 @@ export const NavBody = ({ children, className, visible }) => {
 
 
 export const NavItems = ({ items, className, onItemClick }) => {
+
     const [isERPMenuOpen, setIsERPMenuOpen] = useState(false);
     const [hovered, setHovered] = useState(null);
-    const [activeIndex, setActiveIndex] = useState(null); // Step 1: track active item
     const erpRef = useRef(null);
-
-    const handleERPHover = () => {
-        setHovered("erp");
-        setIsERPMenuOpen(true);
-    };
-
-    const handleERPLeave = () => {
-        setHovered(null);
-    };
-
-    const handleClickOutside = (event) => {
-        if (erpRef.current && !erpRef.current.contains(event.target)) {
-            setIsERPMenuOpen(false);
-        }
-    };
-
-    useEffect(() => {
-        const currentPath = window.location.pathname;
-        const matchedIndex = items.findIndex(item => item.link === currentPath);
-        if (matchedIndex !== -1) setActiveIndex(matchedIndex);
-    }, []);
-
-
-    useEffect(() => {
-        document.addEventListener("click", handleClickOutside);
-        return () => {
-            document.removeEventListener("click", handleClickOutside);
-        };
-    }, []);
-
     return (
         <motion.div
             onMouseLeave={() => setHovered(null)}
             className={cn(
-                "ml-30 absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-4 text-lg font-medium text-blue-900 transition duration-200 hover:text-blue-950 lg:flex lg:space-x-4",
+                "ml-25 absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-4 text-lg font-medium text-blue-900 transition duration-200 hover:text-blue-950 lg:flex lg:space-x-4", // Increased space and font size (space-x-4, text-lg)
                 className
-            )}
-        >
+            )}>
             {items.map((item, idx) => (
                 <a
-                    key={`link-${idx}`}
-                    href={item.link}
                     onMouseEnter={() => setHovered(idx)}
-                    onClick={(e) => {
-                        setActiveIndex(idx);              // Step 2: set active
-                        onItemClick && onItemClick(e);
-                    }}
+                    onClick={onItemClick}
                     className="relative px-6 py-2"
-                >
-                    {/* Step 3: apply background on hover or if active */}
-                    {(hovered === idx || activeIndex === idx) && (
+                    key={`link-${idx}`}
+                    href={item.link}>
+                    {hovered === idx && (
                         <motion.div
                             layoutId="hovered"
-                            className="absolute inset-0 h-full w-full rounded-full bg-[#FFE0B2]"
-                        />
+                            className="absolute inset-0 h-full w-full rounded-full bg-[#FFE0B2]" />
                     )}
-                    <span className="relative z-20 text-xl">{item.name}</span>
+                    <span className="relative z-20 text-xl">{item.name}</span> {/* Increased text size */}
                 </a>
             ))}
-
-            {/* ERP Services Dropdown */}
-            <div className="relative">
-                <a
-                    onMouseEnter={handleERPHover}
-                    onMouseLeave={handleERPLeave}
-                    onClick={() => setActiveIndex("erp")} // Optional: mark ERP as active
-                    className="relative px-6 py-2 text-xl cursor-pointer"
-                >
-                    {(hovered === "erp" || activeIndex === "erp") && (
+            {/* ERP Services Link - Add Click Event */}
+            <div
+                className="relative"
+                onMouseEnter={() => {
+                    setHovered("erp");
+                    setIsERPMenuOpen(true);
+                }}
+                onMouseLeave={() => {
+                    setHovered(null);
+                    setIsERPMenuOpen(false);
+                }}
+            >
+                <a className="relative px-6 py-2 text-xl cursor-pointer">
+                    {hovered === "erp" && (
                         <motion.div
                             layoutId="hovered"
                             className="absolute inset-0 h-full w-full rounded-full bg-[#FFE0B2] z-10"
@@ -150,22 +117,29 @@ export const NavItems = ({ items, className, onItemClick }) => {
                     )}
                     <span className="relative z-20">ERP Services &#9660;</span>
                 </a>
+
                 <AnimatePresence>
                     {isERPMenuOpen && (
                         <motion.div
-                            ref={erpRef}
                             initial={{ opacity: 0, y: -20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            className="absolute left-0 w-60 mt-5 text-center rounded-md bg-blue-50 backdrop-blur-3xl opacity-60 shadow-lg py-2"
+                            className="absolute left-0 w-60 mt-5 text-center rounded-md bg-blue-50 backdrop-blur-3xl opacity-60 shadow-lg py-2 z-50"
                         >
-                            {["Education", "Finance", "Medical&Healthcare", "AutoMobile", "TourTravels", "Services"].map((label, index) => (
+                            {[
+                                { name: "Education", href: "/ERPservices/Education" },
+                                { name: "Finance", href: "/ERPservices/Finance" },
+                                { name: "Medical and Healthcare", href: "/ERPservices/Medical&Healthcare" },
+                                { name: "AutoMobile", href: "/ERPservices/AutoMobile" },
+                                { name: "Tours & Travels", href: "/ERPservices/TourTravels" },
+                                { name: "Services", href: "/ERPservices/Services" },
+                            ].map((item, index) => (
                                 <a
                                     key={index}
-                                    href={`/ERPservices/${label}`}
+                                    href={item.href}
                                     className="block px-4 py-2 text-lg text-blue-900 hover:bg-orange-100 rounded-full"
                                 >
-                                    {label.replace(/&/g, " and ")}
+                                    {item.name}
                                 </a>
                             ))}
                         </motion.div>
@@ -175,7 +149,6 @@ export const NavItems = ({ items, className, onItemClick }) => {
         </motion.div>
     );
 };
-
 
 export const MobileNav = ({ children, className, visible }) => {
     return (

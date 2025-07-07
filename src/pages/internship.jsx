@@ -142,7 +142,7 @@ export default function Internship() {
   }, [])
 
   return (
-    <main className='w-full relative'>
+    <main className='w-full relative overflow-clip'>
       {/* <BackgroundShapes /> */}
       {/* navbar */}
       <div className="fixed left-5 top-2 z-50000 lg:hidden">
@@ -165,7 +165,7 @@ export default function Internship() {
 
       {/* Text Reveal Section */}
       <section className='w-screen flex flex-row flex-wrap justify-start items-start'>
-        <div className='lg:w-2/3 pl-4 pr-4 w-full'>
+        <div className='lg:w-2/3 pl-4 pr-4 w-full mt-15'>
           <ScrollFloat
             animationDuration={1}
             ease='back.inOut(2)'
