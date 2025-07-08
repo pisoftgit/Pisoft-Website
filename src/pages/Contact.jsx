@@ -101,7 +101,7 @@ function Contact() {
             </p>
           </div>
 
-          <p className="text-gray-700 font-jr ml-4 mb-2">
+          <p className="text-gray-700 font-jr ml-2 mb-2">
             Fill this form to reach our team or mail us at:
           </p>
 
@@ -112,7 +112,7 @@ function Contact() {
 
 
           {/* Form */}
-          <form className="space-y-6 bg-gray-50 p-6 rounded-lg shadow-md">
+          <form className="space-y-6 bg-gray-50 p-2 rounded-lg shadow-md">
             <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="text"
