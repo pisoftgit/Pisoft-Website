@@ -84,24 +84,32 @@ export const InfiniteMovingCards = ({
             key={item.name}
           >
             <blockquote className="relative z-10 h-full flex flex-col justify-between">
-                <p
-                  className={cn(
-                    "relative z-20 text-lg md:text-xl leading-relaxed font-jSB text-blue-950 dark:text-blue-950",
-                    expandedIndex === idx ? "" : "line-clamp-4"
-                  )}
-                >
-                  “{item.quote}”
-                </p>
-                {item.quote.length > 200 && (
-                  <button
-                    onClick={() =>
-                      setExpandedIndex(expandedIndex === idx ? null : idx)
-                    }
-                    className="mt-2 text-sm text-blue-700 underline hover:text-blue-900"
-                  >
-                    {expandedIndex === idx ? "Read less" : "Read more"}
-                  </button>
+              <p className="relative z-20 text-lg md:text-xl leading-relaxed font-jSB text-blue-950 dark:text-blue-950">
+                {expandedIndex === idx ? (
+                  <>
+                    “{item.quote}”{" "}
+                    {item.quote.length > 200 && (
+                      <button
+                        onClick={() => setExpandedIndex(null)}
+                        className="text-sm text-blue-700 underline hover:text-blue-900"
+                      >
+                        Read less
+                      </button>
+                    )}
+                  </>
+                ) : (
+                  <>
+                    “{item.quote.slice(0, 200).trim()}... ”{" "}
+                    <button
+                      onClick={() => setExpandedIndex(idx)}
+                      className="text-sm text-blue-700 underline hover:text-blue-900"
+                    >
+                      Read more
+                    </button>
+                  </>
                 )}
+              </p>
+
 
               <div className="relative z-20 flex flex-row items-center justify-between">
                 <div className="flex flex-col gap-1">
