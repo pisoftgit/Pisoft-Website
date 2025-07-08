@@ -1,3 +1,4 @@
+
 import React from "react";
 import { motion, useTransform, useScroll } from "framer-motion";
 import { useRef } from "react";
@@ -12,7 +13,7 @@ import BlurText from "./BlurText";
 
 const Horizontal = () => {
   return (
-    <div className="bg-white  w-full">
+    <div className="w-full">
       <div className="flex justify-center mb-4 sm:mb-6">
         <BlurText
           text="First impressions matter more than ever"
@@ -69,7 +70,7 @@ const HorizontalScrollCarousel = () => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
-      className="relative mb-8 sm:mb-12 md:mb-16 h-[150vh] sm:h-[180vh] md:h-[200vh] w-full"
+      className="relative mb-8 sm:mb-12 md:mb-16 h-[170vh] sm:h-[190vh] md:h-[200vh] w-full"
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden w-full">
         <motion.div
@@ -80,8 +81,7 @@ const HorizontalScrollCarousel = () => {
           {cards.map((card) => (
             <div
               key={card.id}
-              className="min-w-[90vw] sm:min-w-[60vw] md:min-w-[50vw] lg:min-w-[70vw] min-h-[300px] sm:min-h-[350px] md:min-h-[400px]"
-            >
+              className="min-w-[95vw] sm:min-w-[85vw] md:min-w-[65vw] lg:min-w-[55vw] xl:min-w-[45vw] mr-4 sm:mr-6">
               <BloomrStyleCards key={card.id} {...card} />
             </div>
           ))}
@@ -126,7 +126,7 @@ const cards = [
     subtitle: "App Development",
     title: "From concept to code to launch",
     description:
-      "We make your brand more relevant to your customers. Starting with comprehensive audience analysis, we uncover the topics that matter most. Then, we optimize your application to align perfectly with your customers' needs, creating a tailored experience that drives engagement",
+      "We make your brand more relevant to your customers. Starting with comprehensive audience analysis, we uncover the topics that matter most. Then, we optimize your application to align perfectly with your customers' needs.",
     videoSrc: vid4,
     bgClass: "white border-white border-1",
   },
@@ -135,7 +135,7 @@ const cards = [
     subtitle: "Digital Marketing",
     title: "From concept to code to launch",
     description:
-      "We optimize your website to ensure that both customers and search engines can effortlessly discover and comprehend every page. Achieving maximum visibility requires a blend of robust technical infrastructure, thoughtful site architecture, and an outstanding user experience. Let us enhance your online presence and drive meaningful engagement!",
+      "We optimize your website to ensure that both customers and search engines can effortlessly discover and comprehend every page. ",
     videoSrc: vid5,
     bgClass: "white border-white border-1",
   },
@@ -144,7 +144,7 @@ const cards = [
     subtitle: "Technical Support",
     title: "From concept to code to launch",
     description:
-      "At Pisoft, we provide comprehensive technical support in areas such as networking, cloud computing, and security. Our dedicated team is here to ensure that your systems run smoothly, addressing any issues promptly. With our expert guidance, you can focus on your core business while we handle your technical needs.",
+      "At Pisoft, we provide comprehensive technical support in areas such as networking, cloud computing, and security. Our dedicated team is here to ensure that your systems run smoothly, addressing any issues promptly.",
     videoSrc: vid6,
     bgClass: "white border-white border-1",
   },
