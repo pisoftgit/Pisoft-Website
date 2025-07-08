@@ -49,8 +49,9 @@ float Perlin2D(vec2 P) {
 }
 
 float pixel(float count, vec2 resolution) {
-    return (1.0 / max(resolution.x, resolution.y)) * count;
+    return (1.0 / min(resolution.x, resolution.y)) * count;
 }
+
 
 float lineFn(vec2 st, float width, float perc, float offset, vec2 mouse, float time, float amplitude, float distance) {
     float split_offset = (perc * 0.4);

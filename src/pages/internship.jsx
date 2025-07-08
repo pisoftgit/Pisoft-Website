@@ -258,7 +258,7 @@ export default function Internship() {
 
 
       {/* counters */}
-      <div className="w-full flex flex-wrap justify-center items-center gap-16 py-16 bg-gray-900 text-white">
+      <div className="w-full flex flex-wrap justify-center items-center gap-16 py-16 bg-white text-blue-950">
         {/* Counter 1 */}
         <div className="flex flex-col items-center">
           <CountUp

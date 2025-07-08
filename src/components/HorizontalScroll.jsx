@@ -59,7 +59,7 @@ const HorizontalScrollCarousel = () => {
     target: targetRef,
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-66%"]);
 
   return (
     <div
@@ -70,22 +70,33 @@ const HorizontalScrollCarousel = () => {
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
       }}
-      className="relative mb-8 sm:mb-12 md:mb-16 h-[170vh] sm:h-[190vh] md:h-[200vh] w-full"
+     className="relative mb-8 sm:mb-12 md:mb-16 h-[140vh] sm:h-[160vh] md:h-[170vh] w-full"
+
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden w-full">
         <motion.div
           style={{ x }}
           transition={{ type: "spring", stiffness: 50, damping: 20 }}
-          className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-12"
+          className="flex gap-4 sm:gap-6 md:gap-8 lg:gap-12 px-4"
         >
           {cards.map((card) => (
             <div
               key={card.id}
-              className="min-w-[95vw] sm:min-w-[85vw] md:min-w-[65vw] lg:min-w-[55vw] xl:min-w-[45vw] mr-4 sm:mr-6">
-              <BloomrStyleCards key={card.id} {...card} />
+              className="
+        min-w-[90vw] 
+        sm:min-w-[75vw] 
+        md:min-w-[60vw] 
+        lg:min-w-[45vw] 
+        xl:min-w-[45vw] 
+        max-w-[1200px] 
+        mr-4 sm:mr-6
+        max-h-[95vh] overflow-hidden"
+            >
+              <BloomrStyleCards {...card} />
             </div>
           ))}
         </motion.div>
+
       </div>
     </div>
   );
@@ -126,7 +137,7 @@ const cards = [
     subtitle: "App Development",
     title: "From concept to code to launch",
     description:
-      "We make your brand more relevant to your customers. Starting with comprehensive audience analysis, we uncover the topics that matter most. Then, we optimize your application to align perfectly with your customers' needs.",
+      "We make your brand more relevant to your customers. Starting with comprehensive audience analysis, we uncover the topics that matter most. ",
     videoSrc: vid4,
     bgClass: "white border-white border-1",
   },
@@ -144,7 +155,7 @@ const cards = [
     subtitle: "Technical Support",
     title: "From concept to code to launch",
     description:
-      "At Pisoft, we provide comprehensive technical support in areas such as networking, cloud computing, and security. Our dedicated team is here to ensure that your systems run smoothly, addressing any issues promptly.",
+      "At Pisoft, we provide comprehensive technical support in areas such as networking, cloud computing, and security. Our dedicated team is here to ensure that your systems run smoothly.",
     videoSrc: vid6,
     bgClass: "white border-white border-1",
   },

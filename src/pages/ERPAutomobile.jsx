@@ -179,8 +179,7 @@ function ERPAutoMobile() {
           <div className='flex flex-wrap w-full justify-center items-center text-center'>
             <BlurText
               text="AUTOMOTIVE SYSTEM MANAGEMENT ERP  "
-              className="font-jSB flex flex-wrap justify-center items-center sm:text-center text-[6vw] mb-5 sm:text-[5vw] md:text-[4vw] leading-tight text-blue-950 text-center"
-              delay={100}
+              className="font-jSB flex flex-wrap justify-center items-center sm:text-center text-[6vw] mb-5 sm:text-xl md:text-5xl leading-tight text-blue-950 text-center"
               duration={0.6}
               ease="power3.out"
               splitType="chars"
@@ -196,7 +195,7 @@ function ERPAutoMobile() {
               <span
                 key={i}
                 ref={setLetterRef}
-                className="font-jmed text-[4vw] sm:text-[1vw] md:text-[1.8vw] text-black font-bold"
+                className="font-jmed text-[2vh] sm:text-[2.2vh] md:text-[2.9vh] text-black font-bold"
               >
                 {w}
               </span>
@@ -205,7 +204,7 @@ function ERPAutoMobile() {
         </div>
 
 
-        <div ref={sectionRefs.type1} className="px-4 md:px-8 pt-20">
+        <div ref={sectionRefs.type1} className="px-4 md:px-8 pt-5">
           <TypewriterEffectSmoothDemo />
         </div>
 
