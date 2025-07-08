@@ -3,6 +3,7 @@
 import { cn } from "../../lib/util";
 import React, { useEffect, useState } from "react";
 
+
 export const InfiniteMovingCards = ({
   items,
   direction = "left",
@@ -12,6 +13,8 @@ export const InfiniteMovingCards = ({
 }) => {
   const containerRef = React.useRef(null);
   const scrollerRef = React.useRef(null);
+  const [expandedIndex, setExpandedIndex] = useState(null);
+
 
   const [start, setStart] = useState(false);
 
@@ -81,24 +84,40 @@ export const InfiniteMovingCards = ({
             key={item.name}
           >
             <blockquote className="relative z-10 h-full flex flex-col justify-between">
-              <span className="relative z-20 text-lg md:text-xl leading-relaxed font-semibold text-blue-950 dark:text-blue-950">
-                “{item.quote}”
-              </span>
+                <p
+                  className={cn(
+                    "relative z-20 text-lg md:text-xl leading-relaxed font-jSB text-blue-950 dark:text-blue-950",
+                    expandedIndex === idx ? "" : "line-clamp-4"
+                  )}
+                >
+                  “{item.quote}”
+                </p>
+                {item.quote.length > 200 && (
+                  <button
+                    onClick={() =>
+                      setExpandedIndex(expandedIndex === idx ? null : idx)
+                    }
+                    className="mt-2 text-sm text-blue-700 underline hover:text-blue-900"
+                  >
+                    {expandedIndex === idx ? "Read less" : "Read more"}
+                  </button>
+                )}
 
               <div className="relative z-20 flex flex-row items-center justify-between">
                 <div className="flex flex-col gap-1">
-                  <span className="text-md md:text-lg leading-[1.6] font-semibold text-blue-950 dark:text-blue-950">
+                  <span className="text-md md:text-xl leading-[1.6] font-semibold text-orange-600 dark:text-orange-600">
                     {item.name}
                   </span>
-                  <span className="text-sm leading-[1.6] font-normal text-blue-800 dark:text-blue-900">
-                    {item.role}
+                  <span className="text-md md:text-xl leading-[1.6] font-bold text-blue-800 dark:text-blue-900">
+                    {item.rating ? `⭐ ${item.rating}/5` : ""}
                   </span>
+
                 </div>
                 {item.image && (
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-30 h-30 rounded-full object-cover border-2 border-white shadow-md"
+                    className="w-30 h-30 rounded-full object-contain border-2 border-white shadow-md"
                   />
                 )}
               </div>
