@@ -339,7 +339,7 @@ export default function Firstt() {
 
         {/* Gallery Section */}
 
-        <div className="max-w-screen mt-10 px-10 ">
+        <div className="max-w-screen mt-30 px-10 ">
           <BlurText
             text="WHAT OUR CLIENT SAYS"
             className="text-5xl font-jB text-center text-orange-500"
