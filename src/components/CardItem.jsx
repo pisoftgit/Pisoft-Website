@@ -55,11 +55,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
 
         {/* Background */}
         <motion.div
-          className="absolute inset-0 z-0 pointer-events-none"
-          animate={{
-            filter: isHovering ? 'blur(15px)' : 'blur(0px)',
-          }}
-          transition={{ duration: 0.3 }}
+          className="absolute inset-0 z-0 pointer-events-none border-2 border-blue-950"
         >
           <TiltedCard
             imageSrc={src}
@@ -75,41 +71,8 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
             showTooltip={false}
             displayOverlayContent={false}
           />
-          <div className="absolute inset-0 bg-black/40"></div>
+          <div className="absolute inset-0"></div>
         </motion.div>
-
-        {/* Content */}
-        <div className="relative z-10 flex flex-col justify-center h-full p-4 sm:p-6 md:p-8 lg:p-10 text-white pointer-events-none">
-          <h2 className="mb-4 sm:mb-6 md:mb-8 font-jB text-white text-4xl sm:text-5xl md:text-6xl lg:text-[6rem] text-center sm:text-left">
-            {title}
-          </h2>
-
-          {(isHovering || isExpanded) && (
-            <div>
-              <p
-                ref={textRef}
-                className={`font-jl text-lg sm:text-xl md:text-2xl lg:text-3xl first-letter:text-xl sm:first-letter:text-2xl md:first-letter:text-[28px] text-center sm:text-left transition-all duration-300 ease-in-out ${isExpanded ? '' : 'line-clamp-3'
-                  }`}
-              >
-                {description}
-              </p>
-
-              {isClamped && (
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation(); // Prevent hover state from resetting
-                    setIsExpanded((prev) => !prev);
-                  }}
-                  className="mt-2 text-white hover:underline text-lg pointer-events-auto"
-                >
-                  {isExpanded ? 'Read Less' : 'Read More'}
-                </button>
-              )}
-            </div>
-          )}
-
-        </div>
-
 
         {/* Floating Tooltip */}
         <AnimatePresence>

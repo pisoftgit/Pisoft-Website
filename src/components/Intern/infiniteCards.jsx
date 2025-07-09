@@ -125,7 +125,7 @@ export const InfiniteMovingCards = ({
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-30 h-30 rounded-full object-contain border-2 border-white shadow-md"
+                    className="w-30 h-20 object-fit bg-no-repeat rounded-xl border-2 border-white shadow-md"
                   />
                 )}
               </div>
