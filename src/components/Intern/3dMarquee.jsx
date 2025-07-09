@@ -51,8 +51,8 @@ export const ThreeDMarquee = ({
                       src={image}
                       alt={`Image ${imageIndex + 1}`}
                       className="aspect-[300/300] rounded-lg object-cover ring ring-gray-950/5 hover:shadow-2xl"
-                      width={310}
-                      height={310} />
+                      width={300}
+                      height={290} />
                   </div>
                 ))} 
               </motion.div>
@@ -60,10 +60,6 @@ export const ThreeDMarquee = ({
           </div>
         </div>
       </div>
-      {/* <div className={cn(
-              "scroller relative z-20 max-w-screen overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
-              className
-            )}></div> */}
     </div>
   );
 };
