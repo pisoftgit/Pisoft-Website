@@ -53,7 +53,7 @@ function About() {
             ref={aboutSectionRef}
             className="min-h-auto flex flex-col md:flex-row items-start relative z-10"
           >
-            <div className="w-full md:w-2/3 lg:w-[65%] z-10">
+            <div className="w-full md:w-2/3 lg:w-[75%] z-10">
               <BlurText
                 text="Bringing Ideas to Life"
                 delay={200}
