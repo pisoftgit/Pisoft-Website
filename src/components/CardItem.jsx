@@ -71,7 +71,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
             showTooltip={false}
             displayOverlayContent={false}
           />
-          <div className="absolute inset-0"></div>
+          <div className="absolute inset-0 bg-black/10"></div>
         </motion.div>
 
         {/* Floating Tooltip */}
