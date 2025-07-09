@@ -1,5 +1,5 @@
 import { useTransform, motion, useMotionValue, AnimatePresence } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import TiltedCard from './TiltCard';
 
 const Card = ({ i, title, description, src, cap, progress, range, targetScale, url }) => {
@@ -17,6 +17,19 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
     mouseX.set(e.clientX - rect.left);
     mouseY.set(e.clientY - rect.top);
   };
+
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isClamped, setIsClamped] = useState(false);
+  const textRef = useRef(null);
+
+  useEffect(() => {
+    const element = textRef.current;
+
+    if (element) {
+      setIsClamped(element.scrollHeight > element.clientHeight);
+    }
+  }, [description]);
+
 
   return (
     <div
@@ -65,19 +78,36 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
           <div className="absolute inset-0 bg-black/40"></div>
         </motion.div>
 
-
-        {/* Content */}
         {/* Content */}
         <div className="relative z-10 flex flex-col justify-center h-full p-4 sm:p-6 md:p-8 lg:p-10 text-white pointer-events-none">
           <h2 className="mb-4 sm:mb-6 md:mb-8 font-jB text-white text-4xl sm:text-5xl md:text-6xl lg:text-[6rem] text-center sm:text-left">
             {title}
           </h2>
 
-          {isHovering && (
-            <p className="font-jl mt-4 text-lg sm:text-xl md:text-2xl lg:text-3xl first-letter:text-xl sm:first-letter:text-2xl md:first-letter:text-[28px] text-center sm:text-left">
-              {description}
-            </p>
+          {(isHovering || isExpanded) && (
+            <div>
+              <p
+                ref={textRef}
+                className={`font-jl text-lg sm:text-xl md:text-2xl lg:text-3xl first-letter:text-xl sm:first-letter:text-2xl md:first-letter:text-[28px] text-center sm:text-left transition-all duration-300 ease-in-out ${isExpanded ? '' : 'line-clamp-1'
+                  }`}
+              >
+                {description}
+              </p>
+
+              {isClamped && (
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation(); // Prevent hover state from resetting
+                    setIsExpanded((prev) => !prev);
+                  }}
+                  className="mt-2 text-white hover:underline text-lg pointer-events-auto"
+                >
+                  {isExpanded ? 'Read Less' : 'Read More'}
+                </button>
+              )}
+            </div>
           )}
+
         </div>
 
 
@@ -94,7 +124,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
                 translateX: '-50%',
                 translateY: '-120%',
               }}
-              className="fixed z-30 bg-black text-white text-xs sm:text-sm md:text-sm px-2 sm:px-3 py-1 rounded-lg pointer-events-none shadow-lg"
+              className="fixed z-30 bg-black text-white text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 rounded-lg pointer-events-none shadow-lg"
             >
               {url}
             </motion.div>
