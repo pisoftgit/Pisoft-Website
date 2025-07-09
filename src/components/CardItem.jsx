@@ -55,7 +55,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
 
         {/* Background */}
         <motion.div
-          className="absolute inset-0 z-0 pointer-events-none border-2 border-blue-950"
+          className="absolute inset-0 z-0 pointer-events-none"
         >
           <TiltedCard
             imageSrc={src}
