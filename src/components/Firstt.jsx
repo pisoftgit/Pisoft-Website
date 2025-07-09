@@ -332,14 +332,14 @@ export default function Firstt() {
               </div>
             </div>
           </div>
-          <section className="px-4 sm:px-6 mt-4">
+          <section className="px-4 sm:px-6 mt-6">
             <ScrollT />
           </section>
         </section>
 
         {/* Gallery Section */}
 
-        <div className="max-w-screen mt-12 px-10 ">
+        <div className="max-w-screen mt-30 px-10 ">
           <BlurText
             text="WHAT OUR CLIENT SAYS"
             className="text-5xl font-jB text-center text-orange-500"
@@ -360,7 +360,7 @@ export default function Firstt() {
           <InfiniteMovingCards
             items={testimonials}
             direction="right"
-            speed="Slow"
+            speed="slow"
           />
         </div>
 

@@ -48,34 +48,39 @@ export default function ParallaxBackground() {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4kjg24puI0W0YNRy1nslXZXoff1wgNn7Mhg&s",
         "https://www.amarinfotech.com/featureimages/Mean-Stack-App-Development.jpg",
         "https://thumbs.dreamstime.com/b/full-stack-dev-line-icon-linear-style-sign-mobile-concept-web-design-laptop-both-frontend-backend-symbols-outline-359515358.jpg",
-         "https://media.istockphoto.com/id/955808890/vector/cloud-data-technology-polygon-concept-or-background.jpg?s=612x612&w=0&k=20&c=BfLvTzxJlLQec0cFOpy1GebZDfpeXHwRprX3gDynRtk=",
-]
+        "https://media.istockphoto.com/id/955808890/vector/cloud-data-technology-polygon-concept-or-background.jpg?s=612x612&w=0&k=20&c=BfLvTzxJlLQec0cFOpy1GebZDfpeXHwRprX3gDynRtk=",
+    ]
 
     useEffect(() => {
+        const marquee = marqueeRef.current
+
         gsap.fromTo(
-            marqueeRef.current,
-            { scale: 1.2 },
+            marquee,
+            { scale: 1.2, filter: 'blur(0px)' },
             {
-                scale: 2.7,
-                ease: 'none',
+                scale: 1.5,
+                filter: 'blur(5px)', 
+                ease:"elastic.inOut",
                 scrollTrigger: {
-                    trigger: marqueeRef.current,
-                    start: 'top top',
-                    end: 'bottom top',
+                    trigger: marquee,
+                    start: 'bottom center',
+                    end: 'top top',
                     scrub: true,
                 },
             }
         )
     }, [])
 
+
     return (
-        <section className="absolute inset-0 z-0 min-h-screen max-h-screen">
+        <section className="absolute inset-0 z-0 min-h-screen max-h-screen border-b-black">
             <div className="relative h-screen overflow-hidden">
-                <div
+                 <div
                     ref={marqueeRef}
-                    className="absolute inset-0 w-full h-full -z-10 will-change-transform bg-white"
+                    className="absolute inset-0 w-full h-full -z-10 will-change-transform bg-white overflow-hidden transform-border duration-100 ease-in-out"
                 >
                     <ThreeDMarquee images={images} />
+                    <div className="absolute bottom-0 left-0 w-full h-25 pointer-events-none bg-gradient-to-t from-white to-transparent backdrop-blur-md" />
                 </div>
             </div>
         </section>

@@ -41,7 +41,13 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
         ></a>
 
         {/* Background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        <motion.div
+          className="absolute inset-0 z-0 pointer-events-none"
+          animate={{
+            filter: isHovering ? 'blur(15px)' : 'blur(0px)',
+          }}
+          transition={{ duration: 0.3 }}
+        >
           <TiltedCard
             imageSrc={src}
             altText="Background"
@@ -57,17 +63,23 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
             displayOverlayContent={false}
           />
           <div className="absolute inset-0 bg-black/40"></div>
-        </div>
+        </motion.div>
 
+
+        {/* Content */}
         {/* Content */}
         <div className="relative z-10 flex flex-col justify-center h-full p-4 sm:p-6 md:p-8 lg:p-10 text-white pointer-events-none">
           <h2 className="mb-4 sm:mb-6 md:mb-8 font-jB text-white text-4xl sm:text-5xl md:text-6xl lg:text-[6rem] text-center sm:text-left">
             {title}
           </h2>
-          <p className="font-jl text-lg sm:text-xl md:text-2xl lg:text-3xl first-letter:text-xl sm:first-letter:text-2xl md:first-letter:text-[28px] text-center sm:text-left">
-            {description}
-          </p>
+
+          {isHovering && (
+            <p className="font-jl mt-4 text-lg sm:text-xl md:text-2xl lg:text-3xl first-letter:text-xl sm:first-letter:text-2xl md:first-letter:text-[28px] text-center sm:text-left">
+              {description}
+            </p>
+          )}
         </div>
+
 
         {/* Floating Tooltip */}
         <AnimatePresence>
@@ -82,7 +94,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
                 translateX: '-50%',
                 translateY: '-120%',
               }}
-              className="fixed z-30 bg-black text-white text-xs sm:text-sm md:text-base px-2 sm:px-3 py-1 rounded-lg pointer-events-none shadow-lg"
+              className="fixed z-30 bg-black text-white text-xs sm:text-sm md:text-sm px-2 sm:px-3 py-1 rounded-lg pointer-events-none shadow-lg"
             >
               {url}
             </motion.div>
