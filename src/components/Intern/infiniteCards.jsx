@@ -53,7 +53,7 @@ export const InfiniteMovingCards = ({
       const speedMap = {
         fast: "20s",
         normal: "40s",
-        slow: "80s"
+        slow: "60s"
       };
       containerRef.current.style.setProperty(
         "--animation-duration",
@@ -125,7 +125,7 @@ export const InfiniteMovingCards = ({
                   <img
                     src={item.image}
                     alt={item.name}
-                    className="w-30 h-20 object-fit bg-no-repeat rounded-xl border-2 border-white shadow-md"
+                    className="w-30 h-auto object-cover bg-no-repeat rounded-xl border-2 border-white shadow-md"
                   />
                 )}
               </div>
