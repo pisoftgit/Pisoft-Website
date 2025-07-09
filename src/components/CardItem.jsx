@@ -88,7 +88,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
             <div>
               <p
                 ref={textRef}
-                className={`font-jl text-lg sm:text-xl md:text-2xl lg:text-3xl first-letter:text-xl sm:first-letter:text-2xl md:first-letter:text-[28px] text-center sm:text-left transition-all duration-300 ease-in-out ${isExpanded ? '' : 'line-clamp-1'
+                className={`font-jl text-lg sm:text-xl md:text-2xl lg:text-3xl first-letter:text-xl sm:first-letter:text-2xl md:first-letter:text-[28px] text-center sm:text-left transition-all duration-300 ease-in-out ${isExpanded ? '' : 'line-clamp-3'
                   }`}
               >
                 {description}

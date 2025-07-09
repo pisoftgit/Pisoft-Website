@@ -112,7 +112,7 @@ export default function ScrollT() {
             .map((item) => ({
               title: item.projectName,
               description: item.projectDescription,
-              url:item.url,
+              url:item.projectUrl,
               src: item.dp
                 ? item.dp.startsWith("data:")
                   ? item.dp
