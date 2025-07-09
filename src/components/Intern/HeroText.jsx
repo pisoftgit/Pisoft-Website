@@ -80,7 +80,7 @@ export default function HeroText() {
                 >
                     <FlipWords
                         words={['Secure', 'Modern', 'Scalable']}
-                        className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-white"
+                        className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-orange-500"
                     />
                 </motion.div>
             </div>
