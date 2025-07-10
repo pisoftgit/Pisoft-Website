@@ -221,7 +221,7 @@ function StepIndicator({ step, currentStep, onClickStep, disableStepIndicators }
           complete: { scale: 1, backgroundColor: "#FD8B3C", color: "#FD8B3C" },
         }}
         transition={{ duration: 0.3 }}
-        className="flex h-10 w-10 items-center justify-center rounded-full font-semibold"
+        className="flex h-7 w-7 items-center justify-center rounded-full font-semibold"
       >
         {status === "complete" ? (
           <CheckIcon className="h-4 w-4 text-white" />
