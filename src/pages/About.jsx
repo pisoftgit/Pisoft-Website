@@ -110,7 +110,7 @@ function About() {
           </section>
 
           {/* === Tech Section === */}
-          <section ref={techSectionRef} className="min-h-[50vh] pt-30 bg-white relative z-10">
+          <section ref={techSectionRef} className="min-h-[50vh] pt-30 bg-transparent relative z-10">
             <Tech />
           </section>
 
