@@ -216,7 +216,7 @@ function ERPTourTravels() {
 
 
         <section className="w-full flex justify-end items-end">
-          <Threads color={[0.086, 0.6, 0.941]} />
+           <Threads color={[0.15, 0.51, 0.831]} />
         </section>
 
 

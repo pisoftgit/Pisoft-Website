@@ -104,7 +104,7 @@ export default function SwipableCardCarousel() {
           <SwiperSlide
             key={index}
             style={{
-              height: "250px",
+              height: "auto",
               width: "250px",
             }}
           >

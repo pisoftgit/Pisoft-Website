@@ -339,10 +339,10 @@ export default function Firstt() {
 
         {/* Gallery Section */}
 
-        <div className="max-w-screen mt-30 px-10 ">
+        <div className="max-w-screen mt-35 px-10 ">
           <BlurText
             text="WHAT OUR CLIENT SAYS"
-            className="text-5xl font-jB text-center text-orange-500"
+            className="lg:text-5xl text-3xl font-jB text-center text-orange-500"
             delay={100}
             duration={0.6}
             ease="power3.out"

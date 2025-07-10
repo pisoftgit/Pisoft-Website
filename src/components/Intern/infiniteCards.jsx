@@ -66,7 +66,7 @@ export const InfiniteMovingCards = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20 max-w-screen overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+        "scroller relative z-20 max-w-screen overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]",
         className
       )}
     >
@@ -80,18 +80,18 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-b-0 border-gray-900 bg-[linear-gradient(180deg,#d0f0ff,#ffe0cc)] px-8 py-6 md:w-[450px] dark:border-zinc-900 shadow-xl overflow-hidden"
+            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-b-0 border-gray-900 bg-[linear-gradient(180deg,#d0f0ff,#ffe0cc)] px-8 py-6 md:w-[430px] dark:border-zinc-900 shadow-xl overflow-hidden"
             key={item.name}
           >
             <blockquote className="relative z-10 h-full flex flex-col justify-between">
-              <p className="relative z-20 text-lg md:text-xl leading-relaxed font-jSB text-blue-950 dark:text-blue-950">
+              <p className="relative z-20 text-sm md:text-lg lg:text-xl leading-relaxed font-jSB text-blue-950 dark:text-blue-950">
                 {expandedIndex === idx ? (
                   <>
                     “{item.quote}”{" "}
-                    {item.quote.length > 200 && (
+                    {item.quote.length > 150 && (
                       <button
                         onClick={() => setExpandedIndex(null)}
-                        className="text-sm text-blue-700 underline hover:text-blue-900"
+                        className="text-sm text-blue-900 underline hover:text-blue-900"
                       >
                         Read less
                       </button>
@@ -102,7 +102,7 @@ export const InfiniteMovingCards = ({
                     “{item.quote.slice(0, 200).trim()}... ”{" "}
                     <button
                       onClick={() => setExpandedIndex(idx)}
-                      className="text-sm text-blue-700 underline hover:text-blue-900"
+                      className="text-sm text-blue-900 underline hover:text-blue-900"
                     >
                       Read more
                     </button>
@@ -113,10 +113,10 @@ export const InfiniteMovingCards = ({
 
               <div className="relative z-20 flex flex-row items-center justify-between">
                 <div className="flex flex-col gap-1">
-                  <span className="text-md md:text-xl leading-[1.6] font-semibold text-orange-600 dark:text-orange-600">
+                  <span className="text-sm sm:text-base md:text-mf lg:text-lg leading-[1.6] font-semibold text-orange-500 dark:text-orange-600">
                     {item.name}
                   </span>
-                  <span className="text-md md:text-xl leading-[1.6] font-bold text-blue-800 dark:text-blue-900">
+                  <span className="text-sm sm:text-base md:text-mf lg:text-lg leading-[1.6] font-bold text-blue-800 dark:text-blue-900">
                     {item.rating ? `⭐ ${item.rating}/5` : ""}
                   </span>
 

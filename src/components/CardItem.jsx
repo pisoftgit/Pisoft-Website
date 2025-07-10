@@ -32,7 +32,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
 
 
   return (
-    <div
+     <div
       ref={container}
       className="h-auto flex items-center justify-center sticky top-0 w-full"
       onMouseMove={handleMouseMove}
@@ -44,7 +44,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className="relative flex flex-col h-[80vh] sm:h-[85vh] md:h-[690px] w-full sm:w-[95%] rounded-xl sm:rounded-[25px] overflow-hidden mx-auto"
+        className="relative flex flex-col h-[200px] md:h-[690px] w-full sm:w-[95%] rounded-xl sm:rounded-[25px] overflow-hidden mx-auto"
       >
         <a
           href={url}
