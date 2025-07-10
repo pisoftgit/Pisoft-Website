@@ -69,13 +69,14 @@ export default function ParallaxBackground() {
     }, [])
 
     return (
-        <section className="absolute inset-0 z-0 min-h-screen max-h-screen">
-            <div className="relative h-screen overflow-hidden">
-                <div
+        <section className="absolute inset-0 z-0 h-auto lg:min-h-screen max-h-screen border-b-black">
+            <div className="relative sm:h-half lg:h-screen overflow-hidden">
+                 <div
                     ref={marqueeRef}
-                    className="absolute inset-0 w-full h-full -z-10 will-change-transform bg-white"
+                    className="absolute inset-0 w-full h-full -z-10 will-change-transform bg-white overflow-hidden transform-border duration-100 ease-in-out"
                 >
                     <ThreeDMarquee images={images} />
+                    <div className="absolute bottom-0 left-0 w-full h-25 pointer-events-none bg-gradient-to-t from-white to-transparent backdrop-blur-md" />
                 </div>
             </div>
         </section>

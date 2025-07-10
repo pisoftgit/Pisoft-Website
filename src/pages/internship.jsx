@@ -20,7 +20,26 @@ import { NavbarDemo } from '../components/navbar/Navbar2'
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Internship() {
-  const [menuOpen, setMenuOpen] = useState(false);
+
+  const [menuOpen, setMenuOpen] = useState(false)
+  const sectionRef = useRef(null)
+  const div1Ref = useRef(null)
+  const div2Ref = useRef(null)
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: div1Ref.current,
+        start: "top top",
+        end: `+=100%`, // pin for 100% of screen height
+        pin: true,
+        pinSpacing: false,
+        scrub: true,
+      })
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [])
 
   const cardData = [
     {
@@ -142,190 +161,192 @@ export default function Internship() {
   }, [])
 
   return (
-    <main className='w-full relative overflow-clip'>
-      {/* <BackgroundShapes /> */}
-      {/* navbar */}
-      <div className="fixed left-5 top-2 z-50000 lg:hidden">
-        <Navbar />
-      </div>
-      <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
-        <Example />
-      </div>
-      <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
-        <NavbarDemo />
+    <main ref={sectionRef} className="relative w-full overflow-hidden">
+      {/* Navbar */}
+      <div className="fixed left-5 top-2 z-50 lg:hidden"><Navbar /></div>
+      <div className="fixed top-4 right-4 z-50 lg:hidden"><Example /></div>
+      <div className="fixed top-0 left-0 w-full z-50 hidden md:block"><NavbarDemo /></div>
+
+      {/* Layer Container */}
+      <div
+        ref={div1Ref}
+        className="sticky top-0 z-20 h-auto backdrop-blur-md bg-white "
+      >
+        {/* Background */}
+        <ParallaxBackground className="backdrop-blur-2xl" />
+
+        {/* Hero Section */}
+        <div className="relative z-20 pt-5 bg-white/20 ">
+          <HeroText />
+        </div>
       </div>
 
-      {/* Background */}
-      <ParallaxBackground />
 
-      {/* Hero Section */}
-      <div className="relative z-20 pt-5 bg-white/20 ">
-        <HeroText />
-      </div>
+      {/* div2 for scroll  includes everything below*/}
 
-      {/* Text Reveal Section */}
-      <section className='w-screen flex flex-row flex-wrap justify-start items-start'>
-        <div className='lg:w-2/3 pl-4 pr-4 w-full mt-15'>
-          <ScrollFloat
-            animationDuration={1}
-            ease='back.inOut(2)'
-            scrollStart='center bottom+=50%'
-            scrollEnd='bottom bottom-=40%'
-            stagger={0.03}
-            className="md:text-5xl sm:text-xl text-center leading-tight font-jr justify-center items-center text-blue-950"
-          >
-            HIGH OBJECTIVE PROFESSIONAL
-          </ScrollFloat>
-          <ScrollFloat
-            animationDuration={1}
-            ease='back.inOut(2)'
-            scrollStart='center bottom+=50%'
-            scrollEnd='bottom bottom-=40%'
-            stagger={0.03}
-            className="md:text-5xl sm:text-xl text-start leading-tight font-jr justify-center items-center text-blue-950"
-          >
-            EXPERTISE (HOPE)
-          </ScrollFloat>
+      <div ref={div2Ref} className="relative top-0 left-0 w-full z-21 pt-screen bg-white">
+        {/* Text Reveal Section */}
+        <section className='w-screen flex flex-row flex-wrap justify-start items-start  bg-gradient-to-b from-orange-50 to-white'>
+          <div className='lg:w-2/3 pl-4 pr-4 w-full mt-15'>
+            <ScrollFloat
+              animationDuration={1}
+              ease="back.inOut(2)"
+              scrollStart="center bottom+=50%"
+              scrollEnd="bottom bottom-=40%"
+              stagger={0.03}
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-jr text-blue-950 leading-tight text-left sm:text-center"
+            >
+              HIGH OBJECTIVE PROFESSIONAL
+            </ScrollFloat>
+            <ScrollFloat
+              animationDuration={1}
+              ease="back.inOut(2)"
+              scrollStart="center bottom+=50%"
+              scrollEnd="bottom bottom-=40%"
+              stagger={0.03}
+              className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-jr text-blue-950 text-start sm:text-center mb-6"
+            >
+              EXPERTISE (HOPE)
+            </ScrollFloat>
+
+            <div
+              className="relative [text-align:justify] z-30 mx-auto md:px-10 rounded-xl max-w-screen sm:mt-5"
+            >
+              <div ref={triggerRef} className="text-start px-4">
+                {text.split(" ").map((char, idx) => (
+                  <span
+                    key={idx}
+                    ref={setLetterRef}
+                    className="font-jr [text-align:justify] sm:text-[2.5vw] mr-1 md:text-[1.3vw] font-medium text-black inline-block justify-start"
+                  >
+                    {char}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+          <div className='lg:w-1/3 hidden lg:block'>
+            <IconCloudDemo />
+          </div>
+        </section>
+
+        {/* technologies */}
+        <section className="w-full flex flex-col items-start justify-start text-left px-4 sm:px-6 lg:px-12 py-4">
+          <div>
+            <BlurText
+              text="Explore Our Technologies"
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-jr text-orange-500 leading-tight text-left sm:text-center"
+              delay={110}
+              duration={0.7}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+            />
+            <p className="mt-4 text-sm md:text-lg lg:text-xl text-blue-950 max-w-4xl mx-auto sm:px-5">
+              In the first few months, you'll immerse yourself in advanced technologies, mastering as per the need of IT industry.
+            </p>
+          </div>
+        </section>
+
+
+        <section className='w-screen flex flex-row justify-center items-center flex-wrap mt-7'>
 
           <div
-            className="relative [text-align:justify] z-30 mx-auto md:px-10 rounded-xl max-w-screen sm:mt-5"
+            className={`flex px-5 justify-center items-center w-full transition-all duration-300 ${menuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
+              }`}
           >
-            <div ref={triggerRef} className="text-start px-4">
-              {text.split(" ").map((char, idx) => (
-                <span
-                  key={idx}
-                  ref={setLetterRef}
-                  className="font-jr [text-align:justify] sm:text-[2.5vw] mr-1 md:text-[1.3vw] font-medium text-black inline-block justify-start"
-                >
-                  {char}
-                </span>
+            <div className=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+              {cardData.map((item, index) => (
+                <PinContainer key={index} title={item.title} description={item.description}>
+                  <div className="  border-white border-4 rounded-3xl flex flex-col text-slate-100/50 w-[12rem] h-[12rem]">
+                    <div
+                      className="flex-1 w-full rounded-lg bg-cover bg-center"
+                      style={{ backgroundImage: `url('${item.image}')` }}
+                    />
+                  </div>
+                </PinContainer>
               ))}
             </div>
           </div>
-        </div>
-        <div className='lg:w-1/3 hidden lg:block'>
-          <IconCloudDemo />
-        </div>
-      </section>
+        </section>
 
-      {/* technologies */}
-      <section className='w-screen text-center flex justify-start items-start flex-col lg:pl-12 pl-4'>
-        <div>
-          <BlurText
-            text="Explore Our Technologies"
-            className="md:text-5xl sm:text-3xl mt-0 font-jr text-center leading-tight text-orange-500 px-5"
-            delay={110}
-            duration={0.7}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          />
-          <p className="mt-4 sm:text-[2.5vw] md:text-[1.3vw] text-blue-950 px-5 mx-auto">
-            In the first few months, you'll immerse yourself in advanced technologies, mastering as per the need of IT industry.
-          </p>
-        </div>
-      </section>
+        {/* benefits */}
+        <section className='w-screen'>
+          <TimelineDemo />
+        </section>
 
-      <section className='w-screen flex flex-row justify-center items-center flex-wrap mt-7'>
 
-        <div
-          className={`flex px-5 justify-center items-center w-full transition-all duration-300 ${menuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
-            }`}
-        >
-          <div className=" grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
-            {cardData.map((item, index) => (
-              <PinContainer key={index} title={item.title} description={item.description}>
-                <div className="  border-white border-4 rounded-3xl flex flex-col text-slate-100/50 w-[12rem] h-[12rem]">
-                  <div
-                    className="flex-1 w-full rounded-lg bg-cover bg-center"
-                    style={{ backgroundImage: `url('${item.image}')` }}
-                  />
-                </div>
-              </PinContainer>
-            ))}
+        {/* counters */}
+        <div className="w-full flex flex-wrap justify-center items-center gap-16 py-16 bg-gray-900 text-white">
+          {/* Counter 1 */}
+          <div className="flex flex-col items-center">
+            <CountUp
+              from={0}
+              to={3400}
+              separator=","
+              direction="up"
+              duration={1}
+              className="text-6xl font-extrabold text-orange-400"
+            />
+            <p className="mt-4 text-center text-lg sm:text-xl font-medium">
+              Above No. of Students Trained
+            </p>
+          </div>
+
+          {/* Counter 2 */}
+          <div className="flex flex-col items-center">
+            <CountUp
+              from={0}
+              to={225}
+              separator=","
+              direction="up"
+              duration={1}
+              className="text-6xl font-extrabold text-orange-400"
+            />
+            <p className="mt-4 text-center text-lg sm:text-xl font-medium">
+              Above Placements Till Date
+            </p>
+          </div>
+
+          {/* Counter 3 */}
+          <div className="flex flex-col items-center">
+            <CountUp
+              from={0}
+              to={84}
+              separator=","
+              direction="up"
+              duration={1}
+              className="text-6xl font-extrabold text-orange-400"
+            />
+            <p className="mt-4 text-center text-lg sm:text-xl font-medium">
+              Corporate Tie Ups
+            </p>
+          </div>
+
+          {/* Counter 4 */}
+          <div className="flex flex-col items-center">
+            <CountUp
+              from={0}
+              to={254}
+              separator=","
+              direction="up"
+              duration={1}
+              className="text-6xl font-extrabold text-orange-400"
+            />
+            <p className="mt-4 text-center text-lg sm:text-xl font-medium">
+              Academic Link Ups
+            </p>
           </div>
         </div>
-      </section>
 
-      {/* benefits */}
-      <section className='w-screen'>
-        <TimelineDemo />
-      </section>
-
-
-      {/* counters */}
-      <div className="w-full flex flex-wrap justify-center items-center gap-16 py-16 bg-white text-blue-950">
-        {/* Counter 1 */}
-        <div className="flex flex-col items-center">
-          <CountUp
-            from={0}
-            to={3400}
-            separator=","
-            direction="up"
-            duration={1}
-            className="text-6xl font-extrabold text-orange-400"
-          />
-          <p className="mt-4 text-center text-lg sm:text-xl font-medium">
-            Above No. of Students Trained
-          </p>
-        </div>
-
-        {/* Counter 2 */}
-        <div className="flex flex-col items-center">
-          <CountUp
-            from={0}
-            to={225}
-            separator=","
-            direction="up"
-            duration={1}
-            className="text-6xl font-extrabold text-orange-400"
-          />
-          <p className="mt-4 text-center text-lg sm:text-xl font-medium">
-            Above Placements Till Date
-          </p>
-        </div>
-
-        {/* Counter 3 */}
-        <div className="flex flex-col items-center">
-          <CountUp
-            from={0}
-            to={84}
-            separator=","
-            direction="up"
-            duration={1}
-            className="text-6xl font-extrabold text-orange-400"
-          />
-          <p className="mt-4 text-center text-lg sm:text-xl font-medium">
-            Corporate Tie Ups
-          </p>
-        </div>
-
-        {/* Counter 4 */}
-        <div className="flex flex-col items-center">
-          <CountUp
-            from={0}
-            to={254}
-            separator=","
-            direction="up"
-            duration={1}
-            className="text-6xl font-extrabold text-orange-400"
-          />
-          <p className="mt-4 text-center text-lg sm:text-xl font-medium">
-            Academic Link Ups
-          </p>
-        </div>
+        {/* footer */}
+        <footer className='w-full'>
+          <Footer />
+        </footer>
       </div>
-
-
-
-      {/* footer */}
-      <footer className='w-full'>
-        <Footer />
-      </footer>
     </main>
   )
 }
