@@ -70,7 +70,7 @@ export default function ParallaxBackground() {
 
     return (
         <section className="absolute inset-0 z-0 h-auto lg:min-h-screen max-h-screen border-b-black">
-            <div className="relative sm:h-half lg:h-screen overflow-hidden">
+            <div className="relative sm:h-full lg:h-screen overflow-hidden">
                  <div
                     ref={marqueeRef}
                     className="absolute inset-0 w-full h-full -z-10 will-change-transform bg-white overflow-hidden transform-border duration-100 ease-in-out"

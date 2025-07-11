@@ -161,22 +161,22 @@ export default function Internship() {
   }, [])
 
   return (
-    <main ref={sectionRef} className="relative w-full overflow-hidden">
+    <main ref={sectionRef} className="relative w-full overflow-clip">
       {/* Navbar */}
-      <div className="fixed left-5 top-2 z-50 lg:hidden"><Navbar /></div>
+      <div className="fixed left-5 top-2 z-500000 lg:hidden"><Navbar /></div>
       <div className="fixed top-4 right-4 z-50 lg:hidden"><Example /></div>
-      <div className="fixed top-0 left-0 w-full z-50 hidden md:block"><NavbarDemo /></div>
+       
 
       {/* Layer Container */}
       <div
         ref={div1Ref}
-        className="sticky top-0 z-20 h-auto backdrop-blur-md bg-white "
+        className="sticky top-0 z-48 h-auto backdrop-blur-md bg-white "
       >
         {/* Background */}
         <ParallaxBackground className="backdrop-blur-2xl" />
 
         {/* Hero Section */}
-        <div className="relative z-20 pt-5 bg-white/20 ">
+        <div className="relative z-20 pt-5 bg-white/20 text-center">
           <HeroText />
         </div>
       </div>
@@ -184,9 +184,11 @@ export default function Internship() {
 
       {/* div2 for scroll  includes everything below*/}
 
-      <div ref={div2Ref} className="relative top-0 left-0 w-full z-21 pt-screen bg-white">
+      <div ref={div2Ref} className="relative top-0 left-0 w-full z-49 pt-screen bg-white">
+     
         {/* Text Reveal Section */}
         <section className='w-screen flex flex-row flex-wrap justify-start items-start  bg-gradient-to-b from-orange-50 to-white'>
+          <div className="fixed top-0 left-0 w-full z-50 hidden md:block"><NavbarDemo /></div>
           <div className='lg:w-2/3 pl-4 pr-4 w-full mt-15'>
             <ScrollFloat
               animationDuration={1}
@@ -280,7 +282,7 @@ export default function Internship() {
 
 
         {/* counters */}
-        <div className="w-full flex flex-wrap justify-center items-center gap-16 py-16 bg-gray-900 text-white">
+        <div className="w-full flex flex-wrap justify-center items-center gap-16 py-16 text-blue-950">
           {/* Counter 1 */}
           <div className="flex flex-col items-center">
             <CountUp

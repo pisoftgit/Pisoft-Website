@@ -44,7 +44,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         }}
-        className="relative flex flex-col h-[200px] md:h-[690px] w-full sm:w-[95%] rounded-xl sm:rounded-[25px] overflow-hidden mx-auto"
+        className="relative flex flex-col h-[200px] md:h-[500px] lg:h-[690px] w-full sm:w-[95%] rounded-xl sm:rounded-[25px] overflow-hidden mx-auto"
       >
         <a
           href={url}
@@ -71,7 +71,7 @@ const Card = ({ i, title, description, src, cap, progress, range, targetScale, u
             showTooltip={false}
             displayOverlayContent={false}
           />
-          <div className="absolute inset-0 bg-black/10"></div>
+          {/* <div className="absolute inset-0 bg-black/10"></div> */}
         </motion.div>
 
         {/* Floating Tooltip */}
