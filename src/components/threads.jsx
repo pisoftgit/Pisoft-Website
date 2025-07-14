@@ -100,7 +100,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
         float p = float(i) / float(u_line_count);
         line_strength *= (1.0 - lineFn(
             uv,
-            u_line_width * pixel(1.0, iResolution.xy) * (1.0 - p),
+            u_line_width * pixel(1.0, iResolution.xy) * (1.0 - p) * mix(0.5, 1.0, uv.x), 
             p,
             (PI * 1.0) * p,
             uMouse,
@@ -110,8 +110,10 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
         ));
     }
 
-    float colorVal = 1.0 - line_strength;
+    float fadeIn = smoothstep(0.07, 0.2, uv.x); 
+    float colorVal = (1.0 - line_strength) * fadeIn;
     fragColor = vec4(uColor * colorVal, colorVal);
+
 }
 
 void main() {

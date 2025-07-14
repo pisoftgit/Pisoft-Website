@@ -220,7 +220,7 @@ function ERPEducation() {
         </div>
 
           
-        <section className="w-full pl-14">
+        <section className="w-full">
            <Threads color={[0.15, 0.51, 0.831]} />
         </section>
         

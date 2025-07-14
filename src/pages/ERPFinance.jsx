@@ -216,7 +216,7 @@ function ERPFinance() {
           <TypewriterEffect />
         </div>
 
-        <section className="w-full flex justify-end items-end">
+        <section className="w-full">
           <Threads color={[0.15, 0.51, 0.831]} />
         </section>
 
