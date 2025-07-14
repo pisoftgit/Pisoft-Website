@@ -168,26 +168,26 @@ export default function Internship() {
        
 
       {/* Layer Container */}
-      <div
+      {/* <div
         ref={div1Ref}
         className="sticky top-0 z-48 h-auto backdrop-blur-md bg-white "
-      >
+      > */}
         {/* Background */}
         <ParallaxBackground className="backdrop-blur-2xl" />
 
         {/* Hero Section */}
-        <div className="relative z-20 pt-5 bg-white/20 text-center">
+        <div className="relative z-20 pt-15 md:pt-2 bg-white/20 text-center">
           <HeroText />
         </div>
-      </div>
+      {/* </div> */}
 
 
       {/* div2 for scroll  includes everything below*/}
 
-      <div ref={div2Ref} className="relative top-0 left-0 w-full z-49 pt-screen bg-white">
+      {/* <div ref={div2Ref} className="relative top-0 left-0 w-full z-49 pt-screen bg-white"> */}
      
         {/* Text Reveal Section */}
-        <section className='w-screen flex flex-row flex-wrap justify-start items-start  bg-gradient-to-b from-orange-50 to-white'>
+        <section className='w-screen flex flex-row flex-wrap justify-start items-start bg-white'>
           <div className="fixed top-0 left-0 w-full z-50 hidden md:block"><NavbarDemo /></div>
           <div className='lg:w-2/3 pl-4 pr-4 w-full mt-15'>
             <ScrollFloat
@@ -348,7 +348,7 @@ export default function Internship() {
         <footer className='w-full'>
           <Footer />
         </footer>
-      </div>
+      {/* </div> */}
     </main>
   )
 }
