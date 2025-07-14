@@ -35,6 +35,8 @@ export default function Firstt() {
   const vnavRef = useRef(null);
   const galleryRef = useRef(null);
   const [showCardSwap, setShowCardSwap] = useState(false);
+  const textRef = useRef(null);
+
 
   const text =
     "Pisoft Informatics is an outsourced software development company specializing in custom product development, legacy platform modernization, and data-driven eCommerce solutions.";
@@ -62,6 +64,13 @@ export default function Firstt() {
       },
       pinType: document.body.style.transform ? "transform" : "fixed",
     });
+
+    const isMobile = window.innerWidth < 768;
+
+    // Adjust text Y position before animation begins
+    if (textRef.current) {
+      textRef.current.setAttribute('y', isMobile ? '50%' : '40%');
+    }
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -241,8 +250,10 @@ export default function Firstt() {
                 <mask id="textmask">
                   <rect width="100%" height="100%" fill="white" />
                   <text
+                    ref={textRef}
                     className="font-bebas select-none"
-                    x="50%" y="40%"
+                    x="50%"
+                    y="40%"  // Will override this with JS
                     dominantBaseline="middle"
                     textAnchor="middle"
                     fill="black"
@@ -252,6 +263,7 @@ export default function Firstt() {
                   >
                     PISOFT
                   </text>
+
                 </mask>
               </defs>
               <rect width="100%" height="100%" fill="white" mask="url(#textmask)" />
