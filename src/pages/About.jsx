@@ -89,7 +89,10 @@ function About() {
                   className="font-jSB text-2xl sm:text-3xl md:text-4xl text-orange-400 tracking-wider"
                 />
 
-                <div className="text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6"  dangerouslySetInnerHTML={{ __html: message }}/>
+                <div className="text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6">
+                 {message}
+                  </div>
+
 
               </div>
             </div>
