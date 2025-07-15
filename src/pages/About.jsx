@@ -13,7 +13,7 @@ function About() {
   const aboutSectionRef = useRef(null);
   const techSectionRef = useRef(null);
   const [showLanyard, setShowLanyard] = useState(true);
-  const [message, setMessage] = useState(null); 
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,16 +37,26 @@ function About() {
       try {
         const response = await fetch("https://project.pisofterp.com/pipl/restworld/org/about-us/modes/OFFLINE");
         if (!response.ok) throw new Error("Failed to fetch");
+
         const htmlContent = await response.text();
-        setMessage(htmlContent);
+
+        // Strip inline styles using DOMParser
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, "text/html");
+
+        // Remove all inline style attributes
+        doc.querySelectorAll("[style]").forEach((el) => el.removeAttribute("style"));
+
+        setMessage(doc.body.innerHTML);
       } catch (error) {
         console.error("Error fetching message:", error);
-        setMessage("<p style='color:red;'>Failed to load content.</p>");
+        setMessage("<p>Failed to load content.</p>");
       }
     };
 
     fetchData();
   }, []);
+
 
 
   return (
@@ -89,9 +99,9 @@ function About() {
                   className="font-jSB text-2xl sm:text-3xl md:text-4xl text-orange-400 tracking-wider"
                 />
 
-                <div className="text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6">
-                  <div className="text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6" dangerouslySetInnerHTML={{ __html: message }} />
-                </div>
+                <div className="text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6"
+                  dangerouslySetInnerHTML={{ __html: message }} />
+
               </div>
             </div>
 
