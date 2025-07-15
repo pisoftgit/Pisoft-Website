@@ -227,7 +227,6 @@ export default function Firstt() {
 
 
   return (
-    <smooth>
       <div className="w-full bg-white overflow-clip">
         <div ref={outerref} className="relative min-h-screen sm:min-h-half  w-full flex justify-center overflow-hidden">
 
@@ -399,6 +398,5 @@ export default function Firstt() {
           <Footer />
         </section>
       </div >
-    </smooth >
   );
 }

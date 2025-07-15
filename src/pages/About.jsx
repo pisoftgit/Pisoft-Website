@@ -13,6 +13,7 @@ function About() {
   const aboutSectionRef = useRef(null);
   const techSectionRef = useRef(null);
   const [showLanyard, setShowLanyard] = useState(true);
+  const [message, setMessage] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,6 +31,23 @@ function About() {
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://project.pisofterp.com/pipl/restworld/org/about-us/modes/OFFLINE");
+        if (!response.ok) throw new Error("Failed to fetch");
+        const htmlContent = await response.text();
+        setMessage(htmlContent);
+      } catch (error) {
+        console.error("Error fetching message:", error);
+        setMessage("<p style='color:red;'>Failed to load content.</p>");
+      }
+    };
+
+    fetchData();
+  }, []);
+
 
   return (
     <>
@@ -71,25 +89,8 @@ function About() {
                   className="font-jSB text-2xl sm:text-3xl md:text-4xl text-orange-400 tracking-wider"
                 />
 
-                <div className="text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6">
-                  <p>
-                    Pisoft Informatics Private Limited is a dynamic and rapidly
-                    growing IT company established in 2016. The company located in
-                    Mohali (Punjab) With a diverse portfolio of clients both
-                    nationally and internationally, we are dedicated to delivering
-                    cutting-edge solutions across various domains including software
-                    development, web development, Android services, ERP solutions,
-                    Technical Support, as well as design and implementation.
-                  </p>
-                  <p className="mt-4">
-                    Our greatest asset is our efficient and experienced team,
-                    equipped with modern infrastructure and a vibrant group of young,
-                    competitive professionals. We are committed to providing
-                    high-quality, tailored solutions that meet the unique needs of
-                    our clients, ensuring their success in a fast-evolving digital
-                    landscape.
-                  </p>
-                </div>
+                <div className="text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6"  dangerouslySetInnerHTML={{ __html: message }}/>
+
               </div>
             </div>
 

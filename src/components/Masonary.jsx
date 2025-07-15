@@ -64,7 +64,7 @@ function Masonry({ data }) {
   return (
     <div
       ref={ref}
-      className="relative bg-white w-full h-full"
+      className="relative bg-transparent w-full h-full"
       style={{ height: Math.max(...heights) }}
     >
       {transitions((style, item) => (
