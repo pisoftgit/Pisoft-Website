@@ -66,6 +66,25 @@ export default function Internship() {
     fetchTechnologies();
   }, []);
 
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalData, setModalData] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const handleImageClick = async (technologyId) => {
+    console.log("Clicked tech ID:", technologyId); 
+    setLoading(true);
+    try {
+      const res = await fetch(`http://project.pisofterp.com/pipl/restworld/ws-topics/technologies/${technologyId}`);
+      const data = await res.json();
+      console.log("Fetched data:", data); 
+      setModalData(data);
+      setModalOpen(true);
+    } catch (error) {
+      console.error("Error fetching technology details:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const revealRef = useRef(null)
   const triggerRef = useRef(null)
@@ -205,22 +224,49 @@ export default function Internship() {
 
 
       <section className='w-screen flex flex-row justify-center items-center flex-wrap mt-7'>
-        <div
-          className={`flex px-5 justify-center items-center w-full transition-all duration-300 ${menuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'
-            }`}
-        >
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4">
+        <div className={`flex px-5 justify-center items-center w-full transition-all duration-300 ${menuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 text-center">
             {Technologies.map((item, index) => (
               <PinContainer key={index} title={item.technologyName} description="">
-                <div className="border-white border-4 rounded-3xl flex flex-col text-slate-100/50 w-[12rem] h-[12rem]">
-                  <div className="w-full h-full rounded-lg bg-contain bg-center bg-no-repeat"
-                    style={{ backgroundImage: `url(${item.technologyPic})` }} />
-
-                </div>
+                <div
+                  onClick={() => handleImageClick(item.id)}
+                  className="border-white border-4 rounded-3xl w-[12rem] h-[12rem] cursor-pointer bg-no-repeat bg-contain bg-center"
+                  style={{ backgroundImage: `url(${item.technologyPic})` }}
+                />
               </PinContainer>
             ))}
           </div>
         </div>
+
+        {/* MOVE THE MODAL OUTSIDE THIS DIV */}
+        {modalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-[10000]">
+            <div className="bg-white rounded-lg p-6 max-w-lg w-full relative">
+              <button
+                className="absolute top-2 right-2 text-gray-700 text-xl font-bold"
+                onClick={() => setModalOpen(false)}
+              >
+                &times;
+              </button>
+
+              {loading ? (
+                <p>Loading...</p>
+              ) : modalData ? (
+                <div>
+                  <h2 className="text-2xl font-bold mb-4">{modalData.technologyName}</h2>
+                  <img
+                    src={`data:${modalData.technologyLogoType};base64,${modalData.technologyPic}`}
+                    alt={modalData.technologyName}
+                    className="w-full h-auto mb-4"
+                  />
+                  <p>{modalData.description || "No description available."}</p>
+                </div>
+              ) : (
+                <p>No data found.</p>
+              )}
+            </div>
+          </div>
+        )}
       </section>
 
 
