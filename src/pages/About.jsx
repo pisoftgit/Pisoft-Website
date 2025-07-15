@@ -13,7 +13,7 @@ function About() {
   const aboutSectionRef = useRef(null);
   const techSectionRef = useRef(null);
   const [showLanyard, setShowLanyard] = useState(true);
-  const [message, setMessage] = useState(null);
+  const [message, setMessage] = useState(null); 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -90,10 +90,8 @@ function About() {
                 />
 
                 <div className="text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6">
-                 {message}
-                  </div>
-
-
+                  <div className="text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6" dangerouslySetInnerHTML={{ __html: message }} />
+                </div>
               </div>
             </div>
 
