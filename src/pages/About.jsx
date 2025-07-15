@@ -20,7 +20,6 @@ function About() {
       const aboutTop = aboutSectionRef.current.getBoundingClientRect().top;
       const techTop = techSectionRef.current.getBoundingClientRect().top;
 
-      // Show Lanyard if About section is mostly in view
       if (aboutTop >= -100 && techTop > window.innerHeight * 0.5) {
         setShowLanyard(true);
       } else {
@@ -40,11 +39,9 @@ function About() {
 
         const htmlContent = await response.text();
 
-        // Strip inline styles using DOMParser
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlContent, "text/html");
 
-        // Remove all inline style attributes
         doc.querySelectorAll("[style]").forEach((el) => el.removeAttribute("style"));
 
         setMessage(doc.body.innerHTML);
@@ -99,9 +96,9 @@ function About() {
                   className="font-jSB text-2xl sm:text-3xl md:text-4xl text-orange-400 tracking-wider"
                 />
 
-                <div className="text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl font-jl text-gray-800 tracking-wider mt-4 sm:mt-6"
-                  dangerouslySetInnerHTML={{ __html: message }} />
-
+                <div className="font-jl text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl text-gray-800 tracking-wider mt-4 sm:mt-6">
+                  <div dangerouslySetInnerHTML={{ __html: message }} />
+                </div>
               </div>
             </div>
 
@@ -125,6 +122,7 @@ function About() {
           <section ref={techSectionRef} className="min-h-[50vh] pt-30 bg-transparent relative z-10">
             <Tech />
           </section>
+
 
           {/* === Work Approach Section === */}
           <section className="h-auto pt-12 bg-white relative z-10">
