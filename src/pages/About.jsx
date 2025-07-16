@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Stepp from "../components/About/Stepp";
 import Footer from "../components/Footer";
 import { NavbarDemo } from "../components/navbar/Navbar2";
+import { VisionMission } from "../components/About/Vision&Mission";
 
 function About() {
   const aboutSectionRef = useRef(null);
@@ -119,10 +120,13 @@ function About() {
           </section>
 
           {/* === Tech Section === */}
-          <section ref={techSectionRef} className="min-h-[50vh] pt-30 bg-transparent relative z-10">
+          <section ref={techSectionRef} className="min-h-[40vh] pt-30 bg-transparent relative z-10">
             <Tech />
           </section>
-
+          
+          <section className="w-full h-auto mt-4">
+            <VisionMission />
+          </section>
 
           {/* === Work Approach Section === */}
           <section className="h-auto pt-12 bg-white relative z-10">
