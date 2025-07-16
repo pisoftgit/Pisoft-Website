@@ -17,6 +17,7 @@ import { TimelineDemo } from '../components/Intern/timelineDemo'
 import BackgroundShapes from '../components/Intern/backgound'
 import { NavbarDemo } from '../components/navbar/Navbar2'
 
+
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Internship() {
@@ -52,10 +53,12 @@ export default function Internship() {
         const formattedData = data.map((item) => ({
           technologyName: item.technologyName,
           id: item.id,
+          description: item.description,
           technologyPic: item.technologyPic
             ? `data:${item.technologyLogoType};base64,${item.technologyPic}`
-            : item.tempDp, // fallback if no image
+            : item.tempDp || '/default-tech-icon.png',
         }));
+
 
         setTechnologies(formattedData);
       } catch (err) {
@@ -68,23 +71,46 @@ export default function Internship() {
 
   const [modalOpen, setModalOpen] = useState(false);
   const [modalData, setModalData] = useState(null);
-  const [loading, setLoading] = useState(false);
 
-  const handleImageClick = async (technologyId) => {
-    console.log("Clicked tech ID:", technologyId); 
-    setLoading(true);
+  const handleTechClick = async (techId) => {
     try {
-      const res = await fetch(`http://project.pisofterp.com/pipl/restworld/ws-topics/technologies/${technologyId}`);
-      const data = await res.json();
-      console.log("Fetched data:", data); 
-      setModalData(data);
-      setModalOpen(true);
-    } catch (error) {
-      console.error("Error fetching technology details:", error);
+      const response = await fetch(`https://project.pisofterp.com/pipl/restworld/ws-topics/technologies/${techId}`);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json(); // result is already an array
+
+      if (!Array.isArray(result) || result.length === 0) {
+        throw new Error("No topics found.");
+      }
+
+      const firstTech = result[0]?.technology;
+
+      const normalizedData = {
+        technologyName: firstTech?.technologyName || "Unknown",
+        description: firstTech?.description || "",
+        topics: result.map(topic => ({
+          topicTitle: topic.topic,
+          subTopics: topic.subTopics ?? [],
+        })),
+      };
+
+      setModalData(normalizedData);
+    } catch (err) {
+      console.error("Error fetching technology details:", err);
+      setModalData({
+        technologyName: "Error",
+        description: "Failed to load data. Please try again later.",
+        topics: [],
+      });
     } finally {
-      setLoading(false);
+      setModalOpen(true);
     }
   };
+
+
 
   const revealRef = useRef(null)
   const triggerRef = useRef(null)
@@ -216,7 +242,7 @@ export default function Internship() {
             threshold={0.1}
             rootMargin="-100px"
           />
-          <p className="mt-4 text-sm md:text-lg lg:text-xl text-blue-950 max-w-4xl mx-auto sm:px-5">
+          <p className="mt-4 text-sm md:text-lg lg:text-xl text-blue-950 mx-auto sm:px-5">
             In the first few months, you'll immerse yourself in advanced technologies, mastering as per the need of IT industry.
           </p>
         </div>
@@ -224,51 +250,98 @@ export default function Internship() {
 
 
       <section className='w-screen flex flex-row justify-center items-center flex-wrap mt-7'>
-        <div className={`flex px-5 justify-center items-center w-full transition-all duration-300 ${menuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 text-center">
+        <div
+          className={`flex px-5 justify-center items-center w-full transition-all duration-300 ${menuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+        >
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
             {Technologies.map((item, index) => (
-              <PinContainer key={index} title={item.technologyName} description="">
-                <div
-                  onClick={() => handleImageClick(item.id)}
-                  className="border-white border-4 rounded-3xl w-[12rem] h-[12rem] cursor-pointer bg-no-repeat bg-contain bg-center"
-                  style={{ backgroundImage: `url(${item.technologyPic})` }}
-                />
+              <PinContainer
+                key={index}
+                title={item.technologyName}
+                description={item.description}
+                onClick={() => handleTechClick(item.id)}
+              >
+                <div className="border-white border-4 rounded-3xl flex flex-col text-slate-100/50 w-[10rem] h-[10rem] lg:w-[12rem] lg:h-[12rem]">
+                  <div
+                    className="flex-1 w-full rounded-lg bg-contain bg-no-repeat bg-center"
+                    style={{ backgroundImage: `url('${item.technologyPic}')` }}
+                    onError={(e) => {
+                      e.currentTarget.style.backgroundImage = "url('/default-tech-icon.png')";
+                    }}
+                  />
+
+                </div>
               </PinContainer>
             ))}
           </div>
         </div>
-
-        {/* MOVE THE MODAL OUTSIDE THIS DIV */}
-        {modalOpen && (
-          <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-[10000]">
-            <div className="bg-white rounded-lg p-6 max-w-lg w-full relative">
-              <button
-                className="absolute top-2 right-2 text-gray-700 text-xl font-bold"
-                onClick={() => setModalOpen(false)}
-              >
-                &times;
-              </button>
-
-              {loading ? (
-                <p>Loading...</p>
-              ) : modalData ? (
-                <div>
-                  <h2 className="text-2xl font-bold mb-4">{modalData.technologyName}</h2>
-                  <img
-                    src={`data:${modalData.technologyLogoType};base64,${modalData.technologyPic}`}
-                    alt={modalData.technologyName}
-                    className="w-full h-auto mb-4"
-                  />
-                  <p>{modalData.description || "No description available."}</p>
-                </div>
-              ) : (
-                <p>No data found.</p>
-              )}
-            </div>
-          </div>
-        )}
       </section>
 
+      {modalOpen && (
+        <div className="fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center">
+          <div className="bg-white rounded-lg p-6 max-w-3xl w-full max-h-[90vh] overflow-y-auto relative shadow-lg">
+            {/* Close button */}
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-2xl font-bold"
+              onClick={() => setModalOpen(false)}
+            >
+              &times;
+            </button>
+
+            {/* Modal content */}
+            {modalData && modalData.technologyName ? (
+              <>
+                {/* Technology Name */}
+                <h2 className="text-2xl font-bold mb-2 text-blue-900">
+                  {modalData.technologyName}
+                </h2>
+
+                {/* Description */}
+                <div
+                  className="text-gray-700 mb-6 prose max-w-none"
+                  dangerouslySetInnerHTML={{ __html: modalData.description }}
+                />
+
+                {/* Topics and Subtopics */}
+                {/* Topics and Subtopics */}
+                <div className="space-y-4 mt-4">
+                  {modalData.topics?.length > 0 ? (
+                    modalData.topics.map((topic, index) => (
+                      <div
+                        key={index}
+                        className="bg-gray-50 rounded p-4 border border-gray-200"
+                      >
+                        <h3 className="text-lg font-semibold text-blue-700 mb-2">
+                          {topic.topicTitle}
+                        </h3>
+                        {topic.subTopics?.length > 0 ? (
+                          <ul className="list-disc pl-6 text-gray-800">
+                            {topic.subTopics.map((sub, idx) => (
+                              <li key={idx} className="mb-1">
+                                {sub.subTopic || sub}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="text-sm text-gray-500 italic">No subtopics available.</p>
+                        )}
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-gray-600">No topics available.</p>
+                  )}
+                </div>
+
+              </>
+            ) : (
+              <div className="text-center text-gray-700">
+                <h2 className="text-xl font-semibold mb-2 text-red-500">Oops!</h2>
+                <p>We're unable to load details for this technology at the moment.</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       {/* benefits */}
       <section className='w-screen'>

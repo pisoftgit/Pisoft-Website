@@ -10,7 +10,8 @@ export const PinContainer = ({
   title,
   href,
   className,
-  containerClassName
+  containerClassName,
+  onClick, // ✅ Accept onClick as prop
 }) => {
   const [transform, setTransform] = useState("translate(-50%,-50%) rotateX(0deg)");
 
@@ -25,25 +26,30 @@ export const PinContainer = ({
     <a
       className={cn("relative group/pin z-40  cursor-pointer", containerClassName)}
       onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}>
+      onMouseLeave={onMouseLeave}
+      onClick={onClick}
+    >
       <div
         style={{
           perspective: "1000px",
           transform: "rotateX(70deg) translateZ(0deg)",
         }}
-        className="absolute left-1/2 top-1/2 ml-[0.09375rem] -translate-x-1/2 -translate-y-1/2">
+        className="absolute left-1/2 top-1/2 ml-[0.09375rem] -translate-x-1/2 -translate-y-1/2"
+      >
         <div
           style={{
             transform: transform,
           }}
-          className="absolute left-1/2 top-1/2  flex justify-start items-start  rounded-2xl text-center shadow-[0_8px_16px_rgb(0_0_0/0.4)] bg-gradient-to-b from-sky-100 via-sky-200 to bg-orange-200 group-hover/pin:border-white/[0.2] transition duration-700 overflow-hidden">
-          <div className={cn(" relative z-50 ", className)}>{children}</div>
+          className="absolute left-1/2 top-1/2 flex justify-start items-start rounded-3xl text-center shadow-[0_8px_16px_rgb(0_0_0/0.4)] bg-gradient-to-b from-sky-100 via-sky-200 to bg-orange-200 group-hover/pin:border-white/[0.2] transition duration-700 overflow-hidden"
+        >
+          <div className={cn("relative z-50", className)}>{children}</div>
         </div>
       </div>
       <PinPerspective title={title} href={href} />
     </a>
   );
 };
+
 
 export const PinPerspective = ({
   title,
@@ -147,6 +153,7 @@ export const PinPerspective = ({
             className="absolute right-1/2 translate-x-[0.5px] bottom-1/2 bg-cyan-300 translate-y-[14px] w-[2px] h-[2px] rounded-full z-40 " />
         </>
       </div>
+      
     </motion.div>
   );
 };
