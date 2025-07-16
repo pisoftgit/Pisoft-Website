@@ -57,9 +57,60 @@ function About() {
 
 
 
+  const [Visions, setVisions] = useState("")
+  const [Missions, setMissions] = useState("")
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://project.pisofterp.com/pipl/restworld/org/our-vision/modes/OFFLINE");
+        if (!response.ok) throw new Error("Failed to fetch");
+
+        const htmlContent = await response.text();
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, "text/html");
+
+        doc.querySelectorAll("[style]").forEach((el) => el.removeAttribute("style"));
+
+        setVisions(doc.body.innerHTML);
+      } catch (error) {
+        console.error("Error fetching message:", error);
+        setVisions("<p>Failed to load content.</p>");
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://project.pisofterp.com/pipl/restworld/org/our-mission/modes/OFFLINE");
+        if (!response.ok) throw new Error("Failed to fetch");
+
+        const htmlContent = await response.text();
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlContent, "text/html");
+
+        doc.querySelectorAll("[style]").forEach((el) => el.removeAttribute("style"));
+
+        setMissions(doc.body.innerHTML);
+      } catch (error) {
+        console.error("Error fetching message:", error);
+        setMissions("<p>Failed to load content.</p>");
+      }
+    };
+
+    fetchData();
+  }, []);
+
+
+
   return (
     <>
-      <main className="w-full">
+      <main className="w-full overflow-hidden">
         <div className="w-full flex flex-col bg-white p-4 sm:p-6 md:p-8 relative">
           {/* Navbar */}
 
@@ -123,13 +174,10 @@ function About() {
           <section ref={techSectionRef} className="min-h-[40vh] pt-30 bg-transparent relative z-10">
             <Tech />
           </section>
-          
-          <section className="w-full h-auto mt-4">
-            <VisionMission />
-          </section>
+
 
           {/* === Work Approach Section === */}
-          <section className="h-auto pt-12 bg-white relative z-10">
+          <section className="h-auto p-4 bg-white relative z-10">
             <div className="text-center">
               <div className="font-jr text-gray-500 text-sm sm:text-base md:text-lg">
                 Our Work Approach
@@ -145,6 +193,45 @@ function About() {
               <Stepp />
             </div>
           </section>
+
+          <section className="w-screen flex flex-col space-y-12 text-center overflow-hidden p-6 sm:p-8 md:p-12">
+            {/* Vision Section */}
+            <div className="w-full flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
+              <div className="md:w-2/3 text-center md:text-left">
+                <h1 className="text-3xl font-jSB mb-4">Our Vision</h1>
+                <div
+                  className="text-gray-900 text-justify font-jS text-base sm:text-sm md:text-md lg:text-xl"
+                  dangerouslySetInnerHTML={{ __html: Visions }}
+                />
+              </div>
+              <div className="md:w-1/3 justify-center hidden md:flex">
+                <img
+                  src="https://sauberenv.com/wp-content/uploads/2023/12/our-vision.png"
+                  alt="Vision"
+                  className="w-full max-w-[300px] h-auto rounded-lg"
+                />
+              </div>
+            </div>
+
+            {/* Mission Section */}
+            <div className="w-full flex flex-col md:flex-row-reverse items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
+              <div className="md:w-2/3 text-center md:text-left">
+                <h1 className="text-3xl font-jSB mb-4">Our Mission</h1>
+                <div
+                  className="text-gray-900 text-justify font-jS text-base sm:text-sm md:text-md lg:text-xl"
+                  dangerouslySetInnerHTML={{ __html: Missions }}
+                />
+              </div>
+              <div className="md:w-1/3 justify-center hidden md:flex">
+                <img
+                  src="https://sauberenv.com/wp-content/uploads/2023/12/our-mission.png"
+                  alt="Mission"
+                  className="w-full max-w-[300px] h-auto rounded-lg"
+                />
+              </div>
+            </div>
+          </section>
+
 
         </div>
 
