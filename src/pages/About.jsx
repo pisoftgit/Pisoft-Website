@@ -211,9 +211,9 @@ function About() {
               </div>
               <div className="md:w-1/3 justify-center hidden md:flex">
                 <img
-                  src="https://sauberenv.com/wp-content/uploads/2023/12/our-vision.png"
+                  src="https://energyrayng.com/wp-content/uploads/2024/06/vision-img.png"
                   alt="Vision"
-                  className="w-full max-w-[400px] h-auto rounded-lg"
+                  className="w-full max-w-[350px] h-auto rounded-lg"
                 />
               </div>
             </div>
@@ -235,9 +235,9 @@ function About() {
               </div>
               <div className="md:w-1/3 justify-center hidden md:flex">
                 <img
-                  src="https://sauberenv.com/wp-content/uploads/2023/12/our-mission.png"
+                  src="https://www.iicmrmba.edu.in/images/icons/mission.png"
                   alt="Mission"
-                  className="w-full max-w-[400px] h-auto rounded-lg"
+                  className="w-full max-w-[350px] h-auto rounded-lg"
                 />
               </div>
             </div>
