@@ -198,7 +198,13 @@ function About() {
             {/* Vision Section */}
             <div className="w-full flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
               <div className="md:w-2/3 text-center md:text-left">
-                <h1 className="text-3xl font-jSB mb-4">Our Vision</h1>
+                <BlurText
+                text="OUR VISION"
+                delay={200}
+                animateBy="words"
+                direction="top"
+                className="mt-16 sm:mt-20 mb-5 font-jB text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-orange-400 tracking-wider"
+              />
                 <div
                   className="text-gray-900 text-justify font-jS text-base sm:text-sm md:text-md lg:text-xl"
                   dangerouslySetInnerHTML={{ __html: Visions }}
@@ -216,7 +222,13 @@ function About() {
             {/* Mission Section */}
             <div className="w-full flex flex-col md:flex-row-reverse items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
               <div className="md:w-2/3 text-center md:text-left">
-                <h1 className="text-3xl font-jSB mb-4">Our Mission</h1>
+                <BlurText
+                text="OUR MISSION"
+                delay={200}
+                animateBy="words"
+                direction="top"
+                className="mt-16 sm:mt-20 mb-5 font-jB text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-orange-400 tracking-wider"
+              />
                 <div
                   className="text-gray-900 text-justify font-jS text-base sm:text-sm md:text-md lg:text-xl"
                   dangerouslySetInnerHTML={{ __html: Missions }}
