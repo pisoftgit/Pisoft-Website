@@ -8,7 +8,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import Stepp from "../components/About/Stepp";
 import Footer from "../components/Footer";
 import { NavbarDemo } from "../components/navbar/Navbar2";
-import { VisionMission } from "../components/About/Vision&Mission";
 
 function About() {
   const aboutSectionRef = useRef(null);
