@@ -193,7 +193,7 @@ function About() {
             </div>
           </section>
 
-          <section className="w-screen flex flex-col space-y-12 sm:space-y-0 text-center overflow-hidden pr-6 sm:pr-8 md:pr-12">
+          <section className="w-screen mb-20 flex flex-col space-y-12 sm:space-y-0 text-center overflow-hidden pr-6 sm:pr-8 md:pr-12">
             {/* Vision Section */}
             <div className="w-full flex flex-col md:flex-row items-center justify-center md:space-y-0 md:space-x-8">
               <div className="md:w-2/3 text-center md:text-left">
