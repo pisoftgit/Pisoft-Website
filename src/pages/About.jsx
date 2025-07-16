@@ -194,16 +194,16 @@ function About() {
             </div>
           </section>
 
-          <section className="w-screen flex flex-col space-y-12 text-center overflow-hidden p-6 sm:p-8 md:p-12">
+          <section className="w-screen flex flex-col space-y-12 sm:space-y-0 text-center overflow-hidden pr-6 sm:pr-8 md:pr-12">
             {/* Vision Section */}
-            <div className="w-full flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
+            <div className="w-full flex flex-col md:flex-row items-center justify-center md:space-y-0 md:space-x-8">
               <div className="md:w-2/3 text-center md:text-left">
                 <BlurText
                 text="OUR VISION"
                 delay={200}
                 animateBy="words"
                 direction="top"
-                className="mt-16 sm:mt-20 mb-5 font-jB text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-orange-400 tracking-wider"
+                className="mt-16 sm:mt-20 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-orange-400 tracking-wider"
               />
                 <div
                   className="text-gray-900 text-justify font-jS text-base sm:text-sm md:text-md lg:text-xl"
@@ -214,7 +214,7 @@ function About() {
                 <img
                   src="https://sauberenv.com/wp-content/uploads/2023/12/our-vision.png"
                   alt="Vision"
-                  className="w-full max-w-[300px] h-auto rounded-lg"
+                  className="w-full max-w-[400px] h-auto rounded-lg"
                 />
               </div>
             </div>
@@ -227,7 +227,7 @@ function About() {
                 delay={200}
                 animateBy="words"
                 direction="top"
-                className="mt-16 sm:mt-20 mb-5 font-jB text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-orange-400 tracking-wider"
+                className="mt-16 sm:mt-20 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-orange-400 tracking-wider"
               />
                 <div
                   className="text-gray-900 text-justify font-jS text-base sm:text-sm md:text-md lg:text-xl"
@@ -238,7 +238,7 @@ function About() {
                 <img
                   src="https://sauberenv.com/wp-content/uploads/2023/12/our-mission.png"
                   alt="Mission"
-                  className="w-full max-w-[300px] h-auto rounded-lg"
+                  className="w-full max-w-[400px] h-auto rounded-lg"
                 />
               </div>
             </div>

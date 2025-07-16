@@ -7,7 +7,7 @@ function Masonry({ data }) {
   useEffect(() => {
     const updateColumns = () => {
       if (window.matchMedia('(min-width: 1500px)').matches) {
-        setColumns(6);
+        setColumns(4);
       }
       else if (window.matchMedia('(min-width: 1200px)').matches) {
         setColumns(4);
@@ -74,17 +74,21 @@ function Masonry({ data }) {
           className="absolute p-[15px] [will-change:transform,width,height,opacity]"
         >
           <div
-            className="relative w-full h-full overflow-hidden uppercase text-[10px] leading-[10px] rounded-[4px]  transition duration-300 ease hover:scale-110"
+            className="relative w-full h-full overflow-hidden uppercase text-[10px] leading-[10px] rounded-[4px] transition duration-300 ease hover:scale-110"
             style={{
               backgroundColor: '#ffffff',
               backgroundImage: `url(${item.image})`,
               backgroundSize: 'contain',
-              backgroundPosition: 'center',
-              backgroundRepeat:"no-repeat",
+              backgroundPosition: 'center center',
+              backgroundRepeat: 'no-repeat',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           />
         </a.div>
       ))}
+
     </div>
   );
 }
