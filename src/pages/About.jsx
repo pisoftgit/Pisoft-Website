@@ -39,12 +39,7 @@ function About() {
 
         const htmlContent = await response.text();
 
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(htmlContent, "text/html");
-
-        doc.querySelectorAll("[style]").forEach((el) => el.removeAttribute("style"));
-
-        setMessage(doc.body.innerHTML);
+        setMessage(htmlContent);
       } catch (error) {
         console.error("Error fetching message:", error);
         setMessage("<p>Failed to load content.</p>");
@@ -147,8 +142,11 @@ function About() {
                   className="font-jSB text-2xl sm:text-3xl md:text-4xl text-orange-400 tracking-wider"
                 />
 
-                <div className="font-jl text-base [text-align:justify] sm:text-lg md:text-xl lg:text-2xl text-gray-800 tracking-wider mt-4 sm:mt-6">
-                  <div dangerouslySetInnerHTML={{ __html: message }} />
+                <div className="font-jl text-base [text-align:justify] leading-relaxed sm:text-lg md:text-xl lg:text-2xl text-gray-800 tracking-wider mt-4 sm:mt-6">
+                  {message
+                    ? message.split('\n').map((line, index) => <p key={index}>{line}</p>)
+                    : <p>Loading content...</p>
+                  }
                 </div>
               </div>
             </div>
@@ -198,16 +196,17 @@ function About() {
             <div className="w-full flex flex-col md:flex-row items-center justify-center md:space-y-0 md:space-x-8">
               <div className="md:w-2/3 text-center md:text-left">
                 <BlurText
-                text="OUR VISION"
-                delay={200}
-                animateBy="words"
-                direction="top"
-                className="mt-16 sm:mt-20 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-orange-400 tracking-wider"
-              />
-                <div
-                  className="text-gray-900 text-justify font-jS text-base sm:text-sm md:text-md lg:text-xl"
-                  dangerouslySetInnerHTML={{ __html: Visions }}
+                  text="OUR VISION"
+                  delay={200}
+                  animateBy="words"
+                  direction="top"
+                  className="mt-16 sm:mt-20 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-orange-400 tracking-wider"
                 />
+                <div
+                  className="font-jl text-base [text-align:justify] leading-relaxed sm:text-sm md:text-md lg:text-2xl"
+                >
+                  {Visions}
+                </div>
               </div>
               <div className="md:w-1/3 justify-center hidden md:flex">
                 <img
@@ -222,16 +221,19 @@ function About() {
             <div className="w-full flex flex-col md:flex-row-reverse items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
               <div className="md:w-2/3 text-center md:text-left">
                 <BlurText
-                text="OUR MISSION"
-                delay={200}
-                animateBy="words"
-                direction="top"
-                className="mt-16 sm:mt-20 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-orange-400 tracking-wider"
-              />
-                <div
-                  className="text-gray-900 text-justify font-jS text-base sm:text-sm md:text-md lg:text-xl"
-                  dangerouslySetInnerHTML={{ __html: Missions }}
+                  text="OUR MISSION"
+                  delay={200}
+                  animateBy="words"
+                  direction="top"
+                  className="mt-16 sm:mt-20 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-orange-400 tracking-wider"
                 />
+                <div
+                  className="font-jl text-base [text-align:justify] leading-relaxed  sm:text-sm md:text-md lg:text-xl"
+                //   dangerouslySetInnerHTML={{ __html: Missions }}
+                // />
+                >
+                  {Missions}
+                </div>
               </div>
               <div className="md:w-1/3 justify-center hidden md:flex">
                 <img

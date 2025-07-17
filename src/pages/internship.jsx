@@ -155,6 +155,125 @@ export default function Internship() {
     })
   }, [])
 
+  const modalTitleRef = useRef(null);
+  const modalDescRef = useRef(null)
+  const topicRefs = useRef(null)
+  const addToTopicRefs = useRef(null)
+
+
+  const modalRef = useRef(null);
+  useEffect(() => {
+    if (modalOpen && modalRef.current) {
+      gsap.fromTo(
+        modalRef.current,
+        { opacity: 0, y: 100, scale: 0.95 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.5,
+          ease: 'power3.out',
+        }
+      );
+    }
+  }, [modalOpen]);
+
+
+  useEffect(() => {
+    if (modalOpen && modalRef.current) {
+      const ctx = gsap.context(() => {
+        // Animate modal container
+        gsap.fromTo(
+          modalRef.current,
+          { opacity: 0, y: 100, scale: 0.95 },
+          {
+            opacity: 1,
+            y: 0,
+            scale: 1.0,
+            duration: 1.0,
+            ease: 'power3.out',
+          }
+        );
+
+        // Animate title
+        if (modalTitleRef.current) {
+          gsap.fromTo(
+            modalTitleRef.current,
+            { opacity: 0, y: 30 },
+            { opacity: 1, y: 0, duration: 0.6, delay: 0.3, ease: 'power3.out' }
+          );
+        }
+
+        // Animate description
+        if (modalDescRef.current) {
+          gsap.fromTo(
+            modalDescRef.current,
+            { opacity: 0, y: 20 },
+            { opacity: 1, y: 0, duration: 0.6, delay: 0.4, ease: 'power3.out' }
+          );
+        }
+
+        // Animate each topic block with stagger
+        gsap.fromTo(
+          topicRefs.current,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            delay: 0.5,
+            stagger: 0.2,
+            ease: 'power3.out',
+          }
+        );
+      }, modalRef);
+
+      return () => ctx.revert();
+    }
+  }, [modalOpen]);
+
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+
+    return () => {
+      document.body.style.overflow = ''
+      document.documentElement.style.overflow = ''
+    }
+  }, [modalOpen])
+
+
+  useEffect(() => {
+    if (!modalOpen || !modalRef.current) return;
+
+    const el = modalRef.current;
+
+    const onWheel = (e) => {
+      const { scrollTop, scrollHeight, clientHeight } = el;
+
+      const isAtTop = scrollTop === 0;
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+
+      if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
+        // Prevent scroll bubbling when at edges
+        e.preventDefault();
+      }
+    };
+
+    el.addEventListener('wheel', onWheel, { passive: false });
+
+    return () => {
+      el.removeEventListener('wheel', onWheel);
+    };
+  }, [modalOpen]);
+
+
+
   return (
     <main ref={sectionRef} className="relative w-full overflow-clip">
       {/* Navbar */}
@@ -277,71 +396,89 @@ export default function Internship() {
         </div>
       </section>
 
-      {modalOpen && (
-        <div className="fixed inset-0 z-[9999] bg-black/50 flex items-center justify-center">
-          <div className="bg-white rounded-lg p-6 max-w-3xl w-full max-h-[90vh] overflow-y-auto relative shadow-lg">
-            {/* Close button */}
-            <button
-              className="absolute top-2 right-2 text-gray-500 hover:text-red-500 text-2xl font-bold"
-              onClick={() => setModalOpen(false)}
+        { modalOpen && (
+          <div
+            className="fixed inset-0 z-[9999] bg-black/30 backdrop-blur-lg flex items-center justify-center p-6 sm:p-8 overflow-hidden"
+            onClick={() => setModalOpen(false)}
+          >
+            <div
+              ref={modalRef}
+              onClick={(e) => e.stopPropagation()}
+              className="relative w-full max-w-5xl max-h-[85vh] overflow-y-auto rounded-2xl bg-white p-8 sm:p-12 shadow-xl transition-all duration-500"
             >
-              &times;
-            </button>
 
-            {/* Modal content */}
-            {modalData && modalData.technologyName ? (
-              <>
-                {/* Technology Name */}
-                <h2 className="text-2xl font-bold mb-2 text-blue-900">
-                  {modalData.technologyName}
-                </h2>
+              {/* Close Button */}
+              <button
+                onClick={() => setModalOpen(false)}
+                aria-label="Close modal"
+                className="absolute top-5 right-5 cursor-pointer text-black rounded-full p-2 transition-transform duration-300 hover:scale-110"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
 
-                {/* Description */}
-                <div
-                  className="text-gray-700 mb-6 prose max-w-none"
-                  dangerouslySetInnerHTML={{ __html: modalData.description }}
-                />
+              {/* Modal Content */}
+              {modalData ? (
+                <>
+                  <h2
+                    ref={modalTitleRef}
+                    className="text-5xl font-jSB text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-900 to-blue-700 mb-8"
+                  >
+                    {modalData.technologyName}
+                  </h2>
 
-                {/* Topics and Subtopics */}
-                {/* Topics and Subtopics */}
-                <div className="space-y-4 mt-4">
-                  {modalData.topics?.length > 0 ? (
-                    modalData.topics.map((topic, index) => (
-                      <div
-                        key={index}
-                        className="bg-gray-50 rounded p-4 border border-gray-200"
-                      >
-                        <h3 className="text-lg font-semibold text-blue-700 mb-2">
-                          {topic.topicTitle}
-                        </h3>
-                        {topic.subTopics?.length > 0 ? (
-                          <ul className="list-disc pl-6 text-gray-800">
-                            {topic.subTopics.map((sub, idx) => (
-                              <li key={idx} className="mb-1">
-                                {sub.subTopic || sub}
-                              </li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <p className="text-sm text-gray-500 italic">No subtopics available.</p>
-                        )}
-                      </div>
-                    ))
-                  ) : (
-                    <p className="text-gray-600">No topics available.</p>
-                  )}
+                  <div
+                    ref={modalDescRef}
+                    className="prose prose-sky font-jl max-w-prose mx-auto mb-10 prose-headings:text-orange-600 prose-p:text-blue-950"
+                    dangerouslySetInnerHTML={{ __html: modalData.description }}
+                  />
+
+                  <div className="space-y-8">
+                    {modalData.topics?.length > 0 ? (
+                      modalData.topics.map((topic, index) => (
+                        <section
+                          key={index}
+                          ref={addToTopicRefs}
+                          className="bg-white border border-orange-200 rounded-xl p-6 shadow-md hover:shadow-lg transition-transform duration-300 transform hover:scale-[1.03] hover:bg-orange-50"
+                        >
+                          <h3 className="text-2xl font-jSB text-orange-600 mb-4">
+                            {topic.topicTitle}
+                          </h3>
+
+                          {topic.subTopics?.length > 0 ? (
+                            <ul className="list-disc list-inside text-blue-900 text-base space-y-2">
+                              {topic.subTopics.map((sub, idx) => (
+                                <li key={idx} className="leading-relaxed">
+                                  {sub.subTopic || sub}
+                                </li>
+                              ))}
+                            </ul>
+                          ) : (
+                            <p className="text-sm text-sky-600 italic">No subtopics available.</p>
+                          )}
+                        </section>
+                      ))
+                    ) : (
+                      <p className="text-center text-sky-900 text-lg font-medium">No topics available.</p>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <div className="text-center text-sky-900">
+                  <h2 className="text-2xl font-semibold mb-4 text-orange-600">Oops!</h2>
+                  <p className="text-lg">We're unable to load details for this technology at the moment.</p>
                 </div>
-
-              </>
-            ) : (
-              <div className="text-center text-gray-700">
-                <h2 className="text-xl font-semibold mb-2 text-red-500">Oops!</h2>
-                <p>We're unable to load details for this technology at the moment.</p>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
       {/* benefits */}
       <section className='w-screen'>
