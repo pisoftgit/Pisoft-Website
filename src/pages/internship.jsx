@@ -110,8 +110,6 @@ export default function Internship() {
     }
   };
 
-
-
   const revealRef = useRef(null)
   const triggerRef = useRef(null)
   const [letterRef, setLetterRef] = useArrayRef()
@@ -159,7 +157,6 @@ export default function Internship() {
   const modalDescRef = useRef(null)
   const topicRefs = useRef(null)
   const addToTopicRefs = useRef(null)
-
 
   const modalRef = useRef(null);
   useEffect(() => {
@@ -273,32 +270,21 @@ export default function Internship() {
   }, [modalOpen]);
 
 
-
   return (
-    <main ref={sectionRef} className="relative w-full overflow-clip">
+    <main className={`relative w-full ${modalOpen ? 'overflow-hidden' : 'overflow-auto'}`}>
+
       {/* Navbar */}
       <div className="fixed left-5 top-2 z-500000 lg:hidden"><Navbar /></div>
       <div className="fixed top-4 right-4 z-50 lg:hidden"><Example /></div>
 
-
-      {/* Layer Container */}
-      {/* <div
-        ref={div1Ref}
-        className="sticky top-0 z-48 h-auto backdrop-blur-md bg-white "
-      > */}
       {/* Background */}
-      <ParallaxBackground className="backdrop-blur-2xl" />
+      <ParallaxBackground className={`backdrop-blur-2xl ${modalOpen ? 'overflow-hidden' : 'overflow-auto'}`}/>
 
       {/* Hero Section */}
-      <div className="relative z-20 pt-15 md:pt-2 bg-white/20 text-center">
+      <div className={`relative z-20 pt-15 md:pt-2 bg-white/20 text-center ${modalOpen ? 'overflow-hidden' : 'overflow-auto'}`}>
         <HeroText />
       </div>
-      {/* </div> */}
 
-
-      {/* div2 for scroll  includes everything below*/}
-
-      {/* <div ref={div2Ref} className="relative top-0 left-0 w-full z-49 pt-screen bg-white"> */}
 
       {/* Text Reveal Section */}
       <section className='w-screen flex flex-row flex-wrap justify-start items-start bg-white'>
@@ -372,13 +358,14 @@ export default function Internship() {
         <div
           className={`flex px-5 justify-center items-center w-full transition-all duration-300 ${menuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
         >
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6">
+          <div className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 ${modalOpen ? 'overflow-hidden' : 'overflow-auto'}`}>
             {Technologies.map((item, index) => (
               <PinContainer
                 key={index}
                 title={item.technologyName}
                 description={item.description}
                 onClick={() => handleTechClick(item.id)}
+                classname={`${modalOpen ? 'overflow-hidden' : 'overflow-auto'}`}
               >
                 <div className="border-white border-4 rounded-3xl flex flex-col text-slate-100/50 w-[10rem] h-[10rem] lg:w-[12rem] lg:h-[12rem]">
                   <div
@@ -396,89 +383,89 @@ export default function Internship() {
         </div>
       </section>
 
-        { modalOpen && (
+      {modalOpen && (
+        <div
+          className="fixed inset-0 z-[9999] bg-black/30 backdrop-blur-lg flex items-center justify-center p-6 sm:p-8 overflow-hidden touch-none"
+          onClick={() => setModalOpen(false)}
+        >
+
           <div
-            className="fixed inset-0 z-[9999] bg-black/30 backdrop-blur-lg flex items-center justify-center p-6 sm:p-8 overflow-hidden"
-            onClick={() => setModalOpen(false)}
+            ref={modalRef}
+            onClick={(e) => e.stopPropagation()}
+            className="relative w-full max-w-5xl max-h-[85vh] overflow-y-auto overflow-x-hidden rounded-2xl bg-white p-8 sm:p-12 shadow-xl transition-all duration-500"
           >
-            <div
-              ref={modalRef}
-              onClick={(e) => e.stopPropagation()}
-              className="relative w-full max-w-5xl max-h-[85vh] overflow-y-auto rounded-2xl bg-white p-8 sm:p-12 shadow-xl transition-all duration-500"
+            {/* Close Button */}
+            <button
+              onClick={() => setModalOpen(false)}
+              aria-label="Close modal"
+              className="absolute top-5 right-5 cursor-pointer text-black rounded-full p-2 transition-transform duration-300 hover:scale-110"
             >
-
-              {/* Close Button */}
-              <button
-                onClick={() => setModalOpen(false)}
-                aria-label="Close modal"
-                className="absolute top-5 right-5 cursor-pointer text-black rounded-full p-2 transition-transform duration-300 hover:scale-110"
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-6 w-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            {/* Modal Content */}
+            {modalData ? (
+              <>
+                <h2
+                  ref={modalTitleRef}
+                  className="text-5xl font-jSB text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-900 to-blue-700 mb-8"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
+                  {modalData.technologyName}
+                </h2>
 
-              {/* Modal Content */}
-              {modalData ? (
-                <>
-                  <h2
-                    ref={modalTitleRef}
-                    className="text-5xl font-jSB text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-700 via-blue-900 to-blue-700 mb-8"
-                  >
-                    {modalData.technologyName}
-                  </h2>
+                <div
+                  ref={modalDescRef}
+                  className="prose prose-sky font-jl max-w-prose mx-auto mb-10 prose-headings:text-orange-600 prose-p:text-blue-950"
+                  dangerouslySetInnerHTML={{ __html: modalData.description }}
+                />
 
-                  <div
-                    ref={modalDescRef}
-                    className="prose prose-sky font-jl max-w-prose mx-auto mb-10 prose-headings:text-orange-600 prose-p:text-blue-950"
-                    dangerouslySetInnerHTML={{ __html: modalData.description }}
-                  />
+                <div className="space-y-8">
+                  {modalData.topics?.length > 0 ? (
+                    modalData.topics.map((topic, index) => (
+                      <section
+                        key={index}
+                        ref={addToTopicRefs}
+                        className="bg-white border border-orange-200 rounded-xl p-6 shadow-md hover:shadow-lg transition-transform duration-300 transform hover:scale-[1.03] hover:bg-orange-50"
+                      >
+                        <h3 className="text-2xl font-jSB text-orange-600 mb-4">
+                          {topic.topicTitle}
+                        </h3>
 
-                  <div className="space-y-8">
-                    {modalData.topics?.length > 0 ? (
-                      modalData.topics.map((topic, index) => (
-                        <section
-                          key={index}
-                          ref={addToTopicRefs}
-                          className="bg-white border border-orange-200 rounded-xl p-6 shadow-md hover:shadow-lg transition-transform duration-300 transform hover:scale-[1.03] hover:bg-orange-50"
-                        >
-                          <h3 className="text-2xl font-jSB text-orange-600 mb-4">
-                            {topic.topicTitle}
-                          </h3>
-
-                          {topic.subTopics?.length > 0 ? (
-                            <ul className="list-disc list-inside text-blue-900 text-base space-y-2">
-                              {topic.subTopics.map((sub, idx) => (
-                                <li key={idx} className="leading-relaxed">
-                                  {sub.subTopic || sub}
-                                </li>
-                              ))}
-                            </ul>
-                          ) : (
-                            <p className="text-sm text-sky-600 italic">No subtopics available.</p>
-                          )}
-                        </section>
-                      ))
-                    ) : (
-                      <p className="text-center text-sky-900 text-lg font-medium">No topics available.</p>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <div className="text-center text-sky-900">
-                  <h2 className="text-2xl font-semibold mb-4 text-orange-600">Oops!</h2>
-                  <p className="text-lg">We're unable to load details for this technology at the moment.</p>
+                        {topic.subTopics?.length > 0 ? (
+                          <ul className="list-disc list-inside text-blue-900 text-base space-y-2">
+                            {topic.subTopics.map((sub, idx) => (
+                              <li key={idx} className="leading-relaxed">
+                                {sub.subTopic || sub}
+                              </li>
+                            ))}
+                          </ul>
+                        ) : (
+                          <p className="text-sm text-sky-600 italic">No subtopics available.</p>
+                        )}
+                      </section>
+                    ))
+                  ) : (
+                    <p className="text-center text-sky-900 text-lg font-medium">No topics available.</p>
+                  )}
                 </div>
-              )}
-            </div>
+              </>
+            ) : (
+              <div className="text-center text-sky-900">
+                <h2 className="text-2xl font-semibold mb-4 text-orange-600">Oops!</h2>
+                <p className="text-lg">We're unable to load details for this technology at the moment.</p>
+              </div>
+            )}
           </div>
-        )}
+        </div>
+      )}
 
       {/* benefits */}
       <section className='w-screen'>
@@ -553,7 +540,6 @@ export default function Internship() {
       <footer className='w-full'>
         <Footer />
       </footer>
-      {/* </div> */}
     </main>
   )
 }
