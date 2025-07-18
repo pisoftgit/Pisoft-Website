@@ -233,14 +233,16 @@ export default function Internship() {
       const ctx = gsap.context(() => {
         if (modalOpen) {
           // Drawer Entrance Animation
-          gsap.fromTo(modalRef.current,
-            { x: '100%', opacity: 0 },
-            { x: '0%', opacity: 1, duration: 0.3, ease: 'power3.out' }
+          gsap.fromTo(
+            modalRef.current,
+            { right: '-100%', opacity: 0.6 },
+            { right: '0', opacity: 1, duration: 0.3, ease: 'power3.out' }
           );
 
           // Title
           if (modalTitleRef.current) {
-            gsap.fromTo(modalTitleRef.current,
+            gsap.fromTo(
+              modalTitleRef.current,
               { y: 20, opacity: 0 },
               { y: 0, opacity: 1, delay: 0.2, duration: 0.3, ease: 'power3.out' }
             );
@@ -248,7 +250,8 @@ export default function Internship() {
 
           // Description
           if (modalDescRef.current) {
-            gsap.fromTo(modalDescRef.current,
+            gsap.fromTo(
+              modalDescRef.current,
               { y: 20, opacity: 0 },
               { y: 0, opacity: 1, delay: 0.3, duration: 0.3, ease: 'power3.out' }
             );
@@ -256,7 +259,8 @@ export default function Internship() {
 
           // Topics
           if (topicRefs.current?.length) {
-            gsap.fromTo(topicRefs.current,
+            gsap.fromTo(
+              topicRefs.current,
               { opacity: 0, y: 15 },
               {
                 opacity: 1,
@@ -264,17 +268,17 @@ export default function Internship() {
                 duration: 0.6,
                 stagger: 0.15,
                 delay: 0.5,
-                ease: 'power3.out'
+                ease: 'power3.out',
               }
             );
           }
         } else {
           // Drawer Exit Animation
           gsap.to(modalRef.current, {
-            x: '100%',
+            right: '-100%',
             opacity: 0,
             duration: 0.4,
-            ease: 'power2.inOut'
+            ease: 'power2.inOut',
           });
         }
       });
@@ -282,7 +286,6 @@ export default function Internship() {
       return () => ctx.revert();
     }
   }, [modalOpen]);
-
 
   return (
     <main className={`relative w-full overflow-clip`}>
