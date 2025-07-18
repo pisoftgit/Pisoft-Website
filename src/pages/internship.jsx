@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useState } from 'react'
 import gsap from 'gsap'
+import { motion } from 'framer-motion'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Navbar from '../components/Navbar'
 import { Example } from '../components/Corn'
@@ -295,10 +296,10 @@ export default function Internship() {
       <div className="fixed top-4 right-4 z-50 lg:hidden"><Example /></div>
 
       {/* Background */}
-      <ParallaxBackground className={`backdrop-blur-2xl ${modalOpen ? 'overflow-hidden' : 'overflow-auto'}`} />
+      <ParallaxBackground className={`backdrop-blur-2xl`} />
 
       {/* Hero Section */}
-      <div className={`relative z-20 pt-15 md:pt-2 bg-white/20 text-center ${modalOpen ? 'overflow-hidden' : 'overflow-auto'}`}>
+      <div className={`relative z-20 pt-15 md:pt-2 bg-white/20 text-center`}>
         <HeroText />
       </div>
 
@@ -371,33 +372,42 @@ export default function Internship() {
       </section>
 
 
-      <section className='w-screen flex flex-row justify-center items-center flex-wrap mt-7'>
+      <section className='w-screen flex flex-row justify-center items-center flex-wrap mt-10'>
         <div
-          className={`flex px-5 justify-center items-center w-full transition-all duration-300 ${menuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+          className={`flex px-5 justify-center items-center w-full transition-all duration-300}`}
         >
-          <div className={`grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 ${modalOpen ? 'overflow-hidden' : 'overflow-auto'}`}>
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-5">
             {Technologies.map((item, index) => (
-              <PinContainer
+              <motion.div
                 key={index}
-                title={item.technologyName}
-                description={item.description}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.4, delay: index * 0.03, ease: 'easeOut' }}
+                viewport={{ once: true }}
                 onClick={() => handleTechClick(item.id)}
+                whileHover={{ scale: 1.05 }}
+                className="group cursor-pointer relative rounded-2xl p-[2px] bg-gradient-to-br from-orange-300 via-yellow-100 to-white hover:from-orange-400 hover:to-white shadow-md hover:shadow-xl transition-all duration-300"
               >
-                <div className="border-white border-4 rounded-3xl flex flex-col text-slate-100/50 w-[10rem] h-[10rem] lg:w-[12rem] lg:h-[12rem]">
-                  <div
-                    className="flex-1 w-full rounded-lg bg-contain bg-no-repeat bg-center"
-                    style={{ backgroundImage: `url('${item.technologyPic}')` }}
-                    onError={(e) => {
-                      e.currentTarget.style.backgroundImage = "url('/default-tech-icon.png')";
-                    }}
+                <div className="bg-white rounded-2xl flex flex-col items-center justify-center w-[6rem] h-[6rem] lg:w-[10rem] lg:h-[10rem] overflow-hidden relative transition-all duration-300 group-hover:ring-2 group-hover:ring-orange-400">
+                  <motion.img
+                    src={item.technologyPic}
+                    // alt={item.technologyName}
+                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    transition={{ type: 'spring', stiffness: 300, damping: 12 }}
+                    className="object-contain h-12 w-12 sm:h-18 sm:w-18 mb-1"
                   />
 
+                  <p className="text-[0.9rem] text-blue-950 font-jSB mt-2 text-center px-1 break-words leading-tight group-hover:text-orange-500 transition-colors duration-200">
+
+                    {item.technologyName}
+                  </p>
                 </div>
-              </PinContainer>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
+
 
       {modalOpen && (
         <div
