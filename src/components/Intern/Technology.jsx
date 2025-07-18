@@ -268,7 +268,7 @@ function Technology() {
 
                     {/* Main Modal */}
                     <div
-                        className="fixed inset-0 z-[9999] flex flex-col bg-white w-full sm:w-[90%] md:w-[70%] lg:w-[50%] max-h-screen rounded-t-lg md:rounded-xl shadow-xl overflow-hidden"
+                        className="fixed top-12 md:top-0 inset-0 z-[9999] flex flex-col bg-white w-full sm:w-[90%] md:w-[70%] lg:w-[50%] max-h-screen rounded-t-lg md:rounded-xl shadow-xl overflow-hidden"
                         ref={modalRef}
                     >
                         {/* Header */}
