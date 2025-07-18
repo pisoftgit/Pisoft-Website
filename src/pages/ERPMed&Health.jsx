@@ -159,17 +159,14 @@ function ERPMedandHealth() {
 
 
         {/* Hero: animated TextPressure */}
-        <div className="absolute top-15 left-10 md:top-9 md:left-40  w-full flex items-center justify-center pl-4 text-center">
+        <div className="absolute top-15 left-15 md:top-4 md:left-70 w-full flex items-center justify-center pl-4 text-center">
           <TextPressure
-            text="MHSME"
+            text=" MHSME"
             flex
-            alpha
-            stroke
             width
-            weight
-            textColor="#FB9945"
-            strokeColor="#FB9945"
-            minFontSize={15}
+            textColor="rgba(251, 153, 69, 0.6)" 
+            strokeColor="rgba(251, 153, 69, 0.1)"
+            minFontSize={0.5}
           />
         </div>
 

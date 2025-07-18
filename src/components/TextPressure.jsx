@@ -7,9 +7,9 @@ const TextPressure = ({
   fontUrl = 'https://res.cloudinary.com/dr6lvwubh/raw/upload/v1529908256/CompressaPRO-GX.woff2',
 
   width = true,
-  weight = true,
+  weight = false,
   italic = false,
-  alpha = true,
+  alpha = false,
 
   flex = true,
   stroke = false,
@@ -74,7 +74,7 @@ const TextPressure = ({
 
     const { width: containerW, height: containerH } = containerRef.current.getBoundingClientRect();
 
-    let newFontSize = containerW / (chars.length / 1.6);
+    let newFontSize = containerW / (chars.length / 1.4);
     newFontSize = Math.max(newFontSize, minFontSize);
 
     setFontSize(newFontSize);
@@ -198,7 +198,7 @@ const TextPressure = ({
           textAlign: 'center',
           userSelect: 'none',
           whiteSpace: 'nowrap',
-          fontWeight: 80,
+          fontWeight: 100,
           width: '100%',
         }}
       >

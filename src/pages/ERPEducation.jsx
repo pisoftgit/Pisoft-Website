@@ -108,34 +108,34 @@ function ERPEducation() {
       });
     }
   }, []);
-  
+
   const [isLoading, setIsLoading] = useState(true);
-      useEffect(() => {
-        const timer = setTimeout(() => {
-          setIsLoading(false);
-        }, 3000);
-        return () => clearTimeout(timer);
-      }, []);
-    
-      if (isLoading) {
-        return (
-          <div className="w-full h-screen flex justify-center items-center bg-white z-50 fixed top-0 left-0">
-            {/* <DotLottieReact
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <div className="w-full h-screen flex justify-center items-center bg-white z-50 fixed top-0 left-0">
+        {/* <DotLottieReact
               src="https://lottie.host/18f588f2-3aa0-458d-a140-52218fd224fa/g0AlX8iQRa.lottie"
               loop
               autoplay
               className='text-sm'
             /> */}
-            <DotLottieReact
-              src="https://lottie.host/e4dceebb-728f-458e-9648-fee916f32948/utxxsMf1tH.lottie"
-              loop
-              autoplay
-              className='text-sm'
-            />
-          </div>
-        );
-      }
-    
+        <DotLottieReact
+          src="https://lottie.host/e4dceebb-728f-458e-9648-fee916f32948/utxxsMf1tH.lottie"
+          loop
+          autoplay
+          className='text-sm'
+        />
+      </div>
+    );
+  }
+
 
   return (
     <div className="bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 w-full overflow-x-hidden">
@@ -148,7 +148,7 @@ function ERPEducation() {
         duration={400}
       >
 
-         <div className="fixed left-5 top-2 z-50000 lg:hidden">
+        <div className="fixed left-5 top-2 z-50000 lg:hidden">
           <Navbar />
         </div>
         <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
@@ -157,20 +157,17 @@ function ERPEducation() {
         <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
           <NavbarDemo />
         </div>
-      
-        
+
+
         {/* Hero: animated TextPressure */}
-        <div className="absolute top-10 left-10 md:top-4 md:left-40  w-full flex items-center justify-center pl-4 text-center">
+        <div className="absolute top-15 left-15 md:top-4 md:left-70 w-full flex items-center justify-center pl-4 text-center">
           <TextPressure
             text=" ESME"
             flex
-            alpha
-            stroke
             width
-            weight
-            textColor="#FB9945"
-            strokeColor="#FB9945"
-            minFontSize={5}
+            textColor="rgba(251, 153, 69, 0.6)" 
+            strokeColor="rgba(251, 153, 69, 0.1)"
+            minFontSize={0.5}
           />
         </div>
 
@@ -178,18 +175,18 @@ function ERPEducation() {
         <div className="pt-20 md:pb-15 sm:pb-5 sm:px-6 md:px-12">
           <div className='flex flex-wrap w-full justify-center items-center text-center'>
             <BlurText
-            text="EDUCATION SYSTEM MANAGEMENT ERP "
-            className="font-jSB flex flex-wrap justify-center items-center sm:text-center text-[6vw] mb-5 sm:text-xl md:text-5xl leading-tight text-blue-950 text-center"
-            delay={100}
-            duration={0.6}
-            ease="power3.out"
-            splitType="chars"
-            from={{ opacity: 0, y: 40 }}
-            to={{ opacity: 1, y: 0 }}
-            threshold={0.1}
-            rootMargin="-100px"
-            textAlign="center"
-          />
+              text="EDUCATION SYSTEM MANAGEMENT ERP "
+              className="font-jSB flex flex-wrap justify-center items-center sm:text-center text-[6vw] mb-5 sm:text-xl md:text-5xl leading-tight text-blue-950 text-center"
+              delay={100}
+              duration={0.6}
+              ease="power3.out"
+              splitType="chars"
+              from={{ opacity: 0, y: 40 }}
+              to={{ opacity: 1, y: 0 }}
+              threshold={0.1}
+              rootMargin="-100px"
+              textAlign="center"
+            />
           </div>
           <div ref={triggerRef} className="flex flex-wrap justify-center gap-2 px-4 text-center">
             {text.split(" ").map((w, i) => (
@@ -213,17 +210,17 @@ function ERPEducation() {
             <LayoutGridDemo />
           </section>
         </ContainerScroll>
-        
-        
-         <div ref={sectionRefs.type2} className="px-4 md:px-8 ">
+
+
+        <div ref={sectionRefs.type2} className="px-4 md:px-8 ">
           <TypewriterEffect />
         </div>
 
-          
+
         <section className="w-full">
-           <Threads color={[0.15, 0.51, 0.831]} />
+          <Threads color={[0.15, 0.51, 0.831]} />
         </section>
-        
+
 
         <div ref={sectionRefs.pointer} className="px-4 md:px-8 py-8 md:py-12">
           <FollowingPointerDemo />

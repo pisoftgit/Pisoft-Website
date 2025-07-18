@@ -146,28 +146,25 @@ function ERPFinance() {
         duration={400}
       >
 
-         <div className="fixed left-5 top-2 z-50000 lg:hidden">
-            <Navbar />
-          </div>
-          <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
-            <Example />
-          </div>
-          <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
-            <NavbarDemo />
-          </div>
+        <div className="fixed left-5 top-2 z-50000 lg:hidden">
+          <Navbar />
+        </div>
+        <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
+          <Example />
+        </div>
+        <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
+          <NavbarDemo />
+        </div>
 
         {/* Hero: animated TextPressure */}
-        <div className="absolute top-10 left-10 md:top-4 md:left-40  w-full flex items-center justify-center pl-4 text-center">
+       <div className="absolute top-15 left-15 md:top-4 md:left-70 w-full flex items-center justify-center pl-4 text-center">
           <TextPressure
             text=" FSME"
             flex
-            alpha
-            stroke
             width
-            weight
-            textColor="#FB9945"
-            strokeColor="#FB9945"
-            minFontSize={5}
+            textColor="rgba(251, 153, 69, 0.6)"
+            strokeColor="rgba(251, 153, 69, 0.1)"
+            minFontSize={0.5}
           />
         </div>
 

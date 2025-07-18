@@ -146,17 +146,14 @@ function ERPServices() {
         </div>
 
 
-        <div className="absolute top-10 left-10 md:top-4 md:left-40  w-full flex items-center justify-center pl-4 text-center filter drop-shadow-[0_0_8px_rgba(251,153,69,0.7)]">
+        <div className="absolute top-15 left-15 md:top-4 md:left-70 w-full flex items-center justify-center pl-4 text-center">
           <TextPressure
-            text="SPSME"
+            text=" SPSME"
             flex
-            alpha
-            stroke
             width
-            weight
-            textColor="#FB9945"
-            strokeColor="#FB9945"
-            minFontSize={6}
+            textColor="rgba(251, 153, 69, 0.6)" 
+            strokeColor="rgba(251, 153, 69, 0.1)"
+            minFontSize={0.5}
           />
         </div>
         <div className="pt-20 md:pb-15 sm:pb-5 sm:px-6 md:px-12">
