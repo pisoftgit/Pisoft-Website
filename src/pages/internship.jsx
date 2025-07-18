@@ -376,7 +376,7 @@ export default function Internship() {
         <div
           className={`flex px-5 justify-center items-center w-full transition-all duration-300}`}
         >
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 gap-5">
+          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-7">
             {Technologies.map((item, index) => (
               <motion.div
                 key={index}
@@ -394,10 +394,10 @@ export default function Internship() {
                     // alt={item.technologyName}
                     whileHover={{ scale: 1.15, rotate: 5 }}
                     transition={{ type: 'spring', stiffness: 300, damping: 12 }}
-                    className="object-contain h-12 w-12 sm:h-18 sm:w-18 mb-1"
+                    className="object-contain h-12 w-12 sm:h-20 sm:w-20 mb-1"
                   />
 
-                  <p className="text-[0.9rem] text-blue-950 font-jSB mt-2 text-center px-1 break-words leading-tight group-hover:text-orange-500 transition-colors duration-200">
+                  <p className="text-[1.2rem] text-blue-950 font-jSB mt-2 text-center px-1 break-words leading-tight group-hover:text-orange-500 transition-colors duration-200">
 
                     {item.technologyName}
                   </p>
