@@ -217,8 +217,8 @@ function Technology() {
                             <h2 className="text-xl font-jr text-blue-900" ref={modalTitleRef}>
                                 {modalData?.technologyName || "Technology Details"}
                             </h2>
-                            <button onClick={() => setModalOpen(false)} className="text-gray-500 hover:text-black">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" stroke="currentColor">
+                            <button onClick={() => setModalOpen(false)} className="text-gray-500 hover:text-black cursor-pointer">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
@@ -291,7 +291,7 @@ function Technology() {
                         >
                             <button
                                 onClick={() => setNestedModalOpen(false)}
-                                className="absolute top-4 right-4 text-gray-600 hover:text-black"
+                                className="absolute top-4 right-4 text-gray-600 hover:text-black cursor-pointer"
                             >
                                 ✕
                             </button>
