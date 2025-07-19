@@ -1,8 +1,7 @@
-import React, { useEffect, useRef } from 'react'
-import { useState } from 'react'
-import gsap from 'gsap'
-import { motion } from 'framer-motion'
-import BlurText from '../BlurText'
+import React, { useEffect, useRef, useState } from 'react';
+import gsap from 'gsap';
+import { motion } from 'framer-motion';
+import BlurText from '../BlurText';
 
 function Technology() {
     const [nestedModalOpen, setNestedModalOpen] = useState(false);
@@ -10,9 +9,25 @@ function Technology() {
     const [Technologies, setTechnologies] = useState([]);
     const [modalOpen, setModalOpen] = useState(false);
     const [modalData, setModalData] = useState(null);
+
     const modalTitleRef = useRef(null);
-    const modalDescRef = useRef(null)
-    const topicRefs = useRef(null)
+    const modalDescRef = useRef(null);
+    const topicRefs = useRef(null);
+    const modalRef = useRef(null);
+    const nestedModalRef = useRef(null);
+
+    // Scroll handling
+    const handleScroll = (direction) => {
+        const modalContent = modalDescRef.current;
+        if (!modalContent) return;
+
+        const scrollAmount = 300;
+        if (direction === 'down') {
+            modalContent.scrollBy({ top: scrollAmount, behavior: 'smooth' });
+        } else if (direction === 'up') {
+            modalContent.scrollBy({ top: -scrollAmount, behavior: 'smooth' });
+        }
+    };
 
     useEffect(() => {
         const fetchTechnologies = async () => {
@@ -41,16 +56,9 @@ function Technology() {
     const handleTechClick = async (techId) => {
         try {
             const response = await fetch(`https://project.pisofterp.com/pipl/restworld/ws-topics/technologies/${techId}`);
-
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const result = await response.json();
-
-            if (!Array.isArray(result) || result.length === 0) {
-                throw new Error("No topics found.");
-            }
+            if (!Array.isArray(result) || result.length === 0) throw new Error("No topics found.");
 
             const technologyInfo = result[0]?.technology;
 
@@ -80,129 +88,98 @@ function Technology() {
         }
     };
 
-    const modalRef = useRef(null);
-
-    useEffect(() => {
-        if (modalOpen && modalRef.current) {
-            gsap.fromTo(
-                modalRef.current,
-                { opacity: 0, y: 100, scale: 0.95 },
-                {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    duration: 0.5,
-                    ease: 'power3.out',
-                }
-            );
-        }
-    }, [modalOpen]);
-
+    // Modal animation
     useEffect(() => {
         if (modalOpen && modalRef.current) {
             const ctx = gsap.context(() => {
                 gsap.fromTo(
                     modalRef.current,
-                    { opacity: 0, y: 100, scale: 0.95 },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        scale: 1.0,
-                        duration: 1.0,
-                        ease: 'power3.out',
-                    }
+                    { right: '-100%', opacity: 0.6 },
+                    { right: '0', opacity: 1, duration: 0.4, ease: 'power3.out' }
                 );
 
                 if (modalTitleRef.current) {
-                    gsap.fromTo(
-                        modalTitleRef.current,
-                        { opacity: 0, y: 30 },
-                        { opacity: 1, y: 0, duration: 0.6, delay: 0.3, ease: 'power3.out' }
-                    );
+                    gsap.fromTo(modalTitleRef.current, { y: 20, opacity: 0 }, {
+                        y: 0, opacity: 1, delay: 0.2, duration: 0.3, ease: 'power3.out'
+                    });
                 }
 
                 if (modalDescRef.current) {
-                    gsap.fromTo(
-                        modalDescRef.current,
-                        { opacity: 0, y: 20 },
-                        { opacity: 1, y: 0, duration: 0.6, delay: 0.4, ease: 'power3.out' }
-                    );
+                    gsap.fromTo(modalDescRef.current, { y: 20, opacity: 0 }, {
+                        y: 0, opacity: 1, delay: 0.3, duration: 0.3, ease: 'power3.out'
+                    });
                 }
 
-                gsap.fromTo(
-                    topicRefs.current,
-                    { opacity: 0, y: 20 },
-                    {
+                if (topicRefs.current?.length) {
+                    gsap.fromTo(topicRefs.current, { opacity: 0, y: 15 }, {
                         opacity: 1,
                         y: 0,
                         duration: 0.6,
+                        stagger: 0.15,
                         delay: 0.5,
-                        stagger: 0.2,
                         ease: 'power3.out',
-                    }
-                );
+                    });
+                }
             }, modalRef);
 
             return () => ctx.revert();
         }
     }, [modalOpen]);
 
+    // Close nested modal when clicking outside
     useEffect(() => {
-        if (modalRef.current) {
-            const ctx = gsap.context(() => {
-                if (modalOpen) {
-                    gsap.fromTo(
-                        modalRef.current,
-                        { right: '-100%', opacity: 0.6 },
-                        { right: '0', opacity: 1, duration: 0.3, ease: 'power3.out' }
-                    );
+        const handleClickOutside = (event) => {
+            if (nestedModalRef.current && !nestedModalRef.current.contains(event.target)) {
+                setNestedModalOpen(false);
+            }
+        };
 
-                    if (modalTitleRef.current) {
-                        gsap.fromTo(
-                            modalTitleRef.current,
-                            { y: 20, opacity: 0 },
-                            { y: 0, opacity: 1, delay: 0.2, duration: 0.3, ease: 'power3.out' }
-                        );
-                    }
-
-                    if (modalDescRef.current) {
-                        gsap.fromTo(
-                            modalDescRef.current,
-                            { y: 20, opacity: 0 },
-                            { y: 0, opacity: 1, delay: 0.3, duration: 0.3, ease: 'power3.out' }
-                        );
-                    }
-
-                    if (topicRefs.current?.length) {
-                        gsap.fromTo(
-                            topicRefs.current,
-                            { opacity: 0, y: 15 },
-                            {
-                                opacity: 1,
-                                y: 0,
-                                duration: 0.6,
-                                stagger: 0.15,
-                                delay: 0.5,
-                                ease: 'power3.out',
-                            }
-                        );
-                    }
-                } else {
-                    gsap.to(modalRef.current, {
-                        right: '-100%',
-                        opacity: 0,
-                        duration: 0.4,
-                        ease: 'power2.inOut',
-                    });
-                }
-            });
-
-            return () => ctx.revert();
+        if (nestedModalOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
         }
-    }, [modalOpen]);
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [nestedModalOpen]);
+
+    useEffect(() => {
+        if (modalOpen || nestedModalOpen) {
+            // Save scroll position
+            const scrollY = window.scrollY || document.documentElement.scrollTop;
+
+            // Lock body scroll
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.left = '0';
+            document.body.style.right = '0';
+            document.body.style.overflow = 'hidden';
+
+            // Make sure the modal content is scrollable
+            if (modalRef.current) {
+                modalRef.current.style.overflowY = 'clip';
+            }
+
+            return () => {
+                // Restore scroll position when modal is closed
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.left = '';
+                document.body.style.right = '';
+                document.body.style.overflow = '';
+
+                window.scrollTo(0, scrollY);
+
+                if (modalRef.current) {
+                    modalRef.current.style.overflowY = '';
+                }
+            };
+        }
+    }, [modalOpen, nestedModalOpen]);
 
     return (
-        <div>
+        <div className='overflow-clip'>
+            {/* SECTION HEADER */}
             <section className="w-full flex flex-col items-start justify-start text-left px-4 sm:px-6 lg:px-12 py-4">
                 <div>
                     <BlurText
@@ -223,10 +200,9 @@ function Technology() {
                 </div>
             </section>
 
+            {/* TECH GRID */}
             <section className='w-screen flex flex-row justify-center items-center flex-wrap mt-10'>
-                <div
-                    className={`flex px-5 justify-center items-center w-full transition-all duration-300}`}
-                >
+                <div className="flex px-5 justify-center items-center w-full transition-all duration-300">
                     <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-7">
                         {Technologies.map((item, index) => (
                             <motion.div
@@ -242,13 +218,11 @@ function Technology() {
                                 <div className="bg-white rounded-2xl flex flex-col items-center justify-center w-[6rem] h-[6rem] lg:w-[10rem] lg:h-[10rem] overflow-hidden relative transition-all duration-300 group-hover:ring-2 group-hover:ring-orange-400">
                                     <motion.img
                                         src={item.technologyPic}
-                                        // alt={item.technologyName}
                                         whileHover={{ scale: 1.15, rotate: 5 }}
                                         transition={{ type: 'spring', stiffness: 300, damping: 12 }}
                                         className="object-contain h-12 w-12 sm:h-18 sm:w-18 mb-1"
                                     />
-
-                                    <p className="text-[0.7rem] md:-text-[1.0rem] lg:text-[1.2rem] text-blue-950 font-jSB mt-2 text-center px-1 break-words leading-tight group-hover:text-orange-500 transition-colors duration-200">
+                                    <p className="text-[0.7rem] lg:text-[1.2rem] text-blue-950 font-jSB mt-2 text-center px-1 break-words leading-tight group-hover:text-orange-500 transition-colors duration-200">
                                         {item.technologyName}
                                     </p>
                                 </div>
@@ -258,67 +232,39 @@ function Technology() {
                 </div>
             </section>
 
+            {/* MAIN MODAL (Drawer) */}
+            {/* Modal Content */}
             {modalOpen && (
                 <>
-                    {/* Main Modal Backdrop */}
-                    <div
-                        className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[9998]"
-                        onClick={() => setModalOpen(false)}
-                    />
-
-                    {/* Main Modal */}
+                    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[9998]" onClick={() => setModalOpen(false)} />
                     <div
                         className="fixed top-12 md:top-0 inset-0 z-[9999] flex flex-col bg-white w-full sm:w-[90%] md:w-[70%] lg:w-[50%] max-h-screen rounded-t-lg md:rounded-xl shadow-xl overflow-hidden"
                         ref={modalRef}
                     >
-                        {/* Header */}
                         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
                             <h2 className="text-xl font-jr text-blue-900" ref={modalTitleRef}>
                                 {modalData?.technologyName || "Technology Details"}
                             </h2>
-                            <button
-                                onClick={() => setModalOpen(false)}
-                                className="text-gray-500 hover:text-black transition"
-                            >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
+                            <button onClick={() => setModalOpen(false)} className="text-gray-500 hover:text-black transition">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
                         </div>
 
-                        {/* Scrollable Content */}
-                        <div
-                            ref={modalDescRef}
-                            className="overflow-y-auto p-6 h-full scroll-smooth"
-                            style={{
-                                WebkitOverflowScrolling: 'touch',
-                                touchAction: 'auto',
-                            }}
-                        >
+                        {/* Content Section */}
+                        <div ref={modalDescRef} className="overflow-y-auto p-6 h-full relative">
+                            {/* Modal Content */}
                             {modalData ? (
                                 <>
                                     <div
                                         className="prose prose-sky font-jl max-w-full mb-6 prose-p:text-blue-950 prose-headings:text-orange-600"
                                         dangerouslySetInnerHTML={{ __html: modalData.description }}
                                     />
-
-                                    <div
-                                        className="space-y-6"
-                                        ref={(el) => (topicRefs.current = el ? Array.from(el.children) : [])}
-                                    >
+                                    <div className="space-y-6" ref={(el) => (topicRefs.current = el ? Array.from(el.children) : [])}>
                                         {modalData.topics?.length > 0 ? (
                                             modalData.topics.map((topic, index) => (
-                                                <div
-                                                    key={index}
-                                                    className="bg-orange-50 border border-orange-200 rounded-xl p-4 shadow-sm"
-                                                >
-                                                    {/* Clickable Topic Title */}
+                                                <div key={index} className="bg-orange-50 border border-orange-200 rounded-xl p-4 shadow-sm">
                                                     <h3
                                                         onClick={() => {
                                                             setNestedModalData({
@@ -365,34 +311,41 @@ function Technology() {
                                     <p className="text-lg font-jl">Loading...</p>
                                 </div>
                             )}
+
+                            {/* Scroll Buttons (Up/Down) */}
+                            <div className="flex justify-center gap-6 py-2 border-t border-gray-200 absolute bottom-4 left-1/2 transform -translate-x-1/2 z-50">
+                                <button onClick={() => handleScroll('up')} aria-label="Scroll Up">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700 hover:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                                    </svg>
+                                </button>
+                                <button onClick={() => handleScroll('down')} aria-label="Scroll Down">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700 hover:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </>
             )}
 
+
+            {/* NESTED MODAL */}
             {nestedModalOpen && (
                 <>
-                    {/* Nested Modal Backdrop */}
-                    <div
-                        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10000]"
-                        onClick={() => setNestedModalOpen(false)}
-                    />
-
-                    {/* Nested Modal Content */}
+                    <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10000]" />
                     <div className="fixed inset-0 z-[10001] flex items-center justify-center">
-                        <div className="bg-white rounded-xl shadow-xl w-full max-w-xl max-h-[90vh] overflow-y-auto p-6 relative">
+                        <div
+                            ref={nestedModalRef}
+                            className="bg-white rounded-xl shadow-xl w-full max-w-xl max-h-[90vh] overflow-y-auto p-6 relative"
+                        >
                             <button
                                 onClick={() => setNestedModalOpen(false)}
                                 className="absolute top-4 right-4 text-gray-600 hover:text-black"
                                 aria-label="Close nested modal"
                             >
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
@@ -410,7 +363,7 @@ function Technology() {
                 </>
             )}
         </div>
-    )
+    );
 }
 
-export default Technology
+export default Technology;

@@ -1,21 +1,16 @@
 import React, { useEffect, useRef } from 'react'
 import { useState } from 'react'
 import gsap from 'gsap'
-import { motion } from 'framer-motion'
 import ScrollTrigger from 'gsap/ScrollTrigger'
 import Navbar from '../components/Navbar'
 import { Example } from '../components/Corn'
 import HeroText from '../components/Intern/HeroText'
 import ParallaxBackground from '../components/Intern/ParallaxBackground'
-import BlurText from "../components/BlurText"
 import ScrollFloat from '../components/Intern/scrollFloat'
-import { CardStack } from '../components/Intern/tabs'
 import { IconCloudDemo } from '../components/Intern/Clouddemo'
-import { PinContainer } from "../components/Internship/3Dpin";
 import Footer from '../components/Footer'
 import CountUp from '../components/Intern/counter'
 import { TimelineDemo } from '../components/Intern/timelineDemo'
-import BackgroundShapes from '../components/Intern/backgound'
 import { NavbarDemo } from '../components/navbar/Navbar2'
 import Technology from '../components/Intern/Technology'
 
@@ -134,7 +129,7 @@ export default function Internship() {
       </section>
 
       {/* technologies */}
-      <section>
+      <section className='overflow-clip'>
         <Technology />
       </section>
 
