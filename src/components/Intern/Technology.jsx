@@ -291,7 +291,7 @@ function Technology() {
                         >
                             <button
                                 onClick={() => setNestedModalOpen(false)}
-                                className="absolute top-4 right-4 text-gray-600 hover:text-black cursor-pointer"
+                                className="absolute top-4 right-4 text-gray-800 hover:text-black cursor-pointer"
                             >
                                 ✕
                             </button>
