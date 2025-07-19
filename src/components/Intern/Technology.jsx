@@ -233,12 +233,11 @@ function Technology() {
             </section>
 
             {/* MAIN MODAL (Drawer) */}
-            {/* Modal Content */}
             {modalOpen && (
                 <>
-                    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[9998]" onClick={() => setModalOpen(false)} />
+                    <div className="fixed right-0 inset-0 bg-black/40 backdrop-blur-sm z-[9998]" onClick={() => setModalOpen(false)} />
                     <div
-                        className="fixed top-12 md:top-0 inset-0 z-[9999] flex flex-col bg-white w-full sm:w-[90%] md:w-[70%] lg:w-[50%] max-h-screen rounded-t-lg md:rounded-xl shadow-xl overflow-hidden"
+                        className="fixed top-12 right-0 md:top-0 inset-0 z-[9999] flex flex-col bg-white w-full sm:w-[90%] md:w-[70%] lg:w-[50%] max-h-screen rounded-t-lg md:rounded-xl shadow-xl overflow-hidden"
                         ref={modalRef}
                     >
                         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
@@ -315,7 +314,7 @@ function Technology() {
                         </div>
 
                         {/* Fixed Scroll Buttons (Up/Down) */}
-                        <div className="fixed bottom-8 left-1/4 transform -translate-x-1/2 z-[10001] flex justify-center gap-6">
+                        {/* <div className="fixed bottom-8 left-1/4 transform -translate-x-1/2 z-[10001] flex justify-center gap-6">
                             <button onClick={() => handleScroll('up')} aria-label="Scroll Up" className="bg-orange-500 text-white p-2 rounded-full shadow-md hover:bg-orange-700">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
@@ -326,7 +325,7 @@ function Technology() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </>
             )}

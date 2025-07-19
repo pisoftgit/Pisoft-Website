@@ -3,14 +3,20 @@ import Masonry from '../Masonary';
 
 function Tech() {
   const data = [
-    { id: 1, image: 'frontend2.png', height: 700 },
-    { id: 2, image: 'backend.png', height: 700 },
-    { id: 3, image: 'dev.png', height: 700 },
-    { id: 4, image: 'ui.png', height: 700 },
-    { id: 5, image: '1000057384.png', height: 650 },
-    { id: 6, image: '1000057380.png', height: 650 },
-    { id: 7, image: '1000057383.png', height: 650 },
-    { id: 8, image: '1000057375.png', height: 650 },
+    { id: 1, image: '1.png', height: 400 },
+    { id: 2, image: '2.png', height: 400 },
+    { id: 3, image: '3.png', height: 400 },
+    { id: 4, image: '4.png', height: 400 },
+    { id: 5, image: '5.png', height: 400 },
+    { id: 6, image: '6.png', height: 400 },
+    { id: 7, image: '7.png', height: 400 },
+    { id: 8, image: '8.png', height: 400 },
+    { id: 9, image: '9.png', height: 400 },
+    { id: 10, image: '10.png', height: 400 },
+    { id: 11, image: '11.png', height: 400 },
+    { id: 12, image: '12.png', height: 400 },
+    { id: 13, image: '1.png', height: 400 },
+    { id: 14, image: '2.png', height: 400 },
   ];
 
   return (

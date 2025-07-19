@@ -7,16 +7,16 @@ function Masonry({ data }) {
   useEffect(() => {
     const updateColumns = () => {
       if (window.matchMedia('(min-width: 1500px)').matches) {
-        setColumns(4);
+        setColumns(9);
       }
       else if (window.matchMedia('(min-width: 1200px)').matches) {
-        setColumns(4);
+        setColumns(8);
       } else if (window.matchMedia('(min-width: 1000px)').matches) {
-        setColumns(4);
+        setColumns(7);
       } else if (window.matchMedia('(min-width: 600px)').matches) {
-        setColumns(3);
+        setColumns(6);
       } else {
-        setColumns(1);
+        setColumns(5);
       }
     };
 
