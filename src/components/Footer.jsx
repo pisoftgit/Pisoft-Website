@@ -71,13 +71,13 @@ const Footer = () => {
             <a href="#" className="bg-white/10 p-4 rounded-full hover:bg-blue-500 transition duration-300">
               <FaFacebookF />
             </a>
-            <a href="#" className="bg-white/10 p-4 rounded-full hover:bg-blue-600 transition duration-300">
+            <a href="https://www.linkedin.com/company/pisoft-informatics/" className="bg-white/10 p-4 rounded-full hover:bg-blue-600 transition duration-300">
               <FaLinkedinIn />
             </a>
             <a href="#" className="bg-white/10 p-4 rounded-full hover:bg-sky-400 transition duration-300">
               <FaTwitter />
             </a>
-            <a href="#" className="bg-white/10 p-4 rounded-full hover:bg-pink-500 transition duration-300">
+            <a href="https://www.instagram.com/pisoftinformatics/?hl=en" className="bg-white/10 p-4 rounded-full hover:bg-pink-500 transition duration-300">
               <FaInstagram />
             </a>
           </div>
