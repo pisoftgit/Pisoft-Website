@@ -15,18 +15,17 @@ function Technology() {
     const topicRefs = useRef(null);
     const modalRef = useRef(null);
     const nestedModalRef = useRef(null);
+    const scrollYRef = useRef(0); // to store scroll position
 
-    // Scroll handling
     const handleScroll = (direction) => {
         const modalContent = modalDescRef.current;
         if (!modalContent) return;
 
         const scrollAmount = 300;
-        if (direction === 'down') {
-            modalContent.scrollBy({ top: scrollAmount, behavior: 'smooth' });
-        } else if (direction === 'up') {
-            modalContent.scrollBy({ top: -scrollAmount, behavior: 'smooth' });
-        }
+        modalContent.scrollBy({
+            top: direction === 'down' ? scrollAmount : -scrollAmount,
+            behavior: 'smooth',
+        });
     };
 
     useEffect(() => {
@@ -56,8 +55,8 @@ function Technology() {
     const handleTechClick = async (techId) => {
         try {
             const response = await fetch(`https://project.pisofterp.com/pipl/restworld/ws-topics/technologies/${techId}`);
-            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const result = await response.json();
+
             if (!Array.isArray(result) || result.length === 0) throw new Error("No topics found.");
 
             const technologyInfo = result[0]?.technology;
@@ -88,26 +87,18 @@ function Technology() {
         }
     };
 
-    // Modal animation
+    // Animate modal
     useEffect(() => {
         if (modalOpen && modalRef.current) {
             const ctx = gsap.context(() => {
-                gsap.fromTo(
-                    modalRef.current,
-                    { right: '-100%', opacity: 0.6 },
-                    { right: '0', opacity: 1, duration: 0.4, ease: 'power3.out' }
-                );
+                gsap.fromTo(modalRef.current, { right: '-100%', opacity: 0.6 }, { right: '0', opacity: 1, duration: 0.4, ease: 'power3.out' });
 
                 if (modalTitleRef.current) {
-                    gsap.fromTo(modalTitleRef.current, { y: 20, opacity: 0 }, {
-                        y: 0, opacity: 1, delay: 0.2, duration: 0.3, ease: 'power3.out'
-                    });
+                    gsap.fromTo(modalTitleRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, delay: 0.2, duration: 0.3 });
                 }
 
                 if (modalDescRef.current) {
-                    gsap.fromTo(modalDescRef.current, { y: 20, opacity: 0 }, {
-                        y: 0, opacity: 1, delay: 0.3, duration: 0.3, ease: 'power3.out'
-                    });
+                    gsap.fromTo(modalDescRef.current, { y: 20, opacity: 0 }, { y: 0, opacity: 1, delay: 0.3, duration: 0.3 });
                 }
 
                 if (topicRefs.current?.length) {
@@ -126,7 +117,27 @@ function Technology() {
         }
     }, [modalOpen]);
 
-    // Close nested modal when clicking outside
+    // Lock scroll on modal open
+    useEffect(() => {
+        if (modalOpen || nestedModalOpen) {
+            scrollYRef.current = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollYRef.current}px`;
+            document.body.style.width = '100%';
+            document.body.style.overflow = 'hidden';
+            document.body.style.touchAction = 'none';
+
+            return () => {
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.overflow = '';
+                document.body.style.width = '';
+                document.body.style.touchAction = '';
+                window.scrollTo(0, scrollYRef.current);
+            };
+        }
+    }, [modalOpen, nestedModalOpen]);
+
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (nestedModalRef.current && !nestedModalRef.current.contains(event.target)) {
@@ -143,166 +154,120 @@ function Technology() {
         };
     }, [nestedModalOpen]);
 
-    useEffect(() => {
-        if (modalOpen || nestedModalOpen) {
-            // Save scroll position
-            const scrollY = window.scrollY || document.documentElement.scrollTop;
-
-            // Lock body scroll
-            document.body.style.position = 'fixed';
-            document.body.style.top = `-${scrollY}px`;
-            document.body.style.left = '0';
-            document.body.style.right = '0';
-            document.body.style.overflow = 'hidden';
-
-            // Make sure the modal content is scrollable
-            if (modalRef.current) {
-                modalRef.current.style.overflowY = 'clip';
-            }
-
-            return () => {
-                // Restore scroll position when modal is closed
-                document.body.style.position = '';
-                document.body.style.top = '';
-                document.body.style.left = '';
-                document.body.style.right = '';
-                document.body.style.overflow = '';
-
-                window.scrollTo(0, scrollY);
-
-                if (modalRef.current) {
-                    modalRef.current.style.overflowY = '';
-                }
-            };
-        }
-    }, [modalOpen, nestedModalOpen]);
-
     return (
         <div className='overflow-clip'>
-            {/* SECTION HEADER */}
-            <section className="w-full flex flex-col items-start justify-start text-left px-4 sm:px-6 lg:px-12 py-4">
-                <div>
-                    <BlurText
-                        text="Explore Our Technologies"
-                        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-jr text-orange-500 leading-tight text-left sm:text-center"
-                        delay={110}
-                        duration={0.7}
-                        ease="power3.out"
-                        splitType="chars"
-                        from={{ opacity: 0, y: 40 }}
-                        to={{ opacity: 1, y: 0 }}
-                        threshold={0.1}
-                        rootMargin="-100px"
-                    />
-                    <p className="mt-4 text-sm md:text-lg lg:text-xl text-blue-950 mx-auto sm:px-5">
-                        In the first few months, you'll immerse yourself in advanced technologies, mastering as per the need of IT industry.
-                    </p>
+            {/* Header */}
+            <section className="w-full flex flex-col items-start px-4 sm:px-6 lg:px-12 py-4">
+                <BlurText
+                    text="Explore Our Technologies"
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-jr text-orange-500 leading-tight text-left sm:text-center"
+                    delay={110}
+                    duration={0.7}
+                    ease="power3.out"
+                    splitType="chars"
+                    from={{ opacity: 0, y: 40 }}
+                    to={{ opacity: 1, y: 0 }}
+                    threshold={0.1}
+                    rootMargin="-100px"
+                />
+                <p className="mt-4 text-sm md:text-lg lg:text-xl text-blue-950">
+                    In the first few months, you'll immerse yourself in advanced technologies, mastering as per the need of IT industry.
+                </p>
+            </section>
+
+            {/* Tech Grid */}
+            <section className='w-screen flex flex-wrap justify-center items-center mt-10 px-5'>
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-7">
+                    {Technologies.map((item, index) => (
+                        <motion.div
+                            key={index}
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            transition={{ duration: 0.4, delay: index * 0.03 }}
+                            viewport={{ once: true }}
+                            onClick={() => handleTechClick(item.id)}
+                            whileHover={{ scale: 1.05 }}
+                            className="group cursor-pointer rounded-2xl p-[2px] bg-gradient-to-br from-orange-300 via-yellow-100 to-white shadow-md hover:shadow-xl"
+                        >
+                            <div className="bg-white rounded-2xl flex flex-col items-center justify-center w-[6rem] h-[6rem] lg:w-[10rem] lg:h-[10rem]">
+                                <motion.img
+                                    src={item.technologyPic}
+                                    whileHover={{ scale: 1.15, rotate: 5 }}
+                                    transition={{ type: 'spring', stiffness: 300, damping: 12 }}
+                                    className="object-contain h-12 w-12 mb-1"
+                                />
+                                <p className="text-[0.7rem] lg:text-[1.2rem] text-blue-950 font-jSB mt-2 text-center px-1">
+                                    {item.technologyName}
+                                </p>
+                            </div>
+                        </motion.div>
+                    ))}
                 </div>
             </section>
 
-            {/* TECH GRID */}
-            <section className='w-screen flex flex-row justify-center items-center flex-wrap mt-10'>
-                <div className="flex px-5 justify-center items-center w-full transition-all duration-300">
-                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-6 gap-7">
-                        {Technologies.map((item, index) => (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0, scale: 0.9 }}
-                                whileInView={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.4, delay: index * 0.03, ease: 'easeOut' }}
-                                viewport={{ once: true }}
-                                onClick={() => handleTechClick(item.id)}
-                                whileHover={{ scale: 1.05 }}
-                                className="group cursor-pointer relative rounded-2xl p-[2px] bg-gradient-to-br from-orange-300 via-yellow-100 to-white hover:from-orange-400 hover:to-white shadow-md hover:shadow-xl transition-all duration-300"
-                            >
-                                <div className="bg-white rounded-2xl flex flex-col items-center justify-center w-[6rem] h-[6rem] lg:w-[10rem] lg:h-[10rem] overflow-hidden relative transition-all duration-300 group-hover:ring-2 group-hover:ring-orange-400">
-                                    <motion.img
-                                        src={item.technologyPic}
-                                        whileHover={{ scale: 1.15, rotate: 5 }}
-                                        transition={{ type: 'spring', stiffness: 300, damping: 12 }}
-                                        className="object-contain h-12 w-12 sm:h-18 sm:w-18 mb-1"
-                                    />
-                                    <p className="text-[0.7rem] lg:text-[1.2rem] text-blue-950 font-jSB mt-2 text-center px-1 break-words leading-tight group-hover:text-orange-500 transition-colors duration-200">
-                                        {item.technologyName}
-                                    </p>
-                                </div>
-                            </motion.div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* MAIN MODAL (Drawer) */}
+            {/* Main Modal */}
             {modalOpen && (
                 <>
-                    <div className="fixed right-0 inset-0 bg-black/40 backdrop-blur-sm z-[9998]" onClick={() => setModalOpen(false)} />
-                    <div
-                        className="fixed top-12 right-0 md:top-0 inset-0 z-[9999] flex flex-col bg-white w-full sm:w-[90%] md:w-[70%] lg:w-[50%] max-h-screen rounded-t-lg md:rounded-xl shadow-xl overflow-hidden"
-                        ref={modalRef}
+                    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm z-[9998]" onClick={() => setModalOpen(false)} />
+                    <div ref={modalRef}
+                        className="fixed top-0 right-0 z-[9999] w-full sm:w-[90%] md:w-[70%] lg:w-[50%] max-h-screen bg-white rounded-l-lg shadow-xl flex flex-col overflow-hidden"
                     >
-                        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200">
+                        {/* Header */}
+                        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-200 flex-shrink-0">
                             <h2 className="text-xl font-jr text-blue-900" ref={modalTitleRef}>
                                 {modalData?.technologyName || "Technology Details"}
                             </h2>
-                            <button onClick={() => setModalOpen(false)} className="text-gray-500 hover:text-black transition">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <button onClick={() => setModalOpen(false)} className="text-gray-500 hover:text-black">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 24 24" stroke="currentColor">
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                 </svg>
                             </button>
                         </div>
 
-                        {/* Content Section */}
-                        <div ref={modalDescRef} className="overflow-y-auto p-6 h-full relative">
-                            {/* Modal Content */}
+                        {/* Content */}
+                        <div
+                            ref={modalDescRef}
+                            className="overflow-y-auto flex-1 p-6"
+                            onWheel={(e) => e.stopPropagation()}
+                        >
                             {modalData ? (
                                 <>
                                     <div
-                                        className="prose prose-sky font-jl max-w-full mb-6 prose-p:text-blue-950 prose-headings:text-orange-600"
+                                        className="prose prose-sky max-w-full mb-6 prose-p:text-blue-950 prose-headings:text-orange-600"
                                         dangerouslySetInnerHTML={{ __html: modalData.description }}
                                     />
                                     <div className="space-y-6" ref={(el) => (topicRefs.current = el ? Array.from(el.children) : [])}>
-                                        {modalData.topics?.length > 0 ? (
-                                            modalData.topics.map((topic, index) => (
-                                                <div key={index} className="bg-orange-50 border border-orange-200 rounded-xl p-4 shadow-sm">
-                                                    <h3
-                                                        onClick={() => {
+                                        {modalData.topics?.map((topic, index) => (
+                                            <div key={index} className="bg-orange-50 border border-orange-200 rounded-xl p-4">
+                                                <h3
+                                                    onClick={() => {
+                                                        setNestedModalData({
+                                                            title: topic.topicTitle,
+                                                            description: topic.explanation,
+                                                        });
+                                                        setNestedModalOpen(true);
+                                                    }}
+                                                    className="text-lg font-jl text-orange-700 mb-2 cursor-pointer hover:underline"
+                                                >
+                                                    {topic.topicTitle}
+                                                </h3>
+                                                <ul className="list-disc list-inside text-sm text-blue-900">
+                                                    {topic.subTopics.length > 0 ? topic.subTopics.map((sub, idx) => (
+                                                        <li key={idx} onClick={() => {
                                                             setNestedModalData({
-                                                                title: topic.topicTitle,
-                                                                description: topic?.explanation || 'This topic has no description.',
+                                                                title: sub.subTopic,
+                                                                description: sub.description,
                                                             });
                                                             setNestedModalOpen(true);
-                                                        }}
-                                                        className="text-lg font-jl text-orange-700 mb-2 cursor-pointer hover:underline"
-                                                    >
-                                                        {topic.topicTitle}
-                                                    </h3>
-
-                                                    <ul className="list-disc list-inside space-y-1 text-blue-900 text-sm">
-                                                        {topic.subTopics?.length > 0 ? (
-                                                            topic.subTopics.map((sub, idx) => (
-                                                                <li
-                                                                    key={idx}
-                                                                    onClick={() => {
-                                                                        setNestedModalData({
-                                                                            title: sub.subTopic || sub,
-                                                                            description: sub.description || 'No subtopic details available.',
-                                                                        });
-                                                                        setNestedModalOpen(true);
-                                                                    }}
-                                                                    className="cursor-pointer hover:underline"
-                                                                >
-                                                                    {sub.subTopic || sub}
-                                                                </li>
-                                                            ))
-                                                        ) : (
-                                                            <li className="italic text-sky-600">No subtopics available</li>
-                                                        )}
-                                                    </ul>
-                                                </div>
-                                            ))
-                                        ) : (
-                                            <p className="text-sm text-sky-700">No topics found.</p>
-                                        )}
+                                                        }} className="cursor-pointer hover:underline">
+                                                            {sub.subTopic}
+                                                        </li>
+                                                    )) : (
+                                                        <li className="italic text-sky-600">No subtopics available</li>
+                                                    )}
+                                                </ul>
+                                            </div>
+                                        ))}
                                     </div>
                                 </>
                             ) : (
@@ -310,28 +275,12 @@ function Technology() {
                                     <p className="text-lg font-jl">Loading...</p>
                                 </div>
                             )}
-
                         </div>
-
-                        {/* Fixed Scroll Buttons (Up/Down) */}
-                        {/* <div className="fixed bottom-8 left-1/4 transform -translate-x-1/2 z-[10001] flex justify-center gap-6">
-                            <button onClick={() => handleScroll('up')} aria-label="Scroll Up" className="bg-orange-500 text-white p-2 rounded-full shadow-md hover:bg-orange-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                                </svg>
-                            </button>
-                            <button onClick={() => handleScroll('down')} aria-label="Scroll Down" className="bg-orange-600 text-white p-2 rounded-full shadow-md hover:bg-orange-700">
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                        </div> */}
                     </div>
                 </>
             )}
 
-
-            {/* NESTED MODAL */}
+            {/* Nested Modal */}
             {nestedModalOpen && (
                 <>
                     <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[10000]" />
@@ -343,17 +292,12 @@ function Technology() {
                             <button
                                 onClick={() => setNestedModalOpen(false)}
                                 className="absolute top-4 right-4 text-gray-600 hover:text-black"
-                                aria-label="Close nested modal"
                             >
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                </svg>
+                                ✕
                             </button>
-
                             <h2 className="text-xl font-jSB text-orange-600 mb-4">
                                 {nestedModalData?.title || 'Details'}
                             </h2>
-
                             <div
                                 className="prose prose-sky max-w-full prose-p:text-blue-900"
                                 dangerouslySetInnerHTML={{ __html: nestedModalData?.description || 'No description available.' }}

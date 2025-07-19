@@ -113,13 +113,13 @@ export function TimelineDemo() {
                     </p>
                     <div className="grid grid-cols-2 gap-4">
                         <img
-                            src="https://t4.ftcdn.net/jpg/12/13/74/35/360_F_1213743558_NMlfFuM7xbrO5Xqak7YkCB22q1EXXoEu.jpg"
+                            src="https://cdn.prod.website-files.com/652d2475f39e846f2116f071/6540dd798e2467fe892126d9_6539099ff6375f401d8e5120_people-office-analyzing-checking.webp"
                             alt="Path to full time employment 1"
                             width={500}
                             height={500}
                             className="h-20  w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60" />
                         <img
-                            src="https://media.istockphoto.com/id/1480454649/vector/concept-of-challenges-to-overcome-difficulties-hurdles-or-business-problems-thinking-of.jpg?s=612x612&w=0&k=20&c=4FFIv-gc4w5FoTmlgNZpc7V9XObKM9O5r9vzIV6QhGs="
+                            src="https://res.cloudinary.com/highereducation/images/c_fill,f_auto,fl_lossy,q_auto,g_center,h_512/v1659632011/BestColleges.com/developers-working-on-computer_44097a2b44/developers-working-on-computer_44097a2b44.jpg"
                             alt="Path to full time employment 2"
                             width={500}
                             height={500}
@@ -138,13 +138,13 @@ export function TimelineDemo() {
                     </p>
                     <div className="grid grid-cols-2 gap-4">
                         <img
-                            src="https://blogimage.vantagecircle.com/content/images/2020/10/Employee-Rewards-and-Recognition_Chapter2.png"
+                            src="https://www.crewhu.com/hubfs/employee-rewards-recognition.jpg"
                             alt="Recognition and rewards 1"
                             width={500}
                             height={500}
                             className="h-20  w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60" />
                         <img
-                            src="https://blogimage.vantagecircle.com/content/images/2020/10/Employee-Rewards-and-Recognition_Chapter5.png"
+                            src="https://imageio.forbes.com/specials-images/imageserve/62602bba96f40df576fc46ac/Employee-recognition-is-more-crucial-than-ever-/960x0.jpg?format=jpg&width=960"
                             alt="Recognition and rewards 2"
                             width={500}
                             height={500}
