@@ -312,19 +312,20 @@ function Technology() {
                                 </div>
                             )}
 
-                            {/* Scroll Buttons (Up/Down) */}
-                            <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-[10001] flex justify-center gap-6">
-                                <button onClick={() => handleScroll('up')} aria-label="Scroll Up" className="bg-orange-500 text-white p-2 rounded-full shadow-md hover:bg-orange-700">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                                    </svg>
-                                </button>
-                                <button onClick={() => handleScroll('down')} aria-label="Scroll Down" className="bg-orange-600 text-white p-2 rounded-full shadow-md hover:bg-orange-700">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                </button>
-                            </div>
+                        </div>
+
+                        {/* Fixed Scroll Buttons (Up/Down) */}
+                        <div className="fixed bottom-8 left-1/4 transform -translate-x-1/2 z-[10001] flex justify-center gap-6">
+                            <button onClick={() => handleScroll('up')} aria-label="Scroll Up" className="bg-orange-500 text-white p-2 rounded-full shadow-md hover:bg-orange-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
+                                </svg>
+                            </button>
+                            <button onClick={() => handleScroll('down')} aria-label="Scroll Down" className="bg-orange-600 text-white p-2 rounded-full shadow-md hover:bg-orange-700">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
                 </>
