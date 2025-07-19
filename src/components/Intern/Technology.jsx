@@ -313,14 +313,14 @@ function Technology() {
                             )}
 
                             {/* Scroll Buttons (Up/Down) */}
-                            <div className="flex justify-center gap-6 py-2 border-t border-gray-200 absolute bottom-4 left-1/2 transform -translate-x-1/2 z-50">
-                                <button onClick={() => handleScroll('up')} aria-label="Scroll Up">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700 hover:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <div className="fixed bottom-8 left-1/2 transform -translate-x-1/2 z-[10001] flex justify-center gap-6">
+                                <button onClick={() => handleScroll('up')} aria-label="Scroll Up" className="bg-orange-500 text-white p-2 rounded-full shadow-md hover:bg-orange-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
                                     </svg>
                                 </button>
-                                <button onClick={() => handleScroll('down')} aria-label="Scroll Down">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-gray-700 hover:text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <button onClick={() => handleScroll('down')} aria-label="Scroll Down" className="bg-orange-600 text-white p-2 rounded-full shadow-md hover:bg-orange-700">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                     </svg>
                                 </button>
