@@ -76,7 +76,7 @@ function Contact() {
         <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
           <NavbarDemo />
         </div>
-
+        <AuthFloatingButtons />
       </div>
 
       {/* Contact & Globe Section */}

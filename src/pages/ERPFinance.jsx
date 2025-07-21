@@ -154,6 +154,7 @@ function ERPFinance() {
         </div>
         <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
           <NavbarDemo />
+          <AuthFloatingButtons />
         </div>
 
         {/* Hero: animated TextPressure */}

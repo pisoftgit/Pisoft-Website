@@ -136,6 +136,7 @@ export default function Internship() {
       {/* benefits */}
       <section className='w-screen'>
         <TimelineDemo />
+        <AuthFloatingButtons />
       </section>
 
 
