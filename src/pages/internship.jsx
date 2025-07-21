@@ -13,6 +13,7 @@ import CountUp from '../components/Intern/counter'
 import { TimelineDemo } from '../components/Intern/timelineDemo'
 import { NavbarDemo } from '../components/navbar/Navbar2'
 import Technology from '../components/Intern/Technology'
+import AuthFloatingButtons from '../components/AuthFloatingButtons'
 
 
 gsap.registerPlugin(ScrollTrigger)

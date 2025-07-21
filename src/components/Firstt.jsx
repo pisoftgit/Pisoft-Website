@@ -20,6 +20,7 @@ import BlurText from "./BlurText";
 // import { NavbarDemo } from "./navbar/Navbar";
 import { InfiniteMovingCards } from "./Intern/infiniteCards";
 import { NavbarDemo } from "./navbar/Navbar2";
+import AuthFloatingButtons from "./AuthFloatingButtons";
 
 
 

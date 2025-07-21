@@ -17,6 +17,7 @@ import Threads from '../components/threads'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useEffect } from 'react';
 import { NavbarDemo } from '../components/navbar/Navbar2';
+import AuthFloatingButtons from '../components/AuthFloatingButtons';
 
 
 

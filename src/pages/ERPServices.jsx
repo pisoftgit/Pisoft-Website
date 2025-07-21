@@ -17,6 +17,7 @@ import { ContainerScroll } from '../components/conatinerScroll';
 import ClickSpark from '../components/ClickSpark';
 import Threads from '../components/threads';
 import { NavbarDemo } from '../components/navbar/Navbar2';
+import AuthFloatingButtons from '../components/AuthFloatingButtons';
 
 
 

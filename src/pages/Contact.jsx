@@ -7,6 +7,7 @@ import { World } from "../components/Globe";
 import Footer from "../components/Footer";
 import { FiMail, FiInfo } from "react-icons/fi";
 import { NavbarDemo } from "../components/navbar/Navbar2";
+import AuthFloatingButtons from "../components/AuthFloatingButtons";
 
 function Contact() {
   const globeConfig = {
