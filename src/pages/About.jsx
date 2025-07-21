@@ -203,10 +203,10 @@ function About() {
                   delay={200}
                   animateBy="words"
                   direction="top"
-                  className="mt-16 sm:mt-20 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-orange-400 tracking-wider"
+                  className="mt-16 sm:mt-20 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-950 tracking-wider"
                 />
                <div
-                  className="font-jl text-base [text-align:justify] leading-relaxed  sm:text-sm md:text-md lg:text-xl"
+                  className="font-jSB text-base [text-align:justify] leading-relaxed  sm:text-sm md:text-md lg:text-xl"
                 >
                   {Visions}
                 </div>
@@ -228,10 +228,10 @@ function About() {
                   delay={200}
                   animateBy="words"
                   direction="top"
-                  className="mt-16 sm:mt-20 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-orange-400 tracking-wider"
+                  className="mt-16 sm:mt-20 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-950 tracking-wider"
                 />
                 <div
-                  className="font-jl text-base [text-align:justify] leading-relaxed  sm:text-sm md:text-md lg:text-xl"
+                  className="font-jSB text-base [text-align:justify] leading-relaxed  sm:text-sm md:text-md lg:text-xl"
                 //   dangerouslySetInnerHTML={{ __html: Missions }}
                 // />
                 >
