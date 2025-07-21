@@ -8,6 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Stepp from "../components/About/Stepp";
 import Footer from "../components/Footer";
 import { NavbarDemo } from "../components/navbar/Navbar2";
+import AuthFloatingButtons from "../components/AuthFloatingButtons";
 
 function About() {
   const aboutSectionRef = useRef(null);
@@ -117,6 +118,8 @@ function About() {
           <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
             <NavbarDemo />
           </div>
+          
+          <AuthFloatingButtons />
 
 
           {/* === About Section === */}
@@ -194,7 +197,7 @@ function About() {
           <section className="w-screen mb-20 flex flex-col space-y-12 sm:space-y-0 text-center overflow-hidden pr-6 sm:pr-8 md:pr-12">
             {/* Vision Section */}
             <div className="w-full flex flex-col md:flex-row items-center justify-center md:space-y-0 md:space-x-8">
-              <div className="md:w-2/3 text-center md:text-left">
+              <div id="our-vision" className="md:w-2/3 text-center md:text-left">
                 <BlurText
                   text="OUR VISION"
                   delay={200}
@@ -219,7 +222,7 @@ function About() {
 
             {/* Mission Section */}
             <div className="w-full flex flex-col md:flex-row-reverse items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
-              <div className="md:w-2/3 text-center md:text-left">
+              <div id="our-mission" className="md:w-2/3 text-center md:text-left">
                 <BlurText
                   text="OUR MISSION"
                   delay={200}

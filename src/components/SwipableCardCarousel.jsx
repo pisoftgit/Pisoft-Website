@@ -39,10 +39,10 @@ const cards = [
 
 
 const hoverStyles = [
-  "bg-sky-200 text-black border-sky-200",
-  "bg-orange-300 text-black border-orange-300",
-  "bg-sky-200 text-black border-sky-200",
-  "bg-orange-300 text-black border-orange-300",
+  "bg-orange-400 text-black border-orange-300",
+  "bg-orange-400 text-black border-orange-300",
+  "bg-orange-400 text-black border-orange-300",
+  "bg-orange-400 text-black border-orange-300",
 ];
 
 export default function SwipableCardCarousel() {
@@ -94,10 +94,10 @@ export default function SwipableCardCarousel() {
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
         breakpoints={{
-          320: { slidesPerView: 1.2, spaceBetween: 10 },
-          640: { slidesPerView: 2, spaceBetween: 15 },
-          768: { slidesPerView: 2.5, spaceBetween: 20 },
-          1024: { slidesPerView: 3, spaceBetween: 30 },
+          320: { slidesPerView: 2.1, spaceBetween: 10 },
+          640: { slidesPerView: 3, spaceBetween: 15 },
+          768: { slidesPerView: 3.5, spaceBetween: 20 },
+          1024: { slidesPerView: 4, spaceBetween: 30 },
         }}
       >
         {cards.map((card, index) => (
@@ -105,23 +105,23 @@ export default function SwipableCardCarousel() {
             key={index}
             style={{
               height: "auto",
-              width: "250px",
+              width: "100px",
             }}
           >
             <motion.div
               whileHover={{ scale: 1.03 }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
-              className={`relative border-2 border-orange-300 group rounded-[1.5rem] sm:rounded-[2rem] p-4 sm:p-6 md:p-2 shadow-md transition-all duration-300 flex flex-col justify-between h-full overflow-hidden ${hoveredIndex === index
+              className={`relative group rounded-[1.5rem] sm:rounded-[2rem] p-4 sm:p-6 md:p-2 shadow-md transition-all duration-300 flex flex-col justify-between h-full w-full overflow-hidden ${hoveredIndex === index
                 ? hoverStyles[index % hoverStyles.length]
-                : "bg-white text-black"
+                : "bg-blue-800 text-white"
                 }`}
             >
               <div className="flex flex-col justify-between h-full pl-5 pr-5">
                 <div>
                   <p className={`inline-flex items-center mb-3 px-4 py-2 text-sm font-jSB rounded-full transition-all duration-300 shadow-md self-start ${hoveredIndex === index
                         ? 'bg-white text-black'
-                        : 'bg-blue-200 text-black'
+                        : 'bg-orange-400 text-white'
                       } hover:scale-110`}>
                     {card.time}
                   </p>
@@ -136,7 +136,7 @@ export default function SwipableCardCarousel() {
                     href={card.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`mt-6 inline-flex items-center px-4 py-2 text-sm font-jSB rounded-full transition-all duration-300 shadow-md self-start ${hoveredIndex === index
+                    className={`mt-6 inline-flex items-center px-4 py-2 text-sm font-jS rounded-full transition-all duration-300 shadow-md self-start ${hoveredIndex === index
                         ? 'bg-white text-black'
                         : 'bg-orange-400 text-white'
                       } hover:scale-105`}

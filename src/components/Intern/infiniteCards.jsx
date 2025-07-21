@@ -3,19 +3,15 @@
 import { cn } from "../../lib/util";
 import React, { useEffect, useState } from "react";
 
-
 export const InfiniteMovingCards = ({
   items,
   direction = "left",
   speed = "fast",
   pauseOnHover = true,
-  className
+  className,
 }) => {
   const containerRef = React.useRef(null);
   const scrollerRef = React.useRef(null);
-  const [expandedIndex, setExpandedIndex] = useState(null);
-
-
   const [start, setStart] = useState(false);
 
   useEffect(() => {
@@ -25,14 +21,10 @@ export const InfiniteMovingCards = ({
   function addAnimation() {
     if (containerRef.current && scrollerRef.current) {
       const scrollerContent = Array.from(scrollerRef.current.children);
-
       scrollerContent.forEach((item) => {
         const duplicatedItem = item.cloneNode(true);
-        if (scrollerRef.current) {
-          scrollerRef.current.appendChild(duplicatedItem);
-        }
+        scrollerRef.current.appendChild(duplicatedItem);
       });
-
       getDirection();
       getSpeed();
       setStart(true);
@@ -51,9 +43,9 @@ export const InfiniteMovingCards = ({
   const getSpeed = () => {
     if (containerRef.current) {
       const speedMap = {
-        fast: "20s",
+        fast: "35s",
         normal: "40s",
-        slow: "60s"
+        slow: "45s",
       };
       containerRef.current.style.setProperty(
         "--animation-duration",
@@ -66,73 +58,44 @@ export const InfiniteMovingCards = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20 max-w-screen overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_10%,white_90%,transparent)]",
+        "scroller relative z-10 max-w-screen overflow-hidden py-8 [mask-image:linear-gradient(to_right,transparent,white_5%,white_95%,transparent)]",
         className
       )}
     >
       <ul
         ref={scrollerRef}
         className={cn(
-          "flex w-max min-w-full shrink-0 flex-nowrap gap-4 py-4",
+          "flex w-max min-w-full shrink-0 flex-nowrap gap-6 px-6",
           start && "animate-scroll",
           pauseOnHover && "hover:[animation-play-state:paused]"
         )}
       >
-        {items.map((item, idx) => (
+        {items.map((item) => (
           <li
-            className="relative w-[350px] max-w-full shrink-0 rounded-2xl border border-b-0 border-gray-900 bg-[linear-gradient(180deg,#d0f0ff,#ffe0cc)] px-8 py-6 md:w-[430px] dark:border-zinc-900 shadow-xl overflow-hidden"
-            key={item.name}
+            key={item.id || item.name}
+            className="relative w-[320px] max-w-full shrink-0 rounded-xl bg-[#183580] px-6 py-5 md:w-[400px] shadow-md border border-gray-200 transition-transform duration-300 hover:scale-105 hover:bg-[#e38724]"
           >
-            <blockquote className="relative z-10 h-full flex flex-col justify-between">
-              <p className="relative z-20 text-sm md:text-lg lg:text-xl leading-relaxed font-jSB text-blue-950 dark:text-blue-950">
-                {expandedIndex === idx ? (
-                  <>
-                    “{item.quote}”{" "}
-                    {item.quote.length > 150 && (
-                      <button
-                        onClick={() => setExpandedIndex(null)}
-                        className="text-sm text-blue-900 underline hover:text-blue-900"
-                      >
-                        Read less
-                      </button>
-                    )}
-                  </>
-                ) : (
-                  <>
-                    “{item.quote.slice(0, 200).trim()}... ”{" "}
-                    <button
-                      onClick={() => setExpandedIndex(idx)}
-                      className="text-sm text-blue-900 underline hover:text-blue-900"
-                    >
-                      Read more
-                    </button>
-                  </>
-                )}
+            <blockquote className="flex flex-col justify-between h-full">
+              <p className="text-white text-base md:text-lg font-jS leading-relaxed mb-4">
+                “{item.quote.slice(0, 160).trim()}...”{" "}
               </p>
-
-
-              <div className="relative z-20 flex flex-row items-center justify-between">
-                <div className="flex flex-col gap-1">
-                  <span className="text-sm sm:text-base md:text-mf lg:text-lg leading-[1.6] font-semibold text-orange-500 dark:text-orange-600">
-                    {item.name}
+              <a
+                href={`/testimonials/${item.id || item.slug}`}
+                className="text-sm text-zinc-50 hover:underline"
+              >
+                Read full feedback →
+              </a>
+              <div className="mt-6 border-t border-gray-200 pt-4">
+                <span className="block font-semibold text-white text-md">
+                  {item.name}
+                </span>
+                {item.rating && (
+                  <span className="block text-zinc-50 text-md">
+                    ⭐ {item.rating}/5
                   </span>
-                  <span className="text-sm sm:text-base md:text-mf lg:text-lg leading-[1.6] font-bold text-blue-800 dark:text-blue-900">
-                    {item.rating ? `⭐ ${item.rating}/5` : ""}
-                  </span>
-
-                </div>
-                {item.image && (
-                  <img
-                    src={item.image}
-                    alt={item.name}
-                    className="w-30 h-auto object-cover bg-no-repeat rounded-xl border-2 border-white shadow-md"
-                  />
                 )}
               </div>
             </blockquote>
-
-            {/* Decorative Background Glow */}
-            <div className="absolute inset-0 pointer-events-none -z-10 bg-gradient-to-br from-blue-200/20 via-transparent to-orange-100/30 blur-2xl opacity-40" />
           </li>
         ))}
       </ul>

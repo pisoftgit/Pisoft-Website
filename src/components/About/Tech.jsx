@@ -79,14 +79,14 @@ function Tech() {
               key={index}
               className="rounded-xl p-4 text-center transition transform hover:scale-[1.05] hover:shadow-lg duration-300 ease-in-out"
             >
-              <h3 className="text-xl font-jSB mb-5 text-orange-400">{category.title}</h3>
+              <h3 className="text-xl font-jSB mb-5 text-blue-950">{category.title}</h3>
               <div className="grid grid-cols-2 items-center justify-center">
                 {category.images.map((img, i) => (
                   <img
                     key={i}
                     src={`/${img}`}
                     alt={img.split('.')[0]}
-                    className="w-full h-25 object-contain bg-no-repeat rounded-md hover:scale-105 transition duration-200 ease-in-out flex items-center justify-center"
+                    className="w-full h-22 object-contain bg-no-repeat rounded-md hover:scale-105 transition duration-200 ease-in-out flex items-center justify-center"
                   />
                 ))}
               </div>
