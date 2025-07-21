@@ -46,7 +46,7 @@ export const NavBody = ({ children, className, visible }) => {
                 boxShadow: visible
                     ? "0 4px 8px rgba(85, 163, 221, 0.4)"
                     : "none",
-                backgroundColor: visible ? "rgba(208, 232, 255, 0.5)" : "transparent",
+                backgroundColor: visible ? "rgba(133, 186, 249, 0.3)" : "transparent",
                 width: visible ? "40%" : "100%",
                 y: visible ? 10 : 0,
             }}
@@ -146,7 +146,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
                                         initial={{ opacity: 0, y: -10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -10 }}
-                                        className="absolute left-0 mt-4 w-60 rounded-md bg-blue-100 backdrop-blur-xl shadow-md py-2 z-50 text-center"
+                                        className="absolute left-0 mt-4 w-60 rounded-md bg-white backdrop-blur-xl shadow-md py-2 z-50 text-center"
                                     >
                                         {item.children.map((child, childIdx) => (
                                             <a

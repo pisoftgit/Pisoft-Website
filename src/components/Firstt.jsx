@@ -384,9 +384,9 @@ export default function Firstt() {
         <section className="bg-white w-full justify-center items-center flex flex-row mt-15">
           <div className="w-full md:w-1/2 hidden lg:block">
             <img
-              src="https://t4.ftcdn.net/jpg/01/28/17/47/360_F_128174778_0XvhB1qi70yXNOPuUFzBNT85xKaWnVde.jpg"
-              alt="Descriptive Alt Text"
-              className="rounded-lg w-full h-1/2 object-cover"
+              src="https://thepracticalparanoid.com/wp-content/uploads/2018/09/Q-A-blue-3D100x628.jpg"
+              alt="FAQs"
+              className="rounded-lg w-full h-1/2 object-contain bg-no-repeat"
             />
           </div>
           <div className="w-full lg:w-1/2">

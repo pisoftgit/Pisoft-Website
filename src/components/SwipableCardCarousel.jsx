@@ -114,7 +114,7 @@ export default function SwipableCardCarousel() {
               onMouseLeave={() => setHoveredIndex(null)}
               className={`relative group rounded-[1.5rem] sm:rounded-[2rem] p-4 sm:p-6 md:p-2 shadow-md transition-all duration-300 flex flex-col justify-between h-full w-full overflow-hidden ${hoveredIndex === index
                 ? hoverStyles[index % hoverStyles.length]
-                : "bg-blue-800 text-white"
+                : "bg-[#183580] text-white"
                 }`}
             >
               <div className="flex flex-col justify-between h-full pl-5 pr-5">

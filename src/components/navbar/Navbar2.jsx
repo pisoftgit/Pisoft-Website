@@ -23,10 +23,6 @@ export function NavbarDemo() {
       ],
     },
     {
-      name: "Contact",
-      link: "/contact",
-    },
-    {
       name: "Internship",
       link: "/IntershipProgram",
     },
@@ -44,6 +40,10 @@ export function NavbarDemo() {
         { name: "Tours & Travels", link: "/ERPservices/TourTravels" },
         { name: "Services", link: "/ERPservices/Services" },
       ],
+    },
+    {
+      name: "Contact Us",
+      link: "/contact",
     },
   ];
 
