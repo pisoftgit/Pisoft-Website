@@ -37,10 +37,64 @@ function Tech() {
         </div>
       </div>
 
-      {/* Masonry Grid */}
-      <div className="w-full max-w-[1600px]">
-        <Masonry data={data} />
-      </div>
+      <section className="flex flex-col items-center min-h-auto w-screen">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full px-4">
+
+          {/* Category Cards */}
+          {[
+            {
+              title: 'Frontend Development',
+              images: ['17.png', '18.png', '19.png', '20.png'],
+            },
+            {
+              title: 'Backend Development',
+              images: ['17.png', '18.png', '19.png', '20.png'],
+            },
+            {
+              title: 'Databases',
+              images: ['17.png', '18.png', '19.png', '20.png'],
+            },
+            {
+              title: 'Mobile Development',
+              images: ['17.png', '18.png', '19.png', '20.png'],
+            },
+            {
+              title: 'Digital Marketing',
+              images: ['17.png', '18.png', '19.png', '20.png'],
+            },
+            {
+              title: 'DevOps',
+              images: ['17.png', '18.png', '19.png', '20.png'],
+            },
+            {
+              title: 'UI/UX Design',
+              images: ['17.png', '18.png', '19.png', '20.png'],
+            },
+            {
+              title: 'Cloud Platforms',
+              images: ['17.png', '18.png', '19.png', '20.png'],
+            }
+          ].map((category, index) => (
+            <div
+              key={index}
+              className="rounded-xl p-4 text-center transition transform hover:scale-[1.05] hover:shadow-lg duration-300 ease-in-out"
+            >
+              <h3 className="text-xl font-jSB mb-5 text-orange-400">{category.title}</h3>
+              <div className="grid grid-cols-2 items-center justify-center">
+                {category.images.map((img, i) => (
+                  <img
+                    key={i}
+                    src={`/${img}`}
+                    alt={img.split('.')[0]}
+                    className="w-full h-25 object-contain bg-no-repeat rounded-md hover:scale-105 transition duration-200 ease-in-out flex items-center justify-center"
+                  />
+                ))}
+              </div>
+            </div>
+          ))}
+
+        </div>
+      </section>
     </div>
   );
 }
