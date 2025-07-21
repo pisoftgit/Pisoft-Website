@@ -130,7 +130,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
                             {(isHovered || isActive) && (
                                 <motion.div
                                     layoutId="hovered"
-                                    className="absolute inset-0 h-full w-full rounded-full bg-[#FFE0B2] z-10"
+                                    className="absolute inset-0 h-full w-full rounded-full bg-[#f7c67c] z-10"
                                 />
                             )}
                             <span className="relative z-20">
