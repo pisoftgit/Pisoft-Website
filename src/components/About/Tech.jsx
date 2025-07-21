@@ -37,7 +37,7 @@ function Tech() {
         </div>
       </div>
 
-      <section className="flex flex-col items-center min-h-auto w-screen">
+      <section className="flex flex-col items-center min-h-auto w-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full px-4">
 
           {/* Category Cards */}
