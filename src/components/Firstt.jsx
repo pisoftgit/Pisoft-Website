@@ -270,12 +270,12 @@ export default function Firstt() {
                   ref={textRef}
                   className="font-bebas select-none"
                   x="50%"
-                  y="40%"  // Will override this with JS
+                  y="40%" 
                   dominantBaseline="middle"
                   textAnchor="middle"
                   fill="black"
                   style={{
-                    fontSize: '34vw',
+                    fontSize: '30vw',
                   }}
                 >
                   PISOFT
