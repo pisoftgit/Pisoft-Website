@@ -56,7 +56,7 @@ export const NavBody = ({ children, className, visible }) => {
                 damping: 50,
             }}
             style={{
-                minWidth: "1200px",
+                minWidth: "1000px",
             }}
             className={cn(
                 "relative z-[60] mx-auto hidden w-auto flex-row items-center justify-between self-start rounded-full px-6 lg:flex",
@@ -99,7 +99,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
         <motion.div
             onMouseLeave={() => setHovered(null)}
             className={cn(
-                "ml-35 absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-4 text-lg font-medium text-blue-900 transition duration-200 hover:text-blue-950 lg:flex lg:space-x-4",
+                "ml-40 absolute inset-0 hidden flex-1 flex-row items-center justify-center text-lg font-medium text-blue-900 transition duration-200 hover:text-blue-950 lg:flex ",
                 className
             )}
         >
@@ -125,7 +125,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
                                 setActiveIndex(idx);
                                 onItemClick && onItemClick(e);
                             }}
-                            className="relative px-6 py-2 text-xl cursor-pointer"
+                            className="relative px-4 py-2 text-xl cursor-pointer"
                         >
                             {(isHovered || isActive) && (
                                 <motion.div
