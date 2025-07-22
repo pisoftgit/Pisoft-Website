@@ -133,7 +133,7 @@ function About() {
                 delay={200}
                 animateBy="words"
                 direction="top"
-                className="mt-16 sm:mt-20 font-jB text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-gray-900 tracking-wider"
+                className="mt-16 sm:mt-20 font-jB text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-blue-950 tracking-wider"
               />
 
               <div className="mt-6 sm:mt-8 md:mt-10">
@@ -145,7 +145,7 @@ function About() {
                   className="font-jSB text-2xl sm:text-3xl md:text-4xl text-orange-400 tracking-wider"
                 />
 
-                <div className="font-jl text-base [text-align:justify] leading-relaxed sm:text-lg md:text-xl lg:text-2xl text-gray-800 tracking-wider mt-4 sm:mt-6">
+                <div className="font-jS text-base [text-align:justify] leading-relaxed sm:text-lg md:text-xl lg:text-2xl text-gray-800 tracking-wider mt-4 sm:mt-6">
                   {message
                     ? message.split('\n').map((line, index) => <p key={index}>{line}</p>)
                     : <p>Loading content...</p>
