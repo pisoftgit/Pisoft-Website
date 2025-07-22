@@ -118,7 +118,7 @@ function About() {
           <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
             <NavbarDemo />
           </div>
-          
+
           <AuthFloatingButtons />
 
 
@@ -175,6 +175,27 @@ function About() {
             <Tech />
           </section>
 
+          <section className="h-auto p-4 bg-white relative z-10 border-2 border-orange-400 py-8 px-15 ">
+            <div className="flex flex-row justify-around items-center gap-5">
+              <div className="text-center">
+                <div className="font-jr text-gray-500 text-sm sm:text-base md:text-lg">
+                  Get a Globally Recognized
+                </div>
+                <div className="font-jSB text-gray-900 text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-2">
+                  Certificates
+                </div>
+                <div className="font-jr text-gray-500 text-sm sm:text-base md:text-lg">
+                  after completion of your Course
+                </div>
+                <div className="grid sm:grid-col-1 grid-col-2 items-center justify-around">
+                    <div>get a certificate</div>
+                    <div>get 2 certificate</div>
+                </div>
+              </div>
+              <div>certificate image</div>
+            </div>
+          </section>
+
 
           {/* === Work Approach Section === */}
           <section className="h-auto p-4 bg-white relative z-10">
@@ -205,7 +226,7 @@ function About() {
                   direction="top"
                   className="mt-16 sm:mt-20 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-950 tracking-wider"
                 />
-               <div
+                <div
                   className="font-jSB text-base [text-align:justify] leading-relaxed  sm:text-sm md:text-md lg:text-xl"
                 >
                   {Visions}

@@ -59,7 +59,7 @@ export const NavBody = ({ children, className, visible }) => {
                 minWidth: "1200px",
             }}
             className={cn(
-                "relative z-[60] mx-auto hidden w-full flex-row items-center justify-between self-start rounded-full px-6 lg:flex",
+                "relative z-[60] mx-auto hidden w-auto flex-row items-center justify-between self-start rounded-full px-6 lg:flex",
                 className
             )}
         >
@@ -99,7 +99,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
         <motion.div
             onMouseLeave={() => setHovered(null)}
             className={cn(
-                "ml-30 absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-4 text-lg font-medium text-blue-900 transition duration-200 hover:text-blue-950 lg:flex lg:space-x-4",
+                "ml-35 absolute inset-0 hidden flex-1 flex-row items-center justify-center space-x-4 text-lg font-medium text-blue-900 transition duration-200 hover:text-blue-950 lg:flex lg:space-x-4",
                 className
             )}
         >

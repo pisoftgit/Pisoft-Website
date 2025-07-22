@@ -38,7 +38,7 @@ function Tech() {
       </div>
 
       <section className="flex flex-col items-center min-h-auto w-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full px-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-auto px-4">
 
           {/* Category Cards */}
           {[
@@ -52,15 +52,15 @@ function Tech() {
             },
             {
               title: 'Databases',
-              images: ['17.png', '18.png', '19.png', '20.png'],
+              images: ['8.png', '9.png', '10.png', '11.png'],
             },
             {
               title: 'Mobile Development',
-              images: ['17.png', '18.png', '19.png', '20.png'],
+              images: ['15.png', '16.png', '17.png', '18.png'],
             },
             {
               title: 'Digital Marketing',
-              images: ['17.png', '18.png', '19.png', '20.png'],
+              images: ['1.png', '2.png', '3.png', '4.png'],
             },
             {
               title: 'DevOps',
@@ -70,6 +70,16 @@ function Tech() {
               title: 'UI/UX Design',
               images: ['17.png', '18.png', '19.png', '20.png'],
             },
+            {
+              title: 'Cloud Platforms',
+              images: ['17.png', '18.png', '19.png', '20.png'],
+            }
+            ,
+            {
+              title: 'Cloud Platforms',
+              images: ['17.png', '18.png', '19.png', '20.png'],
+            }
+            ,
             {
               title: 'Cloud Platforms',
               images: ['17.png', '18.png', '19.png', '20.png'],
