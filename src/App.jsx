@@ -13,6 +13,7 @@ import ERPMedHealth from "./pages/ERPMed&Health"
 import ERPTourTravels from "./pages/ERPTourTravels"
 import Services from "./pages/ERPServices"
 import Internship from "./pages/internship"
+import { SidebarDemo } from "./components/Intern/ChoosenTechnology"
 
 
 function App() {
@@ -31,6 +32,8 @@ function App() {
      <Route path="/ERPservices/Medical&Healthcare" Component={ERPMedHealth}/>
      <Route path="/ERPservices/TourTravels" Component={ERPTourTravels}/>
      <Route path="/ERPservices/Services" Component={Services}/>
+     <Route path="/Alltechnologies" Component={SidebarDemo}/>
+    
   </Routes>
     </>
   )
