@@ -13,9 +13,14 @@ import AuthFloatingButtons from "../components/AuthFloatingButtons";
 function About() {
   const aboutSectionRef = useRef(null);
   const techSectionRef = useRef(null);
+
   const [showLanyard, setShowLanyard] = useState(true);
   const [message, setMessage] = useState(null);
+  const [Visions, setVisions] = useState("");
+  const [Missions, setMissions] = useState("");
+  const [showAuthButtons, setShowAuthButtons] = useState(true);
 
+  // === Scroll effect to hide/show Lanyard ===
   useEffect(() => {
     const handleScroll = () => {
       const aboutTop = aboutSectionRef.current.getBoundingClientRect().top;
@@ -26,20 +31,28 @@ function About() {
       } else {
         setShowLanyard(false);
       }
+
+      // Show/hide AuthFloatingButtons
+      if (window.scrollY > 100) {
+        setShowAuthButtons(false);
+      } else {
+        setShowAuthButtons(true);
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // === Fetch About Us ===
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://project.pisofterp.com/pipl/restworld/org/about-us/modes/OFFLINE");
+        const response = await fetch(
+          "https://project.pisofterp.com/pipl/restworld/org/about-us/modes/OFFLINE"
+        );
         if (!response.ok) throw new Error("Failed to fetch");
-
         const htmlContent = await response.text();
-
         setMessage(htmlContent);
       } catch (error) {
         console.error("Error fetching message:", error);
@@ -50,27 +63,24 @@ function About() {
     fetchData();
   }, []);
 
-
-
-  const [Visions, setVisions] = useState("")
-  const [Missions, setMissions] = useState("")
-
+  // === Fetch Vision ===
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://project.pisofterp.com/pipl/restworld/org/our-vision/modes/OFFLINE");
+        const response = await fetch(
+          "https://project.pisofterp.com/pipl/restworld/org/our-vision/modes/OFFLINE"
+        );
         if (!response.ok) throw new Error("Failed to fetch");
 
         const htmlContent = await response.text();
-
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlContent, "text/html");
-
-        doc.querySelectorAll("[style]").forEach((el) => el.removeAttribute("style"));
-
+        doc.querySelectorAll("[style]").forEach((el) =>
+          el.removeAttribute("style")
+        );
         setVisions(doc.body.innerHTML);
       } catch (error) {
-        console.error("Error fetching message:", error);
+        console.error("Error fetching vision:", error);
         setVisions("<p>Failed to load content.</p>");
       }
     };
@@ -78,22 +88,24 @@ function About() {
     fetchData();
   }, []);
 
+  // === Fetch Mission ===
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://project.pisofterp.com/pipl/restworld/org/our-mission/modes/OFFLINE");
+        const response = await fetch(
+          "https://project.pisofterp.com/pipl/restworld/org/our-mission/modes/OFFLINE"
+        );
         if (!response.ok) throw new Error("Failed to fetch");
 
         const htmlContent = await response.text();
-
         const parser = new DOMParser();
         const doc = parser.parseFromString(htmlContent, "text/html");
-
-        doc.querySelectorAll("[style]").forEach((el) => el.removeAttribute("style"));
-
+        doc.querySelectorAll("[style]").forEach((el) =>
+          el.removeAttribute("style")
+        );
         setMissions(doc.body.innerHTML);
       } catch (error) {
-        console.error("Error fetching message:", error);
+        console.error("Error fetching mission:", error);
         setMissions("<p>Failed to load content.</p>");
       }
     };
@@ -101,31 +113,41 @@ function About() {
     fetchData();
   }, []);
 
-
-
   return (
     <>
-      <main className="w-full overflow-hidden">
-        <div className="w-full flex flex-col bg-white p-4 sm:p-6 md:p-8 relative">
-          {/* Navbar */}
+      <main className="w-full overflow-hidden p-5">
+        <div className="w-full flex flex-col bg-white relative">
 
+          {/* === TOP NAVBAR WRAPPER === */}
+          <div className="fixed top-0 left-0 w-full z-50">
+            <AnimatePresence>
+              {showAuthButtons && (
+                <motion.div
+                  initial={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -50 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <AuthFloatingButtons />
+                </motion.div>
+              )}
+            </AnimatePresence>
+            <div className="sticky top-0 z-40">
+              <NavbarDemo />
+            </div>
+          </div>
+
+          {/* === Mobile navbar */}
           <div className="fixed left-5 top-2 z-50000 lg:hidden">
             <Navbar />
           </div>
           <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
             <Example />
           </div>
-          <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
-            <NavbarDemo />
-          </div>
-
-          <AuthFloatingButtons />
-
 
           {/* === About Section === */}
           <section
             ref={aboutSectionRef}
-            className="min-h-auto flex flex-col md:flex-row items-start relative z-10"
+            className="min-h-auto flex flex-col md:flex-row items-start relative z-10  pt-13"
           >
             <div className="w-full md:w-2/3 lg:w-[75%] z-10">
               <BlurText
@@ -133,9 +155,8 @@ function About() {
                 delay={200}
                 animateBy="words"
                 direction="top"
-                className="mt-16 sm:mt-20 font-jB text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-blue-950 tracking-wider"
+                className="mt-16 font-jB text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-blue-950 tracking-wider"
               />
-
               <div className="mt-6 sm:mt-8 md:mt-10">
                 <BlurText
                   text="About Us"
@@ -144,21 +165,23 @@ function About() {
                   direction="top"
                   className="font-jSB text-2xl sm:text-3xl md:text-4xl text-orange-400 tracking-wider"
                 />
-
                 <div className="font-jS text-base [text-align:justify] leading-relaxed sm:text-lg md:text-xl lg:text-2xl text-gray-800 tracking-wider mt-4 sm:mt-6">
-                  {message
-                    ? message.split('\n').map((line, index) => <p key={index}>{line}</p>)
-                    : <p>Loading content...</p>
-                  }
+                  {message ? (
+                    message.split("\n").map((line, index) => (
+                      <p key={index}>{line}</p>
+                    ))
+                  ) : (
+                    <p>Loading content...</p>
+                  )}
                 </div>
               </div>
             </div>
 
-            {/* === AnimatePresence + Framer Motion for smooth enter/exit === */}
+            {/* Lanyard Animation */}
             <AnimatePresence>
               {showLanyard && (
                 <motion.div
-                  className="absolute min-h-auto bg-transparent right-0 top-0 w-full md:w-1/2 lg:w-1/3 z-0"
+                  className="absolute bg-transparent right-0 top-0 w-full md:w-1/2 lg:w-1/3 z-0"
                   initial={{ opacity: 0, y: -50 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 50 }}
@@ -171,10 +194,14 @@ function About() {
           </section>
 
           {/* === Tech Section === */}
-          <section ref={techSectionRef} className="min-h-[40vh] pt-30 bg-transparent relative z-10">
+          <section
+            ref={techSectionRef}
+            className="min-h-[40vh] pt-30 bg-transparent relative z-10"
+          >
             <Tech />
           </section>
 
+          {/* === Certificate Section === */}
           <section className="h-auto p-4 bg-white relative z-10 border-2 border-orange-400 py-8 px-15 ">
             <div className="flex flex-row justify-around items-center gap-5">
               <div className="text-center">
@@ -188,16 +215,15 @@ function About() {
                   after completion of your Course
                 </div>
                 <div className="grid sm:grid-col-1 grid-col-2 items-center justify-around">
-                    <div>get a certificate</div>
-                    <div>get 2 certificate</div>
+                  <div>get a certificate</div>
+                  <div>get 2 certificate</div>
                 </div>
               </div>
               <div>certificate image</div>
             </div>
           </section>
 
-
-          {/* === Work Approach Section === */}
+          {/* === Work Approach === */}
           <section className="h-auto p-4 bg-white relative z-10">
             <div className="text-center">
               <div className="font-jr text-gray-500 text-sm sm:text-base md:text-lg">
@@ -215,22 +241,22 @@ function About() {
             </div>
           </section>
 
+          {/* === Vision & Mission Section === */}
           <section className="w-screen mb-20 flex flex-col space-y-12 sm:space-y-0 text-center overflow-hidden pr-6 sm:pr-8 md:pr-12">
-            {/* Vision Section */}
-            <div className="w-full flex flex-col md:flex-row items-center justify-center md:space-y-0 md:space-x-8">
+            {/* Vision */}
+            <div className="w-full flex flex-col md:flex-row items-center justify-center md:space-x-8">
               <div id="our-vision" className="md:w-2/3 text-center md:text-left">
                 <BlurText
                   text="OUR VISION"
                   delay={200}
                   animateBy="words"
                   direction="top"
-                  className="mt-16 sm:mt-20 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-950 tracking-wider"
+                  className="mt-16 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-950 tracking-wider"
                 />
                 <div
-                  className="font-jSB text-base [text-align:justify] leading-relaxed  sm:text-sm md:text-md lg:text-xl"
-                >
-                  {Visions}
-                </div>
+                  className="font-jSB text-base [text-align:justify] leading-relaxed sm:text-sm md:text-md lg:text-xl"
+                  dangerouslySetInnerHTML={{ __html: Visions }}
+                />
               </div>
               <div className="md:w-1/3 justify-center hidden md:flex">
                 <img
@@ -241,23 +267,20 @@ function About() {
               </div>
             </div>
 
-            {/* Mission Section */}
-            <div className="w-full flex flex-col md:flex-row-reverse items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
+            {/* Mission */}
+            <div className="w-full flex flex-col md:flex-row-reverse items-center justify-center md:space-x-8">
               <div id="our-mission" className="md:w-2/3 text-center md:text-left">
                 <BlurText
                   text="OUR MISSION"
                   delay={200}
                   animateBy="words"
                   direction="top"
-                  className="mt-16 sm:mt-20 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-950 tracking-wider"
+                  className="mt-16 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-950 tracking-wider"
                 />
                 <div
-                  className="font-jSB text-base [text-align:justify] leading-relaxed  sm:text-sm md:text-md lg:text-xl"
-                //   dangerouslySetInnerHTML={{ __html: Missions }}
-                // />
-                >
-                  {Missions}
-                </div>
+                  className="font-jSB text-base [text-align:justify] leading-relaxed sm:text-sm md:text-md lg:text-xl"
+                  dangerouslySetInnerHTML={{ __html: Missions }}
+                />
               </div>
               <div className="md:w-1/3 justify-center hidden md:flex">
                 <img
@@ -269,14 +292,13 @@ function About() {
             </div>
           </section>
 
-
         </div>
-
-        {/* === Footer === */}
-        <footer className="relative bg-white z-10">
-          <Footer />
-        </footer>
       </main>
+
+      {/* === Footer === */}
+      <footer className="relative bg-white z-10">
+        <Footer />
+      </footer>
     </>
   );
 }

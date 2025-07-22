@@ -13,6 +13,7 @@ import CountUp from '../components/Intern/counter'
 import { TimelineDemo } from '../components/Intern/timelineDemo'
 import { NavbarDemo } from '../components/navbar/Navbar2'
 import Technology from '../components/Intern/Technology'
+import { motion, AnimatePresence } from "framer-motion";
 import AuthFloatingButtons from '../components/AuthFloatingButtons'
 
 
@@ -67,6 +68,22 @@ export default function Internship() {
     })
   }, [])
 
+  const [showAuthButtons, setShowAuthButtons] = useState(true);
+  
+    useEffect(() => {
+      const handleScroll = () => {
+        if (window.scrollY > 100) {
+          setShowAuthButtons(false);
+        } else {
+          setShowAuthButtons(true);
+        }
+      };
+  
+      window.addEventListener("scroll", handleScroll);
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+  
+
   return (
     <main className={`relative w-full overflow-clip`}>
 
@@ -82,10 +99,25 @@ export default function Internship() {
         <HeroText />
       </div>
 
+      <div className="fixed top-0 left-0 w-full z-50">
+        <AnimatePresence>
+          {showAuthButtons && (
+            <motion.div
+              initial={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.3 }}
+            >
+              <AuthFloatingButtons />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <div className="sticky top-0 z-40">
+          <NavbarDemo />
+        </div>
+      </div>
 
       {/* Text Reveal Section */}
       <section className='w-screen flex flex-row flex-wrap justify-start items-start bg-white'>
-        <div className="fixed top-0 left-0 w-full z-50 hidden md:block"><NavbarDemo /></div>
         <div className='lg:w-2/3 pl-4 pr-4 w-full mt-15'>
           <ScrollFloat
             animationDuration={1}
@@ -137,7 +169,6 @@ export default function Internship() {
       {/* benefits */}
       <section className='w-screen'>
         <TimelineDemo />
-        <AuthFloatingButtons />
       </section>
 
 

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import { Example } from '../components/Corn';
 import Footer from '../components/Footer';
@@ -13,57 +13,48 @@ import { LayoutGridDemo } from "../components/Education/EDGrid";
 import BlurText from '../components/BlurText';
 import ClickSpark from '../components/ClickSpark';
 import { ContainerScroll } from '../components/conatinerScroll';
-import Threads from '../components/threads'
+import Threads from '../components/threads';
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-import { useEffect } from 'react';
 import { NavbarDemo } from '../components/navbar/Navbar2';
 import AuthFloatingButtons from '../components/AuthFloatingButtons';
-
-
+import { motion, AnimatePresence } from "framer-motion";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// ✅ FIXED HOOK
+function useArrayRef() {
+  const ref = useRef([]);
+  const setRef = (el) => {
+    if (el && !ref.current.includes(el)) {
+      ref.current.push(el);
+    }
+  };
+  return [ref, setRef];
+}
+
 function ERPEducation() {
   const [isExampleOpen, setIsExampleOpen] = useState(false);
+  const [showAuthButtons, setShowAuthButtons] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const text =
-    "PisoftERP is an internet based web application that can be accessed throughout the organization or from any place just using a web browser. Following a rational approach, this system is designed for better interaction between students, teachers, parents & management.";
-
+  const text = "PisoftERP is an internet based web application that can be accessed throughout the organization or from any place just using a web browser. Following a rational approach, this system is designed for better interaction between students, teachers, parents & management.";
 
   const triggerRef = useRef(null);
   const sectionRefs = {
-    hero: useRef(null),
     type1: useRef(null),
     grid: useRef(null),
     type2: useRef(null),
     pointer: useRef(null),
   };
 
-  function useArrayRef() {
-    const r = useRef([]);
-    r.current = [];
-    return [r, (el) => el && r.current.push(el)];
-  }
   const [letterRef, setLetterRef] = useArrayRef();
   const textRef = useRef(null);
+  const imageRef = useRef(null);
 
+  // ✅ GSAP Animation
   useGSAP(() => {
-    // Animate TextPressure on menu toggle
     gsap.set(textRef.current, { opacity: 1, y: 0 });
-  }, []);
 
-
-  React.useEffect(() => {
-    gsap.to(textRef.current, {
-      opacity: isExampleOpen ? 0 : 1,
-      y: isExampleOpen ? -40 : 0,
-      duration: 0.4,
-      ease: 'power2.out',
-      pointerEvents: isExampleOpen ? 'none' : 'auto',
-    });
-  }, [isExampleOpen]);
-
-  useGSAP(() => {
     gsap.from(letterRef.current, {
       scrollTrigger: {
         trigger: triggerRef.current,
@@ -76,25 +67,21 @@ function ERPEducation() {
       ease: "power3.out",
     });
 
-    // Generic section slide-up animation
-    Object.values(sectionRefs).forEach((r) => {
-      if (!r.current) return;
-      gsap.from(r.current, {
-        scrollTrigger: {
-          trigger: r.current,
-          start: "top 85%",
-        },
-        opacity: 0,
-        y: 60,
-        duration: 0.8,
-        ease: "power3.out",
-      });
+    Object.values(sectionRefs).forEach((ref) => {
+      if (ref.current) {
+        gsap.from(ref.current, {
+          scrollTrigger: {
+            trigger: ref.current,
+            start: "top 85%",
+          },
+          opacity: 0,
+          y: 60,
+          duration: 0.8,
+          ease: "power3.out",
+        });
+      }
     });
-  }, []);
 
-  const imageRef = useRef(null);
-
-  useGSAP(() => {
     if (imageRef.current) {
       gsap.from(imageRef.current, {
         scrollTrigger: {
@@ -110,23 +97,34 @@ function ERPEducation() {
     }
   }, []);
 
-  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
+    gsap.to(textRef.current, {
+      opacity: isExampleOpen ? 0 : 1,
+      y: isExampleOpen ? -40 : 0,
+      duration: 0.4,
+      ease: 'power2.out',
+      pointerEvents: isExampleOpen ? 'none' : 'auto',
+    });
+  }, [isExampleOpen]);
+
+  // ✅ Floating Auth button toggle
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowAuthButtons(window.scrollY <= 100);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // ✅ Preloader timeout
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 3000);
     return () => clearTimeout(timer);
   }, []);
 
   if (isLoading) {
     return (
       <div className="w-full h-screen flex justify-center items-center bg-white z-50 fixed top-0 left-0">
-        {/* <DotLottieReact
-              src="https://lottie.host/18f588f2-3aa0-458d-a140-52218fd224fa/g0AlX8iQRa.lottie"
-              loop
-              autoplay
-              className='text-sm'
-            /> */}
         <DotLottieReact
           src="https://lottie.host/e4dceebb-728f-458e-9648-fee916f32948/utxxsMf1tH.lottie"
           loop
@@ -137,32 +135,38 @@ function ERPEducation() {
     );
   }
 
-
   return (
-    <div className="bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 w-full overflow-x-hidden">
+    <div className="bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 w-full overflow-x-hidden relative">
+      <ClickSpark sparkColor='black' sparkSize={20} sparkRadius={15} sparkCount={8} duration={400}>
 
-      <ClickSpark
-        sparkColor='black'
-        sparkSize={20}
-        sparkRadius={15}
-        sparkCount={8}
-        duration={400}
-      >
+        {/* Auth buttons & Navbar */}
+         <div className="fixed top-0 left-0 w-full z-50">
+          <AnimatePresence>
+            {showAuthButtons && (
+              <motion.div
+                initial={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -50 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AuthFloatingButtons />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div className="sticky top-0 z-40">
+            <NavbarDemo />
+          </div>
+        </div>
 
-        <div className="fixed left-5 top-2 z-50000 lg:hidden">
+        {/* Mobile Nav Icons */}
+        <div className="fixed left-5 top-2 z-50 lg:hidden">
           <Navbar />
         </div>
         <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
           <Example />
         </div>
-        <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
-          <NavbarDemo />
-          <AuthFloatingButtons />
-        </div>
-
 
         {/* Hero: animated TextPressure */}
-        <div className="absolute top-15 left-15 md:top-4 md:left-70 w-full flex items-center justify-center pl-4 text-center">
+          <div className="absolute top-20 left-15 md:top-4 md:left-80 w-full flex items-center justify-center pl-4 text-center">
           <TextPressure
             text=" ESME"
             flex
@@ -174,7 +178,7 @@ function ERPEducation() {
         </div>
 
         {/* Hero words */}
-        <div className="pt-20 md:pb-15 sm:pb-5 sm:px-6 md:px-12">
+        <div className="pt-30 md:pb-15 sm:pb-5 sm:px-6 md:px-12">
           <div className='flex flex-wrap w-full justify-center items-center text-center'>
             <BlurText
               text="EDUCATION SYSTEM MANAGEMENT ERP "

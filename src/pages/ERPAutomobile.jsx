@@ -19,6 +19,7 @@ import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 import { useEffect } from 'react';
 import { NavbarDemo } from '../components/navbar/Navbar2';
 import AuthFloatingButtons from '../components/AuthFloatingButtons';
+import { motion, AnimatePresence } from "framer-motion";
 
 
 
@@ -110,6 +111,21 @@ function ERPAutoMobile() {
       });
     }
   }, []);
+  const [showAuthButtons, setShowAuthButtons] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowAuthButtons(false);
+      } else {
+        setShowAuthButtons(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
 
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -148,33 +164,47 @@ function ERPAutoMobile() {
         sparkCount={8}
         duration={400}
       >
-        
+
         <div className="fixed left-5 top-2 z-50000 lg:hidden">
           <Navbar />
         </div>
         <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
           <Example />
         </div>
-        <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
-          <NavbarDemo />
-          <AuthFloatingButtons />
+        <div className="fixed top-0 left-0 w-full z-50">
+          <AnimatePresence>
+            {showAuthButtons && (
+              <motion.div
+                initial={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -50 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AuthFloatingButtons />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div className="sticky top-0 z-40">
+            <NavbarDemo />
+          </div>
         </div>
+
+
 
         {/* Hero: animated TextPressure */}
 
-        <div className="absolute top-15 left-15 md:top-4 md:left-70 w-full flex items-center justify-center pl-4 text-center">
+        <div className="absolute top-20 left-15 md:top-4 md:left-80 w-full flex items-center justify-center pl-4 text-center">
           <TextPressure
             text=" ASME"
             flex
             width
-            textColor="rgba(251, 153, 69, 0.6)" 
+            textColor="rgba(251, 153, 69, 0.6)"
             strokeColor="rgba(251, 153, 69, 0.1)"
             minFontSize={0.5}
           />
         </div>
 
         {/* Hero words */}
-        <div className="pt-20 md:pb-15 sm:pb-5 sm:px-6 md:px-12">
+        <div className="pt-30 md:pb-15 sm:pb-5 sm:px-6 md:px-12">
           <div className='flex flex-wrap w-full justify-center items-center text-center'>
             <BlurText
               text="AUTOMOTIVE SYSTEM MANAGEMENT ERP  "
@@ -220,7 +250,7 @@ function ERPAutoMobile() {
 
 
         <section className="w-full">
-           <Threads color={[0.15, 0.51, 0.831]} />
+          <Threads color={[0.15, 0.51, 0.831]} />
         </section>
 
 

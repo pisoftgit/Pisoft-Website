@@ -1,32 +1,90 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { FiBriefcase, FiLogIn } from "react-icons/fi";
+import { FaPenFancy } from "react-icons/fa";
 
 const AuthFloatingButtons = () => {
-  const navigate = useNavigate();
+  const [hoverIntern, setHoverIntern] = useState(false);
+  const [hoverTest, setHoverTest] = useState(false);
+  const [hoverLogin, setHoverLogin] = useState(false);
+
+  const baseClasses =
+    "flex items-center justify-center gap-2 rounded-full font-jl cursor-pointer border-2 border-transparent";
+  const sizeClasses = "px-3 py-2 text-xs sm:px-5 sm:py-3 sm:text-sm";
 
   return (
-    <div className="fixed top-0 right-1 z-[1000] gap-2 bg-transparent flex flex-col p-2">
-      {/* Login Button */}
-      <button
-        onClick={() => navigate("/login")}
-        className="relative inline-flex h-12 overflow-hidden rounded-full focus:outline-none focus:ring-4 "
+    <div className="flex justify-end gap-3 pt-2 z-60">
+      {/* Internship Button */}
+      <motion.button
+        onMouseEnter={() => setHoverIntern(true)}
+        onMouseLeave={() => setHoverIntern(false)}
+        initial={{ backgroundColor: "#0c1e3a", color: "#FDBA74" }}
+        animate={{
+          backgroundColor: hoverIntern ? "#FDBA74" : "#0c1e3a",
+          color: hoverIntern ? "#000" : "#FDBA74",
+          scale: hoverIntern ? 1.05 : 1,
+          boxShadow: hoverIntern
+            ? "0 4px 12px rgba(253, 186, 116, 0.5)"
+            : "none",
+        }}
+        transition={{ duration: 0.3 }}
+        className={`${baseClasses} ${sizeClasses}`}
+        aria-label="Apply For Internship"
       >
-        <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-        <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-blue-950 hover:bg-orange-300 hover:text-black py-2 text-md font-jl text-white backdrop-blur-3xl">
-          Take a test
+        <span className="sm:hidden">
+          <FiBriefcase className="w-5 h-5" />
         </span>
-      </button>
+        <span className="hidden sm:inline">Apply for Internship</span>
+        <FiBriefcase className="hidden sm:block w-5 h-5" />
+      </motion.button>
 
-      {/* Register Button */}
-      <button
-        onClick={() => navigate("/register")}
-        className="relative inline-flex h-12 overflow-hidden rounded-full p-[1px] focus:outline-none focus:ring-2 focus:ring-cyan-400 focus:ring-offset-2 focus:ring-offset-cyan-200"
+      {/* Take Test Button */}
+      <motion.button
+        onMouseEnter={() => setHoverTest(true)}
+        onMouseLeave={() => setHoverTest(false)}
+        initial={{ backgroundColor: "#0c1e3a", color: "#FDBA74" }}
+        animate={{
+          backgroundColor: hoverTest ? "#FDBA74" : "#0c1e3a",
+          color: hoverTest ? "#000" : "#FDBA74",
+          scale: hoverTest ? 1.05 : 1,
+          boxShadow: hoverTest
+            ? "0 4px 12px rgba(253, 186, 116, 0.5)"
+            : "none",
+        }}
+        transition={{ duration: 0.3 }}
+        className={`${baseClasses} ${sizeClasses}`}
+        aria-label="Take a Test"
       >
-        <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-        <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-full bg-blue-950 hover:bg-orange-300 hover:text-black px-4 py-2 text-md font-jl text-white backdrop-blur-3xl">
-          Apply for Internship
+        <span className="sm:hidden">
+          <FaPenFancy className="w-5 h-5" />
         </span>
-      </button>
+        <span className="hidden sm:inline">Take a Test</span>
+        <FaPenFancy className="hidden sm:block w-5 h-5" />
+      </motion.button>
+
+      {/* Login Button */}
+      <motion.button
+        onMouseEnter={() => setHoverLogin(true)}
+        onMouseLeave={() => setHoverLogin(false)}
+        initial={{ backgroundColor: "#0c1e3a", color: "#FDBA74" }}
+        animate={{
+          backgroundColor: hoverLogin ? "#FDBA74" : "#0c1e3a",
+          color: hoverLogin ? "#000" : "#FDBA74",
+          scale: hoverLogin ? 1.05 : 1,
+          boxShadow: hoverLogin
+            ? "0 4px 12px rgba(253, 186, 116, 0.5)"
+            : "none",
+        }}
+        transition={{ duration: 0.3 }}
+        className={`${baseClasses} ${sizeClasses}`}
+        aria-label="Login"
+      >
+        <span className="sm:hidden">
+          <FiLogIn className="w-5 h-5" />
+        </span>
+        <span className="hidden sm:inline">Login</span>
+        <FiLogIn className="hidden sm:block w-5 h-5" />
+      </motion.button>
     </div>
   );
 };

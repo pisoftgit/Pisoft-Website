@@ -7,7 +7,9 @@ import { World } from "../components/Globe";
 import Footer from "../components/Footer";
 import { FiMail, FiInfo } from "react-icons/fi";
 import { NavbarDemo } from "../components/navbar/Navbar2";
+import { useState, useEffect } from "react";
 import AuthFloatingButtons from "../components/AuthFloatingButtons";
+import { motion, AnimatePresence } from "framer-motion";
 
 function Contact() {
   const globeConfig = {
@@ -63,9 +65,26 @@ function Contact() {
     },
   ];
 
+
+  const [showAuthButtons, setShowAuthButtons] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowAuthButtons(false);
+      } else {
+        setShowAuthButtons(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
+
   return (
     <div className="w-full">
-
       {/* Navbar and Corn Demo */}
       <div className="flex justify-between items-center mb-8">
         <div className="fixed left-5 top-2 z-50000 lg:hidden">
@@ -74,14 +93,27 @@ function Contact() {
         <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
           <Example />
         </div>
-        <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
-          <NavbarDemo />
+        <div className="fixed top-0 left-0 w-full z-50">
+          <AnimatePresence>
+            {showAuthButtons && (
+              <motion.div
+                initial={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -50 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AuthFloatingButtons />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div className="sticky top-0 z-40">
+            <NavbarDemo />
+          </div>
         </div>
-        <AuthFloatingButtons />
       </div>
 
+
       {/* Contact & Globe Section */}
-      <section className="flex flex-col md:flex-row gap-10 pl-10 pt-10">
+      <section className="flex flex-col md:flex-row gap-10 pl-10 pt-25">
 
         {/* Left Contact Section */}
         <div className="w-full md:w-1/2">

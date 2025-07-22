@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import CardSwap, { Card } from '../components/HomePage/cardswap';
-import Navbar from "./Navbar";
 import videosrc from "../assets/p2.mp4";
 import { Example } from "./Corn";
 import Button from "./Button";
@@ -17,10 +15,11 @@ import Footer from "./Footer";
 import Hover from "./HoverCard";
 import SwipableCardCarousel from "./SwipableCardCarousel";
 import BlurText from "./BlurText";
-// import { NavbarDemo } from "./navbar/Navbar";
 import { InfiniteMovingCards } from "./Intern/infiniteCards";
 import { NavbarDemo } from "./navbar/Navbar2";
+import { motion, AnimatePresence } from "framer-motion";
 import AuthFloatingButtons from "./AuthFloatingButtons";
+
 
 
 
@@ -37,6 +36,8 @@ export default function Firstt() {
   const galleryRef = useRef(null);
   const [showCardSwap, setShowCardSwap] = useState(false);
   const textRef = useRef(null);
+  const [hoverIntern, setHoverIntern] = useState(false);
+  const [hoverTest, setHoverTest] = useState(false);
 
 
   const text =
@@ -226,6 +227,22 @@ export default function Firstt() {
   }, []);
 
 
+  const [showAuthButtons, setShowAuthButtons] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowAuthButtons(false);
+      } else {
+        setShowAuthButtons(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
 
   return (
     <div className="w-full bg-white overflow-clip">
@@ -258,7 +275,7 @@ export default function Firstt() {
                   textAnchor="middle"
                   fill="black"
                   style={{
-                    fontSize: '35vw',
+                    fontSize: '34vw',
                   }}
                 >
                   PISOFT
@@ -272,7 +289,7 @@ export default function Firstt() {
           {/* Static Bottom Left Text */}
           <div
             ref={staticTextRef}
-            className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 md:bottom-8 md:left-8 p-2 sm:p-4 text-black z-10 max-w-[90%]"
+            className="absolute bottom-15 left-4 sm:bottom-6 sm:left-6 md:bottom-11 md:left-8 p-2 sm:p-4 text-black z-10 max-w-[90%]"
           >
             <h1 className="font-jr font-bold leading-snug text-[9vw] sm:text-[7vw] md:text-[5.5vw] lg:text-[4vw] flex flex-wrap">
               <span className="text-orange-400 mr-2">Engineering</span> Excellence in
@@ -280,7 +297,6 @@ export default function Firstt() {
             <h3 className="font-jr font-bold leading-snug text-[8vw] sm:text-[6vw] md:text-[5vw] lg:text-[3.5vw] flex flex-wrap">
               Every Line of <span className="ml-1">Code...</span>
             </h3>
-
           </div>
         </div>
       </div>
@@ -313,11 +329,22 @@ export default function Firstt() {
         </div>
       </section>
 
-      <div className="fixed top-0 left-0 w-full z-50 hidden md:block">
-        <NavbarDemo />
+      <div className="fixed top-0 left-0 w-full z-50">
+        <AnimatePresence>
+          {showAuthButtons && (
+            <motion.div
+              initial={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50 }}
+              transition={{ duration: 0.3 }}
+            >
+              <AuthFloatingButtons />
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <div className="sticky top-0 z-40">
+          <NavbarDemo />
+        </div>
       </div>
-
-      <AuthFloatingButtons />
 
       <section className="min-h-auto  w-full">
         <div ref={servicesRef}><Horizontal /></div>

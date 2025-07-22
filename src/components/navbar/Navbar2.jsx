@@ -28,7 +28,40 @@ export function NavbarDemo() {
     },
     {
       name: "E-Brochure",
-      link: "/E-Brochure",
+      children: [
+        {
+          name: "Java",
+          children: [
+            { name: "45 Days", link: "/about#our-mission" },
+            { name: "6 Months", link: "/about#our-vision" },
+          ],
+        },
+        {
+          name: "AI/ML",
+          children: [
+            { name: "45 Days", link: "#" },
+            { name: "6 Months", link:"#" },
+          ],
+        },{
+          name: "Python",
+          children: [
+            { name: "45 Days", link: "#" },
+            { name: "6 Months", link:"#" },
+          ],
+        },{
+          name: "Data Science",
+          children: [
+            { name: "45 Days", link: "#" },
+            { name: "6 Months", link:"#" },
+          ],
+        },{
+          name: "MERN",
+          children: [
+            { name: "45 Days", link: "#" },
+            { name: "6 Months", link:"#" },
+          ],
+        },
+      ],
     },
     {
       name: "ERP Services",

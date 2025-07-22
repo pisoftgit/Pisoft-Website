@@ -56,7 +56,7 @@ export const NavBody = ({ children, className, visible }) => {
                 damping: 50,
             }}
             style={{
-                minWidth: "1000px",
+                minWidth: "1100px",
             }}
             className={cn(
                 "relative z-[60] mx-auto hidden w-auto flex-row items-center justify-between self-start rounded-full px-6 lg:flex",
@@ -70,23 +70,23 @@ export const NavBody = ({ children, className, visible }) => {
 
 
 export const NavItems = ({ items, className, onItemClick }) => {
-    const [isERPMenuOpen, setIsERPMenuOpen] = useState(false);
     const [hovered, setHovered] = useState(null);
-    const [activeIndex, setActiveIndex] = useState(null); // Step 1: track active item
-    const erpRef = useRef(null);
+    const [activeIndex, setActiveIndex] = useState(null);
+    const dropdownRefs = useRef([]);
 
     const handleClickOutside = (event) => {
-        if (erpRef.current && !erpRef.current.contains(event.target)) {
-            setIsERPMenuOpen(false);
+        if (
+            dropdownRefs.current.every((ref) => ref && !ref.contains(event.target))
+        ) {
+            setHovered(null);
         }
     };
 
     useEffect(() => {
         const currentPath = window.location.pathname;
-        const matchedIndex = items.findIndex(item => item.link === currentPath);
+        const matchedIndex = items.findIndex((item) => item.link === currentPath);
         if (matchedIndex !== -1) setActiveIndex(matchedIndex);
-    }, []);
-
+    }, [items]);
 
     useEffect(() => {
         document.addEventListener("click", handleClickOutside);
@@ -95,11 +95,34 @@ export const NavItems = ({ items, className, onItemClick }) => {
         };
     }, []);
 
+    const renderDropdownItems = (children) => {
+        return children.map((child, idx) => {
+            const hasSubChildren = child.children && child.children.length > 0;
+
+            return (
+                <div key={idx} className="relative group text-left">
+                    <a
+                        href={child.link || "#"}
+                        className="block px-4 py-2 text-lg text-blue-900 hover:bg-orange-100 rounded-full whitespace-nowrap"
+                    >
+                        {child.name} {hasSubChildren ? "▸" : ""}
+                    </a>
+
+                    {hasSubChildren && (
+                        <div className="absolute left-full top-0 mt-0 ml-2 w-60 rounded-md bg-white shadow-md py-2 z-50 hidden group-hover:block">
+                            {renderDropdownItems(child.children)}
+                        </div>
+                    )}
+                </div>
+            );
+        });
+    };
+
     return (
         <motion.div
             onMouseLeave={() => setHovered(null)}
             className={cn(
-                "ml-40 absolute inset-0 hidden flex-1 flex-row items-center justify-center text-lg font-medium text-blue-900 transition duration-200 hover:text-blue-950 lg:flex ",
+                "ml-40 absolute inset-0 hidden flex-1 flex-row items-center justify-center text-lg font-medium text-blue-900 transition duration-200 hover:text-blue-950 lg:flex",
                 className
             )}
         >
@@ -114,16 +137,13 @@ export const NavItems = ({ items, className, onItemClick }) => {
                         className="relative"
                         onMouseEnter={() => setHovered(idx)}
                         onMouseLeave={() => setHovered(null)}
-                        ref={isDropdown ? erpRef : null}
+                        ref={(el) => (dropdownRefs.current[idx] = el)}
                     >
                         <a
                             href={item.link || "#"}
-                            onClick={(e) => {
-                                if (isDropdown && item.disableParentClick) {
-                                    e.preventDefault(); // Stop navigation only if disableParentClick is true
-                                }
+                            onClick={() => {
                                 setActiveIndex(idx);
-                                onItemClick && onItemClick(e);
+                                onItemClick && onItemClick();
                             }}
                             className="relative px-4 py-2 text-xl cursor-pointer"
                         >
@@ -138,7 +158,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
                             </span>
                         </a>
 
-                        {/* Dropdown Menu */}
+                        {/* Dropdown */}
                         {isDropdown && (
                             <AnimatePresence>
                                 {isHovered && (
@@ -148,15 +168,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
                                         exit={{ opacity: 0, y: -10 }}
                                         className="absolute left-0 mt-4 w-60 rounded-md bg-white backdrop-blur-xl shadow-md py-2 z-50 text-center"
                                     >
-                                        {item.children.map((child, childIdx) => (
-                                            <a
-                                                key={childIdx}
-                                                href={child.link}
-                                                className="block px-4 py-2 text-lg text-blue-900 hover:bg-orange-100 rounded-full"
-                                            >
-                                                {child.name}
-                                            </a>
-                                        ))}
+                                        {renderDropdownItems(item.children)}
                                     </motion.div>
                                 )}
                             </AnimatePresence>
