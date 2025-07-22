@@ -155,7 +155,11 @@ export function SidebarDemo() {
 
 
                         {/* Description */}
-                        <p className="text-blue-950 mb-6">{selectedTech.description}</p>
+                        <p
+                            className="text-xl font-jS text-blue-950 mb-2"
+                            dangerouslySetInnerHTML={{ __html: selectedTech.description }}
+                        />
+
 
                         {/* Topics Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -179,7 +183,7 @@ export function SidebarDemo() {
                                     <p className="text-white mb-3">{topic.explanation}</p>
 
                                     {/* Subtopics */}
-                                    <div className="pl-4 border-l border-orange-400">
+                                    <div className="pl-4 border-l border-orange-300">
                                         {topic.subTopics.map((sub, subIdx) => (
                                             <motion.div
                                                 key={subIdx}
