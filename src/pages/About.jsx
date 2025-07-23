@@ -181,7 +181,15 @@ function About() {
             {/* Lanyard Animation */}
             <AnimatePresence>
               {showLanyard && (
-                <Lanyard position={[0, 0, 25]} gravity={[0, -40, 0]} name="Pisoft" />
+                <motion.div
+                  className="absolute bg-transparent right-0 top-0 w-full md:w-1/2 lg:w-1/3 z-0"
+                  initial={{ opacity: 0, y: -50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 50 }}
+                  transition={{ duration: 0.6 }}
+                >
+                  <Lanyard position={[0, 0, 25]} gravity={[0, -40, 0]} />
+                </motion.div>
               )}
             </AnimatePresence>
           </section>
