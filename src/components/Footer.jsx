@@ -46,7 +46,7 @@ const Footer = () => {
   
 
   return (
-    <footer className="bg-gradient-to-b from-blue-950 via-blue-950 to-blue-950 text-white px-6 sm:px-12 md:px-24 relative z-10 py-3">
+    <footer className="bg-blue-950 text-white px-6 sm:px-12 md:px-24 relative z-10 py-3">
       <div className="max-w-screen mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 xl:gap-16 border-b border-gray-700 pb-12">
 
         {/* Branding */}

@@ -9,6 +9,7 @@ import Stepp from "../components/About/Stepp";
 import Footer from "../components/Footer";
 import { NavbarDemo } from "../components/navbar/Navbar2";
 import AuthFloatingButtons from "../components/AuthFloatingButtons";
+import Hover from "../components/About/HoverCertificate";
 
 function About() {
   const aboutSectionRef = useRef(null);
@@ -180,15 +181,7 @@ function About() {
             {/* Lanyard Animation */}
             <AnimatePresence>
               {showLanyard && (
-                <motion.div
-                  className="absolute bg-transparent right-0 top-0 w-full md:w-1/2 lg:w-1/3 z-0"
-                  initial={{ opacity: 0, y: -50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 50 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <Lanyard position={[0, 0, 25]} gravity={[0, -40, 0]} />
-                </motion.div>
+                <Lanyard position={[0, 0, 25]} gravity={[0, -40, 0]} name="Pisoft" />
               )}
             </AnimatePresence>
           </section>
@@ -202,24 +195,66 @@ function About() {
           </section>
 
           {/* === Certificate Section === */}
-          <section className="h-auto p-4 bg-white relative z-10 py-8 px-15 ">
-            <div className="flex flex-row justify-around items-center gap-5">
-              <div className="text-center">
-                <div className="font-jr text-gray-500 text-sm sm:text-base md:text-lg">
+          <section className="relative z-10 bg-white py-12 px-4 sm:px-8 lg:px-50">
+            <div className="grid lg:grid-cols-2 items-center justify-center">
+
+              {/* Text Section */}
+              <motion.div
+                className="text-center lg:text-left space-y-3"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-blue-950 text-base sm:text-xl font-jl">
                   Get a Globally Recognized
+                </h3>
+                <h2 className="text-blue-950 font-jSB text-4xl sm:text-5xl lg:text-6xl">
+                  Certificate
+                </h2>
+                <p className="text-[#F07C22] text-base sm:text-xl font-jl">
+                  Earn an industry-standard certificate upon completing your course.
+                </p>
+
+                <div className="flex flex-col sm:flex-col justify-center lg:justify-start gap-4 mt-6">
+                  <div className="flex flex-row gap-4">
+                    <div className="bg-orange-100 text-blue-950 rounded-lg px-4 py-2 text-sm font-semibold">
+                      title 1 certificates
+                    </div>
+                    <div className="bg-orange-100 text-blue-950 rounded-lg px-4 py-2 text-sm font-semibold">
+                      title 2 certificates
+                    </div>
+                  </div>
+                  <div className="flex flex-row gap-4">
+                    <div className="bg-orange-100 text-blue-950 rounded-lg px-4 py-2 text-sm font-semibold">
+                      title 3 certificates
+                    </div>
+                    <div className="bg-orange-100 text-blue-950 rounded-lg px-4 py-2 text-sm font-semibold">
+                      title 4 certificates
+                    </div>
+                  </div>
                 </div>
-                <div className="font-jSB text-gray-900 text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-2">
-                  Certificates
-                </div>
-                <div className="font-jr text-gray-500 text-sm sm:text-base md:text-lg">
-                  after completion of your Course
-                </div>
-                <div className="grid sm:grid-col-1 grid-col-2 items-center justify-around">
-                  <div>get a certificate</div>
-                  <div>get 2 certificate</div>
-                </div>
-              </div>
-              <div>certificate image</div>
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="mt-8 bg-blue-950 text-white px-6 py-3 rounded-lg font-medium shadow hover:bg-blue-800 transition hover:scale-110"
+                >
+                 Apply Today
+                </motion.button>
+              </motion.div>
+
+              {/* Certificate Image Section */}
+              <motion.div
+                className="flex justify-center lg:justify-center"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <Hover />
+              </motion.div>
+
             </div>
           </section>
 

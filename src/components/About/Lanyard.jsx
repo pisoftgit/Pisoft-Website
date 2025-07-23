@@ -15,7 +15,7 @@ extend({ MeshLineGeometry, MeshLineMaterial });
 
 export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], fov = 20, transparent = true }) {
   return (
-<div className="fixed right-10 top-0 h-[80%] w-[40%]  flex scale-130 items-center justify-end pointer-events-none z-10 bg-white">
+<div className="fixed right-10 top-0 h-[90%] w-[35%]  flex scale-130 items-center justify-end pointer-events-none z-10 bg-white">
 
       <Canvas
         camera={{ position: position, fov: fov }}
@@ -37,7 +37,7 @@ export default function Lanyard({ position = [0, 0, 30], gravity = [0, -40, 0], 
     </div>
   );
 }
-function Band({ maxSpeed = 150, minSpeed = 0 }) {
+function Band({ maxSpeed = 250, minSpeed = 100 }) {
   const band = useRef(), fixed = useRef(), j1 = useRef(), j2 = useRef(), j3 = useRef(), card = useRef();
   const vec = new THREE.Vector3(), ang = new THREE.Vector3(), rot = new THREE.Vector3(), dir = new THREE.Vector3();
   const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };

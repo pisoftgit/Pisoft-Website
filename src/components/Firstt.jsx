@@ -72,7 +72,7 @@ export default function Firstt() {
     if (textRef.current) {
       const yValue = isMobile
         ? '50%'
-          : '47%';
+          : '45%';
       textRef.current.setAttribute('y', yValue);
     }
 
@@ -257,7 +257,7 @@ export default function Firstt() {
             {/* <video className="w-full h-full object-cover" autoPlay playsInline muted loop preload="auto">
               <source src={videosrc} type="video/mp4" />
             </video> */}
-             <img src="/scroll7.jpeg" alt="Scroll" className="w-full h-full object-cover" />
+             <img src="/scroll7.jpeg" alt="Scroll" className="w-full h-full object-cover bg-no-repeat" />
           </div>
 
           {/* Masked SVG Text */}

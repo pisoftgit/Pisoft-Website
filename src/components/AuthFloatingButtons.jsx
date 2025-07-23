@@ -13,7 +13,7 @@ const AuthFloatingButtons = () => {
   const sizeClasses = "px-3 py-2 text-xs sm:px-5 sm:py-3 sm:text-sm";
 
   return (
-    <div className="flex justify-end gap-3 pt-2 z-60">
+    <div className="flex justify-end gap-3 pt-2 z-600000">
       {/* Internship Button */}
       <motion.button
         onMouseEnter={() => setHoverIntern(true)}
