@@ -25,7 +25,7 @@ export function SidebarDemo() {
     }, [techId]);
 
 
-    
+
     useEffect(() => {
         const fetchTechnologies = async () => {
             try {
@@ -126,16 +126,17 @@ export function SidebarDemo() {
     const closeModal = () => setModalContent(null);
 
     return (
-        <div className="relative flex w-full h-screen font-jSB bg-white overflow-hidden">
+        <div className="relative overflow-hidden flex w-full min-h-screen font-jSB bg-white">
             {/* Sidebar */}
-            <Sidebar open={open} setOpen={setOpen}>
-                <SidebarBody className="py-6 px-3 gap-6 z-20 h-full overflow-hidden">
+            <Sidebar className="min-h-screen fixed left-0 top-0" open={open} setOpen={setOpen}>
+                <SidebarBody className="py-6 px-3 gap-6 z-20 min-h-screen overflow-hidden">
                     <div className="flex flex-col h-full">
                         <Logo open={open} />
 
-                        <div className="flex-1 mt-4 overflow-y-auto pr-1 scrollbar-thin scrollbar-thumb-blue-900 scrollbar-track-blue-100">
+                        {/* Sidebar content scroll container */}
+                        <div className="flex-1 mt-4 overflow-y-auto overscroll-contain pr-1 scrollbar-thin scrollbar-thumb-blue-900 scrollbar-track-blue-100">
                             {technologies.length === 0 ? (
-                                <p className="text-sm text-blue-900 text-center italic">
+                                <p className="text-sm text-white text-center italic">
                                     Loading technologies...
                                 </p>
                             ) : (
@@ -159,10 +160,10 @@ export function SidebarDemo() {
             {/* Content Area */}
             <main
                 className={cn(
-                    "flex-1 p-6 overflow-y-auto",
+                    "flex-1 p-6 overflow-y-auto overscroll-contain",
                     open ? "blur-sm pointer-events-none" : ""
                 )}
-                style={{ height: "100vh", WebkitOverflowScrolling: "touch" }}
+                style={{ WebkitOverflowScrolling: "touch" }}
             >
                 {!selectedTech && !loadingDetails && (
                     <h1 className="text-3xl font-bold text-blue-950 flex text-center mt-20">
