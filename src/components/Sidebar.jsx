@@ -56,34 +56,20 @@ const DesktopSidebar = ({ className, children, ...props }) => {
 };
 
 const MobileSidebar = ({ className, children, ...props }) => {
-  const { open, setOpen } = useSidebar();
+  const { open, setOpen, animate } = useSidebar();
   return (
-    <div
+    <motion.div
       className={cn(
-        "h-10 px-4 py-4 flex md:hidden items-center justify-between bg-gray-900 text-[#F07C22] w-full",
+        "px-4 py-4  md:flex md:flex-col bg-gray-900 text-[#F07C22] w-[300px] shrink-0 font-jSB",
         className
       )}
+      animate={{ width: animate ? (open ? "200px" : "10px") : "200px" }}
+      onMouseEnter={() => setOpen(true)}
+      onMouseLeave={() => setOpen(false)}
       {...props}
     >
-      <IconMenu2 className="text-[#F07C22] cursor-pointer" onClick={() => setOpen(!open)} size={18} />
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ x: "-100%", opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: "-100%", opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
-            className={cn(
-              "fixed inset-0 bg-blue-950 p-10 z-[100] flex flex-col ",
-              className
-            )}
-          >
-            <IconX className="absolute top-6 right-6 cursor-pointer text-[#F07C22]" size={24} onClick={() => setOpen(false)} />
-            {children}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+      {children}
+    </motion.div>
   );
 };
 

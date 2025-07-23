@@ -4,6 +4,7 @@ import { Sidebar, SidebarBody, SidebarLink } from "../Sidebar";
 import { motion } from "motion/react";
 import { cn } from "../../lib/util";
 import { useSearchParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 
 export function SidebarDemo() {
@@ -11,6 +12,9 @@ export function SidebarDemo() {
     const [technologies, setTechnologies] = useState([]);
     const [selectedTech, setSelectedTech] = useState(null);
     const [loadingDetails, setLoadingDetails] = useState(false);
+
+    const navigate = useNavigate();
+    const handleGoBack = () => navigate("/IntershipProgram");
 
     const [modalContent, setModalContent] = useState(null);
     const scrollYRef = useRef(0);
@@ -125,8 +129,15 @@ export function SidebarDemo() {
 
     const closeModal = () => setModalContent(null);
 
+
+    const [hoverIntern, setHoverIntern] = useState(false);
+
+    const baseClasses =
+        "flex items-center justify-center gap-2 rounded-full font-jSB cursor-pointer border-2 border-transparent";
+    const sizeClasses = "px-3 py-2 text-xs sm:px-5 sm:py-3 sm:text-sm";
+
     return (
-        <div className="relative overflow-hidden flex w-full min-h-screen font-jSB bg-white">
+        <div className="relative flex w-full min-h-screen font-jSB bg-white">
             {/* Sidebar */}
             <Sidebar className="min-h-screen fixed left-0 top-0" open={open} setOpen={setOpen}>
                 <SidebarBody className="py-6 px-3 gap-6 z-20 min-h-screen overflow-hidden">
@@ -156,12 +167,31 @@ export function SidebarDemo() {
                     </div>
                 </SidebarBody>
             </Sidebar>
+            <motion.button
+                onClick={handleGoBack}
+                onMouseEnter={() => setHoverIntern(true)}
+                onMouseLeave={() => setHoverIntern(false)}
+                initial={{ backgroundColor: "#0c1e3a", color: "#FDA851" }}
+                animate={{
+                    backgroundColor: hoverIntern ? "#FDA851" : "#0c1e3a",
+                    color: hoverIntern ? "#000" : "#FDA851",
+                    scale: hoverIntern ? 1.05 : 1,
+                    boxShadow: hoverIntern
+                        ? "0 4px 12px rgba(253, 186, 116, 0.5)"
+                        : "none",
+                }}
+                transition={{ duration: 0.3 }}
+                className={`${baseClasses} ${sizeClasses} fixed top-4 right-4 z-50`}
+                aria-label="Go Back"
+            >
+                <span className="sm:inline">Go Back</span>
+            </motion.button>
 
             {/* Content Area */}
             <main
                 className={cn(
-                    "flex-1 p-6 overflow-y-auto overscroll-contain",
-                    open ? "blur-sm pointer-events-none" : ""
+                    "flex-1 p-6 overflow-y-auto transition-all duration-300",
+                    open ? "overflow-hidden pointer-events-none" : "overflow-y-auto"
                 )}
                 style={{ WebkitOverflowScrolling: "touch" }}
             >
