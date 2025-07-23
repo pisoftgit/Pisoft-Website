@@ -42,7 +42,7 @@ const DesktopSidebar = ({ className, children, ...props }) => {
   return (
     <motion.div
       className={cn(
-        "px-4 py-4 hidden md:flex md:flex-col bg-gray-900 text-[#F07C22] w-[300px] shrink-0 font-jSB",
+        "px-4 py-4 mr-4 hidden md:flex md:flex-col bg-gray-900 text-[#F07C22] w-[300px] shrink-0 font-jSB",
         className
       )}
       animate={{ width: animate ? (open ? "300px" : "100px") : "300px" }}

@@ -190,7 +190,7 @@ export function SidebarDemo() {
             {/* Content Area */}
             <main
                 className={cn(
-                    "flex-1 p-6 overflow-y-auto transition-all duration-300",
+                    "flex-1 p-6 ml-15 lg:ml-0 overflow-y-auto transition-all duration-300",
                     open ? "overflow-hidden pointer-events-none" : "overflow-y-auto"
                 )}
                 style={{ WebkitOverflowScrolling: "touch" }}
