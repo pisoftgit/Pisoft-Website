@@ -56,22 +56,49 @@ const DesktopSidebar = ({ className, children, ...props }) => {
 };
 
 const MobileSidebar = ({ className, children, ...props }) => {
-  const { open, setOpen, animate } = useSidebar();
+  const { open, setOpen } = useSidebar();
+
   return (
-    <motion.div
-      className={cn(
-        "px-4 py-4  md:flex md:flex-col bg-gray-900 text-[#F07C22] w-[300px] shrink-0 font-jSB",
-        className
-      )}
-      animate={{ width: animate ? (open ? "200px" : "10px") : "200px" }}
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-      {...props}
-    >
-      {children}
-    </motion.div>
+    <>
+      {/* Always-visible 5% mini sidebar */}
+      <div
+        className={cn(
+          "fixed top-0 left-0 h-full w-[10%] bg-gray-900 z-[50] flex items-center justify-center md:hidden",
+          className
+        )}
+        {...props}
+      >
+        <IconMenu2
+          className="text-[#F07C22] cursor-pointer"
+          size={24}
+          onClick={() => setOpen(true)}
+        />
+      </div>
+
+      {/* Full-screen animated sidebar */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ x: "-100%", opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: "-100%", opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-0 bg-blue-950 z-[100] p-10 flex flex-col md:hidden"
+          >
+            <IconX
+              className="absolute top-6 right-6 text-[#F07C22] cursor-pointer"
+              size={24}
+              onClick={() => setOpen(false)}
+            />
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
+
+
 
 export const SidebarLink = ({ link, className, ...props }) => {
   const { open, animate } = useSidebar();
