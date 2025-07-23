@@ -32,7 +32,7 @@ export default function LoginUser() {
       const sizeClasses = "px-3 py-2 text-xs sm:px-5 sm:py-3 sm:text-sm";
 
   return (
-    <BackgroundLines className="relative flex items-center justify-center w-full h-screen overflow-hidden">
+    <main className="relative flex items-center justify-center w-full h-screen overflow-hidden">
       <img
         src={image}
         alt="PiSoft Logo Background"
@@ -171,7 +171,7 @@ export default function LoginUser() {
           </form>
         </div>
       </div>
-    </BackgroundLines>
+    </main>
   );
 }
 
