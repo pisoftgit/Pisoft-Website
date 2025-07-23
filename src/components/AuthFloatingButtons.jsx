@@ -43,6 +43,7 @@ const AuthFloatingButtons = () => {
         onMouseEnter={() => setHoverTest(true)}
         onMouseLeave={() => setHoverTest(false)}
         initial={{ backgroundColor: "#0c1e3a", color: "#FDA851" }}
+        onClick={() => window.location.href = "https://project.pisofterp.com/pipl/collegeUniversityEvent/takeTest"}
         animate={{
           backgroundColor: hoverTest ? "#FDA851" : "#0c1e3a",
           color: hoverTest ? "#000" : "#FDA851",
