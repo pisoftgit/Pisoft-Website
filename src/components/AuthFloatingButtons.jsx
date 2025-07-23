@@ -9,7 +9,7 @@ const AuthFloatingButtons = () => {
   const [hoverLogin, setHoverLogin] = useState(false);
 
   const baseClasses =
-    "flex items-center justify-center gap-2 rounded-full font-jl cursor-pointer border-2 border-transparent";
+    "flex items-center justify-center gap-2 rounded-full font-jSB cursor-pointer border-2 border-transparent";
   const sizeClasses = "px-3 py-2 text-xs sm:px-5 sm:py-3 sm:text-sm";
 
   return (
@@ -18,10 +18,10 @@ const AuthFloatingButtons = () => {
       <motion.button
         onMouseEnter={() => setHoverIntern(true)}
         onMouseLeave={() => setHoverIntern(false)}
-        initial={{ backgroundColor: "#0c1e3a", color: "#FDBA74" }}
+        initial={{ backgroundColor: "#0c1e3a", color: "#FDA851" }}
         animate={{
-          backgroundColor: hoverIntern ? "#FDBA74" : "#0c1e3a",
-          color: hoverIntern ? "#000" : "#FDBA74",
+          backgroundColor: hoverIntern ? "#FDA851" : "#0c1e3a",
+          color: hoverIntern ? "#000" : "#FDA851",
           scale: hoverIntern ? 1.05 : 1,
           boxShadow: hoverIntern
             ? "0 4px 12px rgba(253, 186, 116, 0.5)"
@@ -42,10 +42,10 @@ const AuthFloatingButtons = () => {
       <motion.button
         onMouseEnter={() => setHoverTest(true)}
         onMouseLeave={() => setHoverTest(false)}
-        initial={{ backgroundColor: "#0c1e3a", color: "#FDBA74" }}
+        initial={{ backgroundColor: "#0c1e3a", color: "#FDA851" }}
         animate={{
-          backgroundColor: hoverTest ? "#FDBA74" : "#0c1e3a",
-          color: hoverTest ? "#000" : "#FDBA74",
+          backgroundColor: hoverTest ? "#FDA851" : "#0c1e3a",
+          color: hoverTest ? "#000" : "#FDA851",
           scale: hoverTest ? 1.05 : 1,
           boxShadow: hoverTest
             ? "0 4px 12px rgba(253, 186, 116, 0.5)"
@@ -66,10 +66,10 @@ const AuthFloatingButtons = () => {
       <motion.button
         onMouseEnter={() => setHoverLogin(true)}
         onMouseLeave={() => setHoverLogin(false)}
-        initial={{ backgroundColor: "#0c1e3a", color: "#FDBA74" }}
+        initial={{ backgroundColor: "#0c1e3a", color: "#FDA851" }}
         animate={{
-          backgroundColor: hoverLogin ? "#FDBA74" : "#0c1e3a",
-          color: hoverLogin ? "#000" : "#FDBA74",
+          backgroundColor: hoverLogin ? "#FDA851" : "#0c1e3a",
+          color: hoverLogin ? "#000" : "#FDA851",
           scale: hoverLogin ? 1.05 : 1,
           boxShadow: hoverLogin
             ? "0 4px 12px rgba(253, 186, 116, 0.5)"

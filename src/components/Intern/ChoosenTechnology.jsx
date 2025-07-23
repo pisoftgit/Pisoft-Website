@@ -1,8 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { Sidebar, SidebarBody, SidebarLink } from "../Sidebar";
 import { motion } from "motion/react";
 import { cn } from "../../lib/util";
+import { useSearchParams } from 'react-router-dom';
+
 
 export function SidebarDemo() {
     const [open, setOpen] = useState(false);
@@ -10,9 +12,20 @@ export function SidebarDemo() {
     const [selectedTech, setSelectedTech] = useState(null);
     const [loadingDetails, setLoadingDetails] = useState(false);
 
-    // Modal state
     const [modalContent, setModalContent] = useState(null);
+    const scrollYRef = useRef(0);
 
+    const [searchParams] = useSearchParams();
+    const techId = searchParams.get("id");
+
+    useEffect(() => {
+        if (techId) {
+            handleTechClick(techId);
+        }
+    }, [techId]);
+
+
+    
     useEffect(() => {
         const fetchTechnologies = async () => {
             try {
@@ -70,7 +83,8 @@ export function SidebarDemo() {
                     explanation: topicObj.explanation || "No description available.",
                     subTopics: (topicObj.subTopics ?? []).map((sub) => ({
                         subTopic: sub.subTopic || "Untitled Subtopic",
-                        description: sub.explanation || "No subtopic description available.",
+                        description:
+                            sub.explanation || "No subtopic description available.",
                     })),
                 })),
             };
@@ -88,33 +102,31 @@ export function SidebarDemo() {
         }
     };
 
-    const scrollYRef = useRef(0);
+    // Scroll lock on modal open
+    useEffect(() => {
+        if (modalContent) {
+            scrollYRef.current = window.scrollY;
+            document.body.style.position = "fixed";
+            document.body.style.top = `-${scrollYRef.current}px`;
+            document.body.style.width = "100%";
+            document.body.style.overflow = "hidden";
+            document.body.style.touchAction = "none";
 
-  useEffect(() => {
-    if (modalOpen || nestedModalOpen) {
-      scrollYRef.current = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollYRef.current}px`;
-      document.body.style.width = "100%";
-      document.body.style.overflow = "hidden";
-      document.body.style.touchAction = "none";
+            return () => {
+                document.body.style.position = "";
+                document.body.style.top = "";
+                document.body.style.overflow = "";
+                document.body.style.width = "";
+                document.body.style.touchAction = "";
+                window.scrollTo(0, scrollYRef.current);
+            };
+        }
+    }, [modalContent]);
 
-      return () => {
-        document.body.style.position = "";
-        document.body.style.top = "";
-        document.body.style.overflow = "";
-        document.body.style.width = "";
-        document.body.style.touchAction = "";
-        window.scrollTo(0, scrollYRef.current);
-      };
-    }
-  }, [modalOpen, nestedModalOpen]);
-
-    // Modal close handler
     const closeModal = () => setModalContent(null);
 
     return (
-        <div className="relative flex w-full h-screen font-jl bg-white overflow-hidden">
+        <div className="relative flex w-full h-screen font-jSB bg-white overflow-hidden">
             {/* Sidebar */}
             <Sidebar open={open} setOpen={setOpen}>
                 <SidebarBody className="py-6 px-3 gap-6 z-20 h-full overflow-hidden">
@@ -144,7 +156,7 @@ export function SidebarDemo() {
                 </SidebarBody>
             </Sidebar>
 
-            {/* Content area */}
+            {/* Content Area */}
             <main
                 className={cn(
                     "flex-1 p-6 overflow-y-auto",
@@ -167,21 +179,21 @@ export function SidebarDemo() {
                         key={selectedTech.technologyName}
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="max-w-5xl mx-auto grid grid-cols-1 gap-6 pb-24"
+                        className="max-w-6xl mx-auto grid grid-cols-1 gap-6 pb-24"
                     >
                         {/* Technology Name */}
                         <h2
-                            className="text-4xl font-jSB text-blue-950 mb-2"
-                            dangerouslySetInnerHTML={{ __html: selectedTech.technologyName }}
+                            className="text-xl md:text-2xl lg:text-4xl font-jSB text-blue-950 mb-2"
+                            dangerouslySetInnerHTML={{
+                                __html: selectedTech.technologyName,
+                            }}
                         />
-
 
                         {/* Description */}
                         <p
-                            className="text-xl font-jS text-blue-950 mb-2"
+                            className="text-base md:text-md lg:text-xl font-jl text-blue-950 mb-2"
                             dangerouslySetInnerHTML={{ __html: selectedTech.description }}
                         />
-
 
                         {/* Topics Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -189,20 +201,19 @@ export function SidebarDemo() {
                                 <motion.div
                                     key={i}
                                     whileHover={{ scale: 1.02 }}
-                                    className="p-4 bg-blue-950 rounded-lg border border-blue-900 cursor-pointer transition-colors duration-300 hover:bg-orange-400"
+                                    className="p-4 bg-blue-950 rounded-lg border border-blue-950 cursor-pointer transition-colors duration-300 hover:scale-103 text-black hover:bg-blue-900"
                                     onClick={() =>
                                         setModalContent({
                                             type: "topic",
                                             title: topic.topicTitle,
                                             explanation: topic.explanation,
-                                            subTopics: topic.subTopics,
+                                            subTopics: [],
                                         })
                                     }
                                 >
-                                    <h3 className="text-2xl font-jS text-white mb-2">
+                                    <h3 className="text-base md:text-md lg:text-xl font-jr text-orange-400 mb-2">
                                         {topic.topicTitle}
                                     </h3>
-                                    <p className="text-white mb-3">{topic.explanation}</p>
 
                                     {/* Subtopics */}
                                     <div className="pl-4 border-l border-orange-300">
@@ -220,9 +231,7 @@ export function SidebarDemo() {
                                                     });
                                                 }}
                                             >
-                                                <h4 className="text-white font-semibold">
-                                                    {sub.subTopic}
-                                                </h4>
+                                                <h4 className="text-white font-jS">{sub.subTopic}</h4>
                                             </motion.div>
                                         ))}
                                     </div>
@@ -232,6 +241,7 @@ export function SidebarDemo() {
                     </motion.div>
                 )}
             </main>
+
             {/* Modal Overlay */}
             {modalContent && (
                 <div
@@ -239,39 +249,44 @@ export function SidebarDemo() {
                     onClick={closeModal}
                 >
                     <motion.div
-                        onClick={(e) => e.stopPropagation()} // Prevent close on modal click
+                        onClick={(e) => e.stopPropagation()}
                         initial={{ opacity: 0, scale: 0.95 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 0.95 }}
-                        className="bg-white rounded-lg max-w-3xl max-h-[80vh] w-full p-6 overflow-y-auto shadow-lg"
+                        className="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-lg"
                     >
-                        <h2 className="text-2xl font-bold text-blue-950 mb-4">
+                        <h2 className="text-base md:text-md lg:text-xl font-bold text-blue-950 mb-4">
                             {modalContent.title}
                         </h2>
-                        <p className="text-blue-950 whitespace-pre-wrap mb-6">
-                            {modalContent.explanation}
-                        </p>
 
-                        {/* Show subtopics if this is a topic */}
-                        {modalContent.type === "topic" && modalContent.subTopics.length > 0 && (
-                            <>
-                                <h3 className="text-xl font-semibold text-blue-950 mb-2">
-                                    Subtopics
-                                </h3>
-                                <div className="space-y-4 max-h-64 overflow-y-auto pr-2">
-                                    {modalContent.subTopics.map((sub, idx) => (
-                                        <div key={idx} className="border border-blue-900 rounded p-3">
-                                            <h4 className="text-blue-950 font-semibold mb-1">
-                                                {sub.subTopic}
-                                            </h4>
-                                            <p className="text-blue-950 text-sm whitespace-pre-wrap">
-                                                {sub.description}
-                                            </p>
-                                        </div>
-                                    ))}
-                                </div>
-                            </>
-                        )}
+                        <p
+                            className="text-base md:text-md lg:text-xl font-jl text-blue-950 whitespace-pre-wrap mb-6"
+                            dangerouslySetInnerHTML={{ __html: modalContent.explanation }}
+                        />
+
+                        {modalContent.type === "topic" &&
+                            modalContent.subTopics?.length > 0 && (
+                                <>
+                                    <h3 className="text-xl font-semibold text-blue-950 mb-2">
+                                        Subtopics
+                                    </h3>
+                                    <div className="space-y-4 max-h-64 overflow-y-auto pr-2">
+                                        {modalContent.subTopics.map((sub, idx) => (
+                                            <div
+                                                key={idx}
+                                                className="border border-blue-900 rounded p-3"
+                                            >
+                                                <h4 className="text-base md:text-md lg:text-xl text-blue-950 font-jl mb-1">
+                                                    {sub.subTopic}
+                                                </h4>
+                                                <p className="text-base md:text-md lg:text-xl text-blue-950 whitespace-pre-wrap">
+                                                    {sub.description}
+                                                </p>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </>
+                            )}
 
                         <button
                             onClick={closeModal}
@@ -282,13 +297,12 @@ export function SidebarDemo() {
                     </motion.div>
                 </div>
             )}
-
         </div>
     );
 }
 
 const Logo = ({ open }) => (
-    <div className="mb-4 px-2">
+    <div className="mb-1 px-2">
         <a
             href="#"
             className="flex items-center gap-2 font-semibold cursor-default select-none"
@@ -298,7 +312,7 @@ const Logo = ({ open }) => (
                 <motion.span
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-lg text-[#F07C22]  font-bold tracking-wide font-jl"
+                    className="text-lg text-[#F07C22]  font-bold tracking-wide font-jSB"
                 >
                     All Technologies
                 </motion.span>
