@@ -67,7 +67,7 @@ const TrueFocus = ({
             key={index}
             ref={(el) => (wordRefs.current[index] = el)}
            className={`relative text-[3rem] md:text-[4rem] lg:text-[5rem] font-bold cursor-pointer transition-all duration-300 ${
-              isActive ? "text-orange-500" : "text-blue-950"
+              isActive ? "text-[#F07C22] " : "text-blue-950"
             }`}
             style={{
               filter: isActive ? "blur(0px)" : `blur(${blurAmount}px)`,

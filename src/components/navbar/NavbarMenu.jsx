@@ -23,7 +23,7 @@ export const MenuItem = ({ setActive, active, item, children, onClick }) => {
       <motion.p
         whileHover={{ scale: 1.1 }}
         transition={{ type: "spring", stiffness: 300 }}
-        className="text-base sm:text-lg text-blue-950 hover:text-orange-500 font-semibold transition-colors duration-300"
+        className="text-base sm:text-lg text-blue-950 hover:text-[#F07C22]  font-semibold transition-colors duration-300"
       >
         {item}
       </motion.p>
@@ -88,7 +88,7 @@ export const HoveredLink = ({ children, ...rest }) => {
     <motion.a
       {...rest}
       whileHover={{ scale: 1.05 }}
-      className="text-blue-950 hover:text-orange-500 font-medium transition-colors duration-300 cursor-pointer text-sm sm:text-base"
+      className="text-blue-950 hover:text-[#F07C22]  font-medium transition-colors duration-300 cursor-pointer text-sm sm:text-base"
     >
       {children}
     </motion.a>

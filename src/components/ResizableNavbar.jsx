@@ -10,7 +10,7 @@ import {
 
 
 import React, { useRef, useState, useEffect } from "react";
-import imgscr from "../assets/latestLogoP.png";
+import imgscr from "/Pisoft_logo.png";
 
 export const Navbar = ({ children, className }) => {
     const ref = useRef(null);
@@ -103,7 +103,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
                 <div key={idx} className="relative group text-left">
                     <a
                         href={child.link || "#"}
-                        className="block px-4 py-2 text-lg text-blue-900 hover:bg-orange-100 rounded-full whitespace-nowrap"
+                        className="block px-4 py-2 text-lg text-blue-950 hover:bg-orange-100 rounded-full whitespace-nowrap"
                     >
                         {child.name} {hasSubChildren ? "▸" : ""}
                     </a>
@@ -122,7 +122,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
         <motion.div
             onMouseLeave={() => setHovered(null)}
             className={cn(
-                "ml-40 absolute inset-0 hidden flex-1 flex-row items-center justify-center text-lg font-medium text-blue-900 transition duration-200 hover:text-blue-950 lg:flex",
+                "ml-40 absolute inset-0 hidden flex-1 flex-row items-center justify-center text-lg font-medium text-blue-950 transition duration-200 hover:text-blue-800 lg:flex",
                 className
             )}
         >

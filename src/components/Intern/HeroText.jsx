@@ -48,7 +48,7 @@ export default function HeroText() {
             {/* Hero Text */}
             <div className="z-10 text-center md:text-left max-w-4xl">
                 <motion.h1
-                    className="text-4xl md:text-6xl font-jSB text-orange-500 drop-shadow-lg"
+                    className="text-4xl md:text-6xl font-jSB text-[#F07C22]  drop-shadow-lg"
                     initial={{ opacity: 0, y: -30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 0.8 }}
@@ -80,7 +80,7 @@ export default function HeroText() {
                 >
                     <FlipWords
                         words={['Secure', 'Modern', 'Scalable']}
-                        className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-orange-500"
+                        className="text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold text-[#F07C22] "
                     />
                 </motion.div>
             </div>

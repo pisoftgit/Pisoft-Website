@@ -118,13 +118,13 @@ function Contact() {
         {/* Left Contact Section */}
         <div className="w-full md:w-1/2">
           <div className="flex flex-wrap text-4xl sm:text-5xl lg:text-6xl font-bold font-jB mb-4">
-            <p className="text-orange-500 mr-2">Get in Touch</p>
+            <p className="text-[#F07C22]  mr-2">Get in Touch</p>
             <p className="text-gray-900">with us</p>
           </div>
           <div className="w-80 p-4 mb-15 bg-gray-50 rounded-lg shadow-md z-10 visible md:hidden">
             <h3 className="text-lg font-jB text-gray-900 relative">
               Office Address
-              <FiInfo className="absolute top-0 right-0 text-orange-400" />
+              <FiInfo className="absolute top-0 right-0 text-[#F07C22] " />
             </h3>
             <p className="mt-2 font-jr text-gray-900 leading-tight text-sm">
               Plot No C-86, Pannu Tower, 2nd Floor,<br />
@@ -195,7 +195,7 @@ function Contact() {
             <div className="absolute top-0 left-0 w-80 p-4 bg-gray-50 rounded-lg shadow-md z-10">
               <h3 className="text-lg font-jB text-gray-900 relative">
                 Office Address
-                <FiInfo className="absolute top-0 right-0 text-orange-400" />
+                <FiInfo className="absolute top-0 right-0 text-[#F07C22] " />
               </h3>
               <p className="mt-2 font-jr text-gray-900 leading-tight text-sm">
                 Plot No C-86, Pannu Tower, 2nd Floor,<br />

@@ -258,7 +258,7 @@ export default function Firstt() {
           className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 md:bottom-8 md:left-8 p-4 sm:p-6 text-black z-10"
         >
           <h1 className="flex flex-col sm:flex-row font-jr text-[5vw] sm:text-[4vw] md:text-[4.5vw] font-bold">
-            <span className="text-orange-400 mr-2">Engineering</span> Excellence in
+            <span className="text-[#F07C22]  mr-2">Engineering</span> Excellence in
           </h1>
           <h3 className="flex flex-col sm:flex-row font-jr text-[4vw] sm:text-[3vw] md:text-[3.5vw] font-bold">
             Every Line of <span className="ml-0 sm:ml-2">Code...</span>
@@ -281,7 +281,7 @@ export default function Firstt() {
               >
                 <a
                   onClick={() => handleNavClick(link)}
-                  className="text-[4vw] sm:text-[2.5vw] md:text-[1.5vw] font-jl cursor-pointer hover:text-orange-400"
+                  className="text-[4vw] sm:text-[2.5vw] md:text-[1.5vw] font-jl cursor-pointer hover:text-[#F07C22] "
                 >
                   {link}
                 </a>
@@ -290,19 +290,19 @@ export default function Firstt() {
                   <div className="absolute top-full left-0 mt-2 bg-white text-black rounded shadow-lg py-2 px-4 text-sm w-max z-50">
                     <div
                       onClick={() => navigate("/services/erp/manufacturing")}
-                      className="hover:text-orange-500 cursor-pointer py-1"
+                      className="hover:text-[#F07C22]  cursor-pointer py-1"
                     >
                       ERP for Manufacturing
                     </div>
                     <div
                       onClick={() => navigate("/services/erp/education")}
-                      className="hover:text-orange-500 cursor-pointer py-1"
+                      className="hover:text-[#F07C22]  cursor-pointer py-1"
                     >
                       ERP for Education
                     </div>
                     <div
                       onClick={() => navigate("/services/erp/custom")}
-                      className="hover:text-orange-500 cursor-pointer py-1"
+                      className="hover:text-[#F07C22]  cursor-pointer py-1"
                     >
                       Custom ERP
                     </div>
@@ -328,14 +328,14 @@ export default function Firstt() {
               <>
                 <a
                   onClick={() => handleNavClick("Work")}
-                  className="text-[4vw] sm:text-[2.5vw] md:text-[1.5vw] font-jl cursor-pointer hover:text-orange-400"
+                  className="text-[4vw] sm:text-[2.5vw] md:text-[1.5vw] font-jl cursor-pointer hover:text-[#F07C22] "
                 >
                   Work
                 </a>
 
                 <a
                   onClick={() => handleNavClick("About Us")}
-                  className="text-[4vw] sm:text-[2.5vw] md:text-[1.5vw] font-jl cursor-pointer hover:text-orange-400"
+                  className="text-[4vw] sm:text-[2.5vw] md:text-[1.5vw] font-jl cursor-pointer hover:text-[#F07C22] "
                 >
                   About Us
                 </a>
@@ -345,7 +345,7 @@ export default function Firstt() {
                         onMouseEnter={() => setIsERPHovered(true)}
                         onMouseLeave={() => setIsERPHovered(false)}
                       >
-                        <a className="text-[4vw] sm:text-[2.5vw] md:text-[1.5vw] font-jl cursor-pointer hover:text-orange-400">
+                        <a className="text-[4vw] sm:text-[2.5vw] md:text-[1.5vw] font-jl cursor-pointer hover:text-[#F07C22] ">
                           ERP Solutions
                         </a>
       
@@ -353,19 +353,19 @@ export default function Firstt() {
                           <div className="absolute top-full left-0 mt-2 bg-white text-black rounded shadow-lg py-2 px-4 z-50 text-sm w-max">
                             <div
                               onClick={() => navigate("/services/erp/manufacturing")}
-                              className="hover:text-orange-500 cursor-pointer py-1"
+                              className="hover:text-[#F07C22]  cursor-pointer py-1"
                             >
                               ERP for Manufacturing
                             </div>
                             <div
                               onClick={() => navigate("/services/erp/education")}
-                              className="hover:text-orange-500 cursor-pointer py-1"
+                              className="hover:text-[#F07C22]  cursor-pointer py-1"
                             >
                               ERP for Education
                             </div>
                             <div
                               onClick={() => navigate("/services/erp/custom")}
-                              className="hover:text-orange-500 cursor-pointer py-1"
+                              className="hover:text-[#F07C22]  cursor-pointer py-1"
                             >
                               Custom ERP
                             </div>
@@ -375,7 +375,7 @@ export default function Firstt() {
 
                 <a
                   onClick={() => handleNavClick("Contact Us")}
-                  className="text-[4vw] sm:text-[2.5vw] md:text-[1.5vw] font-jl cursor-pointer hover:text-orange-400"
+                  className="text-[4vw] sm:text-[2.5vw] md:text-[1.5vw] font-jl cursor-pointer hover:text-[#F07C22] "
                 >
                   Contact Us
                 </a>
@@ -397,7 +397,7 @@ export default function Firstt() {
             <h1 className="font-jB text-[clamp(2rem,6vw,4rem)] leading-tight">
               Turning Code into
             </h1>
-            <h1 className="font-jB text-[8vw] sm:text-[6vw] md:text-[4vw] text-orange-400 leading-tight mt-[-1vw]">
+            <h1 className="font-jB text-[8vw] sm:text-[6vw] md:text-[4vw] text-[#F07C22]  leading-tight mt-[-1vw]">
               Impact.
             </h1>
             <div
@@ -453,7 +453,7 @@ export default function Firstt() {
             pauseBetweenAnimations={1}
           />
           <div className="mx-auto max-w-4xl mt-6 sm:mt-8 md:mt-10">
-            <div className="font-jrB text-4xl sm:text-4xl md:text-5xl text-orange-400 text-center">
+            <div className="font-jrB text-4xl sm:text-4xl md:text-5xl text-[#F07C22]  text-center">
               Results matter.
             </div>
             <div className="font-jl text-base sm:text-lg md:text-xl font-normal mt-6 sm:mt-8 text-center">
@@ -470,7 +470,7 @@ export default function Firstt() {
         <div>
           <SplitText
             text="WHAT OUR"
-            className="md:text-6xl sm:text-[2vw] font-jB text-center text-orange-500 mt-36"
+            className="md:text-6xl sm:text-[2vw] font-jB text-center text-[#F07C22]  mt-36"
             delay={100}
             duration={0.6}
             ease="power3.out"
@@ -496,7 +496,7 @@ export default function Firstt() {
           />
           <SplitText
             text="  SAYS"
-            className="md:text-6xl sm:text-[2vw] font-jB text-center text-orange-500 mt-36"
+            className="md:text-6xl sm:text-[2vw] font-jB text-center text-[#F07C22]  mt-36"
             delay={100}
             duration={0.6}
             ease="power3.out"

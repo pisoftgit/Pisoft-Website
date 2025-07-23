@@ -125,7 +125,7 @@ const TestimonialSection = () =>
   animateBy="words"
   direction="top"
   
-  className="text-center text-6xl  font-jSB text-orange-400 mb-22"
+  className="text-center text-6xl  font-jSB text-[#F07C22]  mb-22"
 />
    
 

@@ -182,7 +182,7 @@ export default function Internship() {
             separator=","
             direction="up"
             duration={1}
-            className="text-6xl font-extrabold text-orange-400"
+            className="text-6xl font-extrabold text-[#F07C22] "
           />
           <p className="mt-4 text-center text-lg sm:text-xl font-medium">
             Above No. of Students Trained
@@ -197,7 +197,7 @@ export default function Internship() {
             separator=","
             direction="up"
             duration={1}
-            className="text-6xl font-extrabold text-orange-400"
+            className="text-6xl font-extrabold text-[#F07C22] "
           />
           <p className="mt-4 text-center text-lg sm:text-xl font-medium">
             Above Placements Till Date
@@ -212,7 +212,7 @@ export default function Internship() {
             separator=","
             direction="up"
             duration={1}
-            className="text-6xl font-extrabold text-orange-400"
+            className="text-6xl font-extrabold text-[#F07C22] "
           />
           <p className="mt-4 text-center text-lg sm:text-xl font-medium">
             Corporate Tie Ups
@@ -227,7 +227,7 @@ export default function Internship() {
             separator=","
             direction="up"
             duration={1}
-            className="text-6xl font-extrabold text-orange-400"
+            className="text-6xl font-extrabold text-[#F07C22] "
           />
           <p className="mt-4 text-center text-lg sm:text-xl font-medium">
             Academic Link Ups

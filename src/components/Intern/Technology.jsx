@@ -160,7 +160,7 @@ function Technology() {
             <section className="w-full flex flex-col items-start px-4 sm:px-6 lg:px-12 py-4">
                 <BlurText
                     text="Explore Our Technologies"
-                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-jr text-orange-500 leading-tight text-left sm:text-center"
+                    className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-jr text-[#F07C22]  leading-tight text-left sm:text-center"
                     delay={110}
                     duration={0.7}
                     ease="power3.out"

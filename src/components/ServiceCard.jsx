@@ -45,7 +45,7 @@ export default function AccordionMenu() {
         <div className="flex justify-center items-center">
           <div className="flex flex-col items-center justify-center mb-4 sm:mb-6">
             <span className="flex flex-wrap items-center font-jSB text-[4vh] sm:text-[4vh] md:text-[6vh] font-semibold text-black tracking-wider text-center">
-              You Might Be <h5 className="ml-2 text-orange-500">Wondering…</h5>
+              You Might Be <h5 className="ml-2 text-[#F07C22] ">Wondering…</h5>
             </span>
           </div>
         </div>
@@ -65,7 +65,7 @@ export default function AccordionMenu() {
             >
               <div className="flex justify-between items-center py-6 sm:py-8 md:py-10 px-4 sm:px-6">
                 <h3 className={`font-jr text-xl sm:text-xl md:text-2xl tracking-wide ${
-                  isActive ? `text-orange-500`: "text-black"
+                  isActive ? `text-[#F07C22] `: "text-black"
                 }`}>
                   {item.title}
                 </h3>

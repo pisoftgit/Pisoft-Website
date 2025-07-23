@@ -13,7 +13,7 @@ function Tech() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="font-jr text-orange-500 text-[18px] sm:text-[20px] leading-tight"
+          className="font-jr text-[#F07C22]  text-[18px] sm:text-[20px] leading-tight"
         >
           Tech And Tools We Use
         </motion.div>

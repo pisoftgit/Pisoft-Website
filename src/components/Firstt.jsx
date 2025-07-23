@@ -68,11 +68,14 @@ export default function Firstt() {
     });
 
     const isMobile = window.innerWidth < 768;
-
     // Adjust text Y position before animation begins
     if (textRef.current) {
-      textRef.current.setAttribute('y', isMobile ? '50%' : '40%');
+      const yValue = isMobile
+        ? '50%'
+          : '47%';
+      textRef.current.setAttribute('y', yValue);
     }
+
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -108,7 +111,7 @@ export default function Firstt() {
       scrollTrigger: {
         trigger: triggerRef.current,
         start: "top 80%",
-        end: "bottom 40%",
+        end: "bottom 30%",
         scrub: 1,
         toggleActions: "play none none reverse",
         scroller: document.body,
@@ -251,9 +254,10 @@ export default function Firstt() {
         <div className="relative w-full h-screen overflow-hidden">
           {/* Background Video */}
           <div className="absolute top-0 left-0 w-full h-full z-[-1]">
-            <video className="w-full h-full object-cover" autoPlay playsInline muted loop preload="auto">
+            {/* <video className="w-full h-full object-cover" autoPlay playsInline muted loop preload="auto">
               <source src={videosrc} type="video/mp4" />
-            </video>
+            </video> */}
+             <img src="/scroll7.jpeg" alt="Scroll" className="w-full h-full object-cover" />
           </div>
 
           {/* Masked SVG Text */}
@@ -270,7 +274,7 @@ export default function Firstt() {
                   ref={textRef}
                   className="font-bebas select-none"
                   x="50%"
-                  y="40%" 
+                  y="40%"
                   dominantBaseline="middle"
                   textAnchor="middle"
                   fill="black"
@@ -292,7 +296,7 @@ export default function Firstt() {
             className="absolute bottom-15 left-4 sm:bottom-6 sm:left-6 md:bottom-11 md:left-8 p-2 sm:p-4 text-black z-10 max-w-[90%]"
           >
             <h1 className="font-jr font-bold leading-snug text-[9vw] sm:text-[7vw] md:text-[5.5vw] lg:text-[4vw] flex flex-wrap">
-              <span className="text-orange-400 mr-2">Engineering</span> Excellence in
+              <span className="text-[#F07C22]  mr-2">Engineering</span> Excellence in
             </h1>
             <h3 className="font-jr font-bold leading-snug text-[8vw] sm:text-[6vw] md:text-[5vw] lg:text-[3.5vw] flex flex-wrap">
               Every Line of <span className="ml-1">Code...</span>
@@ -364,7 +368,7 @@ export default function Firstt() {
             pauseBetweenAnimations={1}
           />
           <div className="mx-auto max-w-4xl mt-6 sm:mt-8 md:mt-10">
-            <div className="font-jrB text-4xl sm:text-4xl md:text-5xl text-orange-400 text-center">
+            <div className="font-jrB text-4xl sm:text-4xl md:text-5xl text-[#F07C22]  text-center">
               Results matter.
             </div>
             <div className="font-jl text-base sm:text-lg md:text-xl font-normal mt-6 mb-14 sm:mt-8 text-center">
@@ -382,7 +386,7 @@ export default function Firstt() {
       <div className="max-w-screen mt-35 px-10 ">
         <BlurText
           text="WHAT OUR CLIENT SAYS"
-          className="lg:text-5xl text-3xl font-jB text-center text-orange-500"
+          className="lg:text-5xl text-3xl font-jB text-center text-[#F07C22] "
           delay={100}
           duration={0.6}
           ease="power3.out"

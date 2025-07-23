@@ -175,7 +175,7 @@ export default function Firstt() {
 
         <div ref={staticTextRef} className="absolute bottom-4 left-4 p-4 text-black z-10">
           <h1 className="font-jr text-[5vw] font-bold">
-            <span className="text-orange-400 mr-2">Engineering</span> Excellence in
+            <span className="text-[#F07C22]  mr-2">Engineering</span> Excellence in
           </h1>
           <h3 className="font-jr text-[4vw] font-bold">
             Every Line of <span className="ml-2">Code...</span>
@@ -188,7 +188,7 @@ export default function Firstt() {
         <div className="flex flex-col md:flex-row justify-between items-start pt-46 gap-6">
           <div className="w-full md:w-1/2">
             <h1 className="font-jB text-[4vw] leading-tight">Turning Code into</h1>
-            <h1 className="font-jB text-[4vw] text-orange-400 leading-tight">Impact.</h1>
+            <h1 className="font-jB text-[4vw] text-[#F07C22]  leading-tight">Impact.</h1>
             <div ref={triggerRef} className="mt-6 flex flex-wrap gap-3 max-w-full">
               {text.split(" ").map((word, idx) => (
                 <span key={idx} ref={setLetterRef} className="font-jr text-[1.75vw] font-bold text-gray-400">
@@ -249,28 +249,28 @@ export default function Firstt() {
               <img src="/images/testimonial1.jpg" alt="Client 1" className="w-full h-32 object-cover rounded-t" />
               <div className="p-2 text-sm text-white">
                 <p>"The team exceeded our expectations with fast delivery."</p>
-                <p className="mt-1 text-xs text-orange-400">— Sarah L., Product Manager</p>
+                <p className="mt-1 text-xs text-[#F07C22] ">— Sarah L., Product Manager</p>
               </div>
             </Card>
             <Card>
               <img src="/images/testimonial2.jpg" alt="Client 2" className="w-full h-32 object-cover rounded-t" />
               <div className="p-2 text-sm text-white">
                 <p>"Exceptional service and support throughout our project."</p>
-                <p className="mt-1 text-xs text-orange-400">— James K., CTO</p>
+                <p className="mt-1 text-xs text-[#F07C22] ">— James K., CTO</p>
               </div>
             </Card>
             <Card>
               <img src="/images/testimonial3.jpg" alt="Client 3" className="w-full h-32 object-cover rounded-t" />
               <div className="p-2 text-sm text-white">
                 <p>"Highly professional and technically sound team."</p>
-                <p className="mt-1 text-xs text-orange-400">— Anita D., CEO</p>
+                <p className="mt-1 text-xs text-[#F07C22] ">— Anita D., CEO</p>
               </div>
             </Card>
             <Card>
               <img src="/images/testimonial4.jpg" alt="Client 4" className="w-full h-32 object-cover rounded-t" />
               <div className="p-2 text-sm text-white">
                 <p>"They understood our vision and delivered flawlessly."</p>
-                <p className="mt-1 text-xs text-orange-400">— Carlos M., Startup Founder</p>
+                <p className="mt-1 text-xs text-[#F07C22] ">— Carlos M., Startup Founder</p>
               </div>
             </Card>
           </CardSwap>

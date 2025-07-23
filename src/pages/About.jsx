@@ -163,7 +163,7 @@ function About() {
                   delay={200}
                   animateBy="words"
                   direction="top"
-                  className="font-jSB text-2xl sm:text-3xl md:text-4xl text-orange-400 tracking-wider"
+                  className="font-jSB text-2xl sm:text-3xl md:text-4xl text-[#F07C22] tracking-wider"
                 />
                 <div className="font-jS text-base [text-align:justify] leading-relaxed sm:text-lg md:text-xl lg:text-2xl text-gray-800 tracking-wider mt-4 sm:mt-6">
                   {message ? (
@@ -202,7 +202,7 @@ function About() {
           </section>
 
           {/* === Certificate Section === */}
-          <section className="h-auto p-4 bg-white relative z-10 border-2 border-orange-400 py-8 px-15 ">
+          <section className="h-auto p-4 bg-white relative z-10 py-8 px-15 ">
             <div className="flex flex-row justify-around items-center gap-5">
               <div className="text-center">
                 <div className="font-jr text-gray-500 text-sm sm:text-base md:text-lg">
@@ -251,10 +251,10 @@ function About() {
                   delay={200}
                   animateBy="words"
                   direction="top"
-                  className="mt-16 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-950 tracking-wider"
+                  className="mt-16 mb-5 font-jSB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-950 tracking-wider"
                 />
                 <div
-                  className="font-jSB text-base [text-align:justify] leading-relaxed sm:text-sm md:text-md lg:text-xl"
+                  className="font-jS text-base [text-align:justify] leading-relaxed sm:text-sm md:text-md lg:text-xl"
                   dangerouslySetInnerHTML={{ __html: Visions }}
                 />
               </div>
@@ -275,10 +275,10 @@ function About() {
                   delay={200}
                   animateBy="words"
                   direction="top"
-                  className="mt-16 mb-5 font-jB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-950 tracking-wider"
+                  className="mt-16 mb-5 font-jSB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-950 tracking-wider"
                 />
                 <div
-                  className="font-jSB text-base [text-align:justify] leading-relaxed sm:text-sm md:text-md lg:text-xl"
+                  className="font-jS text-base [text-align:justify] leading-relaxed sm:text-sm md:text-md lg:text-xl"
                   dangerouslySetInnerHTML={{ __html: Missions }}
                 />
               </div>

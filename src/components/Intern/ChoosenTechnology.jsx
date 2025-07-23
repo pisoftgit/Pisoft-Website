@@ -88,6 +88,28 @@ export function SidebarDemo() {
         }
     };
 
+    const scrollYRef = useRef(0);
+
+  useEffect(() => {
+    if (modalOpen || nestedModalOpen) {
+      scrollYRef.current = window.scrollY;
+      document.body.style.position = "fixed";
+      document.body.style.top = `-${scrollYRef.current}px`;
+      document.body.style.width = "100%";
+      document.body.style.overflow = "hidden";
+      document.body.style.touchAction = "none";
+
+      return () => {
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.overflow = "";
+        document.body.style.width = "";
+        document.body.style.touchAction = "";
+        window.scrollTo(0, scrollYRef.current);
+      };
+    }
+  }, [modalOpen, nestedModalOpen]);
+
     // Modal close handler
     const closeModal = () => setModalContent(null);
 
@@ -276,7 +298,7 @@ const Logo = ({ open }) => (
                 <motion.span
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
-                    className="text-lg text-orange-400 font-bold tracking-wide font-jl"
+                    className="text-lg text-[#F07C22]  font-bold tracking-wide font-jl"
                 >
                     All Technologies
                 </motion.span>

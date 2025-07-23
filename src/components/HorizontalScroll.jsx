@@ -44,7 +44,7 @@ const Horizontal = () => {
             delay={100}
             animateBy="words"
             direction="top"
-            className="font-jSB text-2xl sm:text-3xl md:text-5xl font-semibold text-orange-400 tracking-wider text-center px-4"
+            className="font-jSB text-2xl sm:text-3xl md:text-5xl font-semibold text-[#F07C22]  tracking-wider text-center px-4"
           />
         </div>
         <HorizontalScrollCarousel />

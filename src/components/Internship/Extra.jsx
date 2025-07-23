@@ -138,7 +138,7 @@ function Internship() {
           />
           <BlurText
             text="( HOPE )"
-            className="sm:text-[2.5vw] md:text-[2vw] font-jB text-center leading-tight text-orange-500 px-5"
+            className="sm:text-[2.5vw] md:text-[2vw] font-jB text-center leading-tight text-[#F07C22]  px-5"
             delay={110}
             duration={0.7}
             ease="power3.out"
