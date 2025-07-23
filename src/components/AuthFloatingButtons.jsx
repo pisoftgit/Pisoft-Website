@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FiBriefcase, FiLogIn } from "react-icons/fi";
 import { FaPenFancy } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const AuthFloatingButtons = () => {
   const [hoverIntern, setHoverIntern] = useState(false);
   const [hoverTest, setHoverTest] = useState(false);
   const [hoverLogin, setHoverLogin] = useState(false);
+  const navigate = useNavigate()
+
+  const handleApplyInternship = () =>{
+    navigate("/LoginUser")
+  }
 
   const baseClasses =
     "flex items-center justify-center gap-2 rounded-full font-jSB cursor-pointer border-2 border-transparent";
@@ -18,6 +24,7 @@ const AuthFloatingButtons = () => {
       <motion.button
         onMouseEnter={() => setHoverIntern(true)}
         onMouseLeave={() => setHoverIntern(false)}
+        onClick={handleApplyInternship}
         initial={{ backgroundColor: "#0c1e3a", color: "#FDA851" }}
         animate={{
           backgroundColor: hoverIntern ? "#FDA851" : "#0c1e3a",
