@@ -14,7 +14,7 @@ import ERPTourTravels from "./pages/ERPTourTravels"
 import Services from "./pages/ERPServices"
 import Internship from "./pages/internship"
 import { SidebarDemo } from "./components/Intern/ChoosenTechnology"
-import LoginUser from "./pages/SignUp"
+import LoginUser from "./pages/InternshipEnquiry"
 import LoginRegisterUser from "./pages/Login&Register"
 import RegisterUser from "./pages/Register"
 

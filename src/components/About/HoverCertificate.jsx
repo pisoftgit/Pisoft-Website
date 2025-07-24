@@ -61,7 +61,7 @@ const TiltCard = () => {
         className="absolute inset-4 sm:inset-5 bg-white rounded-xl shadow-lg flex items-center justify-center overflow-hidden"
       >
         <motion.img
-          src={"https://marketplace.canva.com/EAFy42rCTA0/1/0/1600w/canva-blue-minimalist-certificate-of-achievement-_asVJz8YgJE.jpg"}
+          src={"/certificate.png"}
           alt="Showcase"
           className="w-full h-full object-cover rounded-xl"
           style={{

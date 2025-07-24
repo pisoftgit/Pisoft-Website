@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-import image from "/images.png";
 import { Label } from "../components/label";
 import { Input } from "../components/input";
 import { cn } from "../lib/util";
-import { motion, AnimatePresence } from "motion/react";
 import { NavbarDemo } from "../components/navbar/Navbar2";
 import { Example } from "../components/Corn";
 import Navbar from "../components/Navbar";
-import AuthFloatingButtons from "../components/AuthFloatingButtons";
 import Footer from "../components/Footer";
 
 
@@ -25,29 +22,23 @@ export default function LoginUser() {
         setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
+    const [technologyOptions, setTechnologyOptions] = useState([]);
 
-    const [showAuthButtons, setShowAuthButtons] = useState(true);
     useEffect(() => {
-        const handleScroll = () => {
-            const aboutTop = aboutSectionRef.current.getBoundingClientRect().top;
-            const techTop = techSectionRef.current.getBoundingClientRect().top;
+        const fetchTechnologies = async () => {
+            try {
+                const response = await fetch("https://project.pisofterp.com/pipl/restworld/technologies");
+                const data = await response.json();
 
-            if (aboutTop >= -100 && techTop > window.innerHeight * 0.5) {
-                setShowLanyard(true);
-            } else {
-                setShowLanyard(false);
-            }
-
-            // Show/hide AuthFloatingButtons
-            if (window.scrollY > 100) {
-                setShowAuthButtons(false);
-            } else {
-                setShowAuthButtons(true);
+                const formatted = data.map((item) => item.technologyName);
+                setTechnologyOptions(formatted);
+            } catch (error) {
+                console.error("Failed to fetch technology options:", error);
+                setTechnologyOptions([]);
             }
         };
 
-        window.addEventListener("scroll", handleScroll, { passive: true });
-        return () => window.removeEventListener("scroll", handleScroll);
+        fetchTechnologies();
     }, []);
 
     return (
@@ -126,19 +117,47 @@ export default function LoginUser() {
                             {/* Technology + Stream */}
                             <div className="flex flex-col md:flex-row gap-4">
                                 <LabelInputContainer className="w-full">
-                                    <Label htmlFor="technology" className=" font-jl text-orange-400">
-                                        Technology Interested<span className="text-red-500 text-lg leading-none"> *</span>
+                                    <Label htmlFor="technology" className="font-jl text-orange-400">
+                                        Technology Interested
+                                        <span className="text-red-500 text-lg leading-none"> *</span>
                                     </Label>
-                                    <Input
-                                        id="technology"
-                                        name="technology"
-                                        type="text"
-                                        value={formData.technology}
-                                        onChange={handleChange}
-                                        className={`border-2 border-orange-400`}
-                                        required
-                                    />
+
+                                    <div className="relative">
+                                        <select
+                                            id="technology"
+                                            name="technology"
+                                            value={formData.technology}
+                                            onChange={handleChange}
+                                            className="appearance-none w-full text-black border-2 border-orange-400 bg-white font-medium rounded-md px-4 py-2 pr-10 shadow-sm focus:outline-none focus:ring-2 focus:ring-orange-300 transition duration-150 ease-in-out"
+                                            required
+                                        >
+                                            <option value="">-- Select Technology --</option>
+                                            {Array.isArray(technologyOptions) &&
+                                                technologyOptions.map((tech, idx) => (
+                                                    <option key={idx} value={tech}>
+                                                        {tech}
+                                                    </option>
+                                                ))}
+                                        </select>
+
+                                        {/* Custom dropdown arrow */}
+                                        <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-orange-400">
+                                            <svg
+                                                className="w-5 h-5"
+                                                viewBox="0 0 20 20"
+                                                fill="currentColor"
+                                            >
+                                                <path
+                                                    fillRule="evenodd"
+                                                    d="M5.23 7.21a.75.75 0 011.06.02L10 11.292l3.71-4.06a.75.75 0 111.1 1.02l-4.25 4.65a.75.75 0 01-1.1 0L5.25 8.29a.75.75 0 01-.02-1.08z"
+                                                    clipRule="evenodd"
+                                                />
+                                            </svg>
+                                        </div>
+                                    </div>
                                 </LabelInputContainer>
+
+
 
                                 <LabelInputContainer className="w-full">
                                     <Label htmlFor="stream" className=" font-jl text-orange-400">
@@ -167,6 +186,7 @@ export default function LoginUser() {
                                     type="text"
                                     value={formData.college}
                                     onChange={handleChange}
+                                    className={`border-2 border-orange-400`}
                                     required
                                 />
                             </LabelInputContainer>
