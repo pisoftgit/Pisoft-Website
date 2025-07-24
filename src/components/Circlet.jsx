@@ -91,7 +91,7 @@ const CircularText = ({
       {/* Centered fixed image */}
       <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
         <img
-          src="/Pisoft.png"
+          src="/images.png"
           alt="Center"
           className="w-[80px] h-[80px] object-contain rounded-4xl"
         />
