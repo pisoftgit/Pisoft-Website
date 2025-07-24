@@ -109,7 +109,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
                     </a>
 
                     {hasSubChildren && (
-                        <div className="absolute left-full top-0 mt-1 w-60 rounded-md bg-white shadow-md py-2 z-50 hidden group-hover:block">
+                        <div className="absolute left-full top-0 mt-1 w-auto rounded-md bg-white shadow-md py-2 z-50 hidden group-hover:block">
                             {renderDropdownItems(child.children)}
                         </div>
                     )}

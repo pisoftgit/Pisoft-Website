@@ -21,6 +21,7 @@ export function NavbarDemo() {
         data.forEach(item => {
           const tech = item.technologyName;
           const duration = item.duration;
+          const courseName= item.courseName
           const link = item.resource || `/course/${item.courseId}`;
 
           if (!brochureGrouped[tech]) {
@@ -28,7 +29,7 @@ export function NavbarDemo() {
           }
 
           brochureGrouped[tech].push({
-            name: `${duration} ${item.isCourseDurationInDays ? 'Days' : 'Months'}`,
+            name: `${courseName}`,
             link,
           });
         });
