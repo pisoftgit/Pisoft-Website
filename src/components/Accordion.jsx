@@ -21,7 +21,7 @@ export default function Accordion({ title, children, initiallyOpen = false }) {
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="py-2 text-md text-white text-center">
+        <div className="py-2 text-base text-orange-400 text-center">
           {children}
         </div>
       </div>

@@ -86,7 +86,7 @@ export function Example() {
       {/* Fullscreen Nav Overlay */}
       <div
         ref={overlayRef}
-        className="fixed top-0 left-0 w-full h-screen bg-black text-white z-40 hidden"
+        className="fixed top-0 left-0 w-full h-screen bg-blue-950 text-white z-40 hidden"
       >
         <div className="flex flex-col md:flex-row w-full h-full">
           {/* Branding - Top/Left side */}
@@ -127,7 +127,7 @@ export function Example() {
                 </p>
               </div>
             </div>
-            <div className="absolute inset-0 bg-black opacity-60 z-0" />
+            <div className="absolute inset-0 bg-blue-950 opacity-60 z-0" />
           </div>
 
           {/* Nav Links - Bottom/Right side */}

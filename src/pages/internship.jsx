@@ -88,7 +88,7 @@ export default function Internship() {
     <main className={`relative w-full overflow-clip`}>
 
       {/* Navbar */}
-      <div className="fixed left-5 top-2 z-500000 lg:hidden"><Navbar /></div>
+      <div className="fixed left-5 top-4 z-500000 lg:hidden"><Navbar /></div>
       <div className="fixed top-4 right-4 z-50 lg:hidden"><Example /></div>
 
       {/* Background */}

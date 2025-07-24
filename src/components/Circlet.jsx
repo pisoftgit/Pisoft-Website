@@ -87,41 +87,46 @@ const CircularText = ({
   };
 
   return (
-    <motion.div
-      initial={{ rotate: 0 }}
-      className={`mx-auto relative rounded-full w-[150px] h-[200px] text-[#F07C22]  font-black text-center cursor-pointer origin-center ${className}`}
-      animate={controls}
-      onUpdate={(latest) => setCurrentRotation(Number(latest.rotate))}
-      onMouseEnter={handleHoverStart}
-      onMouseLeave={handleHoverEnd}
-    >
-      {letters.map((letter, i) => {
-        const rotation = (360 / letters.length) * i;
-        const factor = Number((Math.PI / letters.length).toFixed(0));
-        const x = factor * i;
-        const y = factor * i;
-        const transform = `rotateZ(${rotation}deg) translate3d(${x}px, ${y}px, 0)`;
+    <div className="relative w-[150px] h-[200px] mx-auto">
+      {/* Centered fixed image */}
+      <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+        <img
+          src="/Pisoft.png"
+          alt="Center"
+          className="w-[80px] h-[80px] object-contain rounded-4xl"
+        />
+      </div>
 
-        
+      {/* Rotating text */}
+      <motion.div
+        initial={{ rotate: 0 }}
+        className={`absolute inset-0 rounded-full text-[#F07C22] font-black text-center cursor-pointer origin-center ${className}`}
+        animate={controls}
+        onUpdate={(latest) => setCurrentRotation(Number(latest.rotate))}
+        onMouseEnter={handleHoverStart}
+        onMouseLeave={handleHoverEnd}
+      >
+        {letters.map((letter, i) => {
+          const rotation = (360 / letters.length) * i;
+          const factor = Number((Math.PI / letters.length).toFixed(0));
+          const x = factor * i;
+          const y = factor * i;
+          const transform = `rotateZ(${rotation}deg) translate3d(${x}px, ${y}px, 0)`;
 
-        return (
-            <>
+          return (
             <span
-            key={i}
-            className="absolute inline-block inset-0 font-jl lg:text-2xl md:text-lg sm:text-sm transition-all duration-500 ease-[cubic-bezier(0,0,0,1)]"
-            style={{ transform, WebkitTransform: transform }}
-          >
-            
-            {letter}
-          </span>
-</>
-          
-          
-        );
-      })}
-    </motion.div>
+              key={i}
+              className="absolute inset-0 font-jl lg:text-2xl md:text-lg sm:text-sm transition-all duration-500 ease-[cubic-bezier(0,0,0,1)]"
+              style={{ transform, WebkitTransform: transform }}
+            >
+              {letter}
+            </span>
+          );
+        })}
+      </motion.div>
+    </div>
   );
+
 };
 
 export default CircularText;
- 

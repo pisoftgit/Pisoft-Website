@@ -1,6 +1,6 @@
 import { FaFacebookF, FaLinkedinIn, FaTwitter, FaInstagram } from "react-icons/fa";
 import CircularText from "./Circlet";
-import { useState , useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const Footer = () => {
 
@@ -17,37 +17,37 @@ const Footer = () => {
   const [addressState, setAddressState] = useState("");
   const [addressCountry, setAddressCountry] = useState("");
 
-    useEffect(() => {
-      const fetchAboutData = async () => {
-        try {
-          const response = await fetch("https://project.pisofterp.com/pipl/restworld/aboutUs");
-          if (!response.ok) {
-            throw new Error("Network response was not ok");
-          }
-          const data = await response.json();
-          setCompanyName(data.companyName || "");
-          setContactNo1(data.contactNo1 || "");
-          setContactNo2(data.contactNo2 || "");
-          setEmail(data.email || "");
-          setGstIn(data.gstIn || "");
-          setCompanyLogo(data.companyLogo || "");
-          setAddressLine(data.addressLine1 || "");
-          setAddressLine2(data.addressLine2 || "");
-          setAddressDist(data.addressDistrict || "");
-          setAddressState(data.addressState || "");
-          setAddressCountry(data.addressCountry || "");
-        } catch (err) {
-          console.error("Failed to fetch about us data:", err);
+  useEffect(() => {
+    const fetchAboutData = async () => {
+      try {
+        const response = await fetch("https://project.pisofterp.com/pipl/restworld/aboutUs");
+        if (!response.ok) {
+          throw new Error("Network response was not ok");
         }
-      };
-  
-      fetchAboutData();
-    }, []);
-  
+        const data = await response.json();
+        setCompanyName(data.companyName || "");
+        setContactNo1(data.contactNo1 || "");
+        setContactNo2(data.contactNo2 || "");
+        setEmail(data.email || "");
+        setGstIn(data.gstIn || "");
+        setCompanyLogo(data.companyLogo || "");
+        setAddressLine(data.addressLine1 || "");
+        setAddressLine2(data.addressLine2 || "");
+        setAddressDist(data.addressDistrict || "");
+        setAddressState(data.addressState || "");
+        setAddressCountry(data.addressCountry || "");
+      } catch (err) {
+        console.error("Failed to fetch about us data:", err);
+      }
+    };
+
+    fetchAboutData();
+  }, []);
+
 
   return (
     <footer className="bg-blue-950 text-white px-6 sm:px-12 md:px-24 relative z-10 py-3">
-      <div className="max-w-screen mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-14 xl:gap-16 border-b border-gray-700 pb-12">
+      <div className="max-w-screen mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-14 xl:gap-16 border-b border-gray-700 pb-12">
 
         {/* Branding */}
         <div className="flex flex-col items-center sm:items-center mt-5">
@@ -84,7 +84,7 @@ const Footer = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="flex flex-col items-center sm:items-center text-center sm:text-center mt-5">
+        <div className="flex flex-col items-center sm:items-center text-center sm:text-center mt-5 md:col-span-2 lg:col-span-1">
           <h3 className="text-2xl font-bold tracking-wide text-white uppercase">Contact</h3>
           <address className="not-italic text-gray-300 font-md text-sm sm:text-lg space-y-2 leading-relaxed pt-3">
             <p>{addressLine}</p>
