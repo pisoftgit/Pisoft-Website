@@ -14,7 +14,9 @@ import ERPTourTravels from "./pages/ERPTourTravels"
 import Services from "./pages/ERPServices"
 import Internship from "./pages/internship"
 import { SidebarDemo } from "./components/Intern/ChoosenTechnology"
-import LoginUser from "./pages/login"
+import LoginUser from "./pages/SignUp"
+import LoginRegisterUser from "./pages/Login&Register"
+import RegisterUser from "./pages/Register"
 
 
 function App() {
@@ -34,9 +36,10 @@ function App() {
      <Route path="/ERPservices/TourTravels" Component={ERPTourTravels}/>
      <Route path="/ERPservices/Services" Component={Services}/>
      <Route path="/Alltechnologies" Component={SidebarDemo}/>
-     <Route path="/LoginUser" Component={LoginUser}/>
+     <Route path="/SignUpUser" Component={LoginUser}/>
+     <Route path="/LoginRegisterUser" Component={LoginRegisterUser}/>
+     <Route path="/RegisterUser" Component={RegisterUser}/>
 
-    
   </Routes>
     </>
   )

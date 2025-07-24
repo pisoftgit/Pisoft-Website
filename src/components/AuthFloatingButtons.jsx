@@ -11,7 +11,11 @@ const AuthFloatingButtons = () => {
   const navigate = useNavigate()
 
   const handleApplyInternship = () =>{
-    navigate("/LoginUser")
+    navigate("/SignUpUser")
+  }
+
+  const HandleLoginButton = ()=>{
+    navigate("/LoginRegisterUser")
   }
 
   const baseClasses =
@@ -74,6 +78,7 @@ const AuthFloatingButtons = () => {
       <motion.button
         onMouseEnter={() => setHoverLogin(true)}
         onMouseLeave={() => setHoverLogin(false)}
+        onClick={HandleLoginButton}
         initial={{ backgroundColor: "#0c1e3a", color: "#FDA851" }}
         animate={{
           backgroundColor: hoverLogin ? "#FDA851" : "#0c1e3a",
