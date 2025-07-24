@@ -52,7 +52,7 @@ export default function LoginRegisterUser() {
                             {/* Name - full row */}
                             <LabelInputContainer>
                                 <Label htmlFor="name" className="font-jl text-orange-400">
-                                    User Name
+                                    User Name<span className="text-red-500 text-lg leading-none"> *</span>
                                 </Label>
                                 <Input
                                     id="name"
@@ -62,13 +62,14 @@ export default function LoginRegisterUser() {
                                     value={formData.name}
                                     onChange={handleChange}
                                     className={`border-2 border-orange-400`}
+                                    required
                                 />
                             </LabelInputContainer>
 
                             {/* password - full row */}
                             <LabelInputContainer>
                                 <Label htmlFor="college" className="font-jl text-orange-400">
-                                    Password
+                                    Password<span className="text-red-500 text-lg leading-none"> *</span>
                                 </Label>
                                 <Input
                                     id="password"
@@ -78,6 +79,7 @@ export default function LoginRegisterUser() {
                                     value={formData.college}
                                     onChange={handleChange}
                                     className={`border-2 border-orange-400`}
+                                    required
                                 />
                             </LabelInputContainer>
 

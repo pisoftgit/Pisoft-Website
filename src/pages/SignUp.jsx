@@ -66,7 +66,7 @@ export default function LoginUser() {
             <div className="fixed top-2 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
                 <Example />
             </div>
-           <main className="relative flex items-center justify-center w-full mt-12 h-screen overflow-hidden">
+            <main className="relative flex items-center justify-center w-full mt-12 h-screen overflow-hidden">
                 <div className="z-10 shadow-input h-auto mx-auto w-full max-w-3xl rounded-none p-4 md:rounded-3xl hover:scale-102 transform transition-all md:p-8 backdrop-blur-sm bg-blue-950 shadow-orange-400 shadow-2xl border border-blue-950/20 flex items-center justify-center flex-col overflow-y-auto max-h-[100vh]">
                     <div className="w-full">
                         <h2 className="text-md md:text-3xl font-jSB text-center text-orange-400">
@@ -77,7 +77,7 @@ export default function LoginUser() {
                             {/* Name - full row */}
                             <LabelInputContainer>
                                 <Label htmlFor="name" className=" font-jl text-orange-400">
-                                    Name
+                                    Name<span className="text-red-500 text-lg leading-none"> *</span>
                                 </Label>
                                 <Input
                                     id="name"
@@ -86,6 +86,7 @@ export default function LoginUser() {
                                     value={formData.name}
                                     onChange={handleChange}
                                     className={`border-2 border-orange-400`}
+                                    required
                                 />
                             </LabelInputContainer>
 
@@ -93,7 +94,7 @@ export default function LoginUser() {
                             <div className="flex flex-col md:flex-row gap-4">
                                 <LabelInputContainer className="w-full">
                                     <Label htmlFor="email" className=" font-jl text-orange-400">
-                                        Email
+                                        Email<span className="text-red-500 text-lg leading-none"> *</span>
                                     </Label>
                                     <Input
                                         id="email"
@@ -101,13 +102,14 @@ export default function LoginUser() {
                                         type="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                    className={`border-2 border-orange-400`}
+                                        className={`border-2 border-orange-400`}
+                                        required
                                     />
                                 </LabelInputContainer>
 
                                 <LabelInputContainer className="w-full">
                                     <Label htmlFor="mobile" className=" font-jl text-orange-400">
-                                        Mobile
+                                        Mobile<span className="text-red-500 text-lg leading-none"> *</span>
                                     </Label>
                                     <Input
                                         id="mobile"
@@ -115,7 +117,8 @@ export default function LoginUser() {
                                         type="text"
                                         value={formData.mobile}
                                         onChange={handleChange}
-                                    className={`border-2 border-orange-400`}
+                                        className={`border-2 border-orange-400`}
+                                        required
                                     />
                                 </LabelInputContainer>
                             </div>
@@ -124,7 +127,7 @@ export default function LoginUser() {
                             <div className="flex flex-col md:flex-row gap-4">
                                 <LabelInputContainer className="w-full">
                                     <Label htmlFor="technology" className=" font-jl text-orange-400">
-                                        Technology Interested
+                                        Technology Interested<span className="text-red-500 text-lg leading-none"> *</span>
                                     </Label>
                                     <Input
                                         id="technology"
@@ -132,13 +135,14 @@ export default function LoginUser() {
                                         type="text"
                                         value={formData.technology}
                                         onChange={handleChange}
-                                    className={`border-2 border-orange-400`}
+                                        className={`border-2 border-orange-400`}
+                                        required
                                     />
                                 </LabelInputContainer>
 
                                 <LabelInputContainer className="w-full">
                                     <Label htmlFor="stream" className=" font-jl text-orange-400">
-                                        Stream
+                                        Stream<span className="text-red-500 text-lg leading-none"> *</span>
                                     </Label>
                                     <Input
                                         id="stream"
@@ -146,7 +150,8 @@ export default function LoginUser() {
                                         type="text"
                                         value={formData.stream}
                                         onChange={handleChange}
-                                    className={`border-2 border-orange-400`}
+                                        className={`border-2 border-orange-400`}
+                                        required
                                     />
                                 </LabelInputContainer>
                             </div>
@@ -154,7 +159,7 @@ export default function LoginUser() {
                             {/* College - full row */}
                             <LabelInputContainer>
                                 <Label htmlFor="college" className=" font-jl text-orange-400">
-                                    College
+                                    College<span className="text-red-500 text-lg leading-none"> *</span>
                                 </Label>
                                 <Input
                                     id="college"
@@ -162,16 +167,17 @@ export default function LoginUser() {
                                     type="text"
                                     value={formData.college}
                                     onChange={handleChange}
+                                    required
                                 />
                             </LabelInputContainer>
 
                             {/* Submit */}
-                             <div className="flex items-center justify-center">
+                            <div className="flex items-center justify-center">
                                 <button
                                     className="group/btn px-5 py-3 pb-3 text center relative block h-10 w-auto rounded-md bg-gradient-to-br from-orange-500 to-orange-400 font-jl hover:scale-105 text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
                                     type="submit"
                                 >
-                                    Submit 
+                                    Submit
                                 </button>
                             </div>
                         </form>

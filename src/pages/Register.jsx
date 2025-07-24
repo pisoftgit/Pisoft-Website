@@ -3,11 +3,11 @@ import image from "/images.png";
 import { Label } from "../components/label";
 import { Input } from "../components/input";
 import { cn } from "../lib/util";
-import { motion, AnimatePresence } from "motion/react";
 import { NavbarDemo } from "../components/navbar/Navbar2";
 import { Example } from "../components/Corn";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { useNavigate } from "react-router-dom";
 
 
 export default function RegisterUser() {
@@ -43,6 +43,8 @@ export default function RegisterUser() {
         }
     };
 
+    const navigate = useNavigate();
+
 
     return (
         <section className="overflow-hidden">
@@ -70,8 +72,8 @@ export default function RegisterUser() {
                         <form className="my-8 space-y-6">
                             {/* Name - full row */}
                             <LabelInputContainer>
-                                <Label htmlFor="name" className=" font-jl text-orange-400">
-                                    Name
+                                <Label htmlFor="name" className=" font-jl text-orange-400" required>
+                                    Name<span className="text-red-500 text-lg leading-none"> *</span>
                                 </Label>
                                 <Input
                                     id="name"
@@ -80,6 +82,7 @@ export default function RegisterUser() {
                                     value={formData.name}
                                     onChange={handleChange}
                                     className={`border-2 border-orange-400`}
+                                    required
                                 />
                             </LabelInputContainer>
 
@@ -87,7 +90,7 @@ export default function RegisterUser() {
                             <div className="flex flex-col md:flex-row gap-4">
                                 <LabelInputContainer className="w-full">
                                     <Label htmlFor="email" className=" font-jl text-orange-400">
-                                        Email
+                                        Email<span className="text-red-500 text-lg leading-none"> *</span>
                                     </Label>
                                     <Input
                                         id="email"
@@ -96,12 +99,14 @@ export default function RegisterUser() {
                                         value={formData.email}
                                         onChange={handleChange}
                                     className={`border-2 border-orange-400`}
+                                    required
+
                                     />
                                 </LabelInputContainer>
 
                                 <LabelInputContainer className="w-full">
                                     <Label htmlFor="mobile" className=" font-jl text-orange-400">
-                                        Mobile
+                                        Mobile<span className="text-red-500 text-lg leading-none"> *</span>
                                     </Label>
                                     <Input
                                         id="mobile"
@@ -110,6 +115,8 @@ export default function RegisterUser() {
                                         value={formData.mobile}
                                         onChange={handleChange}
                                     className={`border-2 border-orange-400`}
+                                    required
+
                                     />
                                 </LabelInputContainer>
                             </div>
@@ -117,7 +124,7 @@ export default function RegisterUser() {
                             {/* Password - full row */}
                             <LabelInputContainer>
                                 <Label htmlFor="password" className="font-jl text-orange-400">
-                                    Password
+                                    Password<span className="text-red-500 text-lg leading-none"> *</span>
                                 </Label>
                                 <Input
                                     id="password"
@@ -126,13 +133,15 @@ export default function RegisterUser() {
                                     value={formData.password}
                                     onChange={handleChange}
                                     className={`border-2 border-orange-400`}
+                                    required
+
                                 />
                             </LabelInputContainer>
 
                             {/* Confirm Password - full row */}
                             <LabelInputContainer>
                                 <Label htmlFor="confirmPassword" className="font-jl text-orange-400">
-                                    Confirm Password
+                                    Confirm Password<span className="text-red-500 text-lg leading-none"> *</span>
                                 </Label>
                                 <Input
                                     id="confirmPassword"
@@ -141,6 +150,8 @@ export default function RegisterUser() {
                                     value={formData.confirmPassword}
                                     onChange={handleChange}
                                     className={`border-2 border-orange-400`}
+                                    required
+
                                 />
                                 {passwordError && (
                                     <p className="text-sm text-red-600 mt-1">{passwordError}</p>
@@ -162,7 +173,7 @@ export default function RegisterUser() {
                                 <p className="text-sm text-orange-400 font-jl">
                                     Alraedy have an account?{" "}
                                     <span
-                                        onClick={() => navigate("/loginRegisterUser")}
+                                        onClick={() => navigate("/LoginRegisterUser")}
                                         className="text-yellow-400 underline cursor-pointer hover:text-orange-600 text-md font-jl transition-colors duration-200"
                                     >
                                         Login

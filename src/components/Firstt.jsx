@@ -275,7 +275,7 @@ export default function Firstt() {
                   ref={textRef}
                   className="font-bebas select-none"
                   x="50%"
-                  y="40%"
+                  y="38%"
                   dominantBaseline="middle"
                   textAnchor="middle"
                   fill="black"

@@ -56,7 +56,7 @@ export default function AccordionMenu() {
                 isActive ? 'bg-white' : 'bg-white'
               }`}
             >
-              <div className="flex justify-between items-center py-6 sm:py-8 md:py-10 px-4 sm:px-6">
+              <div className="flex justify-between items-center py-4 sm:py-8 md:py-5 px-4 sm:px-6">
                 <h3
                   className={`font-jr text-xl sm:text-xl md:text-2xl tracking-wide ${
                     isActive ? 'text-[#F07C22]' : 'text-black'
@@ -86,7 +86,7 @@ export default function AccordionMenu() {
                     transition={{ duration: 0.5, ease: 'easeInOut' }}
                     className="overflow-hidden"
                   >
-                    <div className="p-4 sm:p-6 flex flex-col sm:flex-row justify-between items-start gap-4">
+                    <div className="pl-4 sm:pl-6 md:pl-8 lg:pl-10 flex flex-col sm:flex-row justify-between items-start gap-4">
                       <p className="text-gray-950 font-jr tracking-wide text-[2vh] sm:text-[2.2vh] md:text-[2.5vh] max-w-4xl sm:max-w-5xl md:max-w-6xl">
                         {item.answer}
                       </p>
