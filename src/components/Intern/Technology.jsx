@@ -35,7 +35,7 @@ function Technology() {
     const navigate = useNavigate();
 
    return (
-        <div className='overflow-clip mb-6'>
+        <div className='overflow-clip'>
             {/* Header */}
             <section className="w-full flex flex-col items-start px-4 sm:px-6 lg:px-12 py-4 mb-3">
                 <BlurText
@@ -56,8 +56,8 @@ function Technology() {
             </section>
 
             {/* Tech Grid */}
-            <section className='w-screen flex flex-wrap justify-center items-center mt-10 px-5'>
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-7">
+            <section className='w-screen flex flex-wrap justify-center items-center mt-10 px-5 '>
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-7 mb-5 mt-7">
                     {Technologies.map((item, index) => (
                         <motion.div
                             key={index}
@@ -67,7 +67,7 @@ function Technology() {
                             viewport={{ once: true }}
                             onClick={() => navigate(`/alltechnologies?id=${item.id}`)}
                             whileHover={{ scale: 1.05 }}
-                            className="group cursor-pointer rounded-2xl p-[2px] bg-gradient-to-br from-orange-300 via-yellow-100 to-white shadow-md hover:shadow-xl"
+                            className="group cursor-pointer rounded-2xl p-[2px] bg-gradient-to-br from-orange-300 via-yellow-100 to-orange-200 shadow-md shadow-orange-400 hover:shadow-xl"
                         >
                             <div className="bg-white rounded-2xl flex flex-col items-center justify-center w-[6rem] h-[6rem] lg:w-[10rem] lg:h-[10rem]">
                                 <motion.img
