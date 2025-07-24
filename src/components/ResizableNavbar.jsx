@@ -59,7 +59,7 @@ export const NavBody = ({ children, className, visible }) => {
                 minWidth: "1100px",
             }}
             className={cn(
-                "relative z-[60] mx-auto hidden w-auto flex-row items-center justify-between self-start rounded-full px-6 lg:flex",
+                "relative z-[60] mx-auto hidden w-auto flex-row items-center justify-between self-start rounded-full lg:flex",
                 className
             )}
         >
@@ -249,7 +249,7 @@ export const NavbarLogo = () => {
     return (
         <a
             href="/"
-            className="relative z-20 mr-6 flex items-center py-3 text-lg font-semibold text-blue-950"> {/* Increased padding and font size */}
+            className="relative z-20 mr-6 flex px-5 space-x-4 items-center py-3 text-lg font-semibold text-blue-950"> {/* Increased padding and font size */}
             <img src={imgscr} alt="logo" width={150} height={150} />
         </a>
     );
