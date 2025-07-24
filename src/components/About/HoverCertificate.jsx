@@ -62,8 +62,8 @@ const TiltCard = () => {
       >
         <motion.img
           src={"/certificate.png"}
-          alt="Showcase"
-          className="w-full h-full object-cover rounded-xl"
+          alt="Certificate"
+          className="w-full h-full object-fit bg-no-repeat rounded-xl"
           style={{
             transform: "translateZ(30px)",
             willChange: "transform",

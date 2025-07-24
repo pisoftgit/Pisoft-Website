@@ -15,6 +15,7 @@ export function SidebarDemo() {
     const [technologies, setTechnologies] = useState([]);
     const [selectedTech, setSelectedTech] = useState(null);
     const [loadingDetails, setLoadingDetails] = useState(false);
+    const [activeTechId, setActiveTechId] = useState(null);
 
     const navigate = useNavigate();
     const handleGoBack = () => navigate("/IntershipProgram");
@@ -70,6 +71,7 @@ export function SidebarDemo() {
     }, []);
 
     const handleTechClick = async (techId) => {
+        setActiveTechId(techId)
         setLoadingDetails(true);
         try {
             const response = await fetch(
@@ -140,13 +142,13 @@ export function SidebarDemo() {
                         <NavbarDemo />
                     </div>
                     <div className="fixed top-2 right-4 sm:top-6 sm:right-6 z-50 md:hidden">
-                              <Example />
-                            </div>
+                        <Example />
+                    </div>
                 </div>
                 {/* Sidebar */}
                 <Sidebar className="min-h-screen mt-5 fixed left-0 top-0" open={open} setOpen={setOpen}>
                     <SidebarBody className="py-6 px-3 gap-6 z-20 min-h-screen overflow-hidden">
-                        <div className="flex flex-col h-full">
+                        <div className="flex flex-col h-full mt-12">
                             {/* <Logo open={open} /> */}
 
                             {/* Sidebar content scroll container */}
@@ -164,7 +166,12 @@ export function SidebarDemo() {
                                                 e.preventDefault();
                                                 handleTechClick(tech.id);
                                             }}
-                                            className="cursor-pointer hover:bg-orange-100 hover:text-blue-950 px-2 py-2 rounded-md transition-all duration-200 text-white"
+                                            className={cn(
+                                                "cursor-pointer px-2 py-2 rounded-md transition-all duration-200 text-white",
+                                                tech.id === activeTechId
+                                                    ? "bg-orange-100 text-blue-950 font-semibold"
+                                                    : "hover:bg-orange-100 hover:text-blue-950"
+                                            )}
                                         />
                                     ))
                                 )}
@@ -176,7 +183,7 @@ export function SidebarDemo() {
                 {/* Content Area */}
                 <main
                     className={cn(
-                        "flex-1 p-6 pt-10 ml-15 lg:ml-0 overflow-y-auto transition-all duration-300",
+                        "flex-1 p-6 pt-10 mt-5 lg:mt-15 ml-15 lg:ml-0 overflow-y-auto transition-all duration-300",
                         open ? "overflow-hidden pointer-events-none" : "overflow-y-auto"
                     )}
                     style={{ WebkitOverflowScrolling: "touch" }}

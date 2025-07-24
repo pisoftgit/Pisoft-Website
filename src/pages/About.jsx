@@ -202,12 +202,48 @@ function About() {
             <Tech />
           </section>
 
+
           {/* === Certificate Section === */}
-          <section className="relative z-10 bg-white py-12 px-4 sm:px-8 lg:px-50">
-            <div className="grid lg:grid-cols-2 items-center justify-center">
+
+          <div className="text-center space-y-4 mb-10 w-screen">
+            <motion.div
+              initial={{ opacity: 0, x: -80 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="font-jSB text-blue-950 text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight"
+            >
+              Get a Globally Recognized
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -80 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="font-jSB text-blue-950 text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-tight"
+            >
+              Certificate
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="font-jSB text-[#F07C22] text-[18px] sm:text-[20px] leading-tight"
+            >
+              Earn an industry-standard certificate upon completing your course.
+            </motion.div>
+          </div>
+
+
+          <section className="relative z-10 bg-white py-12 px-4 sm:px-8 lg:px-50 text-center">
+
+            <div className="grid lg:grid-cols-2 gap-10 items-center justify-center">
 
               {/* Text Section */}
-              <motion.div
+              {/* <motion.div
                 className="text-center lg:text-left space-y-3"
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -246,11 +282,11 @@ function About() {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="mt-8 bg-blue-950 text-white px-6 py-3 rounded-lg font-medium shadow hover:bg-blue-800 transition hover:scale-110"
+                  className="mt-8 mb-5 md:mb-0 bg-blue-950 text-white px-6 py-3 rounded-lg font-medium shadow hover:bg-blue-800 transition hover:scale-110"
                 >
-                 Apply Today
+                  Apply Today
                 </motion.button>
-              </motion.div>
+              </motion.div> */}
 
               {/* Certificate Image Section */}
               <motion.div
@@ -263,7 +299,25 @@ function About() {
                 <Hover />
               </motion.div>
 
+              <motion.div
+                className="flex justify-center lg:justify-center"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8 }}
+                viewport={{ once: true }}
+              >
+                <Hover />
+              </motion.div>
+
             </div>
+            
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="mt-12 mb-5 md:mb-0 bg-blue-950 text-white px-6 py-3 rounded-lg font-medium shadow hover:bg-blue-800 transition hover:scale-110"
+              >
+                Apply Today
+              </motion.button>
           </section>
 
           {/* === Work Approach === */}

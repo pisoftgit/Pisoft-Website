@@ -8,6 +8,7 @@ import { Example } from "../components/Corn";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 
 export default function RegisterUser() {
@@ -17,6 +18,7 @@ export default function RegisterUser() {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        categoryCode: "1",
         mobile: "",
         password: "",
         confirmPassword: "",
@@ -43,8 +45,28 @@ export default function RegisterUser() {
         }
     };
 
+    const [error, setError] = useState("");
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError("");
+
+        try {
+            const { confirmPassword, ...formDataToSend } = formData; // omit confirmPassword
+            const response = await axios.post("https://project.pisofterp.com/pipl/restworld/website-users/signup", formDataToSend);
+            alert(response);
+            navigate("/");
+            alert("Registration Successful!!!");
+        } catch (err) {
+            setError(err.response?.data?.message || "Registration failed. Please try again.");
+        } finally {
+            setLoading(false);
+        }
+    };
 
     return (
         <section className="overflow-hidden">
@@ -98,8 +120,8 @@ export default function RegisterUser() {
                                         type="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                    className={`border-2 border-orange-400`}
-                                    required
+                                        className={`border-2 border-orange-400`}
+                                        required
 
                                     />
                                 </LabelInputContainer>
@@ -114,8 +136,8 @@ export default function RegisterUser() {
                                         type="text"
                                         value={formData.mobile}
                                         onChange={handleChange}
-                                    className={`border-2 border-orange-400`}
-                                    required
+                                        className={`border-2 border-orange-400`}
+                                        required
 
                                     />
                                 </LabelInputContainer>
@@ -158,15 +180,21 @@ export default function RegisterUser() {
                                 )}
                             </LabelInputContainer>
 
-
+                            {error && (
+                                <div className="text-red-500 font-jl text-center">
+                                    {error}
+                                </div>
+                            )}
 
                             {/* Submit */}
                             <div className="flex items-center justify-center">
                                 <button
-                                    className="group/btn px-5 py-3 text center relative block h-10 w-auto rounded-md bg-gradient-to-br from-orange-500 to-orange-400 font-jl hover:scale-105 text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
+                                    className="group/btn px-5 space-y-4 text-center relative block h-10 w-auto rounded-md bg-gradient-to-br from-orange-500 to-orange-400 font-jl hover:scale-105 text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset]"
                                     type="submit"
+                                    disabled={loading}
+                                    onClick={handleSubmit}
                                 >
-                                    Register
+                                    {loading ? "Registering..." : "Register →"}
                                 </button>
                             </div>
                             <div className="text-center mt-4">

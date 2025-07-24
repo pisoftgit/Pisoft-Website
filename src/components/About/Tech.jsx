@@ -51,7 +51,7 @@ function Tech() {
 
 
       <section className="flex flex-col items-center min-h-auto w-auto">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 w-auto px-4">
+        <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 w-auto px-4">
           {[
             {
               title: 'Frontend Development',
@@ -93,6 +93,15 @@ function Tech() {
               title: 'Cybersecurity',
               images: ['17.png', '18.png', '19.png', '20.png'],
             },
+            
+            {
+              title: 'Data Science',
+              images: ['29.png', '22.png', '23.png', '24.png'],
+            },
+            {
+              title: 'Cloud Computing',
+              images: ['33.png', '34.png', '35.png', '36.png'],
+            },
           ].map((category, index, arr) => (
             <motion.div
               key={index}
@@ -109,8 +118,6 @@ function Tech() {
                     key={i}
                     src={`/${img}`}
                     alt={img.split('.')[0]}
-                    whileHover={{ scale: 1.15, rotate: 5 }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 12 }}
                     className="w-full h-25 object-contain bg-no-repeat rounded-md hover:scale-105 transition duration-200 ease-in-out flex items-center justify-center"
                   />
                 ))}

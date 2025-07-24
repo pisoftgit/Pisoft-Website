@@ -40,7 +40,7 @@ export const SidebarBody = (props) => (
 const DesktopSidebar = ({ className, children, ...props }) => {
   const { open, setOpen, animate } = useSidebar();
 
-  const sidebarWidth = animate ? (open ? "300px" : "100px") : "300px";
+  const sidebarWidth = animate ? (open ? "300px" : "90px") : "300px";
   const sidebarBg = animate ? (open ? "#162556" : "#ffffff") : "#162556"; 
 
   return (

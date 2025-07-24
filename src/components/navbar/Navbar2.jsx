@@ -8,20 +8,55 @@ import {
 import { useState, useEffect } from "react";
 
 export function NavbarDemo() {
-  const [navItems, setNavItems] = useState([]);
+  const [navItems, setNavItems] = useState([
+    {
+      name: "Home",
+      link: "/",
+    },
+    {
+      name: "About",
+      link: "/about",
+      children: [
+        { name: "Our Mission", link: "/about#our-mission" },
+        { name: "Our Vision", link: "/about#our-vision" },
+      ],
+    },
+    {
+      name: "Internship",
+      link: "/IntershipProgram",
+    },
+    {
+      name: "E-Brochure",
+      children: [], 
+    },
+    {
+      name: "ERP Services",
+      children: [
+        { name: "Education", link: "/ERPservices/Education" },
+        { name: "Finance", link: "/ERPservices/Finance" },
+        { name: "Medical and Healthcare", link: "/ERPservices/Medical&Healthcare" },
+        { name: "AutoMobile", link: "/ERPservices/AutoMobile" },
+        { name: "Tours & Travels", link: "/ERPservices/TourTravels" },
+        { name: "Services", link: "/ERPservices/Services" },
+      ],
+    },
+    {
+      name: "Contact Us",
+      link: "/contact",
+    },
+  ]);
 
   useEffect(() => {
     const fetchBrochureData = async () => {
       try {
-        const res = await fetch("https://project.pisofterp.com/pipl/restworld/courses/technologies/modes/ONLINE"); 
+        const res = await fetch("https://project.pisofterp.com/pipl/restworld/courses/technologies/modes/ONLINE");
         const data = await res.json();
 
         const brochureGrouped = {};
 
         data.forEach(item => {
           const tech = item.technologyName;
-          const duration = item.duration;
-          const courseName= item.courseName
+          const courseName = item.courseName;
           const link = item.resource || `/course/${item.courseId}`;
 
           if (!brochureGrouped[tech]) {
@@ -29,7 +64,7 @@ export function NavbarDemo() {
           }
 
           brochureGrouped[tech].push({
-            name: `${courseName}`,
+            name: courseName,
             link,
           });
         });
@@ -41,45 +76,14 @@ export function NavbarDemo() {
           })
         );
 
-        const updatedNavItems = [
-          {
-            name: "Home",
-            link: "/",
-          },
-          {
-            name: "About",
-            link: "/about",
-            children: [
-              { name: "Our Mission", link: "/about#our-mission" },
-              { name: "Our Vision", link: "/about#our-vision" },
-            ],
-          },
-          {
-            name: "Internship",
-            link: "/IntershipProgram",
-          },
-          {
-            name: "E-Brochure",
-            children: eBrochureChildren,
-          },
-          {
-            name: "ERP Services",
-            children: [
-              { name: "Education", link: "/ERPservices/Education" },
-              { name: "Finance", link: "/ERPservices/Finance" },
-              { name: "Medical and Healthcare", link: "/ERPservices/Medical&Healthcare" },
-              { name: "AutoMobile", link: "/ERPservices/AutoMobile" },
-              { name: "Tours & Travels", link: "/ERPservices/TourTravels" },
-              { name: "Services", link: "/ERPservices/Services" },
-            ],
-          },
-          {
-            name: "Contact Us",
-            link: "/contact",
-          },
-        ];
-
-        setNavItems(updatedNavItems);
+        // Update just the E-Brochure section
+        setNavItems((prevItems) =>
+          prevItems.map((item) =>
+            item.name === "E-Brochure"
+              ? { ...item, children: eBrochureChildren }
+              : item
+          )
+        );
       } catch (error) {
         console.error("Failed to fetch brochure data", error);
       }
