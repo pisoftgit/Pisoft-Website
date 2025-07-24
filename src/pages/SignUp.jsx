@@ -66,63 +66,56 @@ export default function LoginUser() {
             <div className="fixed top-2 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
                 <Example />
             </div>
-            <main className="relative flex items-center justify-center w-full h-screen mt-18 overflow-hidden">
-                <img
-                    src={image}
-                    alt="PiSoft Logo Background"
-                    className="absolute w-124 h-auto opacity-100 z-0"
-                    style={{ top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}
-                />
-
-                <div className="z-10 shadow-input h-auto mx-auto w-full max-w-3xl rounded-none p-4 md:rounded-2xl md:p-8 backdrop-blur-sm bg-blue-200/40 border border-blue-950/20 flex items-center justify-center flex-col overflow-y-auto max-h-[100vh]">
+           <main className="relative flex items-center justify-center w-full mt-12 h-screen overflow-hidden">
+                <div className="z-10 shadow-input h-auto mx-auto w-full max-w-3xl rounded-none p-4 md:rounded-3xl hover:scale-102 transform transition-all md:p-8 backdrop-blur-sm bg-blue-950 shadow-orange-400 shadow-2xl border border-blue-950/20 flex items-center justify-center flex-col overflow-y-auto max-h-[100vh]">
                     <div className="w-full">
-                        <h2 className="text-2xl font-jSB text-center text-blue-950">
+                        <h2 className="text-md md:text-3xl font-jSB text-center text-orange-400">
                             Internship Enquiry
                         </h2>
 
                         <form className="my-8 space-y-6">
                             {/* Name - full row */}
                             <LabelInputContainer>
-                                <Label htmlFor="name" className=" font-jl text-blue-950">
+                                <Label htmlFor="name" className=" font-jl text-orange-400">
                                     Name
                                 </Label>
                                 <Input
                                     id="name"
                                     name="name"
-                                    placeholder="Name"
                                     type="text"
                                     value={formData.name}
                                     onChange={handleChange}
+                                    className={`border-2 border-orange-400`}
                                 />
                             </LabelInputContainer>
 
                             {/* Email + Mobile */}
                             <div className="flex flex-col md:flex-row gap-4">
                                 <LabelInputContainer className="w-full">
-                                    <Label htmlFor="email" className=" font-jl text-blue-950">
+                                    <Label htmlFor="email" className=" font-jl text-orange-400">
                                         Email
                                     </Label>
                                     <Input
                                         id="email"
                                         name="email"
-                                        placeholder="Email"
                                         type="email"
                                         value={formData.email}
                                         onChange={handleChange}
+                                    className={`border-2 border-orange-400`}
                                     />
                                 </LabelInputContainer>
 
                                 <LabelInputContainer className="w-full">
-                                    <Label htmlFor="mobile" className=" font-jl text-blue-950">
+                                    <Label htmlFor="mobile" className=" font-jl text-orange-400">
                                         Mobile
                                     </Label>
                                     <Input
                                         id="mobile"
                                         name="mobile"
-                                        placeholder="Mobile"
                                         type="text"
                                         value={formData.mobile}
                                         onChange={handleChange}
+                                    className={`border-2 border-orange-400`}
                                     />
                                 </LabelInputContainer>
                             </div>
@@ -130,43 +123,42 @@ export default function LoginUser() {
                             {/* Technology + Stream */}
                             <div className="flex flex-col md:flex-row gap-4">
                                 <LabelInputContainer className="w-full">
-                                    <Label htmlFor="technology" className=" font-jl text-blue-950">
+                                    <Label htmlFor="technology" className=" font-jl text-orange-400">
                                         Technology Interested
                                     </Label>
                                     <Input
                                         id="technology"
                                         name="technology"
-                                        placeholder="Technology"
                                         type="text"
                                         value={formData.technology}
                                         onChange={handleChange}
+                                    className={`border-2 border-orange-400`}
                                     />
                                 </LabelInputContainer>
 
                                 <LabelInputContainer className="w-full">
-                                    <Label htmlFor="stream" className=" font-jl text-blue-950">
+                                    <Label htmlFor="stream" className=" font-jl text-orange-400">
                                         Stream
                                     </Label>
                                     <Input
                                         id="stream"
                                         name="stream"
-                                        placeholder="Stream"
                                         type="text"
                                         value={formData.stream}
                                         onChange={handleChange}
+                                    className={`border-2 border-orange-400`}
                                     />
                                 </LabelInputContainer>
                             </div>
 
                             {/* College - full row */}
                             <LabelInputContainer>
-                                <Label htmlFor="college" className=" font-jl text-blue-950">
+                                <Label htmlFor="college" className=" font-jl text-orange-400">
                                     College
                                 </Label>
                                 <Input
                                     id="college"
                                     name="college"
-                                    placeholder="College"
                                     type="text"
                                     value={formData.college}
                                     onChange={handleChange}
@@ -174,12 +166,12 @@ export default function LoginUser() {
                             </LabelInputContainer>
 
                             {/* Submit */}
-                            <div className="flex items-center justify-center">
+                             <div className="flex items-center justify-center">
                                 <button
-                                    className="group/btn px-5 text center relative block h-10 w-auto rounded-md bg-gradient-to-br from-blue-950 to-blue-900 font-medium text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
+                                    className="group/btn px-5 py-3 pb-3 text center relative block h-10 w-auto rounded-md bg-gradient-to-br from-orange-500 to-orange-400 font-jl hover:scale-105 text-white shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_#27272a_inset,0px_-1px_0px_0px_#27272a_inset]"
                                     type="submit"
                                 >
-                                    Submit &rarr;
+                                    Submit 
                                 </button>
                             </div>
                         </form>

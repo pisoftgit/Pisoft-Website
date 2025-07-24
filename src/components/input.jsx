@@ -4,7 +4,7 @@ import { cn } from "../lib/util";
 import { useMotionTemplate, useMotionValue, motion } from "motion/react";
 
 const Input = React.forwardRef(({ className, type, ...props }, ref) => {
-  const radius = 100;
+  const radius = 200;
   const [visible, setVisible] = React.useState(false);
 
   let mouseX = useMotionValue(0);
@@ -26,7 +26,7 @@ const Input = React.forwardRef(({ className, type, ...props }, ref) => {
         background: useMotionTemplate`
       radial-gradient(
         ${visible ? radius + "px" : "0px"} circle at ${mouseX}px ${mouseY}px,
-        #3b82f6,
+       #C3B527,
         transparent 80%
       )
     `,
@@ -38,7 +38,7 @@ const Input = React.forwardRef(({ className, type, ...props }, ref) => {
       <input
         type={type}
         className={cn(
-          `shadow-input  flex h-10 w-full rounded-md border-none bg-gray-100 px-3 py-2 text-sm text-black transition duration-400 group-hover/input:shadow-none file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 focus-visible:ring-[2px] focus-visible:ring-neutral-400 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 `,
+          `shadow-input  flex h-10 w-full rounded-md border-orange-400 hover:scale-102 bg-gray-200 px-3 py-2 text-sm text-black transition duration-400 group-hover/input:shadow-none file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-neutral-400 focus-visible:ring-[2px] focus-visible:ring-neutral-400 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 `,
           className
         )}
         ref={ref}

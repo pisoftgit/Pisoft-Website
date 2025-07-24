@@ -109,7 +109,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
                     </a>
 
                     {hasSubChildren && (
-                        <div className="absolute left-full top-0 mt-0 ml-2 w-60 rounded-md bg-white shadow-md py-2 z-50 hidden group-hover:block">
+                        <div className="absolute left-full top-0 mt-1 w-60 rounded-md bg-white shadow-md py-2 z-50 hidden group-hover:block">
                             {renderDropdownItems(child.children)}
                         </div>
                     )}
@@ -166,7 +166,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
                                         initial={{ opacity: 0, y: -10 }}
                                         animate={{ opacity: 1, y: 0 }}
                                         exit={{ opacity: 0, y: -10 }}
-                                        className="absolute left-0 mt-4 w-60 rounded-md bg-white backdrop-blur-xl shadow-md py-2 z-50 text-center"
+                                        className="absolute left-0 mt-4 w-60 rounded-md bg-white backdrop-blur-xl shadow-xl py-2 z-50 text-center"
                                     >
                                         {renderDropdownItems(item.children)}
                                     </motion.div>
