@@ -39,13 +39,20 @@ export const SidebarBody = (props) => (
 
 const DesktopSidebar = ({ className, children, ...props }) => {
   const { open, setOpen, animate } = useSidebar();
+
+  const sidebarWidth = animate ? (open ? "300px" : "100px") : "300px";
+  const sidebarBg = animate ? (open ? "#162556" : "#ffffff") : "#162556"; 
+
   return (
     <motion.div
       className={cn(
-        "px-4 py-4 mr-4 hidden md:flex md:flex-col bg-gray-900 text-[#F07C22] w-[300px] shrink-0 font-jSB",
+        "px-4 py-4 mr-4 hidden md:flex md:flex-col text-[#F07C22] w-[300px] shrink-0 font-jSB",
         className
       )}
-      animate={{ width: animate ? (open ? "300px" : "100px") : "300px" }}
+      animate={{
+        width: sidebarWidth,
+        backgroundColor: sidebarBg
+      }}
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
       {...props}
@@ -55,6 +62,7 @@ const DesktopSidebar = ({ className, children, ...props }) => {
   );
 };
 
+
 const MobileSidebar = ({ className, children, ...props }) => {
   const { open, setOpen } = useSidebar();
 
@@ -63,7 +71,7 @@ const MobileSidebar = ({ className, children, ...props }) => {
       {/* Always-visible 5% mini sidebar */}
       <div
         className={cn(
-          "fixed top-0 left-0 h-full w-[10%] bg-gray-900 z-[50] flex items-center justify-center md:hidden",
+          "fixed top-0 left-0 h-full w-[10%] bg-blue-950 z-[50] flex items-center justify-center md:hidden",
           className
         )}
         {...props}
@@ -75,7 +83,6 @@ const MobileSidebar = ({ className, children, ...props }) => {
         />
       </div>
 
-      {/* Full-screen animated sidebar */}
       <AnimatePresence>
         {open && (
           <motion.div

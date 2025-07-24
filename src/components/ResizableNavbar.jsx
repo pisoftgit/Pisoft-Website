@@ -249,7 +249,7 @@ export const NavbarLogo = () => {
     return (
         <a
             href="/"
-            className="relative z-20 mr-6 flex items-center space-x-4 px-4 py-3 text-lg font-semibold text-blue-950"> {/* Increased padding and font size */}
+            className="relative z-20 mr-6 flex items-center py-3 text-lg font-semibold text-blue-950"> {/* Increased padding and font size */}
             <img src={imgscr} alt="logo" width={150} height={150} />
         </a>
     );

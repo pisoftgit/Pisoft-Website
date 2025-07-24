@@ -149,7 +149,7 @@ export function Example() {
             >
               About
             </a>
-            <Accordion title="ERP Solutions">
+            <Accordion className="cursor-pointer hover:text-blue-400 py-1" title="ERP Solutions">
               <div
                 className="cursor-pointer hover:text-blue-400 py-1"
                 onMouseEnter={() => setBgImage(imageMap.about)}

@@ -141,7 +141,7 @@ function About() {
           <div className="fixed left-5 top-2 z-50000 lg:hidden">
             <Navbar />
           </div>
-          <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
+          <div className="fixed top-2 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
             <Example />
           </div>
 
@@ -197,7 +197,7 @@ function About() {
           {/* === Tech Section === */}
           <section
             ref={techSectionRef}
-            className="min-h-[40vh] pt-30 bg-transparent relative z-10"
+            className="min-h-[40vh] pt-10 bg-transparent relative z-10"
           >
             <Tech />
           </section>

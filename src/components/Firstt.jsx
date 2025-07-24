@@ -19,6 +19,7 @@ import { InfiniteMovingCards } from "./Intern/infiniteCards";
 import { NavbarDemo } from "./navbar/Navbar2";
 import { motion, AnimatePresence } from "framer-motion";
 import AuthFloatingButtons from "./AuthFloatingButtons";
+import Navbar from "./Navbar";
 
 
 
@@ -72,7 +73,7 @@ export default function Firstt() {
     if (textRef.current) {
       const yValue = isMobile
         ? '50%'
-          : '45%';
+        : '45%';
       textRef.current.setAttribute('y', yValue);
     }
 
@@ -290,6 +291,7 @@ export default function Firstt() {
             <rect width="100%" height="100%" fill="white" mask="url(#textmask)" />
           </svg>
 
+
           {/* Static Bottom Left Text */}
           <div
             ref={staticTextRef}
@@ -307,8 +309,11 @@ export default function Firstt() {
 
 
       <section className="min-h-auto w-full px-4">
-        <div className="fixed top-4 right-4 sm:top-6 sm:right-6 z-50 md:hidden">
+        <div className="fixed top-2 right-4 sm:top-6 sm:right-6 z-50 md:hidden">
           <Example />
+        </div>
+        <div className="fixed left-5 top-2 z-50000 lg:hidden">
+          <Navbar />
         </div>
         <div className="flex flex-col md:flex-row justify-between items-start pt-16 gap-6">
           <div className="w-full md:w-1/2">

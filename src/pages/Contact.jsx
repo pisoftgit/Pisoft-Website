@@ -82,15 +82,74 @@ function Contact() {
   }, []);
 
 
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    subject: "",
+    message: "",
+    mobileNo: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const fullName = `${formData.firstName} ${formData.lastName}`;
+
+    const payload = {
+      name: fullName,
+      email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+      mobileNo: formData.mobileNo,
+    };
+
+    try {
+      const response = await fetch("https://project.pisofterp.com/pipl/restworld/saveContactUs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send form");
+      }
+
+      alert("Form submitted successfully!");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        subject: "",
+        message: "",
+        mobileNo: "",
+      });
+    } catch (err) {
+      console.error(err);
+      alert("Error submitting form.");
+    }
+  };
+
+
 
   return (
-    <div className="w-full">
+    <div className="w-full overflow-hidden">
       {/* Navbar and Corn Demo */}
       <div className="flex justify-between items-center mb-8">
         <div className="fixed left-5 top-2 z-50000 lg:hidden">
           <Navbar />
         </div>
-        <div className="fixed top-4 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
+        <div className="fixed top-2 right-4 z-50 max-w-[90%] sm:max-w-none lg:hidden">
           <Example />
         </div>
         <div className="fixed top-0 left-0 w-full z-50">
@@ -145,18 +204,22 @@ function Contact() {
 
 
           {/* Form */}
-          <form className="space-y-6 bg-gray-50 p-2 rounded-lg shadow-md">
+          <form onSubmit={handleSubmit} className="space-y-6 bg-gray-50 p-2 rounded-lg shadow-md">
             <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="text"
                 name="firstName"
                 placeholder="First Name"
+                value={formData.firstName}
+                onChange={handleChange}
                 className="w-full sm:w-1/2 border-b border-gray-400 placeholder-gray-700 bg-transparent focus:outline-none focus:border-orange-500 p-1 placeholder:font-jSB tracking-widest"
               />
               <input
                 type="text"
                 name="lastName"
                 placeholder="Last Name"
+                value={formData.lastName}
+                onChange={handleChange}
                 className="w-full sm:w-1/2 border-b border-gray-400 placeholder-gray-700 bg-transparent focus:outline-none focus:border-orange-500 p-1 placeholder:font-jSB tracking-widest"
               />
             </div>
@@ -164,18 +227,32 @@ function Contact() {
               type="email"
               name="email"
               placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
               className="w-full border-b border-gray-400 placeholder-gray-700 bg-transparent focus:outline-none focus:border-orange-500 p-1 placeholder:font-jSB tracking-widest"
             />
             <input
               type="tel"
-              name="contact"
+              name="mobileNo"
               placeholder="Contact Number"
+              value={formData.mobileNo}
+              onChange={handleChange}
+              className="w-full border-b border-gray-400 placeholder-gray-700 bg-transparent focus:outline-none focus:border-orange-500 p-1 placeholder:font-jSB tracking-widest"
+            />
+            <input
+              type="text"
+              name="subject"
+              placeholder="Subject"
+              value={formData.subject}
+              onChange={handleChange}
               className="w-full border-b border-gray-400 placeholder-gray-700 bg-transparent focus:outline-none focus:border-orange-500 p-1 placeholder:font-jSB tracking-widest"
             />
             <textarea
               name="message"
               rows="4"
               placeholder="Message"
+              value={formData.message}
+              onChange={handleChange}
               className="w-full border-b border-gray-400 placeholder-gray-700 bg-transparent focus:outline-none focus:border-orange-500 p-1 resize-none placeholder:font-jSB tracking-widest"
             />
             <button
@@ -185,6 +262,7 @@ function Contact() {
               Submit
             </button>
           </form>
+
         </div>
 
 
