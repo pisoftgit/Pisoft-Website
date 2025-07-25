@@ -58,8 +58,8 @@ function Tech() {
               images: ['17.png', '18.png', '19.png', '20.png'],
             },
             {
-              title: 'Backend Development',
-              images: ['17.png', '18.png', '19.png', '20.png'],
+              title: 'Cyber Security',
+              images: ['44.png', '45.png', '46.png', '47.png'],
             },
             {
               title: 'Databases',
@@ -74,8 +74,8 @@ function Tech() {
               images: ['1.png', '2.png', '3.png', '4.png'],
             },
             {
-              title: 'DevOps',
-              images: ['17.png', '18.png', '19.png', '20.png'],
+              title: 'Graphic Designing',
+              images: ['40.png', '41.png', '42.png', '43.png'],
             },
             {
               title: 'UI/UX Design',
