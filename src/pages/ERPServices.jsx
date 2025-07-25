@@ -101,6 +101,22 @@ function ERPServices() {
     }
   }, []);
 
+  
+   const [showAuthButtons, setShowAuthButtons] = useState(true);
+ 
+   useEffect(() => {
+     const handleScroll = () => {
+       if (window.scrollY > 100) {
+         setShowAuthButtons(false);
+       } else {
+         setShowAuthButtons(true);
+       }
+     };
+ 
+     window.addEventListener("scroll", handleScroll);
+     return () => window.removeEventListener("scroll", handleScroll);
+   }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
@@ -127,20 +143,6 @@ function ERPServices() {
     );
   }
 
-   const [showAuthButtons, setShowAuthButtons] = useState(true);
- 
-   useEffect(() => {
-     const handleScroll = () => {
-       if (window.scrollY > 100) {
-         setShowAuthButtons(false);
-       } else {
-         setShowAuthButtons(true);
-       }
-     };
- 
-     window.addEventListener("scroll", handleScroll);
-     return () => window.removeEventListener("scroll", handleScroll);
-   }, []);
  
    return (
      <div className="bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 w-full overflow-x-hidden">
@@ -180,7 +182,7 @@ function ERPServices() {
             text=" SPSME"
             flex
             width
-            textColor="rgba(251, 153, 69, 0.6)" 
+            textColor="rgba(251, 153, 69, 0.6)"
             strokeColor="rgba(251, 153, 69, 0.1)"
             minFontSize={0.5}
           />

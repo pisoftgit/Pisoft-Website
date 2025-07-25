@@ -86,7 +86,7 @@ export function Example() {
       {/* Fullscreen Nav Overlay */}
       <div
         ref={overlayRef}
-        className="fixed top-0 left-0 w-full h-screen bg-blue-950 text-white z-40 hidden"
+        className="fixed top-0 left-0 w-full h-screen bg-gradient-to-b from-blue-950 via-gray-950 to-gray-950 text-white z-40 hidden"
       >
         <div className="flex flex-col md:flex-row w-full h-full">
           {/* Branding - Top/Left side */}
@@ -100,13 +100,13 @@ export function Example() {
             }}
           >
             <div className="relative z-10 pt-15 md:pt-0">
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bebas tracking-wide bg-clip-text text-transparent bg-white/80">
+              <h1 className="text-3xl sm:text-5xl md:text-8xl lg:text-9xl font-bebas tracking-wide bg-clip-text text-transparent bg-white/80">
                 PiSoft
               </h1>
-              <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl font-bebas tracking-wide bg-clip-text text-transparent bg-orange-400/80">
+              <h1 className="text-3xl sm:text-5xl md:text-8xl lg:text-9xl font-bebas tracking-wide bg-clip-text text-transparent bg-orange-400/80">
                 Informatics
               </h1>
-              <h3 className="mt-4 sm:mt-6 md:mt-10 text-xl sm:text-2xl md:text-5xl font-bebas tracking-wide bg-clip-text text-transparent bg-orange-400/80">
+              <h3 className="mt-4 sm:mt-6 md:mt-10 text-xl sm:text-2xl md:text-6xl font-bebas tracking-wide bg-clip-text text-transparent bg-orange-400/80">
                 Contact
               </h3>
               <div className="text-base sm:text-lg md:text-2xl font-bebas tracking-wide bg-clip-text text-transparent bg-white/80">
@@ -127,13 +127,13 @@ export function Example() {
                 </p>
               </div>
             </div>
-            <div className="absolute inset-0 bg-blue-950 opacity-60 z-0" />
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-950 via-gray-950 to-gray-950 opacity-60 z-0" />
           </div>
 
           {/* Nav Links - Bottom/Right side */}
           <div
             ref={rightRef}
-            className="w-full md:w-1/2 h-[40%] md:h-full flex flex-col items-center justify-center gap-2 sm:gap-4 md:gap-6 font-jl text-xl md:text-3xl"
+            className="w-full md:w-1/2 h-[50%] md:h-full flex flex-col items-center justify-center gap-2 sm:gap-4 md:gap-6 font-jl text-md md:text-2xl"
           >
             <a
               onClick={() => handleNavClick("/")}
@@ -142,13 +142,30 @@ export function Example() {
             >
               Home
             </a>
-            <a
-              onClick={() => handleNavClick("/about")}
-              onMouseEnter={() => setBgImage(imageMap.about)}
-              className="hover:text-blue-400 transition cursor-pointer"
-            >
-              About
-            </a>
+
+            <Accordion className="cursor-pointer hover:text-blue-400 py-1" title="About Us">
+              <div
+                className="cursor-pointer text-md md:2xl hover:text-blue-400 py-1"
+                onMouseEnter={() => setBgImage(imageMap.about)}
+                onClick={() => handleNavClick("/about")}
+              >
+                About us
+              </div>
+              <div
+                className="cursor-pointer hover:text-blue-400 py-1"
+                onMouseEnter={() => setBgImage(imageMap.about)}
+                onClick={() => handleNavClick("/about#our-mission")}
+              >
+                Our mission
+              </div>
+              <div
+                className="cursor-pointer hover:text-blue-400 py-1"
+                onMouseEnter={() => setBgImage(imageMap.about)}
+                onClick={() => handleNavClick("/about#our-vision")}
+              >
+                Our Vision
+              </div>
+            </Accordion>
             <Accordion className="cursor-pointer hover:text-blue-400 py-1" title="ERP Solutions">
               <div
                 className="cursor-pointer hover:text-blue-400 py-1"
@@ -193,6 +210,43 @@ export function Example() {
                 Services
               </div>
             </Accordion>
+            <Accordion className="cursor-pointer hover:text-blue-400 py-1" title="Other Services">
+              <div
+                className="cursor-pointer hover:text-blue-400 py-1"
+                onMouseEnter={() => setBgImage(imageMap.about)}
+                onClick={() => handleNavClick("#")}
+              >
+                Web Application
+              </div>
+              <div
+                className="cursor-pointer hover:text-blue-400 py-1"
+                onMouseEnter={() => setBgImage(imageMap.about)}
+                onClick={() => handleNavClick("#")}
+              >
+                Desktop Application
+              </div>
+              <div
+                className="cursor-pointer hover:text-blue-400 py-1"
+                onMouseEnter={() => setBgImage(imageMap.about)}
+                onClick={() => handleNavClick("#")}
+              >
+                Mobile Application
+              </div>
+              <div
+                className="cursor-pointer hover:text-blue-400 py-1"
+                onMouseEnter={() => setBgImage(imageMap.about)}
+                onClick={() => handleNavClick("#")}
+              >
+                Graphic Designing
+              </div>
+              <div
+                className="cursor-pointer hover:text-blue-400 py-1"
+                onMouseEnter={() => setBgImage(imageMap.about)}
+                onClick={() => handleNavClick("#")}
+              >
+                Web Designing
+              </div>
+            </Accordion>
             <a
               onClick={() => handleNavClick("/IntershipProgram")}
               onMouseEnter={() => setBgImage(imageMap.home)}
@@ -201,11 +255,18 @@ export function Example() {
               Internship
             </a>
             <a
+              onClick={() => handleNavClick("/OurGallery")}
+              onMouseEnter={() => setBgImage(imageMap.home)}
+              className="hover:text-blue-400 transition cursor-pointer"
+            >
+              Gallery
+            </a>
+            <a
               onClick={() => handleNavClick("/contact")}
               onMouseEnter={() => setBgImage(imageMap.contact)}
               className="hover:text-blue-400 transition cursor-pointer"
             >
-              Contact
+              Contact Us
             </a>
           </div>
 

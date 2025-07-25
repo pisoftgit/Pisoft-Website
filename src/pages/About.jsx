@@ -148,9 +148,11 @@ function About() {
           {/* === About Section === */}
           <section
             ref={aboutSectionRef}
-            className="min-h-auto flex flex-col md:flex-row items-start relative z-10  pt-13"
+            className="min-h-auto items-start relative z-10 pl-2 pr-2 lg:pl-6 lg:pr-6 pt-13"
           >
-            <div className="w-full md:w-2/3 lg:w-[75%] z-10">
+            <div
+              className={`z-10 transition-all duration-500 w-full}`}
+            >
               <BlurText
                 text="Bringing Ideas to Life"
                 delay={200}
@@ -168,31 +170,29 @@ function About() {
                 />
                 <div className="font-jS text-base [text-align:justify] leading-relaxed sm:text-lg md:text-xl lg:text-2xl text-gray-800 tracking-wider mt-4 sm:mt-6">
                   {message ? (
-                    message.split("\n").map((line, index) => (
-                      <p key={index}>{line}</p>
-                    ))
+                    message.split('\n').map((line, index) => <p key={index}>{line}</p>)
                   ) : (
                     <p>Loading content...</p>
                   )}
                 </div>
               </div>
             </div>
-
-            {/* Lanyard Animation */}
-            <AnimatePresence>
-              {showLanyard && (
-                <motion.div
-                  className="absolute bg-transparent right-0 top-0 w-full md:w-1/2 lg:w-1/3 z-0"
-                  initial={{ opacity: 0, y: -50 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 50 }}
-                  transition={{ duration: 0.6 }}
-                >
-                  <Lanyard position={[0, 0, 25]} gravity={[0, -40, 0]} />
-                </motion.div>
-              )}
-            </AnimatePresence>
           </section>
+
+          {/* Lanyard Animation */}
+          <AnimatePresence>
+            {showLanyard && (
+              <motion.div
+                className="absolute bg-transparent right-0 top-0 w-full md:w-1/2 lg:w-1/3 z-0"
+                initial={{ opacity: 0, y: -50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 40 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Lanyard position={[0, 0, 25]} gravity={[0, -40, 0]} />
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* === Tech Section === */}
           <section
@@ -238,59 +238,12 @@ function About() {
           </div>
 
 
-          <section className="relative z-10 bg-white py-12 px-4 sm:px-8 lg:px-50 text-center">
+          <section className="relative z-10 bg-white lg:py-12 px-4 sm:px-8 lg:px-50 text-center">
 
-            <div className="grid lg:grid-cols-2 gap-10 items-center justify-center">
-
-              {/* Text Section */}
-              {/* <motion.div
-                className="text-center lg:text-left space-y-3"
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-blue-950 text-base sm:text-xl font-jl">
-                  Get a Globally Recognized
-                </h3>
-                <h2 className="text-blue-950 font-jSB text-4xl sm:text-5xl lg:text-6xl">
-                  Certificate
-                </h2>
-                <p className="text-[#F07C22] text-base sm:text-xl font-jl">
-                  Earn an industry-standard certificate upon completing your course.
-                </p>
-
-                <div className="flex flex-col sm:flex-col justify-center lg:justify-start gap-4 mt-6">
-                  <div className="flex flex-row gap-4">
-                    <div className="bg-orange-100 text-blue-950 rounded-lg px-4 py-2 text-sm font-semibold">
-                      title 1 certificates
-                    </div>
-                    <div className="bg-orange-100 text-blue-950 rounded-lg px-4 py-2 text-sm font-semibold">
-                      title 2 certificates
-                    </div>
-                  </div>
-                  <div className="flex flex-row gap-4">
-                    <div className="bg-orange-100 text-blue-950 rounded-lg px-4 py-2 text-sm font-semibold">
-                      title 3 certificates
-                    </div>
-                    <div className="bg-orange-100 text-blue-950 rounded-lg px-4 py-2 text-sm font-semibold">
-                      title 4 certificates
-                    </div>
-                  </div>
-                </div>
-
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="mt-8 mb-5 md:mb-0 bg-blue-950 text-white px-6 py-3 rounded-lg font-medium shadow hover:bg-blue-800 transition hover:scale-110"
-                >
-                  Apply Today
-                </motion.button>
-              </motion.div> */}
-
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center justify-center">
               {/* Certificate Image Section */}
               <motion.div
-                className="flex justify-center lg:justify-center"
+                className="flex justify-center"
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
@@ -300,7 +253,7 @@ function About() {
               </motion.div>
 
               <motion.div
-                className="flex justify-center lg:justify-center"
+                className="flex justify-center"
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8 }}
@@ -310,18 +263,18 @@ function About() {
               </motion.div>
 
             </div>
-            
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-12 mb-5 md:mb-0 bg-blue-950 text-white px-6 py-3 rounded-lg font-medium shadow hover:bg-blue-800 transition hover:scale-110"
-              >
-                Apply Today
-              </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="mt-12 mb-5 md:mb-0 bg-blue-950 text-white px-6 py-3 rounded-lg font-medium shadow hover:bg-blue-800 transition hover:scale-110"
+            >
+              Apply Today
+            </motion.button>
           </section>
 
           {/* === Work Approach === */}
-          <section className="h-auto p-4 bg-white relative z-10">
+          <section className="h-auto bg-white relative z-10">
             <div className="text-center">
               <div className="font-jr text-gray-500 text-sm sm:text-base md:text-lg">
                 Our Work Approach
@@ -339,33 +292,9 @@ function About() {
           </section>
 
           {/* === Vision & Mission Section === */}
-          <section className="w-screen mb-20 flex flex-col space-y-12 sm:space-y-0 text-center overflow-hidden pr-6 sm:pr-8 md:pr-12">
+          <section className="w-screen mb-20 flex flex-col sm:space-y-0 text-center overflow-hidden pr-8 sm:pr-10 md:pr-14 pl-8 sm:pl-10 md:pl-12">
             {/* Vision */}
             <div className="w-full flex flex-col md:flex-row items-center justify-center md:space-x-8">
-              <div id="our-vision" className="md:w-2/3 text-center md:text-left">
-                <BlurText
-                  text="OUR VISION"
-                  delay={200}
-                  animateBy="words"
-                  direction="top"
-                  className="mt-16 mb-5 font-jSB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-950 tracking-wider"
-                />
-                <div
-                  className="font-jS text-base [text-align:justify] leading-relaxed sm:text-sm md:text-md lg:text-xl"
-                  dangerouslySetInnerHTML={{ __html: Visions }}
-                />
-              </div>
-              <div className="md:w-1/3 justify-center hidden md:flex">
-                <img
-                  src="https://energyrayng.com/wp-content/uploads/2024/06/vision-img.png"
-                  alt="Vision"
-                  className="w-full max-w-[350px] h-auto rounded-lg"
-                />
-              </div>
-            </div>
-
-            {/* Mission */}
-            <div className="w-full flex flex-col md:flex-row-reverse items-center justify-center md:space-x-8">
               <div id="our-mission" className="md:w-2/3 text-center md:text-left">
                 <BlurText
                   text="OUR MISSION"
@@ -382,20 +311,44 @@ function About() {
               <div className="md:w-1/3 justify-center hidden md:flex">
                 <img
                   src="https://www.iicmrmba.edu.in/images/icons/mission.png"
-                  alt="Mission"
+                  alt="MISSION"
+                  className="w-full max-w-[350px] h-auto rounded-lg"
+                />
+              </div>
+            </div>
+
+            {/* Mission */}
+            <div className="w-full flex flex-col md:flex-row-reverse items-center justify-center md:space-x-8">
+              <div id="our-vision" className="md:w-2/3 text-center md:text-left">
+                <BlurText
+                  text="OUR VISION"
+                  delay={200}
+                  animateBy="words"
+                  direction="top"
+                  className="mt-16 mb-5 font-jSB text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-blue-950 tracking-wider"
+                />
+                <div
+                  className="font-jS text-base [text-align:justify] leading-relaxed sm:text-sm md:text-md lg:text-xl"
+                  dangerouslySetInnerHTML={{ __html:Visions }}
+                />
+              </div>
+              <div className="md:w-1/3 justify-center hidden md:flex">
+                <img
+                  src="https://energyrayng.com/wp-content/uploads/2024/06/vision-img.png "
+                  alt="VISION"
                   className="w-full max-w-[350px] h-auto rounded-lg"
                 />
               </div>
             </div>
           </section>
 
-        </div>
-      </main>
+        </div >
+      </main >
 
       {/* === Footer === */}
-      <footer className="relative bg-white z-10">
+      < footer className="relative bg-white z-10" >
         <Footer />
-      </footer>
+      </footer >
     </>
   );
 }

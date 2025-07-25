@@ -309,14 +309,14 @@ export default function Firstt() {
 
 
       <section className="min-h-auto w-full px-4">
-        <div className="fixed top-2 right-4 sm:top-6 sm:right-6 z-50 md:hidden">
+        <div className="fixed top-2 right-4 sm:top-6 sm:right-6 z-50 lg:hidden">
           <Example />
         </div>
         <div className="fixed left-5 top-2 z-50000 lg:hidden">
           <Navbar />
         </div>
         <div className="flex flex-col md:flex-row justify-between items-start pt-16 gap-6">
-          <div className="w-full md:w-1/2">
+          <div className="w-full md:w-1/2 pl-2 md:pl-6 ">
             <h1 ref={turningCodeRef} className="font-jSB text-[9vw] sm:text-[4vw] md:text-[5.5vw] lg:text-[4vw] text-blue-950 leading-tight">Turning Code into</h1>
             <h1 className="font-jSB  text-[9vw] sm:text-[4vw] md:text-[5.5vw] lg:text-[4vw] text-orange-600 leading-tight">Impact.</h1>
             <div ref={triggerRef} className="mt-6 flex flex-wrap gap-3 max-w-full">
@@ -388,7 +388,7 @@ export default function Firstt() {
 
       {/* Gallery Section */}
 
-      <div className="max-w-screen mt-35 px-10 ">
+      <div className="max-w-screen mt-40 px-10 ">
         <BlurText
           text="WHAT OUR CLIENT SAYS"
           className="lg:text-5xl text-3xl font-jB text-center text-[#F07C22] "

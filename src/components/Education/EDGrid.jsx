@@ -99,7 +99,7 @@ const cards = [
         title:"Finance and Accounting Management",
         className: "md:col-span-2",
         thumbnail:
-            "https://media.istockphoto.com/id/2148264573/vector/stock-market-investment-data-and-analysis-finance-graph-business-financial-chart-with-moving.jpg?s=612x612&w=0&k=20&c=K3HuUFBvH4iFrnb54v0F9iyT7DMmkDIN6tiSwL_9yGA=",
+            "https://img.freepik.com/free-photo/finance-business-accounting-analysis-management-concept_53876-15817.jpg",
     },
     {
         id: 2,
@@ -107,7 +107,7 @@ const cards = [
         title:"Lead Management",
         className: "col-span-1",
         thumbnail:
-            "https://static.vecteezy.com/system/resources/thumbnails/006/174/188/small_2x/lead-generation-finding-and-identifying-customers-for-your-business-products-or-services-finance-concept-photo.jpg",
+            "https://img.freepik.com/premium-photo/businessman-shows-his-hands-hologram-human-resources-blurred-background_1035553-203.jpg",
     },
     {
         id: 3,
@@ -115,7 +115,7 @@ const cards = [
         title:"Students Management",
         className: "col-span-1",
         thumbnail:
-            "https://www.shutterstock.com/image-photo/internet-educationonline-degreeelearning-education-conceptonline-260nw-2341578301.jpg",
+            "https://img.freepik.com/free-vector/isometric-online-education-round-concept-with-devices-online-training-graduation-cap-students-books-magnifier-alarm-clock-backpack-certificate-pencil-illustration_1284-51233.jpg",
     },
     {
         id: 4,
@@ -123,7 +123,7 @@ const cards = [
         title:"Student Score and Evaluation",
         className: "md:col-span-2",
         thumbnail:
-            "https://www.shutterstock.com/image-photo/soft-focushigh-school-university-student-260nw-737217331.jpg",
+            "https://img.freepik.com/free-photo/customer-satisfaction-service-care-problem-solving_53876-122820.jpg?semt=ais_hybrid&w=740&q=80",
     },
     {
         id: 5,
@@ -131,7 +131,7 @@ const cards = [
         title:"Human Resource Management",
         className: "col-span-2",
         thumbnail:
-            "https://www.shutterstock.com/image-photo/hr-human-resources-management-recruitment-260nw-2460979123.jpg",
+            "https://img.freepik.com/free-photo/human-resource-hiring-recruiter-select-career-concept_53876-21141.jpg?semt=ais_hybrid&w=740",
     },
     {
         id: 6,

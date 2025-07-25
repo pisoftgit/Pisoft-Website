@@ -133,7 +133,7 @@ export default function ScrollT() {
   return (
     <main
       ref={container}
-      className="min-h-auto sm:mt-4 md:mt-5 bg-white relative w-full h-auto"
+      className="min-h-screen sm:mt-4 md:mt-5 bg-white relative w-full h-auto"
     >
 
       <div className="flex flex-col items-center">

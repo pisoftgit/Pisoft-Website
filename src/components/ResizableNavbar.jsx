@@ -56,7 +56,7 @@ export const NavBody = ({ children, className, visible }) => {
                 damping: 50,
             }}
             style={{
-                minWidth: "1100px",
+                minWidth: "1300px",
             }}
             className={cn(
                 "relative z-[60] mx-auto hidden w-auto flex-row items-center justify-between self-start rounded-full lg:flex",
@@ -122,7 +122,7 @@ export const NavItems = ({ items, className, onItemClick }) => {
         <motion.div
             onMouseLeave={() => setHovered(null)}
             className={cn(
-                "ml-40 absolute inset-0 hidden flex-1 flex-row items-center justify-center text-lg font-medium text-blue-950 transition duration-200 hover:text-blue-800 lg:flex",
+                "ml-40 absolute inset-0 hidden flex-1 flex-row items-center justify-center text-sm font-jSB text-blue-950 transition duration-200 hover:text-blue-900 lg:flex",
                 className
             )}
         >

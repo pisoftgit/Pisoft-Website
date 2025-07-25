@@ -23,7 +23,7 @@ export const LayoutGrid = ({ cards }) => {
   };
 
   return (
-    <div className="w-full text-center md:h-full h-1/2 grid md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 grid-cols-2 max-w-7xl mx-auto gap-2 md:gap-4 relative px-2 sm:px-4 md:px-6 
+    <div className="w-full text-center md:h-full h-full grid md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 grid-cols-2 max-w-7xl mx-auto gap-2 md:gap-4 relative px-2 sm:px-4 md:px-6 
     scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
       {cards.map((card, i) => (
         <div key={card.id || i} className={cn(card.className, "")}>

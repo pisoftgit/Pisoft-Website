@@ -5,29 +5,22 @@ import {
   NavItems,
   NavbarLogo,
 } from "../ResizableNavbar";
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 
 export function NavbarDemo() {
-  const [navItems, setNavItems] = useState([
+  // const [navItems, setNavItems] = useState([
+  const navItems= [
     {
       name: "Home",
       link: "/",
     },
     {
-      name: "About",
-      link: "/about",
+      name: "About Us",
       children: [
+        { name: "About Us", link: "/about" },
         { name: "Our Mission", link: "/about#our-mission" },
         { name: "Our Vision", link: "/about#our-vision" },
       ],
-    },
-    {
-      name: "Internship",
-      link: "/IntershipProgram",
-    },
-    {
-      name: "E-Brochure",
-      children: [], 
     },
     {
       name: "ERP Services",
@@ -41,56 +34,76 @@ export function NavbarDemo() {
       ],
     },
     {
+      name: "Other Services",
+      children: [
+        { name: "Web Applications", link: "/ERPservices/Education" },
+        { name: "Desktop Applications", link: "/ERPservices/Finance" },
+        { name: "Mobile Applications", link: "/ERPservices/Medical&Healthcare" },
+        { name: "Graphic Designing", link: "/ERPservices/AutoMobile" },
+        { name: "Web Designing", link: "/ERPservices/TourTravels" },
+      ],
+    },
+    {
+      name: "Internship",
+      link: "/IntershipProgram",
+    },
+    {
+      name: "Gallery",
+      link: "/",
+    },
+    {
       name: "Contact Us",
       link: "/contact",
     },
-  ]);
+  ]
 
-  useEffect(() => {
-    const fetchBrochureData = async () => {
-      try {
-        const res = await fetch("https://project.pisofterp.com/pipl/restworld/courses/technologies/modes/ONLINE");
-        const data = await res.json();
+  // );
 
-        const brochureGrouped = {};
+  // useEffect(() => {
+  //   const fetchBrochureData = async () => {
+  //     try {
+  //       const res = await fetch("https://project.pisofterp.com/pipl/restworld/courses/technologies/modes/ONLINE");
+  //       const data = await res.json();
 
-        data.forEach(item => {
-          const tech = item.technologyName;
-          const courseName = item.courseName;
-          const link = item.resource || `/course/${item.courseId}`;
+  //       const brochureGrouped = {};
 
-          if (!brochureGrouped[tech]) {
-            brochureGrouped[tech] = [];
-          }
+  //       data.forEach(item => {
+  //         const tech = item.technologyName;
+  //         const courseName = item.courseName;
+  //         const link = item.resource || `/course/${item.courseId}`;
 
-          brochureGrouped[tech].push({
-            name: courseName,
-            link,
-          });
-        });
+  //         if (!brochureGrouped[tech]) {
+  //           brochureGrouped[tech] = [];
+  //         }
 
-        const eBrochureChildren = Object.entries(brochureGrouped).map(
-          ([techName, children]) => ({
-            name: techName,
-            children,
-          })
-        );
+  //         brochureGrouped[tech].push({
+  //           name: courseName,
+  //           link,
+  //         });
+  //       });
 
-        // Update just the E-Brochure section
-        setNavItems((prevItems) =>
-          prevItems.map((item) =>
-            item.name === "E-Brochure"
-              ? { ...item, children: eBrochureChildren }
-              : item
-          )
-        );
-      } catch (error) {
-        console.error("Failed to fetch brochure data", error);
-      }
-    };
+  //       const eBrochureChildren = Object.entries(brochureGrouped).map(
+  //         ([techName, children]) => ({
+  //           name: techName,
+  //           children,
+  //         })
+  //       );
 
-    fetchBrochureData();
-  }, []);
+  //       // Update just the E-Brochure section
+  //       setNavItems((prevItems) =>
+  //         prevItems.map((item) =>
+  //           item.name === "E-Brochure"
+  //             ? { ...item, children: eBrochureChildren }
+  //             : item
+  //         )
+  //       );
+  //     } catch (error) {
+  //       console.error("Failed to fetch brochure data", error);
+  //     }
+  //   };
+
+  //   fetchBrochureData();
+  // }, []);
 
   return (
     <div className="relative w-full">

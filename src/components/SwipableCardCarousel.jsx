@@ -23,13 +23,13 @@ const cards = [
     link: "https://example.com/contentful-101",
     title: "Engage directly with live projects, allowing you to apply your theoretical knowledge in practical scenarios. This immersive experience is invaluable for building confidence and competence in your..."
   },
-  
+
   {
     time: "18 min read",
     link: "https://example.com/contentful-101",
     title: "You'll have the opportunity to work on live projects, which you can showcase or submit to your college or university. This practical experience will significantly enhance your portfolio and academic credentials..."
   },
-  
+
   {
     time: "9 min read",
     link: "https://example.com/contentful-101",
@@ -61,7 +61,7 @@ export default function SwipableCardCarousel() {
         </div>
         <RotatingText
           texts={['Insights', 'Blogs', 'Cases']}
-          mainClassName="px-1 sm:px-2 md:px-2 text-3xl sm:text-4xl md:text-5xl font-jSB bg-orange-500 text-white overflow-hidden py-0.5 sm:py-0.9 md:py-1 justify-center rounded-lg"
+          mainClassName="px-1 sm:px-2 md:px-2 text-3xl sm:text-4xl md:text-5xl font-jSB bg-[#f07c22] text-white overflow-hidden py-0.5 sm:py-0.9 md:py-1 justify-center rounded-lg"
           staggerFrom="last"
           initial={{ y: "100%" }}
           animate={{ y: 0 }}
@@ -117,12 +117,12 @@ export default function SwipableCardCarousel() {
                 : "bg-blue-950 text-white"
                 }`}
             >
-              <div className="flex flex-col justify-between h-full pl-5 pr-5">
+              <div className="flex flex-col justify-between h-full p-4 ">
                 <div>
                   <p className={`inline-flex items-center mb-3 px-4 py-2 text-sm font-jSB rounded-full transition-all duration-300 shadow-md self-start ${hoveredIndex === index
-                        ? 'bg-white text-black'
-                        : 'bg-[#f07c22] text-white'
-                      } hover:scale-110`}>
+                    ? 'bg-white text-black'
+                    : 'bg-[#e38724] text-white'
+                    } hover:scale-110`}>
                     {card.time}
                   </p>
                   <h2 className="font-jl">
@@ -137,8 +137,8 @@ export default function SwipableCardCarousel() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`mt-6 inline-flex items-center px-4 py-2 text-sm font-jS rounded-full transition-all duration-300 shadow-md self-start ${hoveredIndex === index
-                        ? 'bg-white text-black'
-                        : 'bg-orange-400 text-white'
+                      ? 'bg-white text-black'
+                      : 'bg-[#f07c22] text-white'
                       } hover:scale-105`}
                   >
                     Read More

@@ -10,11 +10,11 @@ const AuthFloatingButtons = () => {
   const [hoverLogin, setHoverLogin] = useState(false);
   const navigate = useNavigate()
 
-  const handleApplyInternship = () =>{
+  const handleApplyInternship = () => {
     navigate("/SignUpUser")
   }
 
-  const HandleLoginButton = ()=>{
+  const HandleLoginButton = () => {
     navigate("/LoginRegisterUser")
   }
 
@@ -23,7 +23,15 @@ const AuthFloatingButtons = () => {
   const sizeClasses = "px-3 py-2 text-xs sm:px-5 sm:py-3 sm:text-sm";
 
   return (
-    <div className="flex justify-end gap-3 pt-2 z-600000">
+    <div className={`
+    flex gap-3
+    z-[600000]
+    justify-end
+    pt-2
+    lg:static lg:pt-2 lg:justify-end
+    fixed bottom-4 right-4 sm:flex-row md:flex-row
+    lg:flex-row
+  `}>
       {/* Internship Button */}
       <motion.button
         onMouseEnter={() => setHoverIntern(true)}

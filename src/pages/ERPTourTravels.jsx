@@ -7,7 +7,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import TextPressure from '../components/TextPressure';
 import { TypewriterEffectSmoothDemo } from "../components/Education/Text";
-import { FollowingPointerDemo } from '../components/Finance/FiFloatingPointer';
+import { FollowingPointerDemo } from '../components/Tours&Travels/ToursFloatingPointer';
 import { TypewriterEffect } from "../components/Finance/text2";
 import { LayoutGridDemo } from "../components/Finance/FiGrid";
 import BlurText from '../components/BlurText';
@@ -36,6 +36,22 @@ function ERPTourTravels() {
     type2: useRef(null),
     pointer: useRef(null),
   };
+
+  const [showAuthButtons, setShowAuthButtons] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setShowAuthButtons(false);
+      } else {
+        setShowAuthButtons(true);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
 
   function useArrayRef() {
     const r = useRef([]);
@@ -134,21 +150,6 @@ function ERPTourTravels() {
     );
   }
 
-  const [showAuthButtons, setShowAuthButtons] = useState(true);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setShowAuthButtons(false);
-      } else {
-        setShowAuthButtons(true);
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
   return (
     <div className="bg-gradient-to-r from-orange-50 via-orange-100 to-sky-200 w-full overflow-x-hidden">
 
@@ -167,21 +168,21 @@ function ERPTourTravels() {
           <Example />
         </div>
         <div className="fixed top-0 left-0 w-full z-50">
-                  <AnimatePresence>
-                    {showAuthButtons && (
-                      <motion.div
-                        initial={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -50 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <AuthFloatingButtons />
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                  <div className="sticky top-0 z-40">
-                    <NavbarDemo />
-                  </div>
-                </div>
+          <AnimatePresence>
+            {showAuthButtons && (
+              <motion.div
+                initial={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -50 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AuthFloatingButtons />
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div className="sticky top-0 z-40">
+            <NavbarDemo />
+          </div>
+        </div>
         {/* Hero: animated TextPressure */}
         <div className="absolute top-20 left-15 md:top-4 md:left-70 w-full flex items-center justify-center pl-4 text-center">
           <TextPressure

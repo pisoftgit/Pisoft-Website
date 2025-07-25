@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Stepper, { Step } from '../Stepper';
 
 function Stepp() {
-  const [name, setName] = useState("");
 
   return (
     <div className="flex  flex-col md:flex-row w-full h-auto px-4 sm:px-6">

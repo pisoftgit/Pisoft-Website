@@ -10,7 +10,7 @@ export default function Accordion({ title, children, initiallyOpen = false }) {
     <div className="w-full flex flex-col items-center justify-center">
       <button
         onClick={toggleAccordion}
-        className="w-fit cursor-pointer text-center text-white hover:text-blue-400 font-semibold text-xl md:text-4xl transition py-2 mx-auto"
+        className="w-fit cursor-pointer text-center text-md md:text-xl text-white hover:text-blue-400 font-jr transition mx-auto"
       >
         {title}
       </button>
@@ -21,7 +21,7 @@ export default function Accordion({ title, children, initiallyOpen = false }) {
           isOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="py-2 text-base text-orange-400 text-center">
+        <div className="py-2 text-sm text-orange-400 text-center">
           {children}
         </div>
       </div>
