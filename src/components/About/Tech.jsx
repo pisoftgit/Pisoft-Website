@@ -62,10 +62,6 @@ function Tech() {
               images: ['44.png', '45.png', '46.png', '47.png'],
             },
             {
-              title: 'Databases',
-              images: ['8.png', '9.png', '10.png', '11.png'],
-            },
-            {
               title: 'Mobile Development',
               images: ['15.png', '16.png', '17.png', '18.png'],
             },
@@ -86,21 +82,24 @@ function Tech() {
               images: ['17.png', '18.png', '19.png', '20.png'],
             },
             {
-              title: 'AI & ML',
+              title: 'Cyber Security',
               images: ['17.png', '18.png', '19.png', '20.png'],
-            },
-            {
-              title: 'Cybersecurity',
-              images: ['17.png', '18.png', '19.png', '20.png'],
-            },
-            
-            {
-              title: 'Data Science',
-              images: ['29.png', '22.png', '23.png', '24.png'],
             },
             {
               title: 'Cloud Computing',
               images: ['33.png', '34.png', '35.png', '36.png'],
+            },
+            {
+              title: 'Datascience',
+              images: ['29.png', '22.png', '23.png', '24.png'],
+            },
+            {
+              title: 'Databases',
+              images: ['8.png', '9.png', '10.png', '11.png'],
+            },
+            {
+              title: 'AI & ML',
+              images: ['17.png', '18.png', '19.png', '20.png'],
             },
           ].map((category, index, arr) => (
             <motion.div
@@ -111,14 +110,16 @@ function Tech() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1, type: "spring", stiffness: 100 }}
             >
-              <h3 className="text-xl font-jSB mb-5 text-blue-950">{category.title}</h3>
-              <div className="grid grid-cols-2 items-center gap-4 justify-center">
+              <h3 className="text-base lg:text-xl font-jSB mb-5 text-blue-950">
+                {category.title}
+              </h3>
+              <div className="grid grid-cols-2 items-center gap-0 lg:gap-4 justify-center">
                 {category.images.map((img, i) => (
                   <motion.img
                     key={i}
                     src={`/${img}`}
                     alt={img.split('.')[0]}
-                    className="w-full h-25 object-contain bg-no-repeat rounded-md hover:scale-105 transition duration-200 ease-in-out flex items-center justify-center"
+                    className="w-auto lg:w-full lg:h-25 h-auto object-contain bg-no-repeat rounded-md hover:scale-105 transition duration-200 ease-in-out flex items-center justify-center"
                   />
                 ))}
               </div>
